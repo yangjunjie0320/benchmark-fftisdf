@@ -32,7 +32,9 @@ def download_poscar(mid: str, name=None, path=None, is_conventional=False,
         return str(poscar_path)
     
 if __name__ == "__main__":
-    path = os.path.join(os.path.dirname(__file__))
+    path = os.path.join(os.path.dirname(__file__), "vasp")
+    assert os.path.exists(path), f"Path {path} does not exist"
+
     data  = [("mp-66", "diamond")]
     data += [("mp-19009", "nio")]
     data += [("mp-390", "tio2")]
