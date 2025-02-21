@@ -101,7 +101,7 @@ def get_j_kpts(df_obj, dm_kpts, hermi=1, kpts=numpy.zeros((1, 3)), kpts_band=Non
 
     if is_zero(kpts_band):
         vj_kpts = vj_kpts.real
-    return _format_jks(vj_kpts, dms, input_band, kpts)
+    return _format_jks(vj_kpts, dm_kpts, input_band, kpts)
 
 @line_profiler.profile
 def get_k_kpts(df_obj, dm_kpts, hermi=1, kpts=numpy.zeros((1, 3)), kpts_band=None,
@@ -163,4 +163,4 @@ def get_k_kpts(df_obj, dm_kpts, hermi=1, kpts=numpy.zeros((1, 3)), kpts_band=Non
         vks.append([xk.conj().T @ vk @ xk for xk, vk in zip(inpv_kpt, v_kpt)])
 
     vks = numpy.asarray(vks).reshape(nset, nkpt, nao, nao)
-    return _format_jks(vks, dms, input_band, kpts)
+    return _format_jks(vks, dm_kpts, input_band, kpts)

@@ -103,7 +103,7 @@ def lstsq(a, b, tol=1e-10):
     return v @ t @ vh, int(rank)
 
 @line_profiler.profile
-def build(df_obj, c0=None, kpts=None, kmesh=None):
+def build(df_obj, inpx=None, kpts=None, kmesh=None):
     """
     Build the FFT-ISDF object.
     
@@ -117,16 +117,12 @@ def build(df_obj, c0=None, kpts=None, kmesh=None):
     assert numpy.allclose(cell.get_kpts(kmesh), kpts)
     nkpt = len(kpts)
 
-    tol = df_obj.tol
-
-    # build the interpolation vectors
-    g0 = df_obj.get_inpv(c0=c0)
-    nip = g0.shape[0]
-    assert g0.shape == (nip, 3)
+    nip = inpx.shape[0]
+    assert inpx.shape == (nip, 3)
     nao = cell.nao_nr()
     print_current_memory()
 
-    inpv_kpt = cell.pbc_eval_gto("GTOval", g0, kpts=kpts)
+    inpv_kpt = cell.pbc_eval_gto("GTOval", inpx, kpts=kpts)
     inpv_kpt = numpy.asarray(inpv_kpt, dtype=numpy.complex128)
     assert inpv_kpt.shape == (nkpt, nip, nao)
     log.debug("nip = %d, cisdf = %6.2f", nip, nip / nao)
@@ -280,7 +276,7 @@ def get_kern(df_obj, eta_kpt=None, q=0, fswp=None, max_memory=2000):
     blksize = max(max_memory * 1e6 * 0.2 / (ngrid * 16), 1)
     blksize = min(int(blksize), nip)
 
-    log.debug("\nCalculating Coulomb kernel with outcore method: q = %d / %d", q, nkpt)
+    log.debug("\nCalculating Coulomb kernel with outcore method: q = %d / %d", q + 1, nkpt)
     log.debug("blksize = %d, nip = %d, max_memory = %6.2e GB", blksize, nip, max_memory / 1e3)
     log.debug("memory used for each block = %6.2e GB", ngrid * 16 * blksize / 1e9)
 
@@ -320,7 +316,7 @@ class InterpolativeSeparableDensityFitting(FFTDF):
 
     _keys = ['_isdf', '_coul_kpt', '_inpv_kpt']
 
-    def __init__(self, cell, kpts=numpy.zeros((1, 3)), kmesh=None, c0=20.0):
+    def __init__(self, cell, kpts=numpy.zeros((1, 3)), kmesh=None):
         FFTDF.__init__(self, cell, kpts)
 
         # from pyscf.pbc.lib.kpts import KPoints
@@ -328,10 +324,9 @@ class InterpolativeSeparableDensityFitting(FFTDF):
         # self.kpts.build()
 
         self.kmesh = kmesh
-        self.c0 = c0
+        self.c0 = 10.0
 
         self.tol = 1e-10
-        self.f0 = 1.0
         from pyscf.lib import H5TmpFile
         self._fswap = H5TmpFile()
         self._keys = ['_isdf', '_coul_kpt', '_inpv_kpt', '_fswap']
@@ -346,7 +341,7 @@ class InterpolativeSeparableDensityFitting(FFTDF):
         return self
     
     @line_profiler.profile
-    def build(self):
+    def build(self, inpx=None):
         self.dump_flags()
         self.check_sanity()
 
@@ -365,9 +360,12 @@ class InterpolativeSeparableDensityFitting(FFTDF):
         if self._isdf is not None:
             pass
 
+        if inpx is None:
+            inpx = self.get_inpx(g0=None, c0=self.c0)
+
         inpv_kpt, coul_kpt = build(
             df_obj=self,
-            c0=self.c0,
+            inpx=inpx,
             kpts=kpts,
             kmesh=kmesh
         )
@@ -424,52 +422,45 @@ class InterpolativeSeparableDensityFitting(FFTDF):
             p0, p1 = p1, p1 + coords.shape[0]
             yield ao_etc_kpt, p0, p1
     
-    def get_inpv(self, c0=None, max_memory=2000):
-        f0 = 1.0
-
-        nao = self.cell.nao_nr()
-        nip = 8000
-
-        nkpt = len(self.kpts)
-
-        from pyscf.pbc.tools.pbc import mesh_to_cutoff
-        lv = self.cell.lattice_vectors()
-        k0 = mesh_to_cutoff(lv, [int(numpy.power(nip, 1/3) + 1)] * 3)
-        k0 = max(k0) * f0
-
-        from pyscf.pbc.tools.pbc import cutoff_to_mesh
-        g0 = self.cell.gen_uniform_grids(cutoff_to_mesh(lv, k0))
+    def get_inpx(self, g0=None, c0=None):
         log = logger.new_logger(self, self.verbose)
 
+        if g0 is None:
+            assert c0 is not None
+            nip = self.cell.nao_nr() * c0
+
+            from pyscf.pbc.tools.pbc import mesh_to_cutoff
+            lv = self.cell.lattice_vectors()
+            k0 = mesh_to_cutoff(lv, [int(numpy.power(nip, 1/3) + 1)] * 3)
+            k0 = max(k0)
+
+            from pyscf.pbc.tools.pbc import cutoff_to_mesh
+            g0 = self.cell.gen_uniform_grids(cutoff_to_mesh(lv, k0))
+        
         pcell = self.cell
-        nao = pcell.nao_nr()
         ng = len(g0)
 
-        t0 = numpy.zeros((ng, ng))
-        # for q in range(nkpt):
-        #     xq = pcell.pbc_eval_gto("GTOval", g0, kpts=self.kpts[q])
-        #     tq = numpy.dot(xq.conj(), xq.T)
-        #     t0 += tq.real
         x0 = pcell.pbc_eval_gto("GTOval", g0)
         t0 = numpy.dot(x0.conj(), x0.T)
         m0 = t0 * t0
-        # m0 = (t0 * t0) / nkpt
-
-        log.info("Parent grid ke_cutoff = %6.2f, mesh = %s, ngrid = %d", k0, cutoff_to_mesh(lv, k0), ng)
 
         from pyscf.lib.scipy_helper import pivoted_cholesky
-        tol = self.tol
-        chol, perm, rank = pivoted_cholesky(m0, tol=tol ** 2)
+        tol = self.tol ** 2
+        chol, perm, rank = pivoted_cholesky(m0, tol=tol)
 
-        nip = min(int(nip), rank)
+        print(rank, c0)
+        nip = pcell.nao_nr() * c0 if c0 is not None else rank
+        nip = int(nip)
+        if nip < rank:
+            nip = rank
         mask = perm[:nip]
 
-        log.info(
-            "Pivoted Cholesky rank = %d, nip = %d, estimated error = %6.2e",
-            rank, nip, chol[nip-1, nip-1]
-        )
+        nip = mask.shape[0]
+        log.info("Pivoted Cholesky rank = %d, estimated error = %6.2e", rank, chol[nip-1, nip-1])
+        log.info("Parent grid size = %d, selected grid size = %d", ng, nip)
 
-        return g0[mask]
+        inpx = g0[mask]
+        return inpx
     
     def get_jk(self, dm, hermi=1, kpts=None, kpts_band=None,
                with_j=True, with_k=True, omega=None, exxdiv=None):
@@ -485,7 +476,8 @@ class InterpolativeSeparableDensityFitting(FFTDF):
             from fft_isdf_jk import get_k_kpts
             vk = get_k_kpts(self, dm, hermi, kpts, kpts_band, exxdiv)
         if with_j:
-            from pyscf.pbc.df.fft_jk import get_j_kpts
+            # from pyscf.pbc.df.fft_jk import get_j_kpts
+            from fft_isdf_jk import get_j_kpts
             vj = get_j_kpts(self, dm, hermi, kpts, kpts_band)
 
         return vj, vk
@@ -497,7 +489,7 @@ if __name__ == "__main__":
     assert os.path.exists(DATA_PATH), f"DATA_PATH {DATA_PATH} does not exist"
 
     from utils import cell_from_poscar
-    cell = cell_from_poscar(os.path.join(DATA_PATH, "diamond-conv.vasp"))
+    cell = cell_from_poscar(os.path.join(DATA_PATH, "diamond-prim.vasp"))
     cell.basis = 'gth-dzvp-molopt-sr'
     cell.pseudo = 'gth-pade'
     cell.verbose = 0
@@ -519,47 +511,59 @@ if __name__ == "__main__":
 
     log = logger.new_logger(None, 5)
 
+    for k0 in [10.0, 20.0, 30.0, 40.0]:
+        from pyscf.pbc.tools.pbc import cutoff_to_mesh
+        lv = cell.lattice_vectors()
+        g0 = cell.gen_uniform_grids(cutoff_to_mesh(lv, k0))
+
+        t0 = (process_clock(), perf_counter())
+        c0 = 10.0
+        scf_obj.with_df = ISDF(cell, kpts=kpts)
+        scf_obj.with_df.verbose = 5
+        scf_obj.with_df.tol = 1e-10
+        scf_obj.with_df.max_memory = 2000
+        df_obj = scf_obj.with_df
+        inpx = df_obj.get_inpx(g0=g0, c0=c0)
+        df_obj.build(inpx)
+        t1 = log.timer("-> ISDF build", *t0)
+
+        e_tot = scf_obj.kernel(dm_kpts)
+        print("-> ISDF c0 = %6s, k0 = %6.2f, e_tot = %12.8e" % (c0, k0, e_tot))
+
+        # t0 = (process_clock(), perf_counter())
+        # vj1 = numpy.zeros((nkpt, nao, nao))
+        # vk1 = numpy.zeros((nkpt, nao, nao))
+        # vj1, vk1 = scf_obj.get_jk(dm_kpts=dm_kpts, with_j=True, with_k=True)
+        # vjk1 = vj1 - 0.5 * vk1
+        # vj1 = vj1.reshape(nkpt, nao, nao)
+        # vk1 = vk1.reshape(nkpt, nao, nao)
+        # t1 = log.timer("-> ISDF JK", *t0)
+
+        # err = abs(vj0 - vj1).max()
+        # c0 = "None" if c0 is None else " %6.2f" % c0
+        # print("-> ISDF c0 = %6s, k0 = %6.2f, abs(vj) = %6.4e, vj err  = %6.4e" % (c0, k0, abs(vj0).max(), err))
+
+        # err = abs(vk0 - vk1).max()
+        # print("-> ISDF c0 = %6s, k0 = %6.2f, abs(vk) = %6.4e, vk err  = %6.4e" % (c0, k0, abs(vk0).max(), err))
+
+        # err = abs(vjk0 - vjk1).max()
+        # print("-> ISDF c0 = %6s, k0 = %6.2f, abs(vjk) = %6.4e, vjk err = %6.4e" % (c0, k0, abs(vjk0).max(), err))
+
+        # assert 1 == 2
+
     t0 = (process_clock(), perf_counter())
     scf_obj.with_df = FFTDF(cell, kpts)
     scf_obj.with_df.verbose = 5
     scf_obj.with_df.dump_flags()
     scf_obj.with_df.check_sanity()
 
-    vj0 = numpy.zeros((nkpt, nao, nao))
-    vk0 = numpy.zeros((nkpt, nao, nao))
-    vj0, vk0 = scf_obj.get_jk(dm_kpts=dm_kpts, with_j=True, with_k=True)
-    vjk0 = vj0 - 0.5 * vk0
-    vj0 = vj0.reshape(nkpt, nao, nao)
-    vk0 = vk0.reshape(nkpt, nao, nao)
-    t1 = log.timer("-> FFTDF JK", *t0)
+    # vj0 = numpy.zeros((nkpt, nao, nao))
+    # vk0 = numpy.zeros((nkpt, nao, nao))
+    # vj0, vk0 = scf_obj.get_jk(dm_kpts=dm_kpts, with_j=True, with_k=True)
+    # vjk0 = vj0 - 0.5 * vk0
+    # vj0 = vj0.reshape(nkpt, nao, nao)
+    # vk0 = vk0.reshape(nkpt, nao, nao)
+    # t1 = log.timer("-> FFTDF JK", *t0)
 
-    for f0 in [1.0, 2.0, 4.0, 8.0, 16.0]:
-        t0 = (process_clock(), perf_counter())
-        c0 = 10.0
-        scf_obj.with_df = ISDF(cell, kpts=kpts)
-        scf_obj.with_df.c0 = c0
-        scf_obj.with_df.f0 = f0
-        scf_obj.with_df.verbose = 5
-        scf_obj.with_df.tol = 1e-10
-        scf_obj.with_df.max_memory = 2000
-        df_obj = scf_obj.with_df
-        df_obj.build()
-        t1 = log.timer("-> ISDF build", *t0)
-
-        t0 = (process_clock(), perf_counter())
-        vj1 = numpy.zeros((nkpt, nao, nao))
-        vk1 = numpy.zeros((nkpt, nao, nao))
-        vj1, vk1 = scf_obj.get_jk(dm_kpts=dm_kpts, with_j=True, with_k=True)
-        vjk1 = vj1 - 0.5 * vk1
-        vj1 = vj1.reshape(nkpt, nao, nao)
-        vk1 = vk1.reshape(nkpt, nao, nao)
-        t1 = log.timer("-> ISDF JK", *t0)
-
-        err = abs(vj0 - vj1).max()
-        print("-> ISDF c0 = % 6.2f, f0 = % 6.2f, vj err  = % 6.4e" % (c0, f0, err))
-
-        err = abs(vk0 - vk1).max()
-        print("-> ISDF c0 = % 6.2f, f0 = % 6.2f, vk err  = % 6.4e" % (c0, f0, err))
-
-        err = abs(vjk0 - vjk1).max()
-        print("-> ISDF c0 = % 6.2f, f0 = % 6.2f, vjk err = % 6.4e" % (c0, f0, err))
+    scf_obj.kernel(dm_kpts)
+    print("-> FFTDF e_tot = %6.4e" % e_tot)

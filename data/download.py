@@ -42,7 +42,7 @@ if __name__ == "__main__":
     data += [("mp-6879", "hg1212")]
 
     for m, n in data:
-        is_conventional = True
+        is_conventional = False
         poscar_file = download_poscar(
             m, name=n, path=path, 
             is_conventional=is_conventional,
