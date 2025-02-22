@@ -2,6 +2,7 @@
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
 #SBATCH --reservation=changroup_standingres
+#SBATCH --constraint=icelake
 
 # Load environment configuration
 source /home/junjiey/anaconda3/bin/activate fftisdf

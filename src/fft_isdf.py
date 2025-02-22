@@ -15,6 +15,7 @@ from pyscf.pbc.tools.k2gamma import get_phase
 from pyscf.pbc.df.df_jk import _format_dms, _format_kpts_band, _format_jks
 
 import line_profiler
+from utils import print_current_memory
 
 PYSCF_MAX_MEMORY = int(os.environ.get("PYSCF_MAX_MEMORY", 2000))
 
@@ -23,21 +24,6 @@ PYSCF_MAX_MEMORY = int(os.environ.get("PYSCF_MAX_MEMORY", 2000))
 # *_spc: super-cell stripe array, which shapes as (nspc, x, x)
 # *_full: full array, shapes as (nspc * x, nspc * x)
 # *_k1, *_k2: the k-space array at specified k-point
-
-
-def print_current_memory():
-    """This function is only for debugging"""
-    from psutil import Process
-    proc = Process()
-    mem = proc.memory_info().rss
-
-    from inspect import currentframe, getframeinfo
-    frame = currentframe().f_back
-    info = getframeinfo(frame)
-
-    print(f"current memory = {(mem) / 1e9:.2e} GB, {info.filename}:{info.lineno}")
-    return mem / 1e6
-
 
 def kpts_to_kmesh(df_obj, kpts):
     cell = df_obj.cell
@@ -120,14 +106,12 @@ def build(df_obj, inpx=None, kpts=None, kmesh=None):
     nip = inpx.shape[0]
     assert inpx.shape == (nip, 3)
     nao = cell.nao_nr()
-    print_current_memory()
 
     inpv_kpt = cell.pbc_eval_gto("GTOval", inpx, kpts=kpts)
     inpv_kpt = numpy.asarray(inpv_kpt, dtype=numpy.complex128)
     assert inpv_kpt.shape == (nkpt, nip, nao)
     log.debug("nip = %d, cisdf = %6.2f", nip, nip / nao)
     t1 = log.timer("get interpolating vectors")
-    print_current_memory()
     
     max_memory = max(2000, df_obj.max_memory - current_memory()[0])
 
@@ -138,10 +122,7 @@ def build(df_obj, inpx=None, kpts=None, kmesh=None):
         max_memory=max_memory,
         fswp=df_obj._fswap
     )
-    print_current_memory()
-
     ngrid = eta_kpt.shape[1]
-    is_incore = nip * ngrid * 8 / 1e9 < max_memory
 
     coul_kpt = []
     for q in range(nkpt):
@@ -149,7 +130,6 @@ def build(df_obj, inpx=None, kpts=None, kmesh=None):
 
         metx_q = metx_kpt[q]
         assert metx_q.shape == (nip, nip)
-        print_current_memory()
 
         kern_q = get_kern(
             df_obj, eta_kpt=eta_kpt, q=q,
@@ -159,7 +139,6 @@ def build(df_obj, inpx=None, kpts=None, kmesh=None):
 
         coul_q, rank = lstsq(metx_q, kern_q, tol=df_obj.tol)
         assert coul_q.shape == (nip, nip)
-        print_current_memory()
         
         coul_kpt.append(coul_q)
         log.timer("solving Coulomb kernel", *t0)
@@ -451,8 +430,6 @@ class InterpolativeSeparableDensityFitting(FFTDF):
         print(rank, c0)
         nip = pcell.nao_nr() * c0 if c0 is not None else rank
         nip = int(nip)
-        if nip < rank:
-            nip = rank
         mask = perm[:nip]
 
         nip = mask.shape[0]
@@ -468,16 +445,16 @@ class InterpolativeSeparableDensityFitting(FFTDF):
 
         from pyscf.pbc.df.aft import _check_kpts
         kpts, is_single_kpt = _check_kpts(self, kpts)
-        if is_single_kpt:
-            raise NotImplementedError
+        # if is_single_kpt:
+        #     raise NotImplementedError
         
         vj = vk = None
         if with_k:
             from fft_isdf_jk import get_k_kpts
             vk = get_k_kpts(self, dm, hermi, kpts, kpts_band, exxdiv)
         if with_j:
-            # from pyscf.pbc.df.fft_jk import get_j_kpts
-            from fft_isdf_jk import get_j_kpts
+            from pyscf.pbc.df.fft_jk import get_j_kpts
+            # from fft_isdf_jk import get_j_kpts
             vj = get_j_kpts(self, dm, hermi, kpts, kpts_band)
 
         return vj, vk
@@ -507,11 +484,14 @@ if __name__ == "__main__":
 
     scf_obj = pyscf.pbc.scf.KRHF(cell, kpts=kpts)
     scf_obj.exxdiv = None
+    scf_obj.conv_tol = 1e-8
     dm_kpts = scf_obj.get_init_guess(key="minao")
 
     log = logger.new_logger(None, 5)
 
-    for k0 in [10.0, 20.0, 30.0, 40.0]:
+    ee = []
+    kk = [10.0, 20.0, 30.0, 40.0]
+    for k0 in kk:
         from pyscf.pbc.tools.pbc import cutoff_to_mesh
         lv = cell.lattice_vectors()
         g0 = cell.gen_uniform_grids(cutoff_to_mesh(lv, k0))
@@ -528,42 +508,18 @@ if __name__ == "__main__":
         t1 = log.timer("-> ISDF build", *t0)
 
         e_tot = scf_obj.kernel(dm_kpts)
-        print("-> ISDF c0 = %6s, k0 = %6.2f, e_tot = %12.8e" % (c0, k0, e_tot))
-
-        # t0 = (process_clock(), perf_counter())
-        # vj1 = numpy.zeros((nkpt, nao, nao))
-        # vk1 = numpy.zeros((nkpt, nao, nao))
-        # vj1, vk1 = scf_obj.get_jk(dm_kpts=dm_kpts, with_j=True, with_k=True)
-        # vjk1 = vj1 - 0.5 * vk1
-        # vj1 = vj1.reshape(nkpt, nao, nao)
-        # vk1 = vk1.reshape(nkpt, nao, nao)
-        # t1 = log.timer("-> ISDF JK", *t0)
-
-        # err = abs(vj0 - vj1).max()
-        # c0 = "None" if c0 is None else " %6.2f" % c0
-        # print("-> ISDF c0 = %6s, k0 = %6.2f, abs(vj) = %6.4e, vj err  = %6.4e" % (c0, k0, abs(vj0).max(), err))
-
-        # err = abs(vk0 - vk1).max()
-        # print("-> ISDF c0 = %6s, k0 = %6.2f, abs(vk) = %6.4e, vk err  = %6.4e" % (c0, k0, abs(vk0).max(), err))
-
-        # err = abs(vjk0 - vjk1).max()
-        # print("-> ISDF c0 = %6s, k0 = %6.2f, abs(vjk) = %6.4e, vjk err = %6.4e" % (c0, k0, abs(vjk0).max(), err))
-
-        # assert 1 == 2
+        ee.append(e_tot)
+        print("-> ISDF c0 = %6s, k0 = %6.2f, e_tot = %12.8f" % (c0, k0, e_tot))
 
     t0 = (process_clock(), perf_counter())
     scf_obj.with_df = FFTDF(cell, kpts)
-    scf_obj.with_df.verbose = 5
+    scf_obj.with_df.verbose = 0
     scf_obj.with_df.dump_flags()
     scf_obj.with_df.check_sanity()
 
-    # vj0 = numpy.zeros((nkpt, nao, nao))
-    # vk0 = numpy.zeros((nkpt, nao, nao))
-    # vj0, vk0 = scf_obj.get_jk(dm_kpts=dm_kpts, with_j=True, with_k=True)
-    # vjk0 = vj0 - 0.5 * vk0
-    # vj0 = vj0.reshape(nkpt, nao, nao)
-    # vk0 = vk0.reshape(nkpt, nao, nao)
-    # t1 = log.timer("-> FFTDF JK", *t0)
+    e_tot = scf_obj.kernel(dm_kpts)
 
-    scf_obj.kernel(dm_kpts)
-    print("-> FFTDF e_tot = %6.4e" % e_tot)
+    print("-> FFTDF e_tot = %12.8f" % e_tot)
+    for ik, k0 in enumerate(kk):
+        print("-> FFTISDF c0 = %6s, k0 = %6.2f, e_tot = %12.8f, err = % 6.2e" % (c0, k0, ee[ik], ee[ik] - e_tot))
+
