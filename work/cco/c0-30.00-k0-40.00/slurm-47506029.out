@@ -1,0 +1,48 @@
+OMP_NUM_THREADS = 4
+MKL_NUM_THREADS = 1
+PYSCF_MAX_MEMORY = 32768
+TMPDIR = /central/scratch/yangjunjie//cco-c0-30.00-k0-40.00/47506029/
+PYSCF_TMPDIR = /central/scratch/yangjunjie//cco-c0-30.00-k0-40.00/47506029/
+
+/home/junjiey/anaconda3/envs/fftisdf/bin/python
+2.8.0
+1.13.1
+1.26.4
+/home/junjiey/anaconda3/envs/fftisdf/lib/python3.9/site-packages/pyscf/pbc/gto/cell.py:1306: UserWarning: Electron number 33 and spin 0 are not consistent in cell
+
+  warnings.warn('Electron number %d and spin %d are not consistent '
+cell.max_memory = 32768 MB
+Pivoted Cholesky rank = 2221, estimated error = 1.37e-06
+Parent grid size = 10051, selected grid size = 2010
+
+
+******** <class 'fft_isdf.InterpolativeSeparableDensityFitting'> ********
+mesh = [45 45 39] (78975 PWs)
+len(kpts) = 1
+    kpts = [[0. 0. 0.]]
+<class 'fft_isdf.InterpolativeSeparableDensityFitting'> does not have attributes  kmesh c0 tol
+
+WARN: ke_cutoff/mesh (180 / [45 45 39]) is not enough for FFTDF to get integral accuracy 1e-08.
+Coulomb integral error is ~ 1.5e+02 Eh.
+Recommended ke_cutoff/mesh are 1200.94 / [115 115  95].
+
+kmesh = [1 1 1]
+nip = 2010, cisdf =  30.00
+    CPU time for get interpolating vectors      0.15 sec
+
+nkpt = 1, nip = 2010, blksize = 78975, ngrid = 78975
+memory used for each block = 2.54e+00 GB, max_memory = 3.27e+01 GB
+disk space used for eta_kpt = 2.54e+00 GB
+    CPU time for aoR_loop: [      0,   78975]     14.49 sec, wall time      8.90 sec
+
+Calculating Coulomb kernel with outcore method: q = 1 / 1
+blksize = 2010, nip = 2010, max_memory = 3.27e+01 GB
+memory used for each block = 2.54e+00 GB
+    CPU time for solving Coulomb kernel    105.30 sec, wall time     34.25 sec
+Finished solving Coulomb kernel for q =   1 /   1, rank = 646 / 2010
+Saving FFTISDF results to /central/scratch/yangjunjie/cco-c0-30.00-k0-40.00/47506029/tmplc1brmte
+    CPU time for building ISDF    123.24 sec, wall time     44.08 sec
+### c0 =  30.00, ng =  10051, err_e_per_atom =  1.78e-05, err_v =  6.56e-05
+### Time for FFTDF      JK:  15.43 s
+### Time for FFTISDF build:  44.08 s
+### Time for FFTISDF    JK:   1.38 s

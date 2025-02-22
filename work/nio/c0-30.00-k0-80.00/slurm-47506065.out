@@ -1,0 +1,45 @@
+OMP_NUM_THREADS = 20
+MKL_NUM_THREADS = 1
+PYSCF_MAX_MEMORY = 163840
+TMPDIR = /central/scratch/yangjunjie//nio-c0-30.00-k0-80.00/47506065/
+PYSCF_TMPDIR = /central/scratch/yangjunjie//nio-c0-30.00-k0-80.00/47506065/
+
+/home/junjiey/anaconda3/envs/fftisdf/bin/python
+2.8.0
+1.13.1
+1.26.4
+cell.max_memory = 163840 MB
+Pivoted Cholesky rank = 7830, estimated error = 1.37e-05
+Parent grid size = 35937, selected grid size = 4680
+
+
+******** <class 'fft_isdf.InterpolativeSeparableDensityFitting'> ********
+mesh = [51 51 51] (132651 PWs)
+len(kpts) = 1
+    kpts = [[0. 0. 0.]]
+<class 'fft_isdf.InterpolativeSeparableDensityFitting'> does not have attributes  tol c0 kmesh
+
+WARN: ke_cutoff/mesh (190 / [51 51 51]) is not enough for FFTDF to get integral accuracy 1e-08.
+Coulomb integral error is ~ 35 Eh.
+Recommended ke_cutoff/mesh are 1172.14 / [123 123 123].
+
+kmesh = [1 1 1]
+nip = 4680, cisdf =  30.00
+    CPU time for get interpolating vectors      0.97 sec
+
+nkpt = 1, nip = 4680, blksize = 132651, ngrid = 132651
+memory used for each block = 9.93e+00 GB, max_memory = 1.63e+02 GB
+disk space used for eta_kpt = 9.93e+00 GB
+    CPU time for aoR_loop: [       0,   132651]     59.18 sec, wall time     17.07 sec
+
+Calculating Coulomb kernel with outcore method: q = 1 / 1
+blksize = 4680, nip = 4680, max_memory = 1.63e+02 GB
+memory used for each block = 9.93e+00 GB
+    CPU time for solving Coulomb kernel   1210.34 sec, wall time     85.16 sec
+Finished solving Coulomb kernel for q =   1 /   1, rank = 1822 / 4680
+Saving FFTISDF results to /central/scratch/yangjunjie/nio-c0-30.00-k0-80.00/47506065/tmpwme6nn_k
+    CPU time for building ISDF   1286.79 sec, wall time    103.54 sec
+### c0 =  30.00, ng =  35937, err_e_per_atom =  5.79e-05, err_v =  3.13e-05
+### Time for FFTDF      JK: 115.25 s
+### Time for FFTISDF build: 103.54 s
+### Time for FFTISDF    JK:   1.76 s

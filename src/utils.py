@@ -17,7 +17,7 @@ def cell_from_poscar(poscar_file: str):
     c = gto.Cell()
     c.atom = ase_atoms_to_pyscf(atoms)
     c.a = numpy.array(atoms.cell)
-    c.precision = 1e-10
+    c.precision = 1e-8
     c.verbose = 0
     c.unit = 'A'
     c.exp_to_discard = 0.1
@@ -50,7 +50,7 @@ INFO = {
         "ke_cutoff": 190.0,
     },
     "diamond": {
-        "filename": os.path.join(DATA_PATH, "vasp", "diamond-prim.vasp"),
+        "filename": os.path.join(DATA_PATH, "vasp", "diamond-conv.vasp"),
         "basis": 'gth-dzvp-molopt-sr',
         "psuedo": 'gth-pbe',
         "ke_cutoff": 70.0,
@@ -59,13 +59,9 @@ INFO = {
 
 def get_cell(name: str):
     info = INFO[name]
-
-    print(f"info = {info}")
-
     from utils import cell_from_poscar
     cell = cell_from_poscar(info["filename"])
     cell.basis = info["basis"]
     cell.pseudo = info["psuedo"]
     cell.ke_cutoff = info["ke_cutoff"]
-    cell.build(dump_input=False)
     return cell

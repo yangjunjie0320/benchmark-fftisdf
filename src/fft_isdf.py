@@ -401,7 +401,7 @@ class InterpolativeSeparableDensityFitting(FFTDF):
             p0, p1 = p1, p1 + coords.shape[0]
             yield ao_etc_kpt, p0, p1
     
-    def get_inpx(self, g0=None, c0=None):
+    def get_inpx(self, g0=None, c0=None, tol=None):
         log = logger.new_logger(self, self.verbose)
 
         if g0 is None:
@@ -415,6 +415,9 @@ class InterpolativeSeparableDensityFitting(FFTDF):
 
             from pyscf.pbc.tools.pbc import cutoff_to_mesh
             g0 = self.cell.gen_uniform_grids(cutoff_to_mesh(lv, k0))
+
+        if tol is None:
+            tol = self.tol
         
         pcell = self.cell
         ng = len(g0)
@@ -424,10 +427,9 @@ class InterpolativeSeparableDensityFitting(FFTDF):
         m0 = t0 * t0
 
         from pyscf.lib.scipy_helper import pivoted_cholesky
-        tol = self.tol ** 2
-        chol, perm, rank = pivoted_cholesky(m0, tol=tol)
+        tol2 = tol ** 2
+        chol, perm, rank = pivoted_cholesky(m0, tol=tol2)
 
-        print(rank, c0)
         nip = pcell.nao_nr() * c0 if c0 is not None else rank
         nip = int(nip)
         mask = perm[:nip]
