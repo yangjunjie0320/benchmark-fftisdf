@@ -37,6 +37,14 @@ def print_current_memory():
     return mem / 1e6
 
 INFO = {
+    "hg1212": {
+        "filename": os.path.join(DATA_PATH, "vasp", "cco-conv.vasp"),
+        "basis": os.path.join(DATA_PATH, "basis", "cc-pvdz.dat"),
+        "psuedo": 'gth-pbe',
+        "ke_cutoff": 400.0,
+        "k0": 80.0,
+        "c0": 20.0,
+    },
     "cco": {
         "filename": os.path.join(DATA_PATH, "vasp", "cco-conv.vasp"),
         "basis": os.path.join(DATA_PATH, "basis", "cc-pvdz.dat"),
@@ -55,7 +63,7 @@ INFO = {
     },
     "diamond": {
         "filename": os.path.join(DATA_PATH, "vasp", "diamond-conv.vasp"),
-        "basis": 'gth-dzvp-molopt-sr',
+        "basis": 'gth-cc-pvdz',
         "psuedo": 'gth-pbe',
         "ke_cutoff": 70.0,
         "k0": 60.0,

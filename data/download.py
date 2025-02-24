@@ -41,10 +41,17 @@ if __name__ == "__main__":
     data += [("mp-4826", "cco")]
     data += [("mp-6879", "hg1212")]
 
-    for m, n in data:
-        is_conventional = False
-        poscar_file = download_poscar(
-            m, name=n, path=path, 
-            is_conventional=is_conventional,
-            supercell_factor=None
-        )
+    # for m, n in data:
+    #     is_conventional = False
+    #     poscar_file = download_poscar(
+    #         m, name=n, path=path, 
+    #         is_conventional=is_conventional,
+    #         supercell_factor=None
+    #     )
+
+    is_conventional = True
+    poscar_file = download_poscar(
+        "mp-4826", name="cco", path=path, 
+        is_conventional=is_conventional,
+        supercell_factor=(2, 2, 1)
+    )
