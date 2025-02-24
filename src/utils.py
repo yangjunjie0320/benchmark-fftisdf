@@ -42,8 +42,6 @@ INFO = {
         "basis": os.path.join(DATA_PATH, "basis", "cc-pvdz.dat"),
         "psuedo": 'gth-pbe',
         "ke_cutoff": 400.0,
-        "k0": 80.0,
-        "c0": 20.0,
     },
     "cco": {
         "filename": os.path.join(DATA_PATH, "vasp", "cco-conv.vasp"),
