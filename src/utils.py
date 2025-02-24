@@ -42,18 +42,24 @@ INFO = {
         "basis": os.path.join(DATA_PATH, "basis", "cc-pvdz.dat"),
         "psuedo": 'gth-pbe',
         "ke_cutoff": 180.0,
+        "k0": 80.0,
+        "c0": 20.0,
     },
     "nio": {
         "filename": os.path.join(DATA_PATH, "vasp", "nio-conv.vasp"),
         "basis": 'gth-dzvp-molopt-sr',
         "psuedo": 'gth-pbe',
         "ke_cutoff": 190.0,
+        "k0": 100.0,
+        "c0": 20.0,
     },
     "diamond": {
         "filename": os.path.join(DATA_PATH, "vasp", "diamond-conv.vasp"),
         "basis": 'gth-dzvp-molopt-sr',
         "psuedo": 'gth-pbe',
         "ke_cutoff": 70.0,
+        "k0": 60.0,
+        "c0": 10.0,
     },
 }
 

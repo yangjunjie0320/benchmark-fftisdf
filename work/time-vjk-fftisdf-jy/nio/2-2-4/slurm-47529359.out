@@ -1,0 +1,63 @@
+SLURMD_NODENAME = hpc-19-13
+Start time = Sun Feb 23 07:45:12 PM PST 2025
+OMP_NUM_THREADS = 32
+MKL_NUM_THREADS = 1
+PYSCF_MAX_MEMORY = 262144
+TMPDIR = /central/scratch/yangjunjie//time-vjk-fftisdf-jy/nio/2-2-4//47529359/
+PYSCF_TMPDIR = /central/scratch/yangjunjie//time-vjk-fftisdf-jy/nio/2-2-4//47529359/
+
+/home/junjiey/anaconda3/envs/fftisdf/bin/python
+2.8.0
+1.13.1
+1.26.4
+Pivoted Cholesky rank = 7759, estimated error = 1.92e-04
+Parent grid size = 50653, selected grid size = 3120
+
+
+******** <class 'fft_isdf.InterpolativeSeparableDensityFitting'> ********
+mesh = [51 51 51] (132651 PWs)
+len(kpts) = 16
+    kpts = [[ 0.00000000e+00  0.00000000e+00  0.00000000e+00]
+ [-1.42289801e-17 -1.42289801e-17  1.98557713e-01]
+ [-2.84579601e-17 -2.84579601e-17  3.97115427e-01]
+ [-4.26869402e-17 -4.26869402e-17  5.95673140e-01]
+ [ 0.00000000e+00  3.97115427e-01  0.00000000e+00]
+ [-1.42289801e-17  3.97115427e-01  1.98557713e-01]
+ [-2.84579601e-17  3.97115427e-01  3.97115427e-01]
+ [-4.26869402e-17  3.97115427e-01  5.95673140e-01]
+ [ 3.97115427e-01  2.84579601e-17  0.00000000e+00]
+ [ 3.97115427e-01  1.42289801e-17  1.98557713e-01]
+ [ 3.97115427e-01  0.00000000e+00  3.97115427e-01]
+ [ 3.97115427e-01 -1.42289801e-17  5.95673140e-01]
+ [ 3.97115427e-01  3.97115427e-01  0.00000000e+00]
+ [ 3.97115427e-01  3.97115427e-01  1.98557713e-01]
+ [ 3.97115427e-01  3.97115427e-01  3.97115427e-01]
+ [ 3.97115427e-01  3.97115427e-01  5.95673140e-01]]
+<class 'fft_isdf.InterpolativeSeparableDensityFitting'> does not have attributes  kmesh tol c0
+
+WARN: ke_cutoff/mesh (190 / [51 51 51]) is not enough for FFTDF to get integral accuracy 1e-08.
+Coulomb integral error is ~ 35 Eh.
+Recommended ke_cutoff/mesh are 1172.14 / [123 123 123].
+
+kmesh = [2 2 4]
+nip = 3120, cisdf =  20.00
+    CPU time for get interpolating vectors      1.32 sec
+
+nkpt = 16, nip = 3120, blksize = 65531, ngrid = 132651
+Use out-core for eta_kpt, disk space used for eta_kpt = 1.06e+02 GB
+memory used for each block = 5.23e+01 GB, max_memory = 2.62e+02 GB
+    CPU time for aoR_loop: [       0,    65531]    640.84 sec, wall time    255.42 sec
+    CPU time for aoR_loop: [   65531,   131062]    489.46 sec, wall time    121.15 sec
+    CPU time for aoR_loop: [  131062,   132651]     16.98 sec, wall time      2.92 sec
+eta_kpt.shape = (16, 132651, 3120)
+Memory used for eta_kpt = 1.06e+02 GB
+
+Calculating Coulomb kernel with outcore method: q = 1 / 16
+blksize = 3120, nip = 3120, max_memory = 2.62e+02 GB
+memory used for each block = 6.62e+00 GB
+    CPU time for solving Coulomb kernel    633.78 sec, wall time     29.93 sec
+Finished solving Coulomb kernel for q =   1 /  16, rank = 2373 / 3120
+
+Calculating Coulomb kernel with outcore method: q = 2 / 16
+blksize = 3120, nip = 3120, max_memory = 2.62e+02 GB
+memory used for each block = 6.62e+00 GB

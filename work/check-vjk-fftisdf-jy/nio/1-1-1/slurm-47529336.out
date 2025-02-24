@@ -1,0 +1,50 @@
+SLURMD_NODENAME = hpc-35-02
+Start time = Sun Feb 23 07:45:09 PM PST 2025
+OMP_NUM_THREADS = 32
+MKL_NUM_THREADS = 1
+PYSCF_MAX_MEMORY = 262144
+TMPDIR = /central/scratch/yangjunjie//check-vjk-fftisdf-jy/nio/1-1-1//47529336/
+PYSCF_TMPDIR = /central/scratch/yangjunjie//check-vjk-fftisdf-jy/nio/1-1-1//47529336/
+
+/home/junjiey/anaconda3/envs/fftisdf/bin/python
+2.8.0
+1.13.1
+1.26.4
+Pivoted Cholesky rank = 7759, estimated error = 1.92e-04
+Parent grid size = 50653, selected grid size = 3120
+
+
+******** <class 'fft_isdf.InterpolativeSeparableDensityFitting'> ********
+mesh = [17 17 17] (4913 PWs)
+len(kpts) = 1
+    kpts = [[0. 0. 0.]]
+<class 'fft_isdf.InterpolativeSeparableDensityFitting'> does not have attributes  c0 tol kmesh
+
+WARN: ke_cutoff/mesh (20 / [17 17 17]) is not enough for FFTDF to get integral accuracy 1e-08.
+Coulomb integral error is ~ 1e+02 Eh.
+Recommended ke_cutoff/mesh are 1172.14 / [123 123 123].
+
+kmesh = [1 1 1]
+nip = 3120, cisdf =  20.00
+    CPU time for get interpolating vectors      1.08 sec
+
+nkpt = 1, nip = 3120, blksize = 4913, ngrid = 4913
+Use in-core for eta_kpt, memory used for eta_kpt = 2.45e-01 GB
+    CPU time for aoR_loop: [     0,   4913]      6.20 sec, wall time      0.48 sec
+eta_kpt.shape = (1, 4913, 3120)
+Memory used for eta_kpt = 2.45e-01 GB
+
+Calculating Coulomb kernel with outcore method: q = 1 / 1
+blksize = 3120, nip = 3120, max_memory = 2.62e+02 GB
+memory used for each block = 2.45e-01 GB
+    CPU time for solving Coulomb kernel    176.93 sec, wall time      6.17 sec
+Finished solving Coulomb kernel for q =   1 /   1, rank = 2026 / 3120
+Saving FFTISDF results to /central/scratch/yangjunjie/check-vjk-fftisdf-jy/nio/1-1-1/47529336/tmpw09phzxo
+    CPU time for building ISDF    194.37 sec, wall time      7.11 sec
+### c0 =  20.00, kmesh = 1-1-1, gmesh = 17-17-17
+### err_vj  =  7.11e-15
+### err_vk  =  8.08e-05
+### err_vjk =  4.04e-05
+### Time for       vjk-ref:   3.86 s
+### Time for FFTISDF build:   7.12 s
+### Time for    FFTISDF JK:   0.39 s

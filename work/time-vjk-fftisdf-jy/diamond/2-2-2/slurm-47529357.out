@@ -1,0 +1,93 @@
+SLURMD_NODENAME = hpc-34-24
+Start time = Sun Feb 23 07:45:12 PM PST 2025
+OMP_NUM_THREADS = 32
+MKL_NUM_THREADS = 1
+PYSCF_MAX_MEMORY = 262144
+TMPDIR = /central/scratch/yangjunjie//time-vjk-fftisdf-jy/diamond/2-2-2//47529357/
+PYSCF_TMPDIR = /central/scratch/yangjunjie//time-vjk-fftisdf-jy/diamond/2-2-2//47529357/
+
+/home/junjiey/anaconda3/envs/fftisdf/bin/python
+2.8.0
+1.13.1
+1.26.4
+Pivoted Cholesky rank = 5096, estimated error = 2.46e-03
+Parent grid size = 15625, selected grid size = 1040
+
+
+******** <class 'fft_isdf.InterpolativeSeparableDensityFitting'> ********
+mesh = [27 27 27] (19683 PWs)
+len(kpts) = 8
+    kpts = [[ 0.00000000e+00  0.00000000e+00  0.00000000e+00]
+ [-2.62240176e-17 -2.62240176e-17  4.66885213e-01]
+ [ 0.00000000e+00  4.66885213e-01  0.00000000e+00]
+ [-2.62240176e-17  4.66885213e-01  4.66885213e-01]
+ [ 4.66885213e-01  2.62240176e-17  0.00000000e+00]
+ [ 4.66885213e-01  0.00000000e+00  4.66885213e-01]
+ [ 4.66885213e-01  4.66885213e-01  0.00000000e+00]
+ [ 4.66885213e-01  4.66885213e-01  4.66885213e-01]]
+<class 'fft_isdf.InterpolativeSeparableDensityFitting'> does not have attributes  c0 kmesh tol
+
+WARN: ke_cutoff/mesh (70 / [27 27 27]) is not enough for FFTDF to get integral accuracy 1e-08.
+Coulomb integral error is ~ 3.1 Eh.
+Recommended ke_cutoff/mesh are 569.817 / [75 75 75].
+
+kmesh = [2 2 2]
+nip = 1040, cisdf =  10.00
+    CPU time for get interpolating vectors      1.09 sec
+
+nkpt = 8, nip = 1040, blksize = 19683, ngrid = 19683
+Use in-core for eta_kpt, memory used for eta_kpt = 2.62e+00 GB
+    CPU time for aoR_loop: [      0,   19683]     96.34 sec, wall time      6.24 sec
+eta_kpt.shape = (8, 19683, 1040)
+Memory used for eta_kpt = 2.62e+00 GB
+
+Calculating Coulomb kernel with outcore method: q = 1 / 8
+blksize = 1040, nip = 1040, max_memory = 2.62e+02 GB
+memory used for each block = 3.28e-01 GB
+    CPU time for solving Coulomb kernel     25.86 sec, wall time      1.11 sec
+Finished solving Coulomb kernel for q =   1 /   8, rank = 1019 / 1040
+
+Calculating Coulomb kernel with outcore method: q = 2 / 8
+blksize = 1040, nip = 1040, max_memory = 2.62e+02 GB
+memory used for each block = 3.28e-01 GB
+    CPU time for solving Coulomb kernel     25.29 sec, wall time      1.07 sec
+Finished solving Coulomb kernel for q =   2 /   8, rank = 1019 / 1040
+
+Calculating Coulomb kernel with outcore method: q = 3 / 8
+blksize = 1040, nip = 1040, max_memory = 2.62e+02 GB
+memory used for each block = 3.28e-01 GB
+    CPU time for solving Coulomb kernel     25.27 sec, wall time      1.07 sec
+Finished solving Coulomb kernel for q =   3 /   8, rank = 1019 / 1040
+
+Calculating Coulomb kernel with outcore method: q = 4 / 8
+blksize = 1040, nip = 1040, max_memory = 2.62e+02 GB
+memory used for each block = 3.28e-01 GB
+    CPU time for solving Coulomb kernel     25.48 sec, wall time      1.08 sec
+Finished solving Coulomb kernel for q =   4 /   8, rank = 1019 / 1040
+
+Calculating Coulomb kernel with outcore method: q = 5 / 8
+blksize = 1040, nip = 1040, max_memory = 2.62e+02 GB
+memory used for each block = 3.28e-01 GB
+    CPU time for solving Coulomb kernel     25.81 sec, wall time      1.09 sec
+Finished solving Coulomb kernel for q =   5 /   8, rank = 1019 / 1040
+
+Calculating Coulomb kernel with outcore method: q = 6 / 8
+blksize = 1040, nip = 1040, max_memory = 2.62e+02 GB
+memory used for each block = 3.28e-01 GB
+    CPU time for solving Coulomb kernel     25.95 sec, wall time      1.09 sec
+Finished solving Coulomb kernel for q =   6 /   8, rank = 1019 / 1040
+
+Calculating Coulomb kernel with outcore method: q = 7 / 8
+blksize = 1040, nip = 1040, max_memory = 2.62e+02 GB
+memory used for each block = 3.28e-01 GB
+    CPU time for solving Coulomb kernel     25.95 sec, wall time      1.09 sec
+Finished solving Coulomb kernel for q =   7 /   8, rank = 1019 / 1040
+
+Calculating Coulomb kernel with outcore method: q = 8 / 8
+blksize = 1040, nip = 1040, max_memory = 2.62e+02 GB
+memory used for each block = 3.28e-01 GB
+    CPU time for solving Coulomb kernel     25.98 sec, wall time      1.09 sec
+Finished solving Coulomb kernel for q =   8 /   8, rank = 1019 / 1040
+Saving FFTISDF results to /central/scratch/yangjunjie/time-vjk-fftisdf-jy/diamond/2-2-2/47529357/tmptxq2lya1
+    CPU time for building ISDF    321.83 sec, wall time     15.80 sec
+c0 =  10.00, kmesh = 2-2-2, gmesh = 27-27-27, t_build =  15.80 s, t_jk =   1.14 s

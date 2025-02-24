@@ -124,6 +124,11 @@ def build(df_obj, inpx=None, kpts=None, kmesh=None):
     )
     ngrid = eta_kpt.shape[1]
 
+    eta_kpt = numpy.asarray(eta_kpt)
+    assert eta_kpt.shape == (nkpt, ngrid, nip)
+    log.debug("eta_kpt.shape = %s", eta_kpt.shape)
+    log.debug("Memory used for eta_kpt = %6.2e GB", eta_kpt.nbytes / 1e9)
+
     coul_kpt = []
     for q in range(nkpt):
         t0 = (process_clock(), perf_counter())
@@ -182,15 +187,21 @@ def get_lhs_and_rhs(df_obj, inpv_kpt, max_memory=2000, fswp=None):
 
     metx_kpt = spc_to_kpt(t_spc * t_spc, phase)
 
-    # [2] compute the right-hand side, eta_kpt
-    eta_kpt = fswp.create_dataset("eta_kpt", shape=(nkpt, ngrid, nip), dtype=numpy.complex128)
-
-    blksize = max(max_memory * 1e6 * 0.4 / (nkpt * nip * 16), 1)
+    blksize = max(max_memory * 1e6 * 0.2 / (nkpt * nip * 16), 1)
     blksize = min(int(blksize), ngrid)
 
     log.debug("\nnkpt = %d, nip = %d, blksize = %d, ngrid = %d", nkpt, nip, blksize, ngrid)
-    log.debug("memory used for each block = %6.2e GB, max_memory = %6.2e GB", nkpt * nip * 16 * blksize / 1e9, max_memory / 1e3)
-    log.debug("disk space used for eta_kpt = %6.2e GB", eta_kpt.nbytes / 1e9)
+    eta_kpt = None
+
+    if blksize == ngrid:    
+        eta_kpt = numpy.zeros((nkpt, ngrid, nip), dtype=numpy.complex128)
+        log.debug("Use in-core for eta_kpt, memory used for eta_kpt = %6.2e GB", eta_kpt.nbytes / 1e9)
+    else:
+        eta_kpt = fswp.create_dataset("eta_kpt", shape=(nkpt, ngrid, nip), dtype=numpy.complex128)
+        log.debug("Use out-core for eta_kpt, disk space used for eta_kpt = %6.2e GB", eta_kpt.nbytes / 1e9)
+        log.debug("memory used for each block = %6.2e GB, max_memory = %6.2e GB", nkpt * nip * 16 * blksize / 1e9, max_memory / 1e3)
+
+    assert eta_kpt is not None
 
     l = len("%s" % ngrid)
     info = f"aoR_loop: [% {l+2}d, % {l+2}d]"

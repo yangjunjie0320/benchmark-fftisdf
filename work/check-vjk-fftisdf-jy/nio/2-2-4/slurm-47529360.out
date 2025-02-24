@@ -1,0 +1,132 @@
+SLURMD_NODENAME = hpc-19-14
+Start time = Sun Feb 23 07:45:12 PM PST 2025
+OMP_NUM_THREADS = 32
+MKL_NUM_THREADS = 1
+PYSCF_MAX_MEMORY = 262144
+TMPDIR = /central/scratch/yangjunjie//check-vjk-fftisdf-jy/nio/2-2-4//47529360/
+PYSCF_TMPDIR = /central/scratch/yangjunjie//check-vjk-fftisdf-jy/nio/2-2-4//47529360/
+
+/home/junjiey/anaconda3/envs/fftisdf/bin/python
+2.8.0
+1.13.1
+1.26.4
+Pivoted Cholesky rank = 7759, estimated error = 1.92e-04
+Parent grid size = 50653, selected grid size = 3120
+
+
+******** <class 'fft_isdf.InterpolativeSeparableDensityFitting'> ********
+mesh = [17 17 17] (4913 PWs)
+len(kpts) = 16
+    kpts = [[ 0.00000000e+00  0.00000000e+00  0.00000000e+00]
+ [-1.42289801e-17 -1.42289801e-17  1.98557713e-01]
+ [-2.84579601e-17 -2.84579601e-17  3.97115427e-01]
+ [-4.26869402e-17 -4.26869402e-17  5.95673140e-01]
+ [ 0.00000000e+00  3.97115427e-01  0.00000000e+00]
+ [-1.42289801e-17  3.97115427e-01  1.98557713e-01]
+ [-2.84579601e-17  3.97115427e-01  3.97115427e-01]
+ [-4.26869402e-17  3.97115427e-01  5.95673140e-01]
+ [ 3.97115427e-01  2.84579601e-17  0.00000000e+00]
+ [ 3.97115427e-01  1.42289801e-17  1.98557713e-01]
+ [ 3.97115427e-01  0.00000000e+00  3.97115427e-01]
+ [ 3.97115427e-01 -1.42289801e-17  5.95673140e-01]
+ [ 3.97115427e-01  3.97115427e-01  0.00000000e+00]
+ [ 3.97115427e-01  3.97115427e-01  1.98557713e-01]
+ [ 3.97115427e-01  3.97115427e-01  3.97115427e-01]
+ [ 3.97115427e-01  3.97115427e-01  5.95673140e-01]]
+<class 'fft_isdf.InterpolativeSeparableDensityFitting'> does not have attributes  kmesh c0 tol
+
+WARN: ke_cutoff/mesh (20 / [17 17 17]) is not enough for FFTDF to get integral accuracy 1e-08.
+Coulomb integral error is ~ 1e+02 Eh.
+Recommended ke_cutoff/mesh are 1172.14 / [123 123 123].
+
+kmesh = [2 2 4]
+nip = 3120, cisdf =  20.00
+    CPU time for get interpolating vectors      1.74 sec
+
+nkpt = 16, nip = 3120, blksize = 4913, ngrid = 4913
+Use in-core for eta_kpt, memory used for eta_kpt = 3.92e+00 GB
+    CPU time for aoR_loop: [     0,   4913]     59.20 sec, wall time      7.31 sec
+eta_kpt.shape = (16, 4913, 3120)
+Memory used for eta_kpt = 3.92e+00 GB
+
+Calculating Coulomb kernel with outcore method: q = 1 / 16
+blksize = 3120, nip = 3120, max_memory = 2.62e+02 GB
+memory used for each block = 2.45e-01 GB
+    CPU time for solving Coulomb kernel    386.58 sec, wall time     13.11 sec
+Finished solving Coulomb kernel for q =   1 /  16, rank = 2373 / 3120
+
+Calculating Coulomb kernel with outcore method: q = 2 / 16
+blksize = 3120, nip = 3120, max_memory = 2.62e+02 GB
+memory used for each block = 2.45e-01 GB
+    CPU time for solving Coulomb kernel    329.55 sec, wall time     11.27 sec
+Finished solving Coulomb kernel for q =   2 /  16, rank = 2373 / 3120
+
+Calculating Coulomb kernel with outcore method: q = 3 / 16
+blksize = 3120, nip = 3120, max_memory = 2.62e+02 GB
+memory used for each block = 2.45e-01 GB
+    CPU time for solving Coulomb kernel    376.15 sec, wall time     12.95 sec
+Finished solving Coulomb kernel for q =   3 /  16, rank = 2373 / 3120
+
+Calculating Coulomb kernel with outcore method: q = 4 / 16
+blksize = 3120, nip = 3120, max_memory = 2.62e+02 GB
+memory used for each block = 2.45e-01 GB
+    CPU time for solving Coulomb kernel    437.12 sec, wall time     15.26 sec
+Finished solving Coulomb kernel for q =   4 /  16, rank = 2373 / 3120
+
+Calculating Coulomb kernel with outcore method: q = 5 / 16
+blksize = 3120, nip = 3120, max_memory = 2.62e+02 GB
+memory used for each block = 2.45e-01 GB
+    CPU time for solving Coulomb kernel    365.76 sec, wall time     12.56 sec
+Finished solving Coulomb kernel for q =   5 /  16, rank = 2373 / 3120
+
+Calculating Coulomb kernel with outcore method: q = 6 / 16
+blksize = 3120, nip = 3120, max_memory = 2.62e+02 GB
+memory used for each block = 2.45e-01 GB
+    CPU time for solving Coulomb kernel    330.40 sec, wall time     11.54 sec
+Finished solving Coulomb kernel for q =   6 /  16, rank = 2374 / 3120
+
+Calculating Coulomb kernel with outcore method: q = 7 / 16
+blksize = 3120, nip = 3120, max_memory = 2.62e+02 GB
+memory used for each block = 2.45e-01 GB
+    CPU time for solving Coulomb kernel    287.44 sec, wall time      9.95 sec
+Finished solving Coulomb kernel for q =   7 /  16, rank = 2374 / 3120
+
+Calculating Coulomb kernel with outcore method: q = 8 / 16
+blksize = 3120, nip = 3120, max_memory = 2.62e+02 GB
+memory used for each block = 2.45e-01 GB
+    CPU time for solving Coulomb kernel    299.60 sec, wall time     10.39 sec
+Finished solving Coulomb kernel for q =   8 /  16, rank = 2374 / 3120
+
+Calculating Coulomb kernel with outcore method: q = 9 / 16
+blksize = 3120, nip = 3120, max_memory = 2.62e+02 GB
+memory used for each block = 2.45e-01 GB
+    CPU time for solving Coulomb kernel    330.74 sec, wall time     11.29 sec
+Finished solving Coulomb kernel for q =   9 /  16, rank = 2373 / 3120
+
+Calculating Coulomb kernel with outcore method: q = 10 / 16
+blksize = 3120, nip = 3120, max_memory = 2.62e+02 GB
+memory used for each block = 2.45e-01 GB
+    CPU time for solving Coulomb kernel    293.46 sec, wall time      9.98 sec
+Finished solving Coulomb kernel for q =  10 /  16, rank = 2374 / 3120
+
+Calculating Coulomb kernel with outcore method: q = 11 / 16
+blksize = 3120, nip = 3120, max_memory = 2.62e+02 GB
+memory used for each block = 2.45e-01 GB
+    CPU time for solving Coulomb kernel    341.84 sec, wall time     11.84 sec
+Finished solving Coulomb kernel for q =  11 /  16, rank = 2374 / 3120
+
+Calculating Coulomb kernel with outcore method: q = 12 / 16
+blksize = 3120, nip = 3120, max_memory = 2.62e+02 GB
+memory used for each block = 2.45e-01 GB
+    CPU time for solving Coulomb kernel    327.40 sec, wall time     11.44 sec
+Finished solving Coulomb kernel for q =  12 /  16, rank = 2374 / 3120
+
+Calculating Coulomb kernel with outcore method: q = 13 / 16
+blksize = 3120, nip = 3120, max_memory = 2.62e+02 GB
+memory used for each block = 2.45e-01 GB
+    CPU time for solving Coulomb kernel    291.62 sec, wall time      9.94 sec
+Finished solving Coulomb kernel for q =  13 /  16, rank = 2374 / 3120
+
+Calculating Coulomb kernel with outcore method: q = 14 / 16
+blksize = 3120, nip = 3120, max_memory = 2.62e+02 GB
+memory used for each block = 2.45e-01 GB

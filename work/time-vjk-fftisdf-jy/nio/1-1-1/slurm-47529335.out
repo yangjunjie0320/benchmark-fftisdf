@@ -1,0 +1,44 @@
+SLURMD_NODENAME = hpc-35-01
+Start time = Sun Feb 23 07:45:09 PM PST 2025
+OMP_NUM_THREADS = 32
+MKL_NUM_THREADS = 1
+PYSCF_MAX_MEMORY = 262144
+TMPDIR = /central/scratch/yangjunjie//time-vjk-fftisdf-jy/nio/1-1-1//47529335/
+PYSCF_TMPDIR = /central/scratch/yangjunjie//time-vjk-fftisdf-jy/nio/1-1-1//47529335/
+
+/home/junjiey/anaconda3/envs/fftisdf/bin/python
+2.8.0
+1.13.1
+1.26.4
+Pivoted Cholesky rank = 7759, estimated error = 1.92e-04
+Parent grid size = 50653, selected grid size = 3120
+
+
+******** <class 'fft_isdf.InterpolativeSeparableDensityFitting'> ********
+mesh = [51 51 51] (132651 PWs)
+len(kpts) = 1
+    kpts = [[0. 0. 0.]]
+<class 'fft_isdf.InterpolativeSeparableDensityFitting'> does not have attributes  tol c0 kmesh
+
+WARN: ke_cutoff/mesh (190 / [51 51 51]) is not enough for FFTDF to get integral accuracy 1e-08.
+Coulomb integral error is ~ 35 Eh.
+Recommended ke_cutoff/mesh are 1172.14 / [123 123 123].
+
+kmesh = [1 1 1]
+nip = 3120, cisdf =  20.00
+    CPU time for get interpolating vectors      1.04 sec
+
+nkpt = 1, nip = 3120, blksize = 132651, ngrid = 132651
+Use in-core for eta_kpt, memory used for eta_kpt = 6.62e+00 GB
+    CPU time for aoR_loop: [       0,   132651]     93.95 sec, wall time     11.11 sec
+eta_kpt.shape = (1, 132651, 3120)
+Memory used for eta_kpt = 6.62e+00 GB
+
+Calculating Coulomb kernel with outcore method: q = 1 / 1
+blksize = 3120, nip = 3120, max_memory = 2.62e+02 GB
+memory used for each block = 6.62e+00 GB
+    CPU time for solving Coulomb kernel    606.63 sec, wall time     28.60 sec
+Finished solving Coulomb kernel for q =   1 /   1, rank = 2026 / 3120
+Saving FFTISDF results to /central/scratch/yangjunjie/time-vjk-fftisdf-jy/nio/1-1-1/47529335/tmpbxtcpqtg
+    CPU time for building ISDF    723.77 sec, wall time     40.77 sec
+c0 =  20.00, kmesh = 1-1-1, gmesh = 51-51-51, t_build =  40.78 s, t_jk =   1.05 s

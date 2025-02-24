@@ -1,29 +1,26 @@
 import os, sys, shutil
 
-def main(name=None, time="01:00:00", mem=200, ncpu=1, cmd=None, scr=None):
+def main(time="01:00:00", mem=200, ncpu=1, workdir=None, cmd=None, scr=None):
     pwd = os.path.abspath(os.path.dirname(__file__))
 
-    dir_name = os.path.join(pwd, "work/%s/c0-%.2f-k0-%.2f/" % (name, c0, k0))
-    if os.path.exists(dir_name):
-        print(f"Directory {dir_name} already exists, deleting ...")
-        shutil.rmtree(dir_name)
-    os.makedirs(dir_name)
-
     assert cmd is not None
-    assert os.path.exists(scr)
+    assert os.path.exists(scr), f"Script {scr} does not exist"
 
-    os.system("cp %s %s/main.py" % (scr, dir_name))
+    if not os.path.exists(workdir):
+        os.makedirs(workdir)
+
+    os.system("cp %s %s/main.py" % (scr, workdir))
 
     # add few lines to the beginning of the run.sh file
     lines = []
-    with open("%s/src/run.sh" % pwd, "r") as f:
+    with open(os.path.join(pwd, "src", "script", "run.sh"), "r") as f:
         lines = f.readlines()
         lines.insert(1, "#SBATCH --time=%s\n" % time)
         lines.insert(1, "#SBATCH --mem=%dGB\n" % mem)
         lines.insert(1, "#SBATCH --cpus-per-task=%d\n" % ncpu)
-        lines.insert(1, "#SBATCH --job-name=%s-c0-%.2f-k0-%.2f\n" % (name, c0, k0))
+        lines.insert(1, "#SBATCH --job-name=%s\n" % workdir.split("work")[-1][1:])
 
-    with open("%s/run.sh" % dir_name, "w") as f:
+    with open(os.path.join(workdir, "run.sh"), "w") as f:
         f.writelines(lines)
         f.write("\n\n")
         f.write("export PREFIX=%s\n" % pwd)
@@ -31,23 +28,59 @@ def main(name=None, time="01:00:00", mem=200, ncpu=1, cmd=None, scr=None):
         f.write("export PYTHONPATH=$PREFIX/src/:$PYTHONPATH\n")
         f.write(cmd + "\n")
 
-    os.chdir(dir_name)
+    os.chdir(workdir)
     os.system("sbatch run.sh")
     os.chdir(pwd)
 
 if __name__ == "__main__":
-    ncpu = 20
+    ncpu = 32
     mem = ncpu * 8
+
+    # Define k-point meshes and system names
+    meshes = [
+        [1, 1, 1], [1, 1, 2], [1, 2, 2], [2, 2, 2],
+        [2, 2, 4], [2, 4, 4], [4, 4, 4]
+    ]
+    systems = ["nio", "cco", "diamond"]
     
-    k0 = 60.0
-    c0 = 20.0
-    ke_cutoff = 10.0
+    # Paths and parameters that remain constant across iterations
+    base_dir = os.path.abspath(os.path.dirname(__file__))
+    
+    for kmesh in meshes:
+        for system_name in systems:
+            # Construct command and working directory
+            cmd = (
+                f"python main.py --name={system_name} "
+                f"--kmesh={'-'.join(map(str, kmesh))}"
+            )
 
-    mm  = [[1, 1, 1], [1, 1, 2], [1, 2, 2], [2, 2, 2]]
-    mm += [[2, 2, 4], [2, 4, 4], [4, 4, 4]]
+            script = "time-vjk-fftisdf-jy"
+            script_path = f"{base_dir}/src/script/{script}.py"
 
-    for kmesh in mm:
-        scr = "/home/junjiey/work/benchmark-fftisdf/src/check-vjk.py"
-        cmd = "python main.py --name=%s --k0=%6.2f --c0=%6.2f "
-        cmd += "--ke_cutoff=%6.2f --kmesh=%s" % (ke_cutoff, kmesh)
-        main(name="nio", k0=k0, c0=c0, time="04:00:00", mem=mem, ncpu=ncpu, cmd=cmd, scr=scr)
+            work_subdir = f"work/{script}/{system_name}/{'-'.join(map(str, kmesh))}/"
+            
+            # Submit job with parameters
+            main(
+                time="04:00:00", mem=mem, ncpu=ncpu,
+                workdir=os.path.join(base_dir, work_subdir),
+                cmd=cmd, scr=script_path
+            )
+
+            ke_cutoff = 20.0
+            cmd = (
+                f"python main.py --name={system_name} "
+                f"--kmesh={'-'.join(map(str, kmesh))} "
+                f"--ke_cutoff={ke_cutoff:.2f}"
+            )
+
+            script = "check-vjk-fftisdf-jy"
+            script_path = f"{base_dir}/src/script/{script}.py"
+
+            work_subdir = f"work/{script}/{system_name}/{'-'.join(map(str, kmesh))}/"
+
+            # Submit job with parameters
+            main(
+                time="04:00:00", mem=mem, ncpu=ncpu,
+                workdir=os.path.join(base_dir, work_subdir),
+                cmd=cmd, scr=script_path
+            )

@@ -1,0 +1,53 @@
+SLURMD_NODENAME = hpc-35-13
+Start time = Sun Feb 23 07:45:09 PM PST 2025
+OMP_NUM_THREADS = 32
+MKL_NUM_THREADS = 1
+PYSCF_MAX_MEMORY = 262144
+TMPDIR = /central/scratch/yangjunjie//check-vjk-fftisdf-jy/cco/1-1-1//47529338/
+PYSCF_TMPDIR = /central/scratch/yangjunjie//check-vjk-fftisdf-jy/cco/1-1-1//47529338/
+
+/home/junjiey/anaconda3/envs/fftisdf/bin/python
+2.8.0
+1.13.1
+1.26.4
+/home/junjiey/anaconda3/envs/fftisdf/lib/python3.9/site-packages/pyscf/pbc/gto/cell.py:1306: UserWarning: Electron number 33 and spin 0 are not consistent in cell
+
+  warnings.warn('Electron number %d and spin %d are not consistent '
+Pivoted Cholesky rank = 2211, estimated error = 1.15e-04
+Parent grid size = 25947, selected grid size = 1340
+
+
+******** <class 'fft_isdf.InterpolativeSeparableDensityFitting'> ********
+mesh = [17 17 15] (4335 PWs)
+len(kpts) = 1
+    kpts = [[0. 0. 0.]]
+<class 'fft_isdf.InterpolativeSeparableDensityFitting'> does not have attributes  tol kmesh c0
+
+WARN: ke_cutoff/mesh (20 / [17 17 15]) is not enough for FFTDF to get integral accuracy 1e-08.
+Coulomb integral error is ~ 3.9e+03 Eh.
+Recommended ke_cutoff/mesh are 1200.94 / [115 115  95].
+
+kmesh = [1 1 1]
+nip = 1340, cisdf =  20.00
+    CPU time for get interpolating vectors      0.58 sec
+
+nkpt = 1, nip = 1340, blksize = 4335, ngrid = 4335
+Use in-core for eta_kpt, memory used for eta_kpt = 9.29e-02 GB
+    CPU time for aoR_loop: [     0,   4335]      4.41 sec, wall time      0.21 sec
+eta_kpt.shape = (1, 4335, 1340)
+Memory used for eta_kpt = 9.29e-02 GB
+
+Calculating Coulomb kernel with outcore method: q = 1 / 1
+blksize = 1340, nip = 1340, max_memory = 2.62e+02 GB
+memory used for each block = 9.29e-02 GB
+    CPU time for solving Coulomb kernel     23.63 sec, wall time      0.77 sec
+Finished solving Coulomb kernel for q =   1 /   1, rank = 811 / 1340
+Saving FFTISDF results to /central/scratch/yangjunjie/check-vjk-fftisdf-jy/cco/1-1-1/47529338/tmp2gtvl8af
+    CPU time for building ISDF     34.50 sec, wall time      1.19 sec
+### c0 =  20.00, kmesh = 1-1-1, gmesh = 17-17-15
+### err_vj  =  1.78e-15
+### err_vk  =  1.94e-05
+### err_vjk =  9.68e-06
+### Time for       vjk-ref:   0.52 s
+### Time for FFTISDF build:   1.19 s
+### Time for    FFTISDF JK:   0.34 s
