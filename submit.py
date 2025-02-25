@@ -46,7 +46,7 @@ if __name__ == "__main__":
     system = "hg1212"
     kmesh = [1, 1, 1]
     ke_cutoff = 200.0
-    for c0 in [10.0, 20.0, 30.0, 40.0, 50.0, 60.0]:
+    for c0 in [10.0, 15.0, 20.0, 25.0]:
         for k0 in [20.0, 40.0, 60.0]:
             cmd = (
                 f"python main.py --name {system} "

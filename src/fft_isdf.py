@@ -110,7 +110,7 @@ def build(df_obj, inpx=None, kpts=None, kmesh=None):
     inpv_kpt = cell.pbc_eval_gto("GTOval", inpx, kpts=kpts)
     inpv_kpt = numpy.asarray(inpv_kpt, dtype=numpy.complex128)
     assert inpv_kpt.shape == (nkpt, nip, nao)
-    log.debug("nip = %d, cisdf = %6.2f", nip, nip / nao)
+    log.debug("nip = %d, nao = %d, cisdf = %6.2f", nip, nao, nip / nao)
     t1 = log.timer("get interpolating vectors")
     
     max_memory = max(2000, df_obj.max_memory - current_memory()[0])
@@ -190,7 +190,7 @@ def get_lhs_and_rhs(df_obj, inpv_kpt, max_memory=2000, fswp=None):
     blksize = max(max_memory * 1e6 * 0.2 / (nkpt * nip * 16), 1)
     blksize = min(int(blksize), ngrid)
 
-    log.debug("\nnkpt = %d, nip = %d, blksize = %d, ngrid = %d", nkpt, nip, blksize, ngrid)
+    log.debug("blksize = %d, ngrid = %d", blksize, ngrid)
     eta_kpt = None
 
     if blksize == ngrid:    

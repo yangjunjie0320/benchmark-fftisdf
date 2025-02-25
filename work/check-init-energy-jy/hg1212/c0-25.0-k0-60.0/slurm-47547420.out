@@ -1,0 +1,43 @@
+SLURMD_NODENAME = hpc-20-28
+Start time = Mon Feb 24 07:20:35 PM PST 2025
+OMP_NUM_THREADS = 32
+MKL_NUM_THREADS = 1
+PYSCF_MAX_MEMORY = 262144
+TMPDIR = /central/scratch/yangjunjie//check-init-energy-jy/hg1212/c0-25.0-k0-60.0//47547420/
+PYSCF_TMPDIR = /central/scratch/yangjunjie//check-init-energy-jy/hg1212/c0-25.0-k0-60.0//47547420/
+
+/home/junjiey/anaconda3/envs/fftisdf/bin/python
+2.8.0
+1.13.1
+1.26.4
+name = hg1212
+c0 = 25.0
+k0 = 60.0
+ke_cutoff = 200.0
+kmesh = 1-1-1
+Pivoted Cholesky rank = 9981, estimated error = 2.51e-05
+Parent grid size = 64881, selected grid size = 5200
+
+
+******** <class 'fft_isdf.InterpolativeSeparableDensityFitting'> ********
+mesh = [ 49  49 159] (381759 PWs)
+len(kpts) = 1
+    kpts = [[0. 0. 0.]]
+<class 'fft_isdf.InterpolativeSeparableDensityFitting'> does not have attributes  c0 kmesh tol
+
+WARN: ke_cutoff/mesh (200 / [ 49  49 159]) is not enough for FFTDF to get integral accuracy 1e-08.
+Coulomb integral error is ~ 97 Eh.
+Recommended ke_cutoff/mesh are 1200.94 / [117 117 387].
+
+kmesh = [1 1 1]
+nip = 5200, nao = 208, cisdf =  25.00
+    CPU time for get interpolating vectors      0.68 sec
+blksize = 381759, ngrid = 381759
+Use in-core for eta_kpt, memory used for eta_kpt = 3.18e+01 GB
+    CPU time for aoR_loop: [       0,   381759]    251.69 sec, wall time     55.40 sec
+eta_kpt.shape = (1, 381759, 5200)
+Memory used for eta_kpt = 3.18e+01 GB
+
+Calculating Coulomb kernel with outcore method: q = 1 / 1
+blksize = 5200, nip = 5200, max_memory = 2.61e+02 GB
+memory used for each block = 3.18e+01 GB
