@@ -38,7 +38,7 @@ def print_current_memory():
 
 INFO = {
     "hg1212": {
-        "filename": os.path.join(DATA_PATH, "vasp", "cco-conv.vasp"),
+        "filename": os.path.join(DATA_PATH, "vasp", "hg1212-conv.vasp"),
         "basis": os.path.join(DATA_PATH, "basis", "cc-pvdz.dat"),
         "psuedo": 'gth-pbe',
         "ke_cutoff": 400.0,

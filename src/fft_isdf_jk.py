@@ -23,7 +23,7 @@ def spc_to_kpt(m_spc, phase):
     to the k-space form.
     """
     nspc, nkpt = phase.shape
-    m_kpt = lib.dot(phase.conj().T, m_spc.reshape(nspc, -1))
+    m_kpt = numpy.dot(phase.conj().T, m_spc.reshape(nspc, -1))
     return m_kpt.reshape(m_spc.shape)
 
 def kpt_to_spc(m_kpt, phase):
@@ -31,7 +31,7 @@ def kpt_to_spc(m_kpt, phase):
     stripe form (in super-cell).
     """
     nspc, nkpt = phase.shape
-    m_spc = lib.dot(phase, m_kpt.reshape(nkpt, -1))
+    m_spc = numpy.dot(phase, m_kpt.reshape(nkpt, -1))
     m_spc = m_spc.reshape(m_kpt.shape)
     return m_spc.real
 
