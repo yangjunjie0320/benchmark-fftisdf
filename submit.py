@@ -74,33 +74,34 @@ if __name__ == "__main__":
 
     for c0 in [10.0, 20.0, 30.0, 40.0]:
         for rela_qr in [1e-2, 1e-3, 1e-4, 1e-5]:
-            def run(system):
-                kmesh = [1, 1, 1]
+            for aoR_cutoff in [1e-6, 1e-8, 1e-10]:
+                def run(system):
+                    kmesh = [1, 1, 1]
 
-                cmd = (
-                    f"python main.py --name {system} "
-                    f"--c0={c0} --rela_qr={rela_qr} "
-                    f"--aoR_cutoff=1e-6 --kmesh=1-1-1 "
-                    f"--ke_cutoff=40.0"
-                )
+                    cmd = (
+                        f"python main.py --name {system} "
+                        f"--c0={c0} --rela_qr={rela_qr} "
+                        f"--aoR_cutoff={aoR_cutoff} --kmesh=1-1-1 "
+                        f"--ke_cutoff=40.0"
+                    )
 
-                script = "check-init-energy-nz"
-                script_path = f"{base_dir}/src/script/{script}.py"
+                    script = "check-init-energy-nz"
+                    script_path = f"{base_dir}/src/script/{script}.py"
 
-                work_subdir = f"work/{script}/{system}/c0-{c0}-qr-{rela_qr:6.2e}/"
-                if os.path.exists(os.path.join(base_dir, work_subdir)):
-                    print(f"Work directory {work_subdir} already exists, deleting it")
-                    shutil.rmtree(os.path.join(base_dir, work_subdir))
+                    work_subdir = f"work/{script}/{system}/c0-{c0}-qr-{rela_qr:6.2e}-aoR-{aoR_cutoff:6.2e}/"
+                    if os.path.exists(os.path.join(base_dir, work_subdir)):
+                        print(f"Work directory {work_subdir} already exists, deleting it")
+                        shutil.rmtree(os.path.join(base_dir, work_subdir))
 
-                # Submit job with parameters
-                main(
-                    time="04:00:00", mem=mem, ncpu=ncpu,
-                    workdir=os.path.join(base_dir, work_subdir),
-                    cmd=cmd, scr=script_path, 
-                    import_pyscf_forge=True
-                )
+                    # Submit job with parameters
+                    main(
+                        time="04:00:00", mem=mem, ncpu=ncpu,
+                        workdir=os.path.join(base_dir, work_subdir),
+                        cmd=cmd, scr=script_path, 
+                        import_pyscf_forge=True
+                    )
 
-            run("diamond")
-            run("nio")
-            run("cco")
-            run("hg1212")
+                run("diamond")
+                run("nio")
+                run("cco")
+                run("hg1212")
