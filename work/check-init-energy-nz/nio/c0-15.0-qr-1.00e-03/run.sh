@@ -42,4 +42,4 @@ export PREFIX=/central/home/junjiey/work/benchmark-fftisdf
 export DATA_PATH=$PREFIX/data/
 export PYTHONPATH=$PREFIX/src/:$PYTHONPATH
 export PYSCF_EXT_PATH=$HOME/packages/pyscf-forge/pyscf-forge-ning-isdf4/
-python main.py --name nio --c0=15.0 --rela_qr=0.001 --aoR_cutoff=1e-8 --kmesh 1-1-1
+python main.py --name nio --c0=15.0 --rela_qr=0.001 --aoR_cutoff=1e-6 --kmesh 1-1-1

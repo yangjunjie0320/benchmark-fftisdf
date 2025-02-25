@@ -57,7 +57,7 @@ def main(args : ArgumentParser):
     inpx = scf_obj.with_df.get_inpx(g0=g0, c0=c0, tol=1e-12)
 
     t0 = time()
-    scf_obj.with_df.tol = 1e-8
+    scf_obj.with_df.tol = 1e-10
     scf_obj.with_df.max_memory = PYSCF_MAX_MEMORY
     scf_obj.with_df.build(inpx)
     t["FFTISDF build"] = time() - t0

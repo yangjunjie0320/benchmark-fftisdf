@@ -20,7 +20,6 @@ def cell_from_poscar(poscar_file: str):
     c.precision = 1e-8
     c.verbose = 0
     c.unit = 'A'
-    c.exp_to_discard = 0.1
     return c
 
 def print_current_memory():

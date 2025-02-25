@@ -10,70 +10,41 @@ PYSCF_MAX_MEMORY = int(environ.get("PYSCF_MAX_MEMORY", 1000))
 from pyscf.isdf import isdf_local
 ISDF_Local = isdf_local.ISDF_Local
 
-class ISDF(object):
-    cell = None
-    group = None
+def ISDF(cell=None, c0=10.0, rela_qr=1e-3, aoR_cutoff=1e-8):
+    cell = cell.copy(deep=True)
 
-    kpts = None
-    kmesh = None
-    c0 = None
-    verbose = 10
+    direct = False
+    limited_memory = True
+    with_robust_fitting = False
+    build_V_K_bunchsize = 512
 
-    _isdf = None
-    _isdf_to_save = None
-    
-    def __init__(self, cell=None, kpts=None):
-        assert kpts is None
-        self.cell = cell
-        self.kpts = kpts
+    from pyscf.lib import logger
+    from pyscf.lib.logger import perf_counter
+    from pyscf.lib.logger import process_clock
+    t0 = (process_clock(), perf_counter())
+    log = logger.new_logger(cell, 10)
+    log.info("ISDF module: %s" % isdf_local.__file__)
 
-        self.c0 = 5.0
-        self.rela_qr = 1e-3
-        self.aoR_cutoff = 1e-8
-        self.direct = True
-        self.with_robust_fitting = False
-        self.build_V_K_bunchsize = 512
+    isdf_obj = ISDF_Local(
+        cell, direct=direct,
+        limited_memory=limited_memory, 
+        with_robust_fitting=with_robust_fitting,
+        build_V_K_bunchsize=build_V_K_bunchsize,
+        aoR_cutoff=aoR_cutoff
+    )
 
-    def build(self):
-        cell = self.cell.copy(deep=True)
+    isdf_obj.verbose = 10
+    log.info("c0 = %6.2f" % c0)
 
-        # group = self.group
-        # assert group is not None
+    isdf_obj.build(c=c0, rela_cutoff=rela_qr, group=None)
 
-        direct = self.direct
-        c0 = self.c0
-        rela_qr = self.rela_qr
-        aoR_cutoff = self.aoR_cutoff
-        build_V_K_bunchsize = self.build_V_K_bunchsize
-        with_robust_fitting = self.with_robust_fitting
-
-        from pyscf.lib import logger
-        from pyscf.lib.logger import perf_counter
-        from pyscf.lib.logger import process_clock
-        t0 = (process_clock(), perf_counter())
-        log = logger.new_logger(cell, 10)
-        log.info("ISDF module: %s" % isdf_local.__file__)
-
-        isdf_obj = ISDF_Local(
-            cell, limited_memory=False, direct=direct,
-            with_robust_fitting=with_robust_fitting,
-            build_V_K_bunchsize=build_V_K_bunchsize,
-            aoR_cutoff=aoR_cutoff
-        )
-
-        isdf_obj.verbose = 10
-        log.info("c0 = %6.2f" % c0)
-
-        isdf_obj.build(c=c0, rela_cutoff=rela_qr, group=None)
-
-        nip = isdf_obj.naux
-        log.info(
-            "Number of interpolation points = %d, effective CISDF = %6.2f",
-            nip, nip / isdf_obj.nao
-        )
-        self.cisdf = nip / isdf_obj.nao
-        log.timer("ISDF build", *t0)
-        return isdf_obj
+    nip = isdf_obj.naux
+    log.info(
+        "Number of interpolation points = %d, effective CISDF = %6.2f",
+        nip, nip / isdf_obj.nao
+    )
+    log.timer("ISDF build", *t0)
+    return isdf_obj, nip / isdf_obj.nao
 
 t = {}
 
@@ -105,15 +76,14 @@ def main(args : ArgumentParser):
     e_ref = e_ref.real
     assert abs(e_ref - scf_obj.energy_elec(dm0)[0]) < 1e-10
 
-    isdf_obj = ISDF(cell)
-    isdf_obj.rela_qr = args.rela_qr
-    isdf_obj.aoR_cutoff = args.aoR_cutoff
-    isdf_obj.direct = True
-    isdf_obj.with_robust_fitting = True
-    isdf_obj.c0 = args.c0
-
     t0 = time()
-    scf_obj.with_df = isdf_obj.build()
+    isdf_obj, cisdf = ISDF(
+        cell.copy(deep=True),
+        c0=args.c0,
+        rela_qr=args.rela_qr,
+        aoR_cutoff=args.aoR_cutoff
+    )
+    scf_obj.with_df = isdf_obj
     t["ISDF build"] = time() - t0
 
     t0 = time()
@@ -132,10 +102,9 @@ def main(args : ArgumentParser):
     err_vk = abs(vk_ref - vk_sol).max()
     err_vjk = abs(vjk_ref - vjk_sol).max()
 
-    c0 = isdf_obj.cisdf
-
-    print(f"### c0 = {c0:6.2f}, rela_qr = {isdf_obj.rela_qr:6.2e}")
-    print(f"### aoR_cutoff = {isdf_obj.aoR_cutoff:6.2e}")
+    print(f"### c0 = {args.c0:6.2f}, cisdf = {cisdf:6.2f}")
+    print(f"### rela_qr = {args.rela_qr:6.2e}")
+    print(f"### aoR_cutoff = {args.aoR_cutoff:6.2e}")
     print(f"### err_ene = {err_ene: 6.2e}")
     print(f"### err_vj  = {err_vj: 6.2e}")
     print(f"### err_vk  = {err_vk: 6.2e}")
