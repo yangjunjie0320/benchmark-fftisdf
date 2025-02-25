@@ -39,7 +39,7 @@ INFO = {
     "hg1212": {
         "filename": os.path.join(DATA_PATH, "vasp", "hg1212-conv.vasp"),
         "basis": os.path.join(DATA_PATH, "basis", "cc-pvdz.dat"),
-        "psuedo": {'Cu1': 'GTH-PBE-q19', 'Cu2': 'GTH-PBE-q19', 'O1': 'gth-pbe', 'O2': 'gth-pbe', 'Cu3': 'GTH-PBE-q19', 'Cu4': 'GTH-PBE-q19', 'O3': 'gth-pbe', 'O4': 'gth-pbe', 'Hg': 'gth-pbe', 'Ba': 'gth-pbe', 'Ca': 'gth-pbe'},
+        "psuedo": {'Cu': 'GTH-PBE-q19', 'O': 'gth-pbe', 'Hg': 'gth-pbe', 'Ba': 'gth-pbe', 'Ca': 'gth-pbe'},
         "ke_cutoff": 400.0,
         "k0": 40.0,
         "c0": 20.0,
@@ -47,7 +47,7 @@ INFO = {
     "cco": {
         "filename": os.path.join(DATA_PATH, "vasp", "cco-conv-2x2x1.vasp"),
         "basis": os.path.join(DATA_PATH, "basis", "cc-pvdz.dat"),
-        "psuedo": 'gth-pade',
+        "psuedo": {'Cu': 'GTH-PBE-q19', 'O': 'gth-pbe', 'Hg': 'gth-pbe', 'Ba': 'gth-pbe', 'Ca': 'gth-pbe'},
         "ke_cutoff": 160.0,
         "k0": 80.0,
         "c0": 20.0,
@@ -72,9 +72,28 @@ INFO = {
 
 def get_cell(name: str):
     info = INFO[name]
-    from utils import cell_from_poscar
+
     cell = cell_from_poscar(info["filename"])
-    cell.basis = info["basis"]
+    basis = info["basis"]
+    cell.basis = basis
+    print(cell.basis)
+    # if os.path.exists(basis):
+    #     print(f"Loading basis from {basis}, natm = {cell.natm}")
+    #     from pyscf.gto.basis.parse_nwchem import load
+    #     basis = {}
+
+    #     for iatm in range(cell.natm):
+    #         s1 = cell.atom_symbol(iatm)
+    #         s2 = cell.atom_pure_symbol(iatm)
+    #         print(f"iatm = {iatm}, s1 = {s1}, s2 = {s2}")
+
+    #         if s1 not in basis:
+    #             print(f"Loading basis for {s1}, {s2}")
+    #             basis[s1] = load(basis, s2)
+
+    #     print(basis)
+            
     cell.pseudo = info["psuedo"]
     cell.ke_cutoff = info["ke_cutoff"]
+    print(cell)
     return cell

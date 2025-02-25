@@ -41,38 +41,38 @@ if __name__ == "__main__":
 
     base_dir = os.path.abspath(os.path.dirname(__file__))
     
-    for c0 in [10.0, 15.0, 20.0, 25.0]:
-        for k0 in [20.0, 40.0, 60.0, 80.0, 100.0]:
-            def run(system):
-                kmesh = [1, 1, 1]
+    # for c0 in [10.0, 15.0, 20.0, 25.0]:
+    #     for k0 in [20.0, 40.0, 60.0, 80.0, 100.0]:
+    #         def run(system):
+    #             kmesh = [1, 1, 1]
 
-                cmd = (
-                    f"python main.py --name {system} "
-                    f"--c0 {c0} --k0 {k0} --kmesh 1-1-1"
-                )
+    #             cmd = (
+    #                 f"python main.py --name {system} "
+    #                 f"--c0 {c0} --k0 {k0} --kmesh 1-1-1"
+    #             )
 
-                script = "check-init-energy-jy"
-                script_path = f"{base_dir}/src/script/{script}.py"
+    #             script = "check-init-energy-jy"
+    #             script_path = f"{base_dir}/src/script/{script}.py"
 
-                work_subdir = f"work/{script}/{system}/c0-{c0}-k0-{k0}/"
-                if os.path.exists(os.path.join(base_dir, work_subdir)):
-                    print(f"Work directory {work_subdir} already exists, deleting it")
-                    shutil.rmtree(os.path.join(base_dir, work_subdir))
+    #             work_subdir = f"work/{script}/{system}/c0-{c0}-k0-{k0}/"
+    #             if os.path.exists(os.path.join(base_dir, work_subdir)):
+    #                 print(f"Work directory {work_subdir} already exists, deleting it")
+    #                 shutil.rmtree(os.path.join(base_dir, work_subdir))
 
-                # Submit job with parameters
-                main(
-                    time="04:00:00", mem=mem, ncpu=ncpu,
-                    workdir=os.path.join(base_dir, work_subdir),
-                    cmd=cmd, scr=script_path, 
-                    import_pyscf_forge=False
-                )
+    #             # Submit job with parameters
+    #             main(
+    #                 time="04:00:00", mem=mem, ncpu=ncpu,
+    #                 workdir=os.path.join(base_dir, work_subdir),
+    #                 cmd=cmd, scr=script_path, 
+    #                 import_pyscf_forge=False
+    #             )
 
-            run("diamond")
-            run("nio")
-            run("cco")
-            run("hg1212")
+    #         run("diamond")
+    #         run("nio")
+    #         run("cco")
+    #         run("hg1212")
 
-    for c0 in [10.0, 15.0, 20.0, 25.0, 30.0]:
+    for c0 in [10.0, 20.0, 30.0, 40.0]:
         for rela_qr in [1e-2, 1e-3, 1e-4, 1e-5]:
             def run(system):
                 kmesh = [1, 1, 1]
@@ -80,7 +80,8 @@ if __name__ == "__main__":
                 cmd = (
                     f"python main.py --name {system} "
                     f"--c0={c0} --rela_qr={rela_qr} "
-                    f"--aoR_cutoff=1e-6 --kmesh 1-1-1"
+                    f"--aoR_cutoff=1e-6 --kmesh=1-1-1 "
+                    f"--ke_cutoff=40.0"
                 )
 
                 script = "check-init-energy-nz"
@@ -101,5 +102,5 @@ if __name__ == "__main__":
 
             run("diamond")
             run("nio")
-            # run("cco")
-            # run("hg1212")
+            run("cco")
+            run("hg1212")

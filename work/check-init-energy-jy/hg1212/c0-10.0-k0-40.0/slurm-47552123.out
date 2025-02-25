@@ -15,3 +15,46 @@ WARNING!
   linear dependence and numerical instability.  You can set  cell.exp_to_discard=0.1
   to remove the diffused Gaussians whose exponents are less than 0.1.
 
+name = hg1212
+c0 = 10.0
+k0 = 40.0
+ke_cutoff = 200.0
+kmesh = 1-1-1
+Pivoted Cholesky rank = 10894, estimated error = 1.78e-03
+Parent grid size = 38617, selected grid size = 2380
+
+
+******** <class 'fft_isdf.InterpolativeSeparableDensityFitting'> ********
+mesh = [ 49  49 159] (381759 PWs)
+len(kpts) = 1
+    kpts = [[0. 0. 0.]]
+<class 'fft_isdf.InterpolativeSeparableDensityFitting'> does not have attributes  kmesh tol c0
+
+WARN: ke_cutoff/mesh (200 / [ 49  49 159]) is not enough for FFTDF to get integral accuracy 1e-08.
+Coulomb integral error is ~ 97 Eh.
+Recommended ke_cutoff/mesh are 1200.94 / [117 117 387].
+
+kmesh = [1 1 1]
+nip = 2380, nao = 238, cisdf =  10.00
+    CPU time for get interpolating vectors      0.97 sec
+blksize = 381759, ngrid = 381759
+Use in-core for eta_kpt, memory used for eta_kpt = 1.45e+01 GB
+    CPU time for aoR_loop: [       0,   381759]    200.69 sec, wall time     27.31 sec
+eta_kpt.shape = (1, 381759, 2380)
+Memory used for eta_kpt = 1.45e+01 GB
+
+Calculating Coulomb kernel with outcore method: q = 1 / 1
+blksize = 2380, nip = 2380, max_memory = 2.62e+02 GB
+memory used for each block = 1.45e+01 GB
+    CPU time for solving Coulomb kernel    622.71 sec, wall time     35.90 sec
+Finished solving Coulomb kernel for q =   1 /   1, rank = 2170 / 2380
+Saving FFTISDF results to /central/scratch/yangjunjie/check-init-energy-jy/hg1212/c0-10.0-k0-40.0/47552123/tmpe6ap0bqe
+    CPU time for building ISDF    915.08 sec, wall time     67.07 sec
+### c0 =  10.00, g0 = 23-23-73
+### err_ene =  2.39e-01
+### err_vj  =  2.13e-14
+### err_vk  =  3.29e-02
+### err_vjk =  1.65e-02
+### Time for      FFTDF JK: 276.33 s
+### Time for FFTISDF build:  67.07 s
+### Time for    FFTISDF JK:   5.32 s

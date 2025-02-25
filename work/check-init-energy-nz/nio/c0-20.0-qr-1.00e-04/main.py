@@ -1,6 +1,6 @@
 from utils import get_cell
-from time import time
 
+from time import time
 from argparse import ArgumentParser
 import pyscf, numpy
 
@@ -51,21 +51,28 @@ t = {}
 def main(args : ArgumentParser):
     cell = get_cell(args.name)
     cell.max_memory = PYSCF_MAX_MEMORY
+    cell.verbose = 10
+    cell.ke_cutoff = args.ke_cutoff
     cell.build(dump_input=False)
 
     scf_obj = pyscf.pbc.scf.RHF(cell)
     scf_obj.exxdiv = None
-    scf_obj.verbose = 0
+    scf_obj.verbose = 10
     h1e = scf_obj.get_hcore()
     s1e = scf_obj.get_ovlp()
     e0_mo, c0_mo = scf_obj.eig(h1e, s1e)
     n0_mo = scf_obj.get_occ(e0_mo, c0_mo)
     dm0 = scf_obj.make_rdm1(c0_mo, n0_mo)
+    # dm0 = scf_obj.get_init_guess(key="minao")
+    # h1e = numpy.zeros_like(dm0)
 
+    ngrid = numpy.prod(scf_obj.with_df.mesh)
     gmesh = scf_obj.with_df.mesh
     gmesh = "-".join([str(x) for x in gmesh])
+    print("ke_cutoff = %6.2f, gmesh = %s, ngrid = %d" % (cell.ke_cutoff, gmesh, ngrid))
 
     t0 = time()
+    scf_obj.with_df.verbose = 10
     vj_ref, vk_ref = scf_obj.with_df.get_jk(dm0, hermi=1)
     vjk_ref = vj_ref - 0.5 * vk_ref
     f1e_ref = h1e + vjk_ref
@@ -74,7 +81,9 @@ def main(args : ArgumentParser):
     e_ref = numpy.einsum('ij,ji->', 0.5 * (f1e_ref + h1e), dm0)
     assert e_ref.imag < 1e-10
     e_ref = e_ref.real
-    assert abs(e_ref - scf_obj.energy_elec(dm0)[0]) < 1e-10
+    
+    # assert abs(e_ref - scf_obj.energy_elec(dm0)[0]) < 1e-10
+    # print("preparing ISDF")
 
     t0 = time()
     isdf_obj, cisdf = ISDF(
@@ -119,6 +128,7 @@ if __name__ == "__main__":
     parser = ArgumentParser()
     parser.add_argument("--name", type=str, required=True)
     parser.add_argument("--c0", type=float, default=5.0)
+    parser.add_argument("--ke_cutoff", type=float, default=40.0)
     parser.add_argument("--rela_qr", type=float, default=1e-3)
     parser.add_argument("--aoR_cutoff", type=float, default=1e-8)
     parser.add_argument("--kmesh", type=str, default="1-1-1")

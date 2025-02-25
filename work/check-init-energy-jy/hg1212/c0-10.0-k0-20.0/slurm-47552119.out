@@ -15,3 +15,14 @@ WARNING!
   linear dependence and numerical instability.  You can set  cell.exp_to_discard=0.1
   to remove the diffused Gaussians whose exponents are less than 0.1.
 
+name = hg1212
+c0 = 10.0
+k0 = 20.0
+ke_cutoff = 200.0
+kmesh = 1-1-1
+Traceback (most recent call last):
+  File "/central/home/junjiey/work/benchmark-fftisdf/work/check-init-energy-jy/hg1212/c0-10.0-k0-20.0/main.py", line 108, in <module>
+    main(args)
+  File "/central/home/junjiey/work/benchmark-fftisdf/work/check-init-energy-jy/hg1212/c0-10.0-k0-20.0/main.py", line 43, in main
+    assert abs(e_ref - scf_obj.energy_elec(dm0)[0]) < 1e-10
+AssertionError

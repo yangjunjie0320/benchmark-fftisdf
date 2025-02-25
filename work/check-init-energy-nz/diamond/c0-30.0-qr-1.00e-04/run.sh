@@ -2,7 +2,7 @@
 #SBATCH --exclude=hpc-21-34
 #SBATCH --job-name=check-init-energy-nz/diamond/c0-30.0-qr-1.00e-04/
 #SBATCH --cpus-per-task=32
-#SBATCH --mem=256GB
+#SBATCH --mem=192GB
 #SBATCH --time=04:00:00
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
@@ -42,4 +42,4 @@ export PREFIX=/central/home/junjiey/work/benchmark-fftisdf
 export DATA_PATH=$PREFIX/data/
 export PYTHONPATH=$PREFIX/src/:$PYTHONPATH
 export PYSCF_EXT_PATH=$HOME/packages/pyscf-forge/pyscf-forge-ning-isdf4/
-python main.py --name diamond --c0=30.0 --rela_qr=0.0001 --aoR_cutoff=1e-6 --kmesh 1-1-1
+python main.py --name diamond --c0=30.0 --rela_qr=0.0001 --aoR_cutoff=1e-6 --kmesh=1-1-1 --ke_cutoff=40.0
