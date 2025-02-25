@@ -12,7 +12,7 @@ t = {}
 def main(args : ArgumentParser):
     cell = get_cell(args.name)
     cell.max_memory = PYSCF_MAX_MEMORY
-    cell.ke_cutoff = args.ke_cutoff
+    # cell.ke_cutoff = args.ke_cutoff
     cell.build(dump_input=False)
 
     kmesh = [int(x) for x in args.kmesh.split("-")]
@@ -75,7 +75,6 @@ def main(args : ArgumentParser):
 if __name__ == "__main__":
     parser = ArgumentParser()
     parser.add_argument("--name", type=str, required=True)
-    parser.add_argument("--ke_cutoff", type=float, default=10.0)
     parser.add_argument("--kmesh", type=str, default="1-1-1")
     args = parser.parse_args()
 

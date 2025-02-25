@@ -42,6 +42,8 @@ INFO = {
         "basis": os.path.join(DATA_PATH, "basis", "cc-pvdz.dat"),
         "psuedo": {'Cu1': 'GTH-PBE-q19', 'Cu2': 'GTH-PBE-q19', 'O1': 'gth-pbe', 'O2': 'gth-pbe', 'Cu3': 'GTH-PBE-q19', 'Cu4': 'GTH-PBE-q19', 'O3': 'gth-pbe', 'O4': 'gth-pbe', 'Hg': 'gth-pbe', 'Ba': 'gth-pbe', 'Ca': 'gth-pbe'},
         "ke_cutoff": 400.0,
+        "k0": 40.0,
+        "c0": 20.0,
     },
     "cco": {
         "filename": os.path.join(DATA_PATH, "vasp", "cco-conv-2x2x1.vasp"),

@@ -1,0 +1,55 @@
+SLURMD_NODENAME = hpc-35-01
+Start time = Mon Feb 24 07:56:25 PM PST 2025
+OMP_NUM_THREADS = 32
+MKL_NUM_THREADS = 1
+PYSCF_MAX_MEMORY = 262144
+TMPDIR = /central/scratch/yangjunjie//check-init-energy-jy/diamond/c0-25.0-k0-80.0//47548207/
+PYSCF_TMPDIR = /central/scratch/yangjunjie//check-init-energy-jy/diamond/c0-25.0-k0-80.0//47548207/
+
+/home/junjiey/anaconda3/envs/fftisdf/bin/python
+2.8.0
+1.13.1
+1.26.4
+name = diamond
+c0 = 25.0
+k0 = 80.0
+ke_cutoff = 200.0
+kmesh = 1-1-1
+Pivoted Cholesky rank = 5091, estimated error = 2.65e-05
+Parent grid size = 24389, selected grid size = 2600
+
+
+******** <class 'fft_isdf.InterpolativeSeparableDensityFitting'> ********
+mesh = [45 45 45] (91125 PWs)
+len(kpts) = 1
+    kpts = [[0. 0. 0.]]
+<class 'fft_isdf.InterpolativeSeparableDensityFitting'> does not have attributes  c0 tol kmesh
+
+WARN: ke_cutoff/mesh (200 / [45 45 45]) is not enough for FFTDF to get integral accuracy 1e-08.
+Coulomb integral error is ~ 0.041 Eh.
+Recommended ke_cutoff/mesh are 569.817 / [75 75 75].
+
+kmesh = [1 1 1]
+nip = 2600, nao = 104, cisdf =  25.00
+    CPU time for get interpolating vectors      1.31 sec
+blksize = 91125, ngrid = 91125
+Use in-core for eta_kpt, memory used for eta_kpt = 3.79e+00 GB
+    CPU time for aoR_loop: [      0,   91125]     55.23 sec, wall time      6.79 sec
+eta_kpt.shape = (1, 91125, 2600)
+Memory used for eta_kpt = 3.79e+00 GB
+
+Calculating Coulomb kernel with outcore method: q = 1 / 1
+blksize = 2600, nip = 2600, max_memory = 2.62e+02 GB
+memory used for each block = 3.79e+00 GB
+    CPU time for solving Coulomb kernel    241.14 sec, wall time     11.59 sec
+Finished solving Coulomb kernel for q =   1 /   1, rank = 589 / 2600
+Saving FFTISDF results to /central/scratch/yangjunjie/check-init-energy-jy/diamond/c0-25.0-k0-80.0/47548207/tmphpmeo5rw
+    CPU time for building ISDF    316.37 sec, wall time     19.16 sec
+### c0 =  25.00, g0 = 29-29-29
+### err_ene =  1.19e-07
+### err_vj  =  1.11e-16
+### err_vk  =  1.98e-06
+### err_vjk =  9.91e-07
+### Time for      FFTDF JK:  13.72 s
+### Time for FFTISDF build:  19.16 s
+### Time for    FFTISDF JK:   0.97 s

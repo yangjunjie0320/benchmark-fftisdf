@@ -41,4 +41,4 @@ python -c "import numpy; print(numpy.__version__)"
 export PREFIX=/central/home/junjiey/work/benchmark-fftisdf
 export DATA_PATH=$PREFIX/data/
 export PYTHONPATH=$PREFIX/src/:$PYTHONPATH
-python main.py --name hg1212 --c0 10.0 --k0 20.0 --ke_cutoff 200.0 --kmesh 1-1-1
+python main.py --name hg1212 --c0 10.0 --k0 20.0 --kmesh 1-1-1
