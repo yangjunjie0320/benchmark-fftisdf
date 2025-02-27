@@ -178,3 +178,90 @@ ecpbas  = []
   7.02985339  7.11223006  7.16105803  7.16149421  7.16149421  9.98102374
  10.22047414 12.45615789 12.45636703]
 fft_jk: get_k_kpts max_memory 196271.251456  blksize 195
+    CPU time for get_k_kpts: make_kpt (0,*)   1071.15 sec, wall time     55.65 sec
+mesh for ewald [ 9  9 25]
+Ewald components = 0.000457316228919356, -0.182740716992151, 0.155300905436409
+mesh for ewald [ 9  9 27]
+Ewald components = 35.0438555930549, -282.195740229768, 66.5072899003348
+mesh for ewald [ 9  9 27]
+Ewald components = 35.0438555930549, -282.195740229768, 66.5072899003348
+Building PBC AO integrals incore
+mesh for ewald [ 9  9 25]
+Ewald components = 0.000457316228919356, -0.182740716992151, 0.155300905436409
+    CPU time for vj and vk   4465.84 sec, wall time    173.36 sec
+E1 = -600.0008999212513  E_coul = 1142.5455693337633
+ISDF module: /home/junjiey/packages/pyscf-forge/pyscf-forge-ning-isdf4/pyscf/isdf/isdf_local.py
+ISDF: mol.ke_cutoff = 40.000000
+ISDF: mol.natm      = 12
+ISDF: mol.nao       = 195
+c0 =  10.00
+************* get_partition *************
+************* end get_partition *************
+       get_partition wall time:     0.202631 CPU time:     2.951136
+len of partition[   0] =   4096
+len of partition[   1] =   4096
+len of partition[   2] =   2584
+len of partition[   3] =   2109
+len of partition[   4] =   2109
+len of partition[   5] =   5539
+len of partition[   6] =   4114
+len of partition[   7] =   4114
+len of partition[   8] =   2488
+len of partition[   9] =   2440
+len of partition[  10] =   2483
+len of partition[  11] =   2445
+************* get_aoR *************
+/home/junjiey/anaconda3/envs/fftisdf/lib/python3.9/site-packages/pyscf/pbc/gto/cell.py:1306: UserWarning: Electron number 61 and spin 0 are not consistent in cell
+
+  warnings.warn('Electron number %d and spin %d are not consistent '
+/home/junjiey/anaconda3/envs/fftisdf/lib/python3.9/site-packages/pyscf/pbc/gto/cell.py:1306: UserWarning: Electron number 57 and spin 0 are not consistent in cell
+
+  warnings.warn('Electron number %d and spin %d are not consistent '
+************* end get_aoR *************
+             get_aoR wall time:     0.291027 CPU time:     6.860173
+In _build_buffer: ISDF Local size of buffer = 129.929 MB
+ ---------- In pyscf.isdf.isdf_local.select_IP_local_atm ----------
+select_IP_local_atm: atm_begin =    0, atm_end =   12
+select_IP_local_atm: npt_found =  230
+select_IP_local_atm: npt_found =  225
+select_IP_local_atm: npt_found =  255
+select_IP_local_atm: npt_found =  356
+select_IP_local_atm: npt_found =  354
+select_IP_local_atm: npt_found =  292
+select_IP_local_atm: npt_found =  230
+select_IP_local_atm: npt_found =  228
+select_IP_local_atm: npt_found =  256
+select_IP_local_atm: npt_found =  256
+select_IP_local_atm: npt_found =  255
+select_IP_local_atm: npt_found =  256
+select_IP_local_step1 wall time:     0.968076 CPU time:    26.947572
+ build_aoRg_possible wall time:     0.010074 CPU time:     0.281245
+select_IP_local_step2 wall time:     0.000307 CPU time:     0.009062
+select_IP_local_step3 wall time:     0.001785 CPU time:     0.049736
+Memory usage for aoR  :     35.322 MB
+Memory usage for aoRg :      3.125 MB
+            build_IP wall time:     0.980243 CPU time:    27.287615
+build_aux_basis_local wall time:     0.345516 CPU time:     9.616613
+ ---------- In pyscf.isdf.isdf_local.build_V_W_local ----------
+Memory usage for V:      0.000 MB
+Memory usage for W:     77.784 MB
+     build_V_W_local wall time:    12.595712 CPU time:    77.194562
+Number of interpolation points = 3193, effective CISDF =  16.37
+    CPU time for ISDF build    124.92 sec, wall time     14.45 sec
+max_memory = 193068 MB (3539 in use)
+              J_half wall time:     0.049793 CPU time:     1.337800
+mesh for ewald [ 9  9 25]
+Ewald components = 0.000457316228919356, -0.182740716992151, 0.155300905436409
+    CPU time for get_jk_dm_local     15.53 sec, wall time      0.57 sec
+mesh for ewald [ 9  9 27]
+Ewald components = 35.0438555930549, -282.195740229768, 66.5072899003348
+### c0 =  10.00, cisdf =  16.37
+### rela_qr = 1.00e-04
+### aoR_cutoff = 1.00e-06
+### err_ene =  5.17e-04
+### err_vj  =  1.62e-05
+### err_vk  =  6.05e-03
+### err_vjk =  3.02e-03
+### Time for   FFTDF JK:  56.15 s
+### Time for ISDF build:  14.45 s
+### Time for    ISDF JK:   0.57 s

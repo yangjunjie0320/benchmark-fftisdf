@@ -192,3 +192,95 @@ WARN: HOMO -0.283792540039705 == LUMO -0.283285057528114
   7.22945258  7.22945258  7.240149    7.30524315  8.50603744  8.51747286
   8.51747286  8.60950868]
 fft_jk: get_k_kpts max_memory 196131.323904  blksize 260
+    CPU time for get_k_kpts: make_kpt (0,*)   1058.66 sec, wall time     47.96 sec
+mesh for ewald [15 15  7]
+Ewald components = 0.00168034919975825, -0.185192948313733, 0.0931289447337503
+mesh for ewald [17 17  9]
+Ewald components = 65.1972036927548, -436.100796060848, 2.68170334601073
+mesh for ewald [17 17  9]
+Ewald components = 65.1972036927548, -436.100796060848, 2.68170334601073
+Building PBC AO integrals incore
+mesh for ewald [15 15  7]
+Ewald components = 0.00168034919975825, -0.185192948313733, 0.0931289447337503
+    CPU time for vj and vk   9613.06 sec, wall time    315.47 sec
+E1 = -195.51877485145803  E_coul = 165.81857920171944
+ISDF module: /home/junjiey/packages/pyscf-forge/pyscf-forge-ning-isdf4/pyscf/isdf/isdf_local.py
+ISDF: mol.ke_cutoff = 40.000000
+ISDF: mol.natm      = 16
+ISDF: mol.nao       = 260
+c0 =  20.00
+************* get_partition *************
+************* end get_partition *************
+       get_partition wall time:     0.131106 CPU time:     3.464005
+len of partition[   0] =   2469
+len of partition[   1] =   2211
+len of partition[   2] =   2160
+len of partition[   3] =   2146
+len of partition[   4] =   2469
+len of partition[   5] =   2010
+len of partition[   6] =   2156
+len of partition[   7] =   2147
+len of partition[   8] =   2469
+len of partition[   9] =   2010
+len of partition[  10] =   2149
+len of partition[  11] =   2142
+len of partition[  12] =   2469
+len of partition[  13] =   1868
+len of partition[  14] =   2138
+len of partition[  15] =   2118
+************* get_aoR *************
+/home/junjiey/anaconda3/envs/fftisdf/lib/python3.9/site-packages/pyscf/pbc/gto/cell.py:1306: UserWarning: Electron number 121 and spin 0 are not consistent in cell
+
+  warnings.warn('Electron number %d and spin %d are not consistent '
+************* end get_aoR *************
+             get_aoR wall time:     0.258011 CPU time:     6.604798
+In _build_buffer: ISDF Local size of buffer = 137.230 MB
+ ---------- In pyscf.isdf.isdf_local.select_IP_local_atm ----------
+select_IP_local_atm: atm_begin =    0, atm_end =   16
+select_IP_local_atm: npt_found =  207
+select_IP_local_atm: npt_found =  264
+select_IP_local_atm: npt_found =  243
+select_IP_local_atm: npt_found =  256
+select_IP_local_atm: npt_found =  196
+select_IP_local_atm: npt_found =  254
+select_IP_local_atm: npt_found =  249
+select_IP_local_atm: npt_found =  250
+select_IP_local_atm: npt_found =  218
+select_IP_local_atm: npt_found =  247
+select_IP_local_atm: npt_found =  248
+select_IP_local_atm: npt_found =  248
+select_IP_local_atm: npt_found =  195
+select_IP_local_atm: npt_found =  242
+select_IP_local_atm: npt_found =  250
+select_IP_local_atm: npt_found =  256
+select_IP_local_step1 wall time:     0.649469 CPU time:    20.522615
+ build_aoRg_possible wall time:     0.006352 CPU time:     0.202953
+select_IP_local_step2 wall time:     0.000097 CPU time:     0.003329
+select_IP_local_step3 wall time:     0.001252 CPU time:     0.039957
+Memory usage for aoR  :     47.318 MB
+Memory usage for aoRg :      5.102 MB
+            build_IP wall time:     0.657170 CPU time:    20.768854
+build_aux_basis_local wall time:     0.101424 CPU time:     3.238578
+ ---------- In pyscf.isdf.isdf_local.build_V_W_local ----------
+Memory usage for V:      0.000 MB
+Memory usage for W:    111.506 MB
+     build_V_W_local wall time:     9.662970 CPU time:    94.865049
+Number of interpolation points = 3823, effective CISDF =  14.70
+    CPU time for ISDF build    129.48 sec, wall time     10.83 sec
+max_memory = 186652 MB (9955 in use)
+              J_half wall time:     0.035294 CPU time:     1.125361
+mesh for ewald [15 15  7]
+Ewald components = 0.00168034919975825, -0.185192948313733, 0.0931289447337503
+    CPU time for get_jk_dm_local     13.48 sec, wall time      0.42 sec
+mesh for ewald [17 17  9]
+Ewald components = 65.1972036927548, -436.100796060848, 2.68170334601073
+### c0 =  20.00, cisdf =  14.70
+### rela_qr = 1.00e-03
+### aoR_cutoff = 1.00e-06
+### err_ene =  4.74e-05
+### err_vj  =  1.35e-05
+### err_vk  =  1.87e-03
+### err_vjk =  9.35e-04
+### Time for   FFTDF JK:  48.48 s
+### Time for ISDF build:  10.83 s
+### Time for    ISDF JK:   0.42 s

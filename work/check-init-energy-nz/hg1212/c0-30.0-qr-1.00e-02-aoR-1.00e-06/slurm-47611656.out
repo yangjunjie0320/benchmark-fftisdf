@@ -186,3 +186,82 @@ Ewald components = 35.0438555930549, -282.195740229768, 66.5072899003348
 mesh for ewald [ 9  9 27]
 Ewald components = 35.0438555930549, -282.195740229768, 66.5072899003348
 Building PBC AO integrals incore
+mesh for ewald [ 9  9 25]
+Ewald components = 0.000457316228919356, -0.182740716992151, 0.155300905436409
+    CPU time for vj and vk   3580.56 sec, wall time    119.55 sec
+E1 = -600.0008999212507  E_coul = 1142.5455693337624
+ISDF module: /home/junjiey/packages/pyscf-forge/pyscf-forge-ning-isdf4/pyscf/isdf/isdf_local.py
+ISDF: mol.ke_cutoff = 40.000000
+ISDF: mol.natm      = 12
+ISDF: mol.nao       = 195
+c0 =  30.00
+************* get_partition *************
+************* end get_partition *************
+       get_partition wall time:     0.145769 CPU time:     3.502193
+len of partition[   0] =   4096
+len of partition[   1] =   4096
+len of partition[   2] =   2584
+len of partition[   3] =   2109
+len of partition[   4] =   2109
+len of partition[   5] =   5539
+len of partition[   6] =   4114
+len of partition[   7] =   4114
+len of partition[   8] =   2488
+len of partition[   9] =   2440
+len of partition[  10] =   2483
+len of partition[  11] =   2445
+************* get_aoR *************
+/home/junjiey/anaconda3/envs/fftisdf/lib/python3.9/site-packages/pyscf/pbc/gto/cell.py:1306: UserWarning: Electron number 61 and spin 0 are not consistent in cell
+
+  warnings.warn('Electron number %d and spin %d are not consistent '
+/home/junjiey/anaconda3/envs/fftisdf/lib/python3.9/site-packages/pyscf/pbc/gto/cell.py:1306: UserWarning: Electron number 57 and spin 0 are not consistent in cell
+
+  warnings.warn('Electron number %d and spin %d are not consistent '
+************* end get_aoR *************
+             get_aoR wall time:     0.178353 CPU time:     5.163572
+In _build_buffer: ISDF Local size of buffer = 150.848 MB
+ ---------- In pyscf.isdf.isdf_local.select_IP_local_atm ----------
+select_IP_local_atm: atm_begin =    0, atm_end =   12
+select_IP_local_atm: npt_found =   75
+select_IP_local_atm: npt_found =   79
+select_IP_local_atm: npt_found =   88
+select_IP_local_atm: npt_found =  140
+select_IP_local_atm: npt_found =  140
+select_IP_local_atm: npt_found =  147
+select_IP_local_atm: npt_found =   96
+select_IP_local_atm: npt_found =   88
+select_IP_local_atm: npt_found =  110
+select_IP_local_atm: npt_found =  111
+select_IP_local_atm: npt_found =  107
+select_IP_local_atm: npt_found =  107
+select_IP_local_step1 wall time:     2.013703 CPU time:    64.228340
+ build_aoRg_possible wall time:     0.002105 CPU time:     0.067282
+select_IP_local_step2 wall time:     0.000097 CPU time:     0.003181
+select_IP_local_step3 wall time:     0.000514 CPU time:     0.016445
+Memory usage for aoR  :     35.322 MB
+Memory usage for aoRg :      1.259 MB
+            build_IP wall time:     2.016418 CPU time:    64.315248
+build_aux_basis_local wall time:     0.052764 CPU time:     1.683970
+ ---------- In pyscf.isdf.isdf_local.build_V_W_local ----------
+Memory usage for V:      0.000 MB
+Memory usage for W:     12.657 MB
+     build_V_W_local wall time:     4.397807 CPU time:    54.646638
+Number of interpolation points = 1288, effective CISDF =   6.61
+    CPU time for ISDF build    129.82 sec, wall time      6.81 sec
+max_memory = 193252 MB (3355 in use)
+              J_half wall time:     0.025500 CPU time:     0.812814
+mesh for ewald [ 9  9 25]
+Ewald components = 0.000457316228919356, -0.182740716992151, 0.155300905436409
+    CPU time for get_jk_dm_local      5.89 sec, wall time      0.19 sec
+mesh for ewald [ 9  9 27]
+Ewald components = 35.0438555930549, -282.195740229768, 66.5072899003348
+### c0 =  30.00, cisdf =   6.61
+### rela_qr = 1.00e-02
+### aoR_cutoff = 1.00e-06
+### err_ene =  3.71e-02
+### err_vj  =  1.62e-05
+### err_vk  =  2.01e-01
+### err_vjk =  1.01e-01
+### Time for   FFTDF JK:  31.01 s
+### Time for ISDF build:   6.81 s
+### Time for    ISDF JK:   0.19 s
