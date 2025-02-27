@@ -72,10 +72,13 @@ def main(args : ArgumentParser):
     f1e_ref = h1e + vjk_ref
     t["FFTDF JK"] = time() - t0
 
-    e_ref = numpy.einsum('ij,ji->', 0.5 * (f1e_ref + h1e), dm0)
-    assert e_ref.imag < 1e-10
-    e_ref = e_ref.real
-    assert abs(e_ref - scf_obj.energy_tot(dm=dm0)) < 1e-10
+    e_sol = numpy.einsum('ij,ji->', 0.5 * (f1e_ref + h1e), dm0)
+    assert e_sol.imag < 1e-10
+    e_sol = e_sol.real + cell.energy_nuc()
+    e_ref = scf_obj.energy_tot(dm=dm0)
+    err_ene = abs(e_ref - e_sol) / cell.natm
+    print(f"### err_ene = {err_ene: 6.2e}")
+    assert err_ene < 1e-10
 
     c0 = args.c0
     rela_qr = args.rela_qr
