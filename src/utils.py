@@ -2,7 +2,7 @@ import os, sys, numpy, scipy, pyscf
 TMPDIR = os.getenv("TMPDIR", "/tmp")
 assert os.path.exists(TMPDIR), f"TMPDIR {TMPDIR} does not exist"
 
-DATA_PATH = os.getenv("DATA_PATH", "/Users/yangjunjie/work/benchmark-fftisdf/data/")
+DATA_PATH = os.getenv("DATA_PATH", "../data/")
 assert os.path.exists(DATA_PATH), f"DATA_PATH {DATA_PATH} does not exist"
 
 def ase_atoms_to_pyscf(ase_atoms):
@@ -78,12 +78,15 @@ def get_cell(name: str):
     c0.verbose = 5
     c0.exp_to_discard = 0.2
     c0.build(dump_input=False)
+
     basis = c0._basis
+    pseudo = c0._pseudo
+    ke_cutoff = info["ke_cutoff"]
 
     cell = cell_from_poscar(info["filename"])
     cell.basis = basis
-    cell.pseudo = info["psuedo"]
-    cell.ke_cutoff = info["ke_cutoff"]
+    cell.pseudo = pseudo
+    cell.ke_cutoff = ke_cutoff
     return cell
 
 if __name__ == "__main__":

@@ -57,7 +57,7 @@ def main(args : ArgumentParser):
 
     from pyscf.pbc.scf import RHF
     scf_obj = RHF(cell)
-    # scf_obj.exxdiv = None
+    scf_obj.exxdiv = "ewald"
     scf_obj.verbose = 10
     h1e = scf_obj.get_hcore()
     s1e = scf_obj.get_ovlp()
@@ -77,7 +77,6 @@ def main(args : ArgumentParser):
     e_sol = e_sol.real + cell.energy_nuc()
     e_ref = scf_obj.energy_tot(dm=dm0)
     err_ene = abs(e_ref - e_sol) / cell.natm
-    print(f"### err_ene = {err_ene: 6.2e}")
     assert err_ene < 1e-10
 
     c0 = args.c0
