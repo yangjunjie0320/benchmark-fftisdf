@@ -52,38 +52,49 @@ def main(args : ArgumentParser):
     cell = get_cell(args.name)
     cell.max_memory = PYSCF_MAX_MEMORY
     cell.verbose = 10
-    cell.ke_cutoff = args.ke_cutoff
     cell.build(dump_input=False)
 
+    import os
+    assert os.path.exists(cell.chkfile), f"chkfile {cell.chkfile} does not exist"
+
+    from pyscf.lib.chkfile import load
+    h1e = load(cell.chkfile, "hcore")
+    s1e = load(cell.chkfile, "overlap")
+    dm0 = load(cell.chkfile, "dm0")
+
+    assert h1e is not None
+    assert s1e is not None
+    assert dm0 is not None
+
     scf_obj = pyscf.pbc.scf.RHF(cell)
-    scf_obj.exxdiv = None
+    # scf_obj.exxdiv = None
     scf_obj.verbose = 10
-    h1e = scf_obj.get_hcore()
-    s1e = scf_obj.get_ovlp()
     e0_mo, c0_mo = scf_obj.eig(h1e, s1e)
     n0_mo = scf_obj.get_occ(e0_mo, c0_mo)
-    dm0 = scf_obj.make_rdm1(c0_mo, n0_mo)
-    # dm0 = scf_obj.get_init_guess(key="minao")
-    # h1e = numpy.zeros_like(dm0)
 
-    ngrid = numpy.prod(scf_obj.with_df.mesh)
-    gmesh = scf_obj.with_df.mesh
-    gmesh = "-".join([str(x) for x in gmesh])
-    print("ke_cutoff = %6.2f, gmesh = %s, ngrid = %d" % (cell.ke_cutoff, gmesh, ngrid))
+    # check dm0 and scf_obj.make_rdm1(c0_mo, n0_mo) are the same
+    dm_ref = dm0
+    dm_sol = scf_obj.make_rdm1(c0_mo, n0_mo)
+    if not numpy.allclose(dm_ref, dm_sol):
+        print("dm0 are not the same, error = ", abs(dm_ref - dm_sol).max())
+        # print("dm (read) = ")
+        # numpy.savetxt(cell.stdout, dm1[:10, :10], fmt="% 6.2f", delimiter=", ")
+        # print("dm (scf) = ")
+        # numpy.savetxt(cell.stdout, dm_sol[:10, :10], fmt="% 6.2f", delimiter=", ")
+        # assert 1 == 2
 
     t0 = time()
     scf_obj.with_df.verbose = 10
-    vj_ref, vk_ref = scf_obj.with_df.get_jk(dm0, hermi=1)
+    vj_ref = load(cell.chkfile, "vj")
+    vk_ref = load(cell.chkfile, "vk")
     vjk_ref = vj_ref - 0.5 * vk_ref
     f1e_ref = h1e + vjk_ref
     t["FFTDF JK"] = time() - t0
 
     e_ref = numpy.einsum('ij,ji->', 0.5 * (f1e_ref + h1e), dm0)
     assert e_ref.imag < 1e-10
-    e_ref = e_ref.real
-    
-    # assert abs(e_ref - scf_obj.energy_elec(dm0)[0]) < 1e-10
-    # print("preparing ISDF")
+    e_ref = e_ref.real + cell.energy_nuc()
+    assert abs(e_ref - load(cell.chkfile, "e_tot")) < 1e-10
 
     t0 = time()
     isdf_obj, cisdf = ISDF(
@@ -96,7 +107,9 @@ def main(args : ArgumentParser):
     t["ISDF build"] = time() - t0
 
     t0 = time()
-    vj_sol, vk_sol = scf_obj.with_df.get_jk(dm0, hermi=1)
+    vj_sol, vk_sol = scf_obj.with_df.get_jk(dm0, hermi=1, exxdiv="ewald")
+    vj_sol = vj_sol.reshape(h1e.shape)
+    vk_sol = vk_sol.reshape(h1e.shape)
     vjk_sol = vj_sol - 0.5 * vk_sol
     f1e_sol = h1e + vjk_sol
     f1e_sol = f1e_sol.reshape(h1e.shape)
@@ -104,7 +117,7 @@ def main(args : ArgumentParser):
 
     e_sol = numpy.einsum('ij,ji->', 0.5 * (f1e_sol + h1e), dm0)
     assert e_sol.imag < 1e-10
-    e_sol = e_sol.real
+    e_sol = e_sol.real + cell.energy_nuc()
 
     err_ene = abs(e_ref - e_sol) / cell.natm
     err_vj = abs(vj_ref - vj_sol).max()
@@ -128,10 +141,8 @@ if __name__ == "__main__":
     parser = ArgumentParser()
     parser.add_argument("--name", type=str, required=True)
     parser.add_argument("--c0", type=float, default=5.0)
-    parser.add_argument("--ke_cutoff", type=float, default=40.0)
     parser.add_argument("--rela_qr", type=float, default=1e-3)
     parser.add_argument("--aoR_cutoff", type=float, default=1e-8)
-    parser.add_argument("--kmesh", type=str, default="1-1-1")
     args = parser.parse_args()
 
     for k, v in args.__dict__.items():

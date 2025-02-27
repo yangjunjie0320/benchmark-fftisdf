@@ -1,0 +1,30 @@
+SLURMD_NODENAME = hpc-35-01
+Start time = Wed Feb 26 02:02:14 PM PST 2025
+OMP_NUM_THREADS = 32
+MKL_NUM_THREADS = 1
+PYSCF_MAX_MEMORY = 196608
+TMPDIR = /central/scratch/yangjunjie//check-init-energy-nz/hg1212/c0-20.0-qr-1.00e-04-aoR-1.00e-06//47581881/
+PYSCF_TMPDIR = /central/scratch/yangjunjie//check-init-energy-nz/hg1212/c0-20.0-qr-1.00e-04-aoR-1.00e-06//47581881/
+
+/home/junjiey/anaconda3/envs/fftisdf/bin/python
+2.8.0
+1.13.1
+1.26.4
+LOADING ISDF BACKEND
+NUM_THREADS   : 32
+USE_NUMPY     : 0
+USE_SCIPY     : 1
+USE_TORCH     : 0
+USE_TORCH_GPU : 0
+name = hg1212
+c0 = 20.0
+rela_qr = 0.0001
+aoR_cutoff = 1e-06
+Traceback (most recent call last):
+  File "/central/home/junjiey/work/benchmark-fftisdf/work/check-init-energy-nz/hg1212/c0-20.0-qr-1.00e-04-aoR-1.00e-06/main.py", line 151, in <module>
+    main(args)
+  File "/central/home/junjiey/work/benchmark-fftisdf/work/check-init-energy-nz/hg1212/c0-20.0-qr-1.00e-04-aoR-1.00e-06/main.py", line 52, in main
+    cell = get_cell(args.name)
+  File "/central/home/junjiey/work/benchmark-fftisdf/src/utils.py", line 108, in get_cell
+    basis = load(chkfile, "cell/basis").decode("utf-8")
+AttributeError: 'dict' object has no attribute 'decode'

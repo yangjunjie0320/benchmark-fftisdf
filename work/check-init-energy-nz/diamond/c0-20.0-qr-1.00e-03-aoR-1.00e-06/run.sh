@@ -42,4 +42,4 @@ export PREFIX=/central/home/junjiey/work/benchmark-fftisdf
 export DATA_PATH=$PREFIX/data/
 export PYTHONPATH=$PREFIX/src/:$PYTHONPATH
 export PYSCF_EXT_PATH=$HOME/packages/pyscf-forge/pyscf-forge-ning-isdf4/
-python main.py --name diamond --c0=20.0 --rela_qr=0.001 --aoR_cutoff=1e-06 --kmesh=1-1-1 --ke_cutoff=40.0
+python main.py --name diamond --c0=20.0 --rela_qr=0.001 --aoR_cutoff=1e-06

@@ -81,8 +81,7 @@ if __name__ == "__main__":
                     cmd = (
                         f"python main.py --name {system} "
                         f"--c0={c0} --rela_qr={rela_qr} "
-                        f"--aoR_cutoff={aoR_cutoff} --kmesh=1-1-1 "
-                        f"--ke_cutoff=40.0"
+                        f"--aoR_cutoff={aoR_cutoff}"
                     )
 
                     script = "check-init-energy-nz"

@@ -1,0 +1,30 @@
+SLURMD_NODENAME = hpc-35-04
+Start time = Wed Feb 26 02:02:02 PM PST 2025
+OMP_NUM_THREADS = 32
+MKL_NUM_THREADS = 1
+PYSCF_MAX_MEMORY = 196608
+TMPDIR = /central/scratch/yangjunjie//check-init-energy-nz/cco/c0-20.0-qr-1.00e-03-aoR-1.00e-06//47581868/
+PYSCF_TMPDIR = /central/scratch/yangjunjie//check-init-energy-nz/cco/c0-20.0-qr-1.00e-03-aoR-1.00e-06//47581868/
+
+/home/junjiey/anaconda3/envs/fftisdf/bin/python
+2.8.0
+1.13.1
+1.26.4
+LOADING ISDF BACKEND
+NUM_THREADS   : 32
+USE_NUMPY     : 0
+USE_SCIPY     : 1
+USE_TORCH     : 0
+USE_TORCH_GPU : 0
+name = cco
+c0 = 20.0
+rela_qr = 0.001
+aoR_cutoff = 1e-06
+Traceback (most recent call last):
+  File "/central/home/junjiey/work/benchmark-fftisdf/work/check-init-energy-nz/cco/c0-20.0-qr-1.00e-03-aoR-1.00e-06/main.py", line 151, in <module>
+    main(args)
+  File "/central/home/junjiey/work/benchmark-fftisdf/work/check-init-energy-nz/cco/c0-20.0-qr-1.00e-03-aoR-1.00e-06/main.py", line 52, in main
+    cell = get_cell(args.name)
+  File "/central/home/junjiey/work/benchmark-fftisdf/src/utils.py", line 102, in get_cell
+    assert os.path.exists(chkfile), f"chkfile {chkfile} does not exist"
+AssertionError: chkfile /central/home/junjiey/work/benchmark-fftisdf/data/chk/cco-conv.chk does not exist
