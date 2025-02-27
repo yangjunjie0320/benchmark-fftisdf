@@ -52,49 +52,29 @@ def main(args : ArgumentParser):
     cell = get_cell(args.name)
     cell.max_memory = PYSCF_MAX_MEMORY
     cell.verbose = 10
+    cell.ke_cutoff = args.ke_cutoff
     cell.build(dump_input=False)
-
-    import os
-    assert os.path.exists(cell.chkfile), f"chkfile {cell.chkfile} does not exist"
-
-    from pyscf.lib.chkfile import load
-    h1e = load(cell.chkfile, "hcore")
-    s1e = load(cell.chkfile, "overlap")
-    dm0 = load(cell.chkfile, "dm0")
-
-    assert h1e is not None
-    assert s1e is not None
-    assert dm0 is not None
 
     scf_obj = pyscf.pbc.scf.RHF(cell)
     # scf_obj.exxdiv = None
     scf_obj.verbose = 10
+    h1e = scf_obj.get_hcore()
+    s1e = scf_obj.get_ovlp()
     e0_mo, c0_mo = scf_obj.eig(h1e, s1e)
     n0_mo = scf_obj.get_occ(e0_mo, c0_mo)
-
-    # check dm0 and scf_obj.make_rdm1(c0_mo, n0_mo) are the same
-    dm_ref = dm0
-    dm_sol = scf_obj.make_rdm1(c0_mo, n0_mo)
-    if not numpy.allclose(dm_ref, dm_sol):
-        print("dm0 are not the same, error = ", abs(dm_ref - dm_sol).max())
-        # print("dm (read) = ")
-        # numpy.savetxt(cell.stdout, dm1[:10, :10], fmt="% 6.2f", delimiter=", ")
-        # print("dm (scf) = ")
-        # numpy.savetxt(cell.stdout, dm_sol[:10, :10], fmt="% 6.2f", delimiter=", ")
-        # assert 1 == 2
+    dm0 = scf_obj.make_rdm1(c0_mo, n0_mo)
 
     t0 = time()
     scf_obj.with_df.verbose = 10
-    vj_ref = load(cell.chkfile, "vj")
-    vk_ref = load(cell.chkfile, "vk")
+    vj_ref, vk_ref = scf_obj.with_df.get_jk(dm0, hermi=1, exxdiv="ewald")
     vjk_ref = vj_ref - 0.5 * vk_ref
     f1e_ref = h1e + vjk_ref
     t["FFTDF JK"] = time() - t0
 
     e_ref = numpy.einsum('ij,ji->', 0.5 * (f1e_ref + h1e), dm0)
     assert e_ref.imag < 1e-10
-    e_ref = e_ref.real + cell.energy_nuc()
-    assert abs(e_ref - load(cell.chkfile, "e_tot")) < 1e-10
+    e_ref = e_ref.real
+    assert abs(e_ref - scf_obj.energy_tot()) < 1e-10
 
     t0 = time()
     isdf_obj, cisdf = ISDF(
@@ -143,6 +123,7 @@ if __name__ == "__main__":
     parser.add_argument("--c0", type=float, default=5.0)
     parser.add_argument("--rela_qr", type=float, default=1e-3)
     parser.add_argument("--aoR_cutoff", type=float, default=1e-8)
+    parser.add_argument("--ke_cutoff", type=float, default=40.0)
     args = parser.parse_args()
 
     for k, v in args.__dict__.items():
