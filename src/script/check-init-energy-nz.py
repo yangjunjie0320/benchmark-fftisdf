@@ -55,7 +55,8 @@ def main(args : ArgumentParser):
     cell.ke_cutoff = args.ke_cutoff
     cell.build(dump_input=False)
 
-    scf_obj = pyscf.pbc.scf.RHF(cell)
+    from pyscf.pbc.scf import RHF
+    scf_obj = RHF(cell)
     # scf_obj.exxdiv = None
     scf_obj.verbose = 10
     h1e = scf_obj.get_hcore()
@@ -74,14 +75,17 @@ def main(args : ArgumentParser):
     e_ref = numpy.einsum('ij,ji->', 0.5 * (f1e_ref + h1e), dm0)
     assert e_ref.imag < 1e-10
     e_ref = e_ref.real
-    assert abs(e_ref - scf_obj.energy_tot()) < 1e-10
+    assert abs(e_ref - scf_obj.energy_tot(dm=dm0)) < 1e-10
+
+    c0 = args.c0
+    rela_qr = args.rela_qr
+    aoR_cutoff = args.aoR_cutoff
 
     t0 = time()
     isdf_obj, cisdf = ISDF(
         cell.copy(deep=True),
-        c0=args.c0,
-        rela_qr=args.rela_qr,
-        aoR_cutoff=args.aoR_cutoff
+        c0=c0, rela_qr=rela_qr,
+        aoR_cutoff=aoR_cutoff
     )
     scf_obj.with_df = isdf_obj
     t["ISDF build"] = time() - t0
