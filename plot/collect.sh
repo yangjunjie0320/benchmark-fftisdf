@@ -13,5 +13,5 @@ cd -;
 
 for d in cco diamond hg1212 nio; do
     echo "Plotting $d..."
-    python plot.py $d;
+    python plot.py --fname=$d
 done

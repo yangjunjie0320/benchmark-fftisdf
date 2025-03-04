@@ -55,24 +55,17 @@ xmin = None
 xmax = None
 c0_rela_qr_list = sorted(list(itertools.product(c0_list, rela_qr_list)), key=lambda x: (x[0], x[1]))
 for c0, rela_qr in c0_rela_qr_list:
-    if rela_qr > 1e-3:
+    if rela_qr >= 5e-5:
         continue
     
-    kmin = 0.0
-    if fname == 'diamond':
-        kmin = 50.0
-
-    if fname == 'nio':
-        kmin = 100.0
-
     x = [d['ke_cutoff'] for d in data if d['c0'] == c0 and d['rela_qr'] == rela_qr]
     y = [d['e_tot'] for d in data if d['c0'] == c0 and d['rela_qr'] == rela_qr]
     perm = np.argsort(x)
     x = np.array(x)[perm]
     y = np.array(y)[perm]
-    m = x >= kmin
-    x = x[m]
-    y = y[m]
+    # m = x >= kmin
+    x = x
+    y = y
     ax.plot(x, y, label=f'c0 = {c0}, rela_qr = {rela_qr}')
 
     if xmin is None:
