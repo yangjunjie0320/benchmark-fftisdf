@@ -2,15 +2,16 @@ name: fftisdf
 channels:
   - defaults
   - conda-forge
-  - pytorch
 dependencies:
   - python==3.9
-  - numpy
-  - scipy
+  - defaults::numpy
+  - defaults::scipy
+  - compilers
   - cotengra
   - opt_einsum
-  - line_profiler
   - pip
   - pip:
     - pyscf
-
+    - torch
+    - line_profiler
+    - ase

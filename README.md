@@ -4,10 +4,15 @@ This repository contains the code for the FFT-ISDF benchmark.
 
 ## Dependencies
 
-The dependencies are listed in `environment.yml`. You can install them by running:
+The dependencies are listed in `fftisdf.yml`. You can install them by running:
 
 ```bash
-conda env create -f environment.yml
+conda env create -f fftisdf.yml
+python -c "import numpy; print(numpy.__version__)"
+python -c "import numpy; numpy.show_config()"
+python -c "import scipy; print(scipy.__version__)"
+python -c "import pyscf; print(pyscf.__version__)"
+python -c "import pytorch; print(pytorch.__version__)"
 ```
 
 and activate the environment by running:
