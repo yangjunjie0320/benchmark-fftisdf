@@ -35,55 +35,46 @@ def print_current_memory():
 INFO = {
     "hg1212": {
         "filename": os.path.join(DATA_PATH, "vasp", "hg1212-conv.vasp"),
-        "basis": 'gth-dzvp-molopt-sr',
-        "psuedo": 'gth-pade',
-        "ke_cutoff": 400.0,
-        "k0": 40.0,
-        "c0": 20.0,
+        "basis": os.path.join(DATA_PATH, "basis", "cc-pvdz.dat"),
+        "pseudo": "gth-pbe"
     },
     "cco": {
         "filename": os.path.join(DATA_PATH, "vasp", "cco-conv-2x2x1.vasp"),
-        "basis": 'gth-dzvp-molopt-sr',
-        "psuedo": 'gth-pade',
-        "ke_cutoff": 160.0,
-        "k0": 80.0,
-        "c0": 20.0,
+        "basis": os.path.join(DATA_PATH, "basis", "cc-pvdz.dat"),
+        "pseudo": "gth-pbe"
     },
     "nio": {
         "filename": os.path.join(DATA_PATH, "vasp", "nio-conv.vasp"),
-        "basis": 'gth-dzvp-molopt-sr',
-        "psuedo": 'gth-pade',
-        "ke_cutoff": 190.0,
-        "k0": 100.0,
-        "c0": 20.0,
+        "basis": "gth-dzvp-molopt-sr", "pseudo": "gth-pbe"
     },
     "diamond": {
         "filename": os.path.join(DATA_PATH, "vasp", "diamond-conv.vasp"),
-        "basis": 'gth-dzvp-molopt-sr',
-        "psuedo": 'gth-pade',
-        "ke_cutoff": 70.0,
-        "k0": 60.0,
-        "c0": 10.0,
+        "basis": "gth-dzvp-molopt-sr", "pseudo": "gth-pbe"
     },
 }
 
 def get_cell(name: str):
     info = INFO[name]
+    f = info.get("filename", None)
+    assert os.path.exists(f), f"File {f} does not exist"
 
-    c0 = cell_from_poscar(info["filename"])
-    basis = info["basis"]
-    c0.basis = basis
-    c0.pseudo = info["psuedo"]
-    c0.ke_cutoff = info["ke_cutoff"]
-    c0.verbose = 5
-    c0.exp_to_discard = 0.2
-    c0.build(dump_input=False)
+    basis = info.get("basis", None)
+    pseudo = info.get("pseudo", None)
+    ke_cutoff = info.get("ke_cutoff", None)
 
-    basis = c0._basis
-    pseudo = c0._pseudo
-    ke_cutoff = info["ke_cutoff"]
+    cell = cell_from_poscar(f)
+    cell.basis = basis
+    cell.pseudo = pseudo
+    cell.ke_cutoff = ke_cutoff
+    cell.verbose = 5
+    cell.exp_to_discard = 0.1
+    cell.build(dump_input=False)
 
-    cell = cell_from_poscar(info["filename"])
+    basis = cell._basis
+    pseudo = cell._pseudo
+    ke_cutoff = cell.ke_cutoff
+
+    cell = cell_from_poscar(f)
     cell.basis = basis
     cell.pseudo = pseudo
     cell.ke_cutoff = ke_cutoff
