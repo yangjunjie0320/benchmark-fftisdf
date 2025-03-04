@@ -8,11 +8,12 @@ The dependencies are listed in `fftisdf.yml`. You can install them by running:
 
 ```bash
 conda env create -f fftisdf.yml
+conda activate fftisdf
 python -c "import numpy; print(numpy.__version__)"
 python -c "import numpy; numpy.show_config()"
 python -c "import scipy; print(scipy.__version__)"
 python -c "import pyscf; print(pyscf.__version__)"
-python -c "import pytorch; print(pytorch.__version__)"
+python -c "import torch; print(torch.__version__)"
 ```
 
 and activate the environment by running:
