@@ -98,8 +98,8 @@ def main(args : ArgumentParser):
     # print(f"### aoR_cutoff = {args.aoR_cutoff:6.2e}")
     # print(f"### e_tot      = {e_sol: 6.2e}")
 
-    print(f"### %10s, %10s, %10s, %10s, %16s" % ("c0", "rela_qr", "aoR_cutoff", "ke_cutoff", "e_tot"))
-    print(f"### %10.2f, %10.2e, %10.2e, %10.2e, %16.6f" % (c0, rela_qr, aoR_cutoff, ke_cutoff, e_sol))
+    print(f"### %10s, %10s, %10s, %10s, %16s" % ("cisdf", "rela_qr", "aoR_cutoff", "ke_cutoff", "e_tot"))
+    print(f"### %10.2f, %10.2e, %10.2e, %10.2e, %16.6f" % (cisdf, rela_qr, aoR_cutoff, ke_cutoff, e_sol))
 
     l = max(len(k) for k in t.keys())
     info = f"### Time for %{l}s: %6.2f s"
