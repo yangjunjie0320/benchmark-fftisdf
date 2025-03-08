@@ -41,9 +41,6 @@ def main(time="01:00:00", mem=200, ncpu=1, workdir=None, cmd=None, scr=None,
     os.system("sbatch run.sh")
     os.chdir(pwd)
 
-def run_save_vjk_nz(system):
-    pass
-
 if __name__ == "__main__":
     ncpu = 64
     mem = ncpu * 6
@@ -79,6 +76,7 @@ if __name__ == "__main__":
             cmd=cmd, scr=script_path, import_pyscf_forge=True
         )
 
+    run("diamond")
     run("nio")
     run("cco")
     run("hg1212")
