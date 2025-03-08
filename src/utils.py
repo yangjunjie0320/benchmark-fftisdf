@@ -112,43 +112,34 @@ def get_cell(name: str):
 from time import time
 from typing import Optional
 from argparse import ArgumentParser
-def save_vjk_from_1e_dm0(
-        isdf_obj=None, config: Optional[ArgumentParser] = None,
-        time_table: Optional[dict] = None
-    ):
-    ke_cutoff = config.ke_cutoff
-    
-    cell = get_cell(config.name)
-    cell.max_memory = PYSCF_MAX_MEMORY
-    cell.verbose = 10
-    cell.ke_cutoff = ke_cutoff
-    cell.build(dump_input=False)
+from pyscf.lib.logger import process_clock, perf_counter
+
+def save_vjk_from_1e_dm0(isdf_obj=None, exxdiv="ewald", log=None):
+    cell = isdf_obj.cell.copy(deep=True)
 
     from pyscf.pbc.scf import RHF
     scf_obj = RHF(cell)
-    scf_obj.exxdiv = config.exxdiv
+    scf_obj.exxdiv = exxdiv
     scf_obj.verbose = 10
+    scf_obj.with_df = isdf_obj
     scf_obj._is_mem_enough = lambda : False
 
+    t0 = (process_clock(), perf_counter())
     h1e = scf_obj.get_hcore()
     s1e = scf_obj.get_ovlp()
     e0_mo, c0_mo = scf_obj.eig(h1e, s1e)
     n0_mo = scf_obj.get_occ(e0_mo, c0_mo)
     dm0 = scf_obj.make_rdm1(c0_mo, n0_mo)
-
-    t0 = time()
-    scf_obj.with_df = isdf_obj
-    scf_obj.build()
-    time_table["ISDF build"] = time() - t0
-
-    t0 = time()
+    log.timer("1e build", t0)
+    
+    t0 = (process_clock(), perf_counter())
     vj, vk = scf_obj.with_df.get_jk(dm0, hermi=1, exxdiv="ewald")
     vj = vj.reshape(h1e.shape)
     vk = vk.reshape(h1e.shape)
     vjk = vj - 0.5 * vk
     f1e = h1e + vjk
     f1e = f1e.reshape(h1e.shape)
-    time_table["VJK build"] = time() - t0
+    log.timer("vjk build", t0)
 
     e_tot = numpy.einsum('ij,ji->', 0.5 * (f1e + h1e), dm0)
     assert e_tot.imag < 1e-10
@@ -156,7 +147,7 @@ def save_vjk_from_1e_dm0(
 
     chk_path = os.path.join(TMPDIR, f"isdf.chk")
     from pyscf.lib.chkfile import dump
-    dump(chk_path, "ke_cutoff", ke_cutoff)
+    dump(chk_path, "ke_cutoff", cell.ke_cutoff)
     dump(chk_path, "basis", cell._basis)
     dump(chk_path, "pseudo", cell._pseudo)
     
@@ -173,8 +164,9 @@ def save_vjk_from_1e_dm0(
     dump(chk_path, "vjk", vjk)
     dump(chk_path, "f1e", f1e)
     dump(chk_path, "e_tot", e_tot)
+    log.info("Successfully saved results to %s", chk_path)
 
-    return e_tot
+    return e_tot, chk_path
     
 if __name__ == "__main__":
     cell = get_cell("nio")
