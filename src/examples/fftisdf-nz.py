@@ -1,24 +1,6 @@
-"""
-[Step 1]: download Ning's ISDF code: https://github.com/NingZhang1/pyscf-forge/tree/ning_isdf4 and change to the branch
-```bash
-    git clone https://github.com/NingZhang1/pyscf-forge.git pyscf-forge-ning-isdf4    
-    cd pyscf-forge-ning-isdf4
-    git fetch
-    git checkout ning_isdf4
-```
-
-[Step 2]: add the path to PYSCF_EXT
-```bash
-    export PYSCF_EXT_PATH=$(readlink -f pyscf-forge-ning-isdf4)
-```
-
-[Step 3]: run the script
-```bash
-    python fftisdf-nz.py
-```
-"""
-
 import os, sys, numpy, scipy
+
+
 import pyscf
 from pyscf.pbc import gto
 cell = gto.Cell()
@@ -32,7 +14,7 @@ cell.atom = [
     ["C", (0.0, 1.7834, 1.7834)],
     ["C", (0.8917, 2.6751, 2.6751)],
 ]
-cell.basis = 'gth-szv'
+cell.basis = 'gth-dzvp'
 cell.pseudo = 'gth-pade'
 cell.a = numpy.eye(3) * 3.5668
 cell.ke_cutoff = 70.0

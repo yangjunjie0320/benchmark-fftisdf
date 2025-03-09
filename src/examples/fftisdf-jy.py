@@ -14,7 +14,7 @@ cell.atom = [
     ["C", (0.0, 1.7834, 1.7834)],
     ["C", (0.8917, 2.6751, 2.6751)],
 ]
-cell.basis = 'gth-szv'
+cell.basis = 'gth-dzvp'
 cell.pseudo = 'gth-pade'
 cell.a = numpy.eye(3) * 3.5668
 cell.ke_cutoff = 70.0
