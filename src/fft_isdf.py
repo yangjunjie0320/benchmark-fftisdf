@@ -15,7 +15,7 @@ from pyscf.pbc.tools.k2gamma import get_phase
 from pyscf.pbc.df.df_jk import _format_dms, _format_kpts_band, _format_jks
 
 import line_profiler
-from utils import print_current_memory
+# from utils import print_current_memory
 
 PYSCF_MAX_MEMORY = int(os.environ.get("PYSCF_MAX_MEMORY", 2000))
 

@@ -12,24 +12,6 @@ PYSCF_MAX_MEMORY = int(environ.get("PYSCF_MAX_MEMORY", 1000))
 from pyscf.isdf import isdf_local
 ISDF_Local = isdf_local.ISDF_Local
 
-def ISDF(cell=None, c0=10.0, rela_qr=1e-3, aoR_cutoff=1e-8):
-    kwargs = {
-        "aoR_cutoff" : aoR_cutoff,
-        "direct" : False,
-        "limited_memory" : False,
-        "with_robust_fitting" : False,
-        "build_V_K_bunchsize" : 512,
-    }
-
-    cell = cell.copy(deep=True)
-    isdf_obj = ISDF_Local(cell, **kwargs)
-
-    isdf_obj.verbose = 10
-    isdf_obj.build(c=c0, rela_cutoff=rela_qr, group=None)
-
-    nip = isdf_obj.naux
-    return isdf_obj, nip / isdf_obj.nao
-
 if __name__ == "__main__":
     from pyscf.lib import logger
     log = logger.Logger(open("out.log", "w"), logger.DEBUG)
@@ -37,9 +19,6 @@ if __name__ == "__main__":
     parser = ArgumentParser()
     parser.add_argument("--name", type=str, required=True)
     parser.add_argument("--ke_cutoff", type=float, default=40.0)
-    parser.add_argument("--c0", type=float, default=5.0)
-    parser.add_argument("--rela_qr", type=float, default=1e-3)
-    parser.add_argument("--aoR_cutoff", type=float, default=1e-8)
     parser.add_argument("--exxdiv", type=str, default="ewald")
     args = parser.parse_args()
     config = vars(args)
@@ -67,14 +46,12 @@ if __name__ == "__main__":
 
     from pyscf.lib.logger import process_clock, perf_counter
     t0 = (process_clock(), perf_counter())
-    isdf_obj, cisdf = ISDF(cell, **config)
-    log.timer("ISDF build", *t0)
+    from pyscf.pbc.df import FFTDF
+    df = FFTDF(cell)
+    log.timer("FFTDF build", *t0)
 
-    e_tot, chk_path = main(isdf_obj, exxdiv, log)
+    e_tot, chk_path = main(df, exxdiv, log)
     print("Successfully saved all results to %s" % chk_path)
-
-    kl.append("cisdf")
-    vl.append(cisdf)
 
     l = max(len(k) for k in kl)
     l = max(l, 10)

@@ -1,17 +1,11 @@
-cd ../work/save-vjk-nz;
+cd ../work/;
 
-for d in cco diamond hg1212 nio; do
-    grep -r --no-filename --exclude=*py -A 1 "###         c0" ./$d > ../../plot/$d.out
-    if [ $? -eq 0 ]; then
-        echo "  Created ../../plot/$d.out successfully";
-    else
-        echo "  Error processing $d";
-    fi
+method=$(ls -1)
+for m in $method; do
+    echo "Processing $m..."; cd $m;
+    # only keep the even number lines of the output, skip the first row
+    grep -r --no-filename --exclude=*py "###" | sed -n 'n;p' | sed 's/^###\s*//' > ../../plot/$m.out;
+    cd ..;
 done
 
-cd -;
-
-for d in cco diamond hg1212 nio; do
-    echo "Plotting $d..."
-    python plot.py --fname=$d
-done
+cd /home/junjiey/work/benchmark-fftisdf/plot;

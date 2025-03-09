@@ -10,7 +10,7 @@ def main(time="01:00:00", mem=200, ncpu=1, workdir=None, cmd=None, scr=None,
     if not os.path.exists(workdir):
         os.makedirs(workdir)
 
-    os.system("cp %s %s/main.py" % (scr, workdir))
+    # os.system("cp %s %s/main.py" % (scr, workdir))
 
     # add few lines to the beginning of the run.sh file
     lines = []
@@ -33,8 +33,11 @@ def main(time="01:00:00", mem=200, ncpu=1, workdir=None, cmd=None, scr=None,
             f.write("export PYSCF_EXT_PATH=$HOME/packages/pyscf-forge/pyscf-forge-ning-isdf4/\n")
 
         if import_periodic_integrals:
-            f.write("export PYTHONPATH=/home/junjiey/packages/PeriodicIntegrals/PeriodicIntegrals-junjie-benchmark/:$PYTHONPATH\n")
+            f.write("export PYTHONPATH=/home/junjiey/packages/libdmet/libdmet2-main/:$PYTHONPATH\n")
+            # f.write("export PYTHONPATH=/home/junjiey/packages/PeriodicIntegrals/PeriodicIntegrals-junjie-benchmark/src/:$PYTHONPATH\n")
+            # f.write("export PYTHONPATH=/home/junjiey/packages/PeriodicIntegrals/PeriodicIntegrals-junjie-benchmark/:$PYTHONPATH\n")
 
+        f.write("cp %s %s/main.py\n" % (scr, workdir))
         f.write(cmd + "\n")
 
     os.chdir(workdir)
@@ -42,30 +45,33 @@ def main(time="01:00:00", mem=200, ncpu=1, workdir=None, cmd=None, scr=None,
     os.chdir(pwd)
 
 if __name__ == "__main__":
-    ncpu = 64
-    mem = ncpu * 6
+    ncpu = 1
+    mem = ncpu * 20
+
+    info = {
+        "diamond": {
+            "ke_cutoff": 70.0,
+            "rcut_epsilon": 5e-4,
+            "ke_epsilon": 1e-1,
+            "isdf_thresh": 1e-3,
+            "c0": 25.0,
+            "rela_qr": 1e-5,
+            "aoR_cutoff": 1e-7,
+        },
+    }
 
     base_dir = os.path.abspath(os.path.dirname(__file__))
-    aoR_cutoff = 1e-6
-
-    c0 = 10.0
-    rela_qr = 1e-3
-    ke_cutoff = 200.0
-    df = "gdf"
-
+    df = "fftdf"
     def run(system):
         cmd = (
             f"python main.py --name {system} "
-            f"--c0={c0} --rela_qr={rela_qr} "
-            f"--aoR_cutoff={aoR_cutoff} "
-            f"--ke_cutoff={ke_cutoff} "
-            f"--df={df}"
+            f"--ke_cutoff={info[system]['ke_cutoff']} "
         )
 
-        script = "uks-scf-nz"
+        script = f"save-vjk-{df}"
         script_path = f"{base_dir}/src/script/{script}.py"
 
-        work_subdir = f"work/{script}/{system}/test"
+        work_subdir = f"work/{script}/{system}/"
         if os.path.exists(os.path.join(base_dir, work_subdir)):
             print(f"Work directory {work_subdir} already exists, deleting it")
             shutil.rmtree(os.path.join(base_dir, work_subdir))
@@ -75,8 +81,54 @@ if __name__ == "__main__":
             workdir=os.path.join(base_dir, work_subdir),
             cmd=cmd, scr=script_path, import_pyscf_forge=True
         )
-
     run("diamond")
-    run("nio")
-    run("cco")
-    run("hg1212")
+
+    df = "nz"
+    def run(system):
+        cmd = (
+            f"python main.py --name {system} "
+            f"--c0={info[system]['c0']} --rela_qr={info[system]['rela_qr']} "
+            f"--aoR_cutoff={info[system]['aoR_cutoff']} "
+            f"--ke_cutoff={info[system]['ke_cutoff']} "
+        )
+
+        script = f"save-vjk-{df}"
+        script_path = f"{base_dir}/src/script/{script}.py"
+
+        work_subdir = f"work/{script}/{system}/"
+        if os.path.exists(os.path.join(base_dir, work_subdir)):
+            print(f"Work directory {work_subdir} already exists, deleting it")
+            shutil.rmtree(os.path.join(base_dir, work_subdir))
+
+        main(
+            time="01:00:00", mem=mem, ncpu=ncpu,
+            workdir=os.path.join(base_dir, work_subdir),
+            cmd=cmd, scr=script_path, import_pyscf_forge=True
+        )
+    run("diamond")
+
+    df = "kori"
+    def run(system):
+        cmd = (
+            f"python main.py --name {system} "
+            f"--ke_cutoff={info[system]['ke_cutoff']} "
+            f"--rcut_epsilon={info[system]['rcut_epsilon']} "
+            f"--ke_epsilon={info[system]['ke_epsilon']} "
+            f"--isdf_thresh={info[system]['isdf_thresh']} "
+        )
+
+        script = f"save-vjk-{df}"
+        script_path = f"{base_dir}/src/script/{script}.py"
+
+        work_subdir = f"work/{script}/{system}/"
+        if os.path.exists(os.path.join(base_dir, work_subdir)):
+            print(f"Work directory {work_subdir} already exists, deleting it")
+            shutil.rmtree(os.path.join(base_dir, work_subdir))
+
+        main(
+            time="01:00:00", mem=mem, ncpu=ncpu,
+            workdir=os.path.join(base_dir, work_subdir),
+            cmd=cmd, scr=script_path, import_pyscf_forge=False,
+            import_periodic_integrals=True
+        )
+    run("diamond")

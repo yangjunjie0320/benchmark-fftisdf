@@ -79,7 +79,6 @@ def gen_afm_guess(cell, dm0, afm_guess=None, ovlp=None):
     dm_beta[beta_ind, beta_ind] *= 1.0
 
     return dm_alph, dm_beta
-            
 
 def get_cell(name: str):
     info = INFO[name]
@@ -124,29 +123,41 @@ def save_vjk_from_1e_dm0(isdf_obj=None, exxdiv="ewald", log=None):
     scf_obj.with_df = isdf_obj
     scf_obj._is_mem_enough = lambda : False
 
-    t0 = (process_clock(), perf_counter())
     h1e = scf_obj.get_hcore()
     s1e = scf_obj.get_ovlp()
     e0_mo, c0_mo = scf_obj.eig(h1e, s1e)
     n0_mo = scf_obj.get_occ(e0_mo, c0_mo)
     dm0 = scf_obj.make_rdm1(c0_mo, n0_mo)
-    log.timer("1e build", t0)
-    
+
+    from pyscf.lib import tag_array
+    dm0 = tag_array(dm0, mo_coeff=c0_mo, mo_occ=n0_mo)
+    # vj, vk = scf_obj.with_df.get_jk(dm0, hermi=1, exxdiv=exxdiv, with_k=True, with_j=True)
+    # vj = vj.reshape(h1e.shape)
+    # vk = vk.reshape(h1e.shape)
+    # vjk = vj - 0.5 * vk
+    # f1e = h1e + vjk
+    # f1e = f1e.reshape(h1e.shape)
+    # log.timer("vjk build", *t0)
+
     t0 = (process_clock(), perf_counter())
-    vj, vk = scf_obj.with_df.get_jk(dm0, hermi=1, exxdiv="ewald")
-    vj = vj.reshape(h1e.shape)
-    vk = vk.reshape(h1e.shape)
+    vj = scf_obj.with_df.get_jk(dm0, hermi=1, exxdiv=exxdiv, with_k=False, with_j=True)[0]
+    log.timer("vj", *t0)
+
+    t0 = (process_clock(), perf_counter())
+    vk = scf_obj.with_df.get_jk(dm0, hermi=1, exxdiv=exxdiv, with_k=True, with_j=False)[1]
+    log.timer("vk", *t0)
+
     vjk = vj - 0.5 * vk
     f1e = h1e + vjk
     f1e = f1e.reshape(h1e.shape)
-    log.timer("vjk build", t0)
-
-    e_tot = numpy.einsum('ij,ji->', 0.5 * (f1e + h1e), dm0)
-    assert e_tot.imag < 1e-10
-    e_tot = e_tot.real + cell.energy_nuc()
+    # e_ref = scf_obj.energy_elec(dm=dm0)[0]
+    # e_sol = numpy.einsum('ij,ji->', 0.5 * (f1e + h1e), dm0)
+    # assert numpy.allclose(e_ref, e_sol), f"e_ref = {e_ref}, e_sol = {e_sol}"
+    e_tot = numpy.einsum('ij,ji->', 0.5 * (f1e + h1e), dm0) + cell.energy_nuc()
 
     chk_path = os.path.join(TMPDIR, f"isdf.chk")
     from pyscf.lib.chkfile import dump
+    dump(chk_path, "natm", cell.natm)
     dump(chk_path, "ke_cutoff", cell.ke_cutoff)
     dump(chk_path, "basis", cell._basis)
     dump(chk_path, "pseudo", cell._pseudo)
@@ -164,8 +175,6 @@ def save_vjk_from_1e_dm0(isdf_obj=None, exxdiv="ewald", log=None):
     dump(chk_path, "vjk", vjk)
     dump(chk_path, "f1e", f1e)
     dump(chk_path, "e_tot", e_tot)
-    log.info("Successfully saved results to %s", chk_path)
-
     return e_tot, chk_path
     
 if __name__ == "__main__":
