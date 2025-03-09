@@ -1,7 +1,3 @@
-# FFT-ISDF Benchmark
-
-There are two minimal working examples.
-
 ## Dependencies
 
 The dependencies are listed in `fftisdf.yml`. You can install them by running:
@@ -14,9 +10,10 @@ python -c "import numpy; numpy.show_config()"
 python -c "import scipy; print(scipy.__version__)"
 python -c "import pyscf; print(pyscf.__version__)"
 python -c "import torch; print(torch.__version__)"
+conda deactivate
 ```
 
-and activate the environment by running:
+Before running the examples, you need to activate the environment by running:
 
 ```bash
 conda activate fftisdf
