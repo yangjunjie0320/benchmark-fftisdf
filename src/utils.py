@@ -94,7 +94,7 @@ def get_cell(name: str):
     cell.pseudo = pseudo
     cell.ke_cutoff = ke_cutoff
     cell.verbose = 5
-    cell.exp_to_discard = 0.1
+    cell.exp_to_discard = 0.2
     cell.max_memory = PYSCF_MAX_MEMORY
     cell.build(dump_input=False)
 
@@ -115,6 +115,8 @@ from pyscf.lib.logger import process_clock, perf_counter
 
 def save_vjk_from_1e_dm0(isdf_obj=None, exxdiv="ewald", log=None):
     cell = isdf_obj.cell.copy(deep=True)
+    exxdiv = None if exxdiv == "None" else exxdiv
+    print("exxdiv = %s" % exxdiv, type(exxdiv))
 
     from pyscf.pbc.scf import RHF
     scf_obj = RHF(cell)
@@ -139,6 +141,7 @@ def save_vjk_from_1e_dm0(isdf_obj=None, exxdiv="ewald", log=None):
     # f1e = f1e.reshape(h1e.shape)
     # log.timer("vjk build", *t0)
 
+    assert exxdiv == None
     t0 = (process_clock(), perf_counter())
     vj = scf_obj.with_df.get_jk(dm0, hermi=1, exxdiv=exxdiv, with_k=False, with_j=True)[0]
     log.timer("vj", *t0)

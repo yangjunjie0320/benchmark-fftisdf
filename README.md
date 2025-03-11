@@ -14,6 +14,7 @@ python -c "import numpy; numpy.show_config()"
 python -c "import scipy; print(scipy.__version__)"
 python -c "import pyscf; print(pyscf.__version__)"
 python -c "import torch; print(torch.__version__)"
+python -c "import pyfftw; print(pyfftw.__version__)"
 ```
 
 and activate the environment by running:

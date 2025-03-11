@@ -37,10 +37,12 @@ python -c "import pyscf; print(pyscf.__version__)"
 python -c "import scipy; print(scipy.__version__)"
 python -c "import numpy; print(numpy.__version__)"
 
+python -c "from pyscf import __config__; fft_engine = getattr(__config__, 'pbc_tools_pbc_fft_engine', 'NUMPY+BLAS'); print('fft_engine = %s' % fft_engine)"
+
 
 export PREFIX=/central/home/junjiey/work/benchmark-fftisdf
 export DATA_PATH=$PREFIX/data/
 export PYTHONPATH=$PREFIX/src/:$PYTHONPATH
 export PYTHONPATH=/home/junjiey/packages/libdmet/libdmet2-main/:$PYTHONPATH
 cp /central/home/junjiey/work/benchmark-fftisdf/src/script/save-vjk-kori.py /central/home/junjiey/work/benchmark-fftisdf/work/save-vjk-kori/diamond//main.py
-python main.py --name diamond --ke_cutoff=70.0 --rcut_epsilon=0.0005 --ke_epsilon=0.1 --isdf_thresh=0.001 
+python main.py --name diamond --ke_cutoff=70.0 --rcut_epsilon=0.0005 --ke_epsilon=0.1 --isdf_thresh=0.001 --exxdiv=None 

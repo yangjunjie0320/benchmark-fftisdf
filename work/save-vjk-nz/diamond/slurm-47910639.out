@@ -1,0 +1,88 @@
+SLURMD_NODENAME = hpc-53-09
+Start time = Mon Mar 10 02:59:30 PM PDT 2025
+OMP_NUM_THREADS = 1
+MKL_NUM_THREADS = 1
+PYSCF_MAX_MEMORY = 20480
+TMPDIR = /central/scratch/yangjunjie//save-vjk-nz/diamond//47910639/
+PYSCF_TMPDIR = /central/scratch/yangjunjie//save-vjk-nz/diamond//47910639/
+
+/home/junjiey/anaconda3/envs/fftisdf/bin/python
+2.8.0
+1.13.1
+2.0.2
+fft_engine = NUMPY+BLAS
+LOADING ISDF BACKEND
+NUM_THREADS   : 1
+USE_NUMPY     : 0
+USE_SCIPY     : 1
+USE_TORCH     : 0
+USE_TORCH_GPU : 0
+name = diamond
+ke_cutoff =  7.00e+01
+c0 =  2.50e+01
+rela_qr =  1.00e-05
+aoR_cutoff =  1.00e-07
+exxdiv = None
+
+Discarded 24 diffused primitive functions, 0 contracted functions
+       get_partition wall time:     0.052186 CPU time:     0.051768
+len of partition[   0] =   2409
+len of partition[   1] =   2547
+len of partition[   2] =   2387
+len of partition[   3] =   2534
+len of partition[   4] =   2368
+len of partition[   5] =   2516
+len of partition[   6] =   2404
+len of partition[   7] =   2518
+             get_aoR wall time:     0.634087 CPU time:     0.631534
+In _build_buffer: ISDF Local size of buffer = 76.887 MB
+ ---------- In pyscf.isdf.isdf_local.select_IP_local_atm ----------
+select_IP_local_atm: atm_begin =    0, atm_end =    8
+select_IP_local_atm: npt_found =  529
+select_IP_local_atm: npt_found =  529
+select_IP_local_atm: npt_found =  529
+select_IP_local_atm: npt_found =  529
+select_IP_local_atm: npt_found =  529
+select_IP_local_atm: npt_found =  529
+select_IP_local_atm: npt_found =  529
+select_IP_local_atm: npt_found =  529
+select_IP_local_step1 wall time:     1.527342 CPU time:     1.520786
+ build_aoRg_possible wall time:     0.004499 CPU time:     0.004483
+select_IP_local_step2 wall time:     0.000141 CPU time:     0.000142
+select_IP_local_step3 wall time:     0.001754 CPU time:     0.001745
+Memory usage for aoR  :     15.624 MB
+Memory usage for aoRg :      3.364 MB
+            build_IP wall time:     1.533736 CPU time:     1.527157
+build_aux_basis_local wall time:     0.990551 CPU time:     0.986190
+ ---------- In pyscf.isdf.isdf_local.build_V_W_local ----------
+Memory usage for V:      0.000 MB
+Memory usage for W:    136.641 MB
+     build_V_W_local wall time:     5.738996 CPU time:     5.715291
+exxdiv = None <class 'NoneType'>
+              get_pp wall time:     1.360402 CPU time:     1.355384
+  HOMO = 0.746708689349569  LUMO = 1.02366032767994
+  mo_energy =
+[0.07929587 0.35522942 0.35522942 0.35522993 0.35522993 0.35522993
+ 0.35523096 0.57203068 0.57203068 0.57203068 0.57203687 0.57203687
+ 0.57203687 0.74670869 0.74670869 0.74670869 1.02366033 1.02366033
+ 1.02366033 1.1030592  1.1030592  1.10305951 1.10305951 1.10305951
+ 1.10306012 1.26164276 1.34437548 1.34437548 1.34437548 1.3443911
+ 1.3443911  1.3443911  1.86854094 1.86854177 1.86854177 1.86854177
+ 1.86854218 1.86854218 2.01641757 2.01641757 2.28404976 2.28404976
+ 2.28404976 2.28405536 2.28405536 2.28405536 2.57241227 2.57243006
+ 2.57243006 2.57243006 2.57243896 2.57243896 2.58637744 2.58637744
+ 2.58637744 2.6456677  2.6456677  2.6456677  2.93286098 2.93286098
+ 2.93286098 2.93288521 2.93288521 2.93288521 3.18043247 3.18043247
+ 3.18043588 3.18043588 3.18043588 3.18044271 3.22582595 3.22582595
+ 3.22582595 3.2258383  3.2258383  3.2258383  3.58100701 3.58100701
+ 3.58100955 3.58100955 3.58100955 3.58101465 3.72278662 3.72278662
+ 3.9260332  3.9260332  3.9260332  4.76907452 4.76907452 4.76907452
+ 4.89224154 4.89224154 4.89224154 4.89225224 4.89225224 4.89225224
+ 8.39534918 8.73691471 8.75266981 8.75266981 8.75273738 8.75273738
+ 8.75273738 8.7528729 ]
+max_memory = 19869 MB (610 in use)
+              J_half wall time:     0.022857 CPU time:     0.022741
+    CPU time for get_jk_dm_local      0.04 sec, wall time      0.04 sec
+max_memory = 19869 MB (610 in use)
+    CPU time for get_jk_dm_local      0.35 sec, wall time      0.35 sec
+Successfully saved all results to /central/scratch/yangjunjie//save-vjk-nz/diamond//47910639/isdf.chk

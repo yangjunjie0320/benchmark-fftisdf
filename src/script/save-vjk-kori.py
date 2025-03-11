@@ -20,8 +20,8 @@ def ISDF(cell, rcut_epsilon=1e-6, ke_epsilon=1e-6, isdf_thresh=1e-6):
     import importlib
     
     # Add the absolute path to sys.path
-    sys.path.append("/home/junjiey/packages/PeriodicIntegrals/PeriodicIntegrals-junjie-benchmark/src/")
-    from isdfx import ISDFX
+    sys.path.append("/home/junjiey/packages/PeriodicIntegrals/PeriodicIntegrals-junjie-benchmark/")
+    from isdfx.isdfx import ISDFX
     isdf_obj = ISDFX(cell, **kwargs)
 
     t0 = time()
@@ -40,7 +40,7 @@ if __name__ == "__main__":
     parser.add_argument("--rcut_epsilon", type=float, default=1e-6)
     parser.add_argument("--ke_epsilon", type=float, default=1e-6)
     parser.add_argument("--isdf_thresh", type=float, default=1e-6)
-    parser.add_argument("--exxdiv", type=str, default="ewald")
+    parser.add_argument("--exxdiv", type=str, default=None)
     args = parser.parse_args()
     config = vars(args)
 

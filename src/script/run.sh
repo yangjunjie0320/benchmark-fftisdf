@@ -31,3 +31,5 @@ echo ""; which python
 python -c "import pyscf; print(pyscf.__version__)"
 python -c "import scipy; print(scipy.__version__)"
 python -c "import numpy; print(numpy.__version__)"
+
+python -c "from pyscf import __config__; fft_engine = getattr(__config__, 'pbc_tools_pbc_fft_engine', 'NUMPY+BLAS'); print('fft_engine = %s' % fft_engine)"

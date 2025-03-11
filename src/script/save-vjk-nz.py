@@ -40,7 +40,8 @@ if __name__ == "__main__":
     parser.add_argument("--c0", type=float, default=5.0)
     parser.add_argument("--rela_qr", type=float, default=1e-3)
     parser.add_argument("--aoR_cutoff", type=float, default=1e-8)
-    parser.add_argument("--exxdiv", type=str, default="ewald")
+    # can be set to None or "ewald", how to deal with this?
+    parser.add_argument("--exxdiv", type=str, default=None)
     args = parser.parse_args()
     config = vars(args)
 

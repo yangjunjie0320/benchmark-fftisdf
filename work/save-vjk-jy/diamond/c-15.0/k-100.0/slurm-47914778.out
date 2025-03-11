@@ -1,0 +1,22 @@
+SLURMD_NODENAME = hpc-19-34
+Start time = Mon Mar 10 08:41:27 PM PDT 2025
+OMP_NUM_THREADS = 1
+MKL_NUM_THREADS = 1
+PYSCF_MAX_MEMORY = 20480
+TMPDIR = /central/scratch/yangjunjie//save-vjk-jy/diamond/c-15.0/k-100.0/47914778/
+PYSCF_TMPDIR = /central/scratch/yangjunjie//save-vjk-jy/diamond/c-15.0/k-100.0/47914778/
+
+/home/junjiey/anaconda3/envs/fftisdf/bin/python
+2.8.0
+1.13.1
+2.0.2
+fft_engine = NUMPY+BLAS
+name = diamond
+ke_cutoff =  7.00e+01
+c0 =  1.50e+01
+k0 =  1.00e+02
+exxdiv = None
+
+Discarded 24 diffused primitive functions, 0 contracted functions
+/var/spool/slurmd/job47914778/slurm_script: line 47: 3853787 Killed                  python main.py --name diamond --c0=15.0 --k0=100.0 --ke_cutoff=70.0 --exxdiv=None
+slurmstepd: error: Detected 1 oom_kill event in StepId=47914778.batch. Some of the step tasks have been OOM Killed.

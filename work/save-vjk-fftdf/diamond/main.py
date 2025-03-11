@@ -19,7 +19,7 @@ if __name__ == "__main__":
     parser = ArgumentParser()
     parser.add_argument("--name", type=str, required=True)
     parser.add_argument("--ke_cutoff", type=float, default=40.0)
-    parser.add_argument("--exxdiv", type=str, default="ewald")
+    parser.add_argument("--exxdiv", type=str, default=None)
     args = parser.parse_args()
     config = vars(args)
 
