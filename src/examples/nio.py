@@ -28,8 +28,7 @@ cell.exp_to_discard = 0.2
 cell.build()
 
 # Use UHF to allow AFM ordering
-mf = pyscf.pbc.scf.UKS(cell).density_fit()
-mf.xc = 'lda'
+mf = pyscf.pbc.scf.UHF(cell).density_fit()
 mf.conv_tol = 1e-6
 mf.max_cycle = 50
 dm = mf.get_init_guess(key="minao")
