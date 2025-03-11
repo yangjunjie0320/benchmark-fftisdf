@@ -22,7 +22,7 @@ cell.a = numpy.array([
 cell.basis = 'gth-dzvp-molopt-sr'
 cell.pseudo = 'gth-pbe'
 cell.spin = 0  # AFM system
-cell.verbose = 4
+cell.verbose = 10
 cell.ke_cutoff = 200.0
 cell.exp_to_discard = 0.2
 cell.build()
@@ -31,7 +31,7 @@ cell.build()
 mf = pyscf.pbc.scf.UHF(cell).density_fit()
 mf.conv_tol = 1e-6
 mf.max_cycle = 50
-dm = mf.get_init_guess(key="minao")
+dm0 = mf.get_init_guess(key="minao")
 
 # Define the AFM pattern manually
 afm_guess = {
@@ -43,7 +43,6 @@ afm_guess = {
 alpha_indices = []
 beta_indices = []
 
-print(dm.shape)
 for key, ao_labels in afm_guess.items():
     for label in ao_labels:
         ao_idx = cell.search_ao_label(label)  # Find indices of specific AOs
@@ -52,17 +51,20 @@ for key, ao_labels in afm_guess.items():
         else:
             beta_indices.extend(ao_idx)
 
-print(alpha_indices)
-print(beta_indices)
-
 # Apply AFM ordering by modifying the density matrix
 for ao_idx in alpha_indices:
-    dm[0][ao_idx, ao_idx] *= 1.0  # α (spin-up)
-    dm[1][ao_idx, ao_idx] *= 0.0  # Remove β (spin-down)
+    dm0[0][ao_idx, ao_idx] *= 1.0  # α (spin-up)
+    dm0[1][ao_idx, ao_idx] *= 0.0  # Remove β (spin-down)
 
 for ao_idx in beta_indices:
-    dm[0][ao_idx, ao_idx] *= 0.0  # Remove α (spin-up)
-    dm[1][ao_idx, ao_idx] *= 1.0  # β (spin-down)
+    dm0[0][ao_idx, ao_idx] *= 0.0  # Remove α (spin-up)
+    dm0[1][ao_idx, ao_idx] *= 1.0  # β (spin-down)
 
-# Run SCF with AFM initial guess
-mf.kernel(numpy.array(dm))
+ovlp = mf.get_ovlp()
+
+from pyscf.scf.uhf import mulliken_spin_pop
+mulliken_spin_pop(cell, dm0, ovlp)
+mf.kernel(dm0=dm0)
+
+dm = mf.make_rdm1()
+mulliken_spin_pop(cell, dm, ovlp)
