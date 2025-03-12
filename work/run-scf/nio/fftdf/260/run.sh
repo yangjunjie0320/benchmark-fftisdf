@@ -1,9 +1,9 @@
 #!/bin/bash
 #SBATCH --exclude=hpc-21-34
 #SBATCH --job-name=run-scf/nio/fftdf/260
-#SBATCH --cpus-per-task=20
+#SBATCH --cpus-per-task=32
 #SBATCH --mem=200GB
-#SBATCH --time=01:00:00
+#SBATCH --time=20:00:00
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
 #SBATCH --reservation=changroup_standingres
@@ -45,4 +45,4 @@ export DATA_PATH=$PREFIX/data/
 export PYTHONPATH=$PREFIX/src/:$PYTHONPATH
 export PYSCF_EXT_PATH=$HOME/packages/pyscf-forge/pyscf-forge-ning-isdf4/
 cp /central/home/junjiey/work/benchmark-fftisdf/src/script/run-scf.py /central/home/junjiey/work/benchmark-fftisdf/work/run-scf/nio/fftdf/260/main.py
-python main.py --name=nio --ke_cutoff=260.0 --exxdiv=None --mesh=1,1,1 --df=fftdf --chk_path=/central/scratch/yangjunjie/run-scf/nio/gdf/47941658/scf.h5
+python main.py --name=nio --ke_cutoff=260.0 --exxdiv=None --mesh=1,1,1 --df=fftdf --chk_path=/central/scratch/yangjunjie/run-scf/nio/fftdf/300/47942092/scf.h5 --rcut_epsilon=1e-05 --ke_epsilon=0.01 --isdf_thresh=0.0005

@@ -202,29 +202,32 @@ if __name__ == "__main__":
     parser.add_argument("--df", type=str, default="fftdf", choices=["gdf", "fftdf", "fftisdf-jy", "fftisdf-nz", "fftisdf-ks"])
     parser.add_argument("--mesh", type=str, default="1,1,1", choices=["1,1,1", "2,2,2"])
     parser.add_argument("--chk_path", type=str, default=None)
+
+    parser.add_argument("--c0", type=float, default=5.0)
+    parser.add_argument("--k0", type=(lambda x: None if x == "None" else float(x)), default=None)
+    parser.add_argument("--rela_qr", type=float, default=1e-3)
+    parser.add_argument("--aoR_cutoff", type=float, default=1e-8)
+
+    parser.add_argument("--rcut_epsilon", type=float,  default=1e-6)
+    parser.add_argument("--ke_epsilon",   type=float,  default=1e-6)
+    parser.add_argument("--isdf_thresh",  type=float,  default=1e-6)
     args = parser.parse_args()
-
-    # arguments for FFTISDF-JY
-    if args.df == "fftisdf-jy":
-        parser.add_argument("--c0", type=float, default=5.0)
-        parser.add_argument("--k0", type=(lambda x: None if x == "None" else float(x)), default=None)
-        args = parser.parse_args()
-
-    # arguments for FFTISDF-NZ
-    if args.df == "fftisdf-nz":
-        parser.add_argument("--c0", type=float, default=5.0)
-        parser.add_argument("--rela_qr", type=float, default=1e-3)
-        parser.add_argument("--aoR_cutoff", type=float, default=1e-8)
-        args = parser.parse_args()
-
-    # arguments for FFTISDF-KS
-    if args.df == "fftisdf-ks":
-        parser.add_argument("--rcut_epsilon", type=float,  default=1e-6)
-        parser.add_argument("--ke_epsilon",   type=float,  default=1e-6)
-        parser.add_argument("--isdf_thresh",  type=float,  default=1e-6)
-        args = parser.parse_args()
-
     config = vars(args)
+
+    if args.df not in ["fftisdf-jy", "fftisdf-nz"]:
+        config.pop("c0")
+
+    if not args.df == "fftisdf-nz":
+        config.pop("aoR_cutoff")
+        config.pop("rela_qr")
+
+    if not args.df == "fftisdf-ks":
+        config.pop("rcut_epsilon")
+        config.pop("ke_epsilon")
+        config.pop("isdf_thresh")
+
+    if not args.df == "fftisdf-jy":
+        config.pop("k0")
 
     kl = []
     vl = []

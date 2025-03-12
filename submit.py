@@ -66,10 +66,20 @@ if __name__ == "__main__":
             shutil.rmtree(os.path.join(base_dir, work_subdir))
 
         main(
-            time="01:00:00", mem=mem, ncpu=ncpu,
+            time="20:00:00", mem=mem, ncpu=ncpu,
             workdir=os.path.join(base_dir, work_subdir),
             cmd=cmd, scr=script_path, import_pyscf_forge=True
         )
 
-    chk_path = "/central/scratch/yangjunjie/run-scf/diamond/gdf/47941657/scf.h5"
-    run("diamond", "fftisdf-ks", ncpu=1, ke_cutoff=100.0, chk_path=chk_path)
+    # chk_path = "/central/scratch/yangjunjie/run-scf/diamond/gdf/47941657/scf.h5"
+    # run("diamond", "fftdf", ncpu=1, ke_cutoff=100.0, chk_path=chk_path)
+
+    chk_path = "/central/scratch/yangjunjie/run-scf/nio/fftdf/300/47942092/scf.h5"
+    run("nio", "fftdf", ncpu=32, ke_cutoff=260.0, chk_path=chk_path)
+    run("nio", "fftdf", ncpu=32, ke_cutoff=280.0, chk_path=chk_path)
+    run("nio", "fftdf", ncpu=32, ke_cutoff=300.0, chk_path=chk_path)
+    run("nio", "fftdf", ncpu=32, ke_cutoff=320.0, chk_path=chk_path)
+    run("nio", "fftdf", ncpu=32, ke_cutoff=340.0, chk_path=chk_path)
+    run("nio", "fftdf", ncpu=32, ke_cutoff=360.0, chk_path=chk_path)
+    run("nio", "fftdf", ncpu=32, ke_cutoff=380.0, chk_path=chk_path)
+    run("nio", "fftdf", ncpu=32, ke_cutoff=400.0, chk_path=chk_path)
