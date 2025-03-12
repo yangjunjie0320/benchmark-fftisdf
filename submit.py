@@ -38,43 +38,29 @@ def main(time="01:00:00", mem=200, ncpu=1, workdir=None, cmd=None, scr=None,
             # f.write("export PYTHONPATH=/home/junjiey/packages/PeriodicIntegrals/PeriodicIntegrals-junjie-benchmark/:$PYTHONPATH\n")
 
         f.write("cp %s %s/main.py\n" % (scr, workdir))
-        f.write(cmd + "\n")
+        f.write(" ".join(cmd) + "\n")
 
     os.chdir(workdir)
     os.system("sbatch run.sh")
     os.chdir(pwd)
 
 if __name__ == "__main__":
-    ncpu = 1
-    mem = ncpu * 20
+    mem = 200
+    def run(name, df, ncpu=1, ke_cutoff=100.0, chk_path=None):
+        cmd = [f"python main.py --name={name}"]
+        cmd += [f"--ke_cutoff={ke_cutoff}"]
+        cmd += [f"--exxdiv=None"]
+        cmd += [f"--mesh=1,1,1 --df={df}"]
+        cmd += [f"--chk_path={chk_path}"]
+        cmd += [f"--rcut_epsilon={1e-5}"]
+        cmd += [f"--ke_epsilon={1e-2}"]
+        cmd += [f"--isdf_thresh={5e-4}"]
 
-    info = {
-        "diamond": {
-            "ke_cutoff": 70.0,
-            "rcut_epsilon": 5e-4,
-            "ke_epsilon": 1e-1,
-            "isdf_thresh": 1e-3,
-            "cnz": 25.0,
-            "rela_qr": 1e-5,
-            "aoR_cutoff": 1e-7,
-            "cjy": 10.0,
-            "exxdiv": None,
-        },
-    }
-
-    base_dir = os.path.abspath(os.path.dirname(__file__))
-    df = "fftdf"
-    def run(system):
-        cmd = (
-            f"python main.py --name {system} "
-            f"--ke_cutoff={info[system]['ke_cutoff']} "
-            f"--exxdiv={info[system]['exxdiv']} "
-        )
-
-        script = f"save-vjk-{df}"
+        script = f"run-scf"
+        base_dir = os.path.abspath(os.path.dirname(__file__))
         script_path = f"{base_dir}/src/script/{script}.py"
 
-        work_subdir = f"work/{script}/{system}/"
+        work_subdir = f"work/{script}/{name}/{df}/{ke_cutoff:.0f}"
         if os.path.exists(os.path.join(base_dir, work_subdir)):
             print(f"Work directory {work_subdir} already exists, deleting it")
             shutil.rmtree(os.path.join(base_dir, work_subdir))
@@ -84,83 +70,6 @@ if __name__ == "__main__":
             workdir=os.path.join(base_dir, work_subdir),
             cmd=cmd, scr=script_path, import_pyscf_forge=True
         )
-    run("diamond")
 
-    # df = "nz"
-    # def run(system):
-    #     cmd = (
-    #         f"python main.py --name {system} "
-    #         f"--c0={info[system]['cnz']} --rela_qr={info[system]['rela_qr']} "
-    #         f"--aoR_cutoff={info[system]['aoR_cutoff']} "
-    #         f"--ke_cutoff={info[system]['ke_cutoff']} "
-    #         f"--exxdiv={info[system]['exxdiv']} "
-    #     )
-
-    #     script = f"save-vjk-{df}"
-    #     script_path = f"{base_dir}/src/script/{script}.py"
-
-    #     work_subdir = f"work/{script}/{system}/"
-    #     if os.path.exists(os.path.join(base_dir, work_subdir)):
-    #         print(f"Work directory {work_subdir} already exists, deleting it")
-    #         shutil.rmtree(os.path.join(base_dir, work_subdir))
-
-    #     main(
-    #         time="01:00:00", mem=mem, ncpu=ncpu,
-    #         workdir=os.path.join(base_dir, work_subdir),
-    #         cmd=cmd, scr=script_path, import_pyscf_forge=True
-    #     )
-    # run("diamond")
-
-    # df = "kori"
-    # def run(system):
-    #     cmd = (
-    #         f"python main.py --name {system} "
-    #         f"--ke_cutoff={info[system]['ke_cutoff']} "
-    #         f"--rcut_epsilon={info[system]['rcut_epsilon']} "
-    #         f"--ke_epsilon={info[system]['ke_epsilon']} "
-    #         f"--isdf_thresh={info[system]['isdf_thresh']} "
-    #         f"--exxdiv={info[system]['exxdiv']} "
-    #     )
-
-    #     script = f"save-vjk-{df}"
-    #     script_path = f"{base_dir}/src/script/{script}.py"
-
-    #     work_subdir = f"work/{script}/{system}/"
-    #     if os.path.exists(os.path.join(base_dir, work_subdir)):
-    #         print(f"Work directory {work_subdir} already exists, deleting it")
-    #         shutil.rmtree(os.path.join(base_dir, work_subdir))
-
-    #     main(
-    #         time="01:00:00", mem=mem, ncpu=ncpu,
-    #         workdir=os.path.join(base_dir, work_subdir),
-    #         cmd=cmd, scr=script_path, import_pyscf_forge=False,
-    #         import_periodic_integrals=True
-    #     )
-    # run("diamond")
-
-    df = "jy"
-    for c in [5.0, 10.0, 15.0, 20.0, 25.0, 30.0]:
-        for k0 in [20.0, 40.0, 60.0, 80.0, 100.0]:
-            def run(system):
-                cmd = (
-                    f"python main.py --name {system} "
-                    f"--c0={c} --k0={k0} "
-                    f"--ke_cutoff={info[system]['ke_cutoff']} "
-                    f"--exxdiv={info[system]['exxdiv']} "
-                )
-
-                script = f"save-vjk-{df}"
-                script_path = f"{base_dir}/src/script/{script}.py"
-
-                work_subdir = f"work/{script}/{system}/c-{c}/k-{k0}"
-                if os.path.exists(os.path.join(base_dir, work_subdir)):
-                    print(f"Work directory {work_subdir} already exists, deleting it")
-                    shutil.rmtree(os.path.join(base_dir, work_subdir))
-
-                main(
-                    time="01:00:00", mem=mem, ncpu=ncpu,
-                    workdir=os.path.join(base_dir, work_subdir),
-                    cmd=cmd, scr=script_path, import_pyscf_forge=False,
-                )
-
-            run("diamond")
+    chk_path = "/central/scratch/yangjunjie/run-scf/diamond/gdf/47941657/scf.h5"
+    run("diamond", "fftisdf-ks", ncpu=1, ke_cutoff=100.0, chk_path=chk_path)
