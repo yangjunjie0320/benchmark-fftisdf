@@ -36,20 +36,33 @@ def print_current_memory():
     return mem / 1e6
 
 INFO = {
-    "nio": {
-        "filename": os.path.join(DATA_PATH, "vasp", "nio-conv.vasp"),
-        "basis": "gth-dzvp-molopt-sr", "pseudo": "gth-pbe", "afm_guess": {"alph": ["0 Ni 3dx2-y2", "2 Ni 3dx2-y2"], "beta": ["1 Ni 3dx2-y2", "3 Ni 3dx2-y2"]},
-        "ke_cutoff": 200.0,
-    },
-    "diamond": {
+    "diamond-conv": {
         "filename": os.path.join(DATA_PATH, "vasp", "diamond-conv.vasp"),
         "basis": "gth-dzvp-molopt-sr", "pseudo": "gth-pbe", "ke_cutoff": 100.0,
+    },
+
+    "diamond-prim": {
+        "filename": os.path.join(DATA_PATH, "vasp", "diamond-prim.vasp"),
+        "basis": "gth-dzvp-molopt-sr", "pseudo": "gth-pbe", "ke_cutoff": 100.0,
+    },
+
+    "nio-conv": {
+        "filename": os.path.join(DATA_PATH, "vasp", "nio-conv.vasp"),
+        "basis": "gth-dzvp-molopt-sr", "pseudo": "gth-pbe", 
+        "afm_guess": {"alph": ["0 Ni 3dx2-y2", "2 Ni 3dx2-y2"], "beta": ["1 Ni 3dx2-y2", "3 Ni 3dx2-y2"]},
+        "ke_cutoff": 200.0,
+    },
+
+    "nio-prim": {
+        "filename": os.path.join(DATA_PATH, "vasp", "nio-prim.vasp"),
+        "basis": "gth-dzvp-molopt-sr", "pseudo": "gth-pbe", 
+        "afm_guess": {"alph": ["0 Ni 3dx2-y2"], "beta": ["1 Ni 3dx2-y2"]},
+        "ke_cutoff": 200.0,
     },
 }
 
 def gen_afm_guess(cell, dm0, afm_guess=None, ovlp=None):
     nao = cell.nao_nr()
-
     dm_alph = None
     dm_beta = None
     if dm0.shape == (2, nao, nao):

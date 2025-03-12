@@ -1,0 +1,91 @@
+SLURMD_NODENAME = hpc-53-09
+Start time = Wed Mar 12 03:46:46 PM PDT 2025
+OMP_NUM_THREADS = 20
+MKL_NUM_THREADS = 1
+PYSCF_MAX_MEMORY = 81920
+TMPDIR = /central/scratch/yangjunjie//run-scf-gamma/diamond-prim/fftdf/100/47959737/
+PYSCF_TMPDIR = /central/scratch/yangjunjie//run-scf-gamma/diamond-prim/fftdf/100/47959737/
+
+/home/junjiey/anaconda3/envs/fftisdf/bin/python
+2.8.0
+1.13.1
+2.0.2
+fft_engine = NUMPY+BLAS
+name = diamond-prim
+ke_cutoff =  1.00e+02
+exxdiv = None
+df = fftdf
+chk_path = /central/scratch/yangjunjie//run-scf-gamma/diamond-prim/gdf/47958842/scf.h5
+
+Discarded 6 diffused primitive functions, 0 contracted functions
+ke_cutoff = 100.0
+
+WARN: ke_cutoff/mesh (100 / [23 23 23]) is not enough for FFTDF to get integral accuracy 1e-08.
+Coulomb integral error is ~ 4.1 Eh.
+Recommended ke_cutoff/mesh are 598.398 / [55 55 55].
+
+Initial guess from minao.
+Big error detected in the electron number of initial guess density matrix (Ne/cell = 8.1841)!
+  This can cause huge error in Fock matrix and lead to instability in SCF for low-dimensional systems.
+  DM is normalized wrt the number of electrons 8
+Successfully loaded dm0 from /central/scratch/yangjunjie//run-scf-gamma/diamond-prim/gdf/47958842/scf.h5
+
+
+******** <class 'pyscf.pbc.dft.rks.RKS'> ********
+method = RKS
+initial guess = minao
+damping factor = 0
+level_shift factor = 0
+DIIS = <class 'pyscf.scf.diis.CDIIS'>
+diis_start_cycle = 1
+diis_space = 8
+diis_damp = 0
+SCF conv_tol = 1e-08
+SCF conv_tol_grad = None
+SCF max_cycles = 50
+direct_scf = True
+direct_scf_tol = 1e-13
+chkfile to save SCF result = /central/scratch/yangjunjie/run-scf-gamma/diamond-prim/fftdf/100/47959737/tmpzp_v2a2f
+max_memory 81920 MB (current use 142 MB)
+******** PBC SCF flags ********
+kpt = [0. 0. 0.]
+Exchange divergence treatment (exxdiv) = None
+DF object = <pyscf.pbc.df.fft.FFTDF object at 0x7f2f4959fb80>
+XC functionals = PBE0
+small_rho_cutoff = 1e-07
+Set gradient conv threshold to 0.0001
+nelec by numeric integration = 7.999999999223503
+    CPU time for vxc      4.03 sec, wall time      0.21 sec
+    CPU time for vj and vk      9.67 sec, wall time      0.54 sec
+E1 = 4.736382425027351  Ecoul = 1.7353196002929985  Exc = -3.253762685318117
+init E= -9.59093375798385
+    CPU time for initialize scf     18.51 sec, wall time      1.02 sec
+  HOMO = 0.67862151425636  LUMO = 0.849647181643422
+  mo_energy =
+[-0.13931806  0.67856743  0.67856746  0.67862151  0.84964718  0.84964732
+  0.84968835  1.20078262  1.75875302  1.75875312  2.43645261  2.43645269
+  2.43647942  2.52289871  2.52289894  2.52309663  3.59473548  3.59473564
+  3.78526803  3.7852682   3.78552661  4.67248522  4.67251205  4.67251243
+  8.8304041   9.15800707]
+nelec by numeric integration = 7.999999999223509
+    CPU time for vxc      3.38 sec, wall time      0.17 sec
+    CPU time for vj and vk      9.79 sec, wall time      0.55 sec
+E1 = 4.7363845281761465  Ecoul = 1.7353173561189172  Exc = -3.253762544336109
+cycle= 1 E= -9.59093375802713  delta_E= -4.33e-11  |g|= 1.37e-06  |ddm|= 1.09e-05
+    CPU time for cycle= 1     13.29 sec, wall time      0.73 sec
+  HOMO = 0.678621183552512  LUMO = 0.849646994659559
+  mo_energy =
+[-0.13931826  0.6785671   0.67856713  0.67862118  0.84964699  0.84964713
+  0.84968817  1.20078228  1.75875288  1.75875299  2.43645242  2.43645249
+  2.43647922  2.5228982   2.52289843  2.52309612  3.59473523  3.59473539
+  3.78526758  3.78526775  3.78552616  4.67248489  4.67251172  4.6725121
+  8.83040267  9.15800568]
+nelec by numeric integration = 7.999999999223503
+    CPU time for vxc      3.18 sec, wall time      0.17 sec
+    CPU time for vj and vk      9.45 sec, wall time      0.53 sec
+E1 = 4.736384179051086  Ecoul = 1.735317823705645  Exc = -3.2537626627980623
+Extra cycle  E= -9.59093375802741  delta_E= -2.86e-13  |g|= 1.78e-07  |ddm|= 1.06e-06
+    CPU time for scf_cycle     44.53 sec, wall time      2.45 sec
+    CPU time for SCF     45.16 sec, wall time      2.53 sec
+converged SCF energy = -9.59093375802741
+Successfully saved all results to /central/scratch/yangjunjie//run-scf-gamma/diamond-prim/fftdf/100/47959737/scf.h5

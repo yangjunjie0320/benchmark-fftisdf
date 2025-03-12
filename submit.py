@@ -45,41 +45,44 @@ def main(time="01:00:00", mem=200, ncpu=1, workdir=None, cmd=None, scr=None,
     os.chdir(pwd)
 
 if __name__ == "__main__":
-    mem = 200
+    mem = 80
     def run(name, df, ncpu=1, ke_cutoff=100.0, chk_path=None):
         cmd = [f"python main.py --name={name}"]
         cmd += [f"--ke_cutoff={ke_cutoff}"]
         cmd += [f"--exxdiv=None"]
-        cmd += [f"--mesh=1,1,1 --df={df}"]
+        cmd += [f"--df={df}"]
         cmd += [f"--chk_path={chk_path}"]
-        cmd += [f"--rcut_epsilon={1e-5}"]
-        cmd += [f"--ke_epsilon={1e-2}"]
-        cmd += [f"--isdf_thresh={5e-4}"]
 
-        script = f"run-scf"
+        script = f"run-scf-gamma"
         base_dir = os.path.abspath(os.path.dirname(__file__))
         script_path = f"{base_dir}/src/script/{script}.py"
 
-        work_subdir = f"work/{script}/{name}/{df}/{ke_cutoff:.0f}"
+        if ke_cutoff is not None:
+            work_subdir = f"work/{script}/{name}/{df}/{ke_cutoff:.0f}"
+        else:
+            assert df == "gdf"
+            work_subdir = f"work/{script}/{name}/{df}"
+
         if os.path.exists(os.path.join(base_dir, work_subdir)):
             print(f"Work directory {work_subdir} already exists, deleting it")
             shutil.rmtree(os.path.join(base_dir, work_subdir))
 
         main(
-            time="20:00:00", mem=mem, ncpu=ncpu,
+            time="4:00:00", mem=mem, ncpu=ncpu,
             workdir=os.path.join(base_dir, work_subdir),
             cmd=cmd, scr=script_path, import_pyscf_forge=True
         )
 
-    # chk_path = "/central/scratch/yangjunjie/run-scf/diamond/gdf/47941657/scf.h5"
-    # run("diamond", "fftdf", ncpu=1, ke_cutoff=100.0, chk_path=chk_path)
+    for ke_cutoff in [40.0, 60.0, 80.0, 100.0, 120.0, 140.0, 160.0, 180.0, 200.0]:
+        path = "/central/scratch/yangjunjie//run-scf-gamma/diamond-conv/gdf/47958841/scf.h5"
+        run("diamond-conv", "fftdf", ncpu=20, ke_cutoff=ke_cutoff, chk_path=path)
 
-    chk_path = "/central/scratch/yangjunjie/run-scf/nio/fftdf/300/47942092/scf.h5"
-    run("nio", "fftdf", ncpu=32, ke_cutoff=260.0, chk_path=chk_path)
-    run("nio", "fftdf", ncpu=32, ke_cutoff=280.0, chk_path=chk_path)
-    run("nio", "fftdf", ncpu=32, ke_cutoff=300.0, chk_path=chk_path)
-    run("nio", "fftdf", ncpu=32, ke_cutoff=320.0, chk_path=chk_path)
-    run("nio", "fftdf", ncpu=32, ke_cutoff=340.0, chk_path=chk_path)
-    run("nio", "fftdf", ncpu=32, ke_cutoff=360.0, chk_path=chk_path)
-    run("nio", "fftdf", ncpu=32, ke_cutoff=380.0, chk_path=chk_path)
-    run("nio", "fftdf", ncpu=32, ke_cutoff=400.0, chk_path=chk_path)
+        path = "/central/scratch/yangjunjie//run-scf-gamma/diamond-prim/gdf/47958842/scf.h5"
+        run("diamond-prim", "fftdf", ncpu=20, ke_cutoff=ke_cutoff, chk_path=path)
+
+    for ke_cutoff in [160.0, 180.0, 200.0, 220.0, 240.0, 260.0, 280.0, 300.0]:
+        path = "/central/scratch/yangjunjie//run-scf-gamma/nio-conv/gdf/47958839/scf.h5"
+        run("nio-conv", "fftdf", ncpu=20, ke_cutoff=ke_cutoff, chk_path=path)
+
+        path = "/central/scratch/yangjunjie//run-scf-gamma/nio-prim/gdf/47958840/scf.h5"
+        run("nio-prim", "fftdf", ncpu=20, ke_cutoff=ke_cutoff, chk_path=path)
