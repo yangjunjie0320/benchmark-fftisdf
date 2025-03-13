@@ -1,4 +1,5 @@
 import os, sys, shutil
+import numpy, scipy
 
 def main(time="01:00:00", mem=200, ncpu=1, workdir=None, cmd=None, scr=None, 
          import_pyscf_forge=False, import_periodic_integrals=False):
@@ -19,8 +20,8 @@ def main(time="01:00:00", mem=200, ncpu=1, workdir=None, cmd=None, scr=None,
         lines.insert(1, "#SBATCH --time=%s\n" % time)
         lines.insert(1, "#SBATCH --mem=%dGB\n" % mem)
         lines.insert(1, "#SBATCH --cpus-per-task=%d\n" % ncpu)
-        lines.insert(1, "#SBATCH --job-name=%s\n" % workdir.split("work")[-1][1:])
-        lines.insert(1, "#SBATCH --exclude=hpc-21-34\n")
+        lines.insert(1, "#SBATCH --job-name=%s\n" % workdir.split("work")[-1][1:].replace("/", "-"))
+        lines.insert(1, "#SBATCH --exclude=hpc-21-34,hpc-34-34,hpc-52-29\n")
 
     with open(os.path.join(workdir, "run.sh"), "w") as f:
         f.writelines(lines)
@@ -46,43 +47,73 @@ def main(time="01:00:00", mem=200, ncpu=1, workdir=None, cmd=None, scr=None,
 
 if __name__ == "__main__":
     mem = 80
-    def run(name, df, ncpu=1, ke_cutoff=100.0, chk_path=None):
+    def run(name, df, ncpu=1, ke_cutoff=100.0, chk_path=None, config=None, mesh="1,1,1", time="01:00:00"):
         cmd = [f"python main.py --name={name}"]
         cmd += [f"--ke_cutoff={ke_cutoff}"]
         cmd += [f"--exxdiv=None"]
         cmd += [f"--df={df}"]
         cmd += [f"--chk_path={chk_path}"]
+        cmd += [f"--mesh={mesh}"]
+        if config is not None:
+            for k, v in config.items():
+                cmd += [f"--{k}={v}"]
 
-        script = f"run-scf-gamma"
+        script = f"run-scf-kpt"
         base_dir = os.path.abspath(os.path.dirname(__file__))
         script_path = f"{base_dir}/src/script/{script}.py"
 
+        mesh = mesh.replace(",", "-")
         if ke_cutoff is not None:
-            work_subdir = f"work/{script}/{name}/{df}/{ke_cutoff:.0f}"
+            work_subdir = f"work/{script}/{name}/{mesh}/{df}-{ncpu}/{ke_cutoff:.0f}/"
         else:
             assert df == "gdf"
-            work_subdir = f"work/{script}/{name}/{df}"
+            work_subdir = f"work/{script}/{name}/{mesh}/{df}-{ncpu}/"
+
+        if config is not None:
+            for k, v in config.items():
+                if v is None:
+                    continue
+                work_subdir += f"{k}-{v}-"
+        work_subdir = work_subdir.rstrip("-")
 
         if os.path.exists(os.path.join(base_dir, work_subdir)):
             print(f"Work directory {work_subdir} already exists, deleting it")
             shutil.rmtree(os.path.join(base_dir, work_subdir))
 
         main(
-            time="4:00:00", mem=mem, ncpu=ncpu,
+            time=time, mem=mem, ncpu=ncpu,
             workdir=os.path.join(base_dir, work_subdir),
             cmd=cmd, scr=script_path, import_pyscf_forge=True
         )
 
-    for ke_cutoff in [40.0, 60.0, 80.0, 100.0, 120.0, 140.0, 160.0, 180.0, 200.0]:
-        path = "/central/scratch/yangjunjie//run-scf-gamma/diamond-conv/gdf/47958841/scf.h5"
-        run("diamond-conv", "fftdf", ncpu=20, ke_cutoff=ke_cutoff, chk_path=path)
+    ke_cutoff = 100.0
+    # path = "/central/scratch/yangjunjie//run-scf-gamma/diamond-conv/gdf/47958841/scf.h5"
+    # run("diamond-conv", "fftdf", ncpu=20, ke_cutoff=ke_cutoff, chk_path=path)
 
-        path = "/central/scratch/yangjunjie//run-scf-gamma/diamond-prim/gdf/47958842/scf.h5"
-        run("diamond-prim", "fftdf", ncpu=20, ke_cutoff=ke_cutoff, chk_path=path)
+    # path = "/central/scratch/yangjunjie//run-scf-gamma/diamond-prim/gdf/47958842/scf.h5"
+    path = None
+    ms = [
+        [1, 1, 1],
+        [1, 1, 2],
+        [1, 2, 2],
+        [2, 2, 2],
+        [2, 2, 4],
+        [2, 4, 4],
+        [4, 4, 4],
+    ]
+    for m in ms:
+        config = None
+        mesh = ",".join(str(x) for x in m)
+        nk = numpy.prod(m)
 
-    for ke_cutoff in [160.0, 180.0, 200.0, 220.0, 240.0, 260.0, 280.0, 300.0]:
-        path = "/central/scratch/yangjunjie//run-scf-gamma/nio-conv/gdf/47958839/scf.h5"
-        run("nio-conv", "fftdf", ncpu=20, ke_cutoff=ke_cutoff, chk_path=path)
+        time = "01:00:00" if nk <= 16 else "20:00:00"
+        run("diamond-prim", "fftdf", ncpu=1, ke_cutoff=ke_cutoff, chk_path=path, config=config, mesh=mesh, time=time)
+        run("diamond-prim", "fftdf", ncpu=32, ke_cutoff=ke_cutoff, chk_path=path, config=config, mesh=mesh, time=time)
+        run("diamond-prim", "gdf", ncpu=1, ke_cutoff=ke_cutoff, chk_path=path, config=config, mesh=mesh, time=time)
+        run("diamond-prim", "gdf", ncpu=32, ke_cutoff=ke_cutoff, chk_path=path, config=config, mesh=mesh, time=time)
 
-        path = "/central/scratch/yangjunjie//run-scf-gamma/nio-prim/gdf/47958840/scf.h5"
-        run("nio-prim", "fftdf", ncpu=20, ke_cutoff=ke_cutoff, chk_path=path)
+        for c0 in [5.0, 10.0, 15.0, 20.0]:
+            for k0 in [None, 20.0, 40.0, 60.0, 80.0, 100.0]:
+                config = {"c0": c0, "k0": k0}
+                run("diamond-prim", "fftisdf-jy", ncpu=1, ke_cutoff=ke_cutoff, chk_path=path, config=config, mesh=mesh, time="00:30:00")
+                run("diamond-prim", "fftisdf-jy", ncpu=32, ke_cutoff=ke_cutoff, chk_path=path, config=config, mesh=mesh, time="00:30:00")

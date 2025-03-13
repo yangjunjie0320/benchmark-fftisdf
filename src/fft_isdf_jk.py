@@ -18,22 +18,7 @@ import line_profiler
 
 PYSCF_MAX_MEMORY = int(os.environ.get("PYSCF_MAX_MEMORY", 2000))
 
-def spc_to_kpt(m_spc, phase):
-    """Convert a matrix from the stripe form (in super-cell)
-    to the k-space form.
-    """
-    nspc, nkpt = phase.shape
-    m_kpt = numpy.dot(phase.conj().T, m_spc.reshape(nspc, -1))
-    return m_kpt.reshape(m_spc.shape)
-
-def kpt_to_spc(m_kpt, phase):
-    """Convert a matrix from the k-space form to
-    stripe form (in super-cell).
-    """
-    nspc, nkpt = phase.shape
-    m_spc = numpy.dot(phase, m_kpt.reshape(nkpt, -1))
-    m_spc = m_spc.reshape(m_kpt.shape)
-    return m_spc.real
+from fft_isdf import spc_to_kpt, kpt_to_spc, kpts_to_kmesh
 
 @line_profiler.profile
 def get_j_kpts(df_obj, dm_kpts, hermi=1, kpts=numpy.zeros((1, 3)), kpts_band=None,
@@ -57,7 +42,10 @@ def get_j_kpts(df_obj, dm_kpts, hermi=1, kpts=numpy.zeros((1, 3)), kpts_band=Non
     assert cell.dimension > 1
 
     pcell = df_obj.cell
-    kmesh = df_obj.kmesh
+    # check if kpts is consistent with df_obj.kpts
+    assert numpy.allclose(kpts, df_obj.kpts)
+    kpts, kmesh = kpts_to_kmesh(df_obj, df_obj.kpts)
+
     wrap_around = df_obj.wrap_around
     scell, phase = get_phase(
         pcell, df_obj.kpts, kmesh=kmesh,
@@ -111,7 +99,10 @@ def get_k_kpts(df_obj, dm_kpts, hermi=1, kpts=numpy.zeros((1, 3)), kpts_band=Non
     assert cell.dimension > 1
 
     pcell = df_obj.cell
-    kmesh = df_obj.kmesh
+    # check if kpts is consistent with df_obj.kpts
+    assert numpy.allclose(kpts, df_obj.kpts)
+    kpts, kmesh = kpts_to_kmesh(df_obj, df_obj.kpts)
+    
     wrap_around = df_obj.wrap_around
     scell, phase = get_phase(
         pcell, df_obj.kpts, kmesh=kmesh,
@@ -163,4 +154,6 @@ def get_k_kpts(df_obj, dm_kpts, hermi=1, kpts=numpy.zeros((1, 3)), kpts_band=Non
         vks.append([xk.conj().T @ vk @ xk for xk, vk in zip(inpv_kpt, v_kpt)])
 
     vks = numpy.asarray(vks).reshape(nset, nkpt, nao, nao)
+    if is_zero(kpts_band):
+        vks = vks.real
     return _format_jks(vks, dm_kpts, input_band, kpts)

@@ -26,19 +26,9 @@ PYSCF_MAX_MEMORY = int(os.environ.get("PYSCF_MAX_MEMORY", 2000))
 # *_k1, *_k2: the k-space array at specified k-point
 
 def kpts_to_kmesh(df_obj, kpts):
-    cell = df_obj.cell
-    from pyscf.pbc.tools.k2gamma import kpts_to_kmesh
-    kmesh = kpts_to_kmesh(cell, kpts)
-
-    # [1] check if kpts is identical to df_obj.kpts
-    assert numpy.allclose(kpts, df_obj.kpts)
-
-    # [2] check if kmesh is identical to df_obj.kmesh
-    assert numpy.allclose(kmesh, df_obj.kmesh)
-
-    # [3] check if kpts is uniform
-    assert numpy.allclose(kpts, cell.get_kpts(kmesh))
-
+    from pyscf.pbc.tools import k2gamma
+    kmesh = k2gamma.kpts_to_kmesh(df_obj.cell, kpts)
+    assert numpy.allclose(kpts, df_obj.cell.get_kpts(kmesh))
     return kpts, kmesh
 
 def spc_to_kpt(m_spc, phase):
@@ -89,7 +79,7 @@ def lstsq(a, b, tol=1e-10):
     return v @ t @ vh, int(rank)
 
 @line_profiler.profile
-def build(df_obj, inpx=None, kpts=None, kmesh=None):
+def build(df_obj, inpx=None):
     """
     Build the FFT-ISDF object.
     
@@ -100,7 +90,7 @@ def build(df_obj, inpx=None, kpts=None, kmesh=None):
     t0 = (process_clock(), perf_counter())
 
     cell = df_obj.cell
-    assert numpy.allclose(cell.get_kpts(kmesh), kpts)
+    kpts, kmesh = kpts_to_kmesh(df_obj, df_obj.kpts)
     nkpt = len(kpts)
 
     nip = inpx.shape[0]
@@ -233,8 +223,7 @@ def get_kern(df_obj, eta_kpt=None, q=0, fswp=None, max_memory=2000):
     log = logger.new_logger(df_obj, df_obj.verbose)
     t0 = (process_clock(), perf_counter())
     
-    kpts = df_obj.kpts
-    kmesh = df_obj.kmesh
+    kpts, kmesh = kpts_to_kmesh(df_obj, df_obj.kpts)
     nkpt = len(kpts)
     pcell = df_obj.cell
     nao = pcell.nao_nr()
@@ -301,25 +290,20 @@ def get_kern(df_obj, eta_kpt=None, q=0, fswp=None, max_memory=2000):
 class InterpolativeSeparableDensityFitting(FFTDF):
     wrap_around = False
 
+    _fswap = None
     _isdf = None
     _isdf_to_save = None
 
-    _keys = ['_isdf', '_coul_kpt', '_inpv_kpt']
+    _coul_kpt = None
+    _inpv_kpt = None
 
-    def __init__(self, cell, kpts=numpy.zeros((1, 3)), kmesh=None):
+    c0 = 10.0
+    tol = 1e-10
+
+    def __init__(self, cell, kpts=numpy.zeros((1, 3))):
         FFTDF.__init__(self, cell, kpts)
-
-        # from pyscf.pbc.lib.kpts import KPoints
-        # self.kpts = KPoints(cell, kpts)
-        # self.kpts.build()
-
-        self.kmesh = kmesh
-        self.c0 = 10.0
-
-        self.tol = 1e-10
         from pyscf.lib import H5TmpFile
         self._fswap = H5TmpFile()
-        self._keys = ['_isdf', '_coul_kpt', '_inpv_kpt', '_fswap']
 
     def dump_flags(self, verbose=None):
         log = logger.new_logger(self, verbose)
@@ -332,33 +316,23 @@ class InterpolativeSeparableDensityFitting(FFTDF):
     
     @line_profiler.profile
     def build(self, inpx=None):
+        log = logger.new_logger(self, self.verbose)
+
         self.dump_flags()
         self.check_sanity()
 
-        from pyscf.pbc.tools.k2gamma import kpts_to_kmesh
-        kmesh = kpts_to_kmesh(self.cell, self.kpts)
-        self.kmesh = kmesh
-
-        log = logger.new_logger(self, self.verbose)
+        kpts, kmesh = kpts_to_kmesh(self, self.kpts)
         log.info("kmesh = %s", kmesh)
+        log.info("kpts = \n%s", kpts)
+
         t0 = (process_clock(), perf_counter())
-
-        kpts = self.cell.get_kpts(kmesh)
-        assert numpy.allclose(self.kpts, kpts), \
-            "kpts mismatch, only uniform kpts is supported"
-
         if self._isdf is not None:
             pass
 
         if inpx is None:
             inpx = self.get_inpx(g0=None, c0=self.c0)
 
-        inpv_kpt, coul_kpt = build(
-            df_obj=self,
-            inpx=inpx,
-            kpts=kpts,
-            kmesh=kmesh
-        )
+        inpv_kpt, coul_kpt = build(self, inpx)
 
         self._inpv_kpt = inpv_kpt
         self._coul_kpt = coul_kpt
@@ -412,8 +386,10 @@ class InterpolativeSeparableDensityFitting(FFTDF):
             p0, p1 = p1, p1 + coords.shape[0]
             yield ao_etc_kpt, p0, p1
     
+    @line_profiler.profile
     def get_inpx(self, g0=None, c0=None, tol=None):
         log = logger.new_logger(self, self.verbose)
+        t0 = (process_clock(), perf_counter())
 
         if g0 is None:
             assert c0 is not None
@@ -434,8 +410,7 @@ class InterpolativeSeparableDensityFitting(FFTDF):
         ng = len(g0)
 
         x0 = pcell.pbc_eval_gto("GTOval", g0)
-        t0 = numpy.dot(x0.conj(), x0.T)
-        m0 = t0 * t0
+        m0 = numpy.dot(x0.conj(), x0.T) ** 2
 
         from pyscf.lib.scipy_helper import pivoted_cholesky
         tol2 = tol ** 2
@@ -450,6 +425,7 @@ class InterpolativeSeparableDensityFitting(FFTDF):
         log.info("Parent grid size = %d, selected grid size = %d", ng, nip)
 
         inpx = g0[mask]
+        t1 = log.timer("interpolating functions", *t0)
         return inpx
     
     def get_jk(self, dm, hermi=1, kpts=None, kpts_band=None,
