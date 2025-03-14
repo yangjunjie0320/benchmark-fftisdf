@@ -106,15 +106,15 @@ if __name__ == "__main__":
         mesh = ",".join(str(x) for x in m)
         nk = numpy.prod(m)
 
-        time = "20:00:00"
-        run("diamond-prim", "fftdf", ncpu=1, ke_cutoff=ke_cutoff, chk_path=path, config=config, mesh=mesh, time=time)
-        run("diamond-prim", "fftdf", ncpu=32, ke_cutoff=ke_cutoff, chk_path=path, config=config, mesh=mesh, time=time)
-        run("diamond-prim", "gdf", ncpu=1, ke_cutoff=None, chk_path=path, config=config, mesh=mesh, time=time)
-        run("diamond-prim", "gdf", ncpu=32, ke_cutoff=None, chk_path=path, config=config, mesh=mesh, time=time)
+        time = "01:00:00"
+        # run("diamond-prim", "fftdf", ncpu=1, ke_cutoff=ke_cutoff, chk_path=path, config=config, mesh=mesh, time=time)
+        # run("diamond-prim", "fftdf", ncpu=32, ke_cutoff=ke_cutoff, chk_path=path, config=config, mesh=mesh, time=time)
+        # run("diamond-prim", "gdf", ncpu=1, ke_cutoff=None, chk_path=path, config=config, mesh=mesh, time=time)
+        # run("diamond-prim", "gdf", ncpu=32, ke_cutoff=None, chk_path=path, config=config, mesh=mesh, time=time)
 
-        # config = {"rcut_epsilon": 1.e-5, "ke_epsilon": 5.e-2, "isdf_thresh": 5.e-5}
-        # chk_path = "../../../gdf-32/tmp/scf.h5"
-        # run("diamond-prim", "fftisdf-ks", ncpu=1, ke_cutoff=ke_cutoff, chk_path=chk_path, config=config, mesh=mesh, time="08:00:00")
+        config = {"rcut_epsilon": 1.e-5, "ke_epsilon": 5.e-2, "isdf_thresh": 5.e-5}
+        chk_path = "../../../gdf-32/tmp/scf.h5"
+        run("diamond-prim", "fftisdf-ks", ncpu=1, ke_cutoff=ke_cutoff, chk_path=chk_path, config=config, mesh=mesh, time="08:00:00")
 
     ms = [
         [1, 1, 1], # 4
@@ -128,12 +128,12 @@ if __name__ == "__main__":
         mesh = ",".join(str(x) for x in m)
         nk = numpy.prod(m)
 
-        time = "20:00:00"
-        run("diamond-conv", "fftdf", ncpu=1, ke_cutoff=ke_cutoff, chk_path=path, config=config, mesh=mesh, time=time)
-        run("diamond-conv", "fftdf", ncpu=32, ke_cutoff=ke_cutoff, chk_path=path, config=config, mesh=mesh, time=time)
-        run("diamond-conv", "gdf", ncpu=1, ke_cutoff=None, chk_path=path, config=config, mesh=mesh, time=time)
-        run("diamond-conv", "gdf", ncpu=32, ke_cutoff=None, chk_path=path, config=config, mesh=mesh, time=time)
+        time = "01:00:00"
+        # run("diamond-conv", "fftdf", ncpu=1, ke_cutoff=ke_cutoff, chk_path=path, config=config, mesh=mesh, time=time)
+        # run("diamond-conv", "fftdf", ncpu=32, ke_cutoff=ke_cutoff, chk_path=path, config=config, mesh=mesh, time=time)
+        # run("diamond-conv", "gdf", ncpu=1, ke_cutoff=None, chk_path=path, config=config, mesh=mesh, time=time)
+        # run("diamond-conv", "gdf", ncpu=32, ke_cutoff=None, chk_path=path, config=config, mesh=mesh, time=time)
 
-        # config = {"rcut_epsilon": 1.e-5, "ke_epsilon": 5.e-2, "isdf_thresh": 5.e-5}
-        # chk_path = "../../../gdf-32/tmp/scf.h5"
-        # run("diamond-conv", "fftisdf-ks", ncpu=1, ke_cutoff=ke_cutoff, chk_path=chk_path, config=config, mesh=mesh, time="08:00:00")
+        config = {"rcut_epsilon": 1.e-5, "ke_epsilon": 5.e-2, "isdf_thresh": 5.e-5}
+        chk_path = "../../../gdf-32/tmp/scf.h5"
+        run("diamond-conv", "fftisdf-ks", ncpu=1, ke_cutoff=ke_cutoff, chk_path=chk_path, config=config, mesh=mesh, time="08:00:00")
