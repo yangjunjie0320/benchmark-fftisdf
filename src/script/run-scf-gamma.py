@@ -223,7 +223,6 @@ if __name__ == "__main__":
             print("%s = %s" % (k, v))
     print()
 
-    from utils import get_cell
     e_tot = main(config)
 
     kl.append("e_tot")

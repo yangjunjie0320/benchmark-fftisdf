@@ -6,87 +6,48 @@ import pyscf, numpy
 from pyscf.lib import logger
 from pyscf.lib.logger import perf_counter
 from pyscf.lib.logger import process_clock
+from pyscf.pbc import tools
 
 from os import environ
 PYSCF_MAX_MEMORY = int(environ.get("PYSCF_MAX_MEMORY", 1000))
 TMPDIR = os.getenv("TMPDIR", "/tmp")
 assert os.path.exists(TMPDIR), f"TMPDIR {TMPDIR} does not exist"
 
-def DF(cell, kwargs):
+def DF(cell, **kwargs):
     cell = cell.copy(deep=True)
     df = kwargs.pop("df")
-
-    mesh = kwargs.pop("mesh", "1,1,1")
-    mesh = [int(x) for x in mesh.split(",")]
-    kpts = cell.make_kpts(mesh)
-    assert mesh == [1, 1, 1]
+    smesh = kwargs.pop("smesh")
 
     if df == "gdf":
         assert len(kwargs) == 0, f"kwargs = {kwargs}"
-
+        scell = tools.pbc.super_cell(cell, smesh)
+        
         from pyscf.pbc.df import GDF
-        df_obj = GDF(cell, kpts=kpts)
+        df_obj = GDF(scell)
         df_obj.verbose = 5
         df_obj.build()
 
     elif df == "fftdf":
         assert len(kwargs) == 0, f"kwargs = {kwargs}"
+        scell = tools.pbc.super_cell(cell, smesh)
 
         from pyscf.pbc.df import FFTDF
-        df_obj = FFTDF(cell, kpts=kpts)
+        df_obj = FFTDF(scell)
         df_obj.verbose = 5
         df_obj.build()
 
-    elif df == "fftisdf-jy":
-        k0 = kwargs.pop("k0")
-        c0 = kwargs.pop("c0")
-        assert len(kwargs) == 0, f"kwargs = {kwargs}"
-
-        from fft_isdf import FFTISDF
-        df_obj = FFTISDF(cell, kpts=kpts)
-        df_obj.verbose = 5
-
-        inpx = None
-        if k0 is None:
-            inpx = df_obj.get_inpx(c0=c0, g0=None, tol=1e-12)
-        else:
-            from pyscf.pbc.tools.pbc import cutoff_to_mesh
-            lv = cell.lattice_vectors()
-            m0 = cutoff_to_mesh(lv, k0)
-            g0 = cell.gen_uniform_grids(m0)
-            inpx = df_obj.get_inpx(g0=g0, c0=c0, tol=1e-12)
-
-        assert inpx is not None
-        df_obj.build(inpx=inpx)
-
-    elif df == "fftisdf-nz":
-        # only support mesh = [1, 1, 1]
-        assert mesh == [1, 1, 1]
-
-        aoR_cutoff = kwargs.pop("aoR_cutoff")
-        rela_qr = kwargs.pop("rela_qr")
-        c0 = kwargs.pop("c0")
-        assert len(kwargs) == 0, f"kwargs = {kwargs}"
-
-        kwargs = {
-            "aoR_cutoff" : aoR_cutoff,
-            "direct" : False,
-            "limited_memory" : False,
-            "with_robust_fitting" : False,
-            "build_V_K_bunchsize" : 64,
-        }
-
-        from pyscf.isdf import isdf_local
-        FFTISDF = isdf_local.ISDF_Local
-        df_obj = FFTISDF(cell, **kwargs)
-        df_obj.verbose = 5
-        df_obj.build(c=c0, rela_cutoff=rela_qr, group=None)
-        nip = df_obj.naux
-
     elif df == "fftisdf-ks":
-        # only support mesh = [1, 1, 1]
-        assert mesh == [1, 1, 1]
+        # path  = [os.path.expanduser("~/packages"), "PeriodicIntegrals"]
+        # path += ["PeriodicIntegrals-junjie-benchmark", "isdfx"]
+        # sys.path.append(os.path.join(*path))
 
+        path = [os.path.expanduser("~/packages"), "PeriodicIntegrals"]
+        path += ["PeriodicIntegrals-junjie-benchmark"]
+        sys.path.append(os.path.join(*path))
+
+        import isdfx
+        print(isdfx.__file__)
+        from isdfx.isdfx import ISDFX
         rcut_epsilon = kwargs.pop("rcut_epsilon")
         ke_epsilon = kwargs.pop("ke_epsilon")
         isdf_thresh = kwargs.pop("isdf_thresh")
@@ -101,10 +62,12 @@ def DF(cell, kwargs):
             "fit_sparse_grid" : False,
         }
 
-        sys.path.append("/home/junjiey/packages/PeriodicIntegrals/PeriodicIntegrals-junjie-benchmark/")
-        from isdfx.isdfx import ISDFX
-        df_obj = ISDFX(cell, **kwargs)
+        scell = tools.pbc.super_cell(cell, smesh)
+        df_obj = ISDFX(scell, **kwargs)
         df_obj.build(with_j=True, with_k=True)
+
+    elif df == "fftisdf-nz":
+        raise NotImplementedError
 
     else:
         raise NotImplementedError
@@ -117,49 +80,40 @@ def main(config):
     chk_path = config.pop("chk_path")
     ke_cutoff = config.pop("ke_cutoff")
     mesh = config.pop("mesh")
-    mesh = [int(x) for x in mesh.split(",")]
-    is_k_scf = not (mesh == [1, 1, 1])
 
     from utils import get_cell, INFO
     cell = get_cell(name)
     cell.ke_cutoff = INFO[name]["ke_cutoff"]
     if ke_cutoff is not None:
         cell.ke_cutoff = ke_cutoff
-    print(f"ke_cutoff = {cell.ke_cutoff}")
     cell.build(dump_input=False)
+    print(f"ke_cutoff = {cell.ke_cutoff}")
 
-    afm_guess = INFO[name].get("afm_guess", None)
-    is_u_scf = (afm_guess is not None)
+    from pyscf.pbc import tools
+    smesh = tuple(int(x) for x in mesh.split(","))
 
     t0 = (process_clock(), perf_counter())
-    df_obj = DF(cell, config)
+    df_obj = DF(cell, smesh=smesh, **config)
     log.timer("build", *t0)
 
-    scf_obj = pyscf.pbc.scf.KS(cell)
-    if is_k_scf:
-        scf_obj = scf_obj.to_kscf()
-        scf_obj.kpts = cell.make_kpts(mesh)
-    if is_u_scf:
-        scf_obj = scf_obj.to_uscf()
+    from pyscf.pbc.scf import RKS
+    scf_obj = RKS(tools.pbc.super_cell(cell, smesh))
+    scf_obj.xc = "PBE0"
     scf_obj.with_df = df_obj
     scf_obj.exxdiv = exxdiv
     scf_obj.verbose = 5
     scf_obj._is_mem_enough = lambda : False
-    scf_obj.conv_tol = 1e-6
+    scf_obj.conv_tol = 1e-8
 
+    dm0 = scf_obj.get_init_guess(key="minao")
     if chk_path is not None:
+        from pyscf.lib import tag_array
         from pyscf.lib.chkfile import load
         dm0 = load(chk_path, "dm0")
         c0_mo = load(chk_path, "c0_mo")
         n0_mo = load(chk_path, "n0_mo")
-
-        from pyscf.lib import tag_array
         dm0 = tag_array(dm0, mo_coeff=c0_mo, mo_occ=n0_mo)
-    else:
-        dm0 = scf_obj.get_init_guess(key="minao")
-        if afm_guess is not None:
-            from utils import gen_afm_guess
-            dm0 = gen_afm_guess(cell, dm0, afm_guess)
+        print("Successfully loaded dm0 from %s" % chk_path)
 
     assert exxdiv == None
     t0 = (process_clock(), perf_counter())
@@ -202,9 +156,9 @@ if __name__ == "__main__":
     parser.add_argument("--ke_cutoff", type=(lambda x: None if x == "None" else float(x)), default=None)
     parser.add_argument("--exxdiv", type=(lambda x: None if x == "None" else str(x)), default=None)
     parser.add_argument("--df", type=str, default="fftdf", choices=["gdf", "fftdf", "fftisdf-jy", "fftisdf-nz", "fftisdf-ks"])
-    parser.add_argument("--mesh", type=str, default="1,1,1", choices=["1,1,1", "2,2,2"])
-    parser.add_argument("--chk_path", type=str, default=None)
-
+    parser.add_argument("--chk_path", type=(lambda x: None if x == "None" else str(x)), default=None)
+    parser.add_argument("--mesh", type=str, default="1,1,1")
+    
     parser.add_argument("--c0", type=float, default=5.0)
     parser.add_argument("--k0", type=(lambda x: None if x == "None" else float(x)), default=None)
     parser.add_argument("--rela_qr", type=float, default=1e-3)
@@ -242,14 +196,18 @@ if __name__ == "__main__":
             print("%s = %s" % (k, v))
     print()
 
-    from utils import get_cell
     e_tot = main(config)
 
-    l = max(len(k) for k in kl)
-    l = max(l, 10)
-    kline = ", ".join(f"%{l}s" % k for k in kl)
-    vline = ", ".join(f"%{l}.2e" % v for v in vl)
-    kline += ", %12s" % "e_tot"
-    vline += ", % 12.6f" % e_tot
-    log.info("### " + kline % kl)
-    log.info("### " + vline % vl)
+    kl.append("e_tot")
+    vl.append(e_tot)
+    l = max([len(k) for k in kl] + [10])
+    # kline = ", ".join(f"%{l}s" % k for k in kl[:-1])
+    # vline = ", ".join(f"%{l}.2e" % v for v in vl[:-1])
+    # kline += "%12s"
+    # vline += "% 12.6f"
+    kline = [f"%{l}s"   % k for k in kl[:-1]] + ["%12s" % kl[-1]]
+    vline = [f"%{l}.2e" % v for v in vl[:-1]] + ["% 12.6f" % vl[-1]]
+    kline = ", ".join(kline)
+    vline = ", ".join(vline)
+    log.info("### " + kline)
+    log.info("### " + vline)

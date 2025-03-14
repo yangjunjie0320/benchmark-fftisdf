@@ -6,6 +6,7 @@ import pyscf, numpy
 from pyscf.lib import logger
 from pyscf.lib.logger import perf_counter
 from pyscf.lib.logger import process_clock
+from pyscf.pbc import tools
 
 from os import environ
 PYSCF_MAX_MEMORY = int(environ.get("PYSCF_MAX_MEMORY", 1000))
@@ -15,42 +16,58 @@ assert os.path.exists(TMPDIR), f"TMPDIR {TMPDIR} does not exist"
 def DF(cell, **kwargs):
     cell = cell.copy(deep=True)
     df = kwargs.pop("df")
-    kpts = kwargs.pop("kpts")
+    smesh = kwargs.pop("smesh")
 
     if df == "gdf":
         assert len(kwargs) == 0, f"kwargs = {kwargs}"
+        scell = tools.pbc.super_cell(cell, smesh)
+        
         from pyscf.pbc.df import GDF
-        df_obj = GDF(cell, kpts=kpts)
+        df_obj = GDF(scell)
         df_obj.verbose = 5
         df_obj.build()
 
     elif df == "fftdf":
         assert len(kwargs) == 0, f"kwargs = {kwargs}"
+        scell = tools.pbc.super_cell(cell, smesh)
+
         from pyscf.pbc.df import FFTDF
-        df_obj = FFTDF(cell, kpts=kpts)
+        df_obj = FFTDF(scell)
         df_obj.verbose = 5
         df_obj.build()
 
-    elif df == "fftisdf-jy":
-        k0 = kwargs.pop("k0")
-        c0 = kwargs.pop("c0")
+    elif df == "fftisdf-ks":
+        # path  = [os.path.expanduser("~/packages"), "PeriodicIntegrals"]
+        # path += ["PeriodicIntegrals-junjie-benchmark", "isdfx"]
+        # sys.path.append(os.path.join(*path))
+
+        path = [os.path.expanduser("~/packages"), "PeriodicIntegrals"]
+        path += ["PeriodicIntegrals-junjie-benchmark"]
+        sys.path.append(os.path.join(*path))
+
+        import isdfx
+        print(isdfx.__file__)
+        from isdfx.isdfx import ISDFX
+        rcut_epsilon = kwargs.pop("rcut_epsilon")
+        ke_epsilon = kwargs.pop("ke_epsilon")
+        isdf_thresh = kwargs.pop("isdf_thresh")
         assert len(kwargs) == 0, f"kwargs = {kwargs}"
 
-        from fft_isdf import FFTISDF
-        df_obj = FFTISDF(cell, kpts=kpts)
-        df_obj.verbose = 5
+        kwargs = {
+            "rcut_epsilon"    : rcut_epsilon,
+            "ke_epsilon"      : ke_epsilon,
+            "isdf_thresh"     : isdf_thresh,
+            "multigrid_on"    : True,
+            "fit_dense_grid"  : True,
+            "fit_sparse_grid" : False,
+        }
 
-        g0 = None
-        if k0 is not None:
-            from pyscf.pbc.tools.pbc import cutoff_to_mesh
-            lv = cell.lattice_vectors()
-            m0 = cutoff_to_mesh(lv, k0)
-            g0 = cell.gen_uniform_grids(m0)
-            print(f"g0 = {g0}, m0 = {m0}")
-        inpx = df_obj.get_inpx(g0=g0, c0=c0, tol=1e-12)
+        scell = tools.pbc.super_cell(cell, smesh)
+        df_obj = ISDFX(scell, **kwargs)
+        df_obj.build(with_j=True, with_k=True)
 
-        assert inpx is not None
-        df_obj.build(inpx=inpx)
+    elif df == "fftisdf-nz":
+        raise NotImplementedError
 
     else:
         raise NotImplementedError
@@ -62,7 +79,7 @@ def main(config):
     exxdiv = config.pop("exxdiv")
     chk_path = config.pop("chk_path")
     ke_cutoff = config.pop("ke_cutoff")
-    kmesh = config.pop("mesh")
+    mesh = config.pop("mesh")
 
     from utils import get_cell, INFO
     cell = get_cell(name)
@@ -72,15 +89,15 @@ def main(config):
     cell.build(dump_input=False)
     print(f"ke_cutoff = {cell.ke_cutoff}")
 
-    kmesh = tuple(int(x) for x in kmesh.split(","))
-    kpts = cell.make_kpts(kmesh)
+    from pyscf.pbc import tools
+    smesh = tuple(int(x) for x in mesh.split(","))
 
     t0 = (process_clock(), perf_counter())
-    df_obj = DF(cell, kpts=kpts, **config)
+    df_obj = DF(cell, smesh=smesh, **config)
     log.timer("build", *t0)
 
-    from pyscf.pbc.scf import KRKS, KUKS
-    scf_obj = KRKS(cell, kpts=kpts)
+    from pyscf.pbc.scf import RKS
+    scf_obj = RKS(tools.pbc.super_cell(cell, smesh))
     scf_obj.xc = "PBE0"
     scf_obj.with_df = df_obj
     scf_obj.exxdiv = exxdiv
@@ -167,8 +184,6 @@ if __name__ == "__main__":
 
     if not args.df == "fftisdf-jy":
         config.pop("k0")
-
-    assert args.df in ["fftdf", "gdf", "fftisdf-jy"]
 
     kl = []
     vl = []

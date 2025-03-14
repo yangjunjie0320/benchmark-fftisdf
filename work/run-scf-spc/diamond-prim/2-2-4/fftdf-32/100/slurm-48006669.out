@@ -1,0 +1,55 @@
+SLURMD_NODENAME = hpc-21-37
+Start time = Thu Mar 13 11:00:01 PM PDT 2025
+OMP_NUM_THREADS = 32
+MKL_NUM_THREADS = 1
+PYSCF_MAX_MEMORY = 81920
+TMPDIR = /central/scratch/yangjunjie//run-scf-spc-diamond-prim-2-2-4-fftdf-32-100-/48006669/
+PYSCF_TMPDIR = /central/scratch/yangjunjie//run-scf-spc-diamond-prim-2-2-4-fftdf-32-100-/48006669/
+
+/home/junjiey/anaconda3/envs/fftisdf/bin/python
+2.8.0
+1.13.1
+2.0.2
+fft_engine = NUMPY+BLAS
+name = diamond-prim
+ke_cutoff =  1.00e+02
+exxdiv = None
+df = fftdf
+chk_path = None
+mesh = 2,2,4
+
+Discarded 6 diffused primitive functions, 0 contracted functions
+ke_cutoff = 100.0
+
+WARN: ke_cutoff/mesh (100 / [47 47 93]) is not enough for FFTDF to get integral accuracy 1e-08.
+Coulomb integral error is ~ 4.1 Eh.
+Recommended ke_cutoff/mesh are 598.398 / [107 107 211].
+
+Initial guess from minao.
+
+
+******** <class 'pyscf.pbc.dft.rks.RKS'> ********
+method = RKS
+initial guess = minao
+damping factor = 0
+level_shift factor = 0
+DIIS = <class 'pyscf.scf.diis.CDIIS'>
+diis_start_cycle = 1
+diis_space = 8
+diis_damp = 0
+SCF conv_tol = 1e-08
+SCF conv_tol_grad = None
+SCF max_cycles = 50
+direct_scf = True
+direct_scf_tol = 1e-13
+chkfile to save SCF result = /central/scratch/yangjunjie/run-scf-spc-diamond-prim-2-2-4-fftdf-32-100-/48006669/tmpjsy4q88q
+max_memory 81920 MB (current use 451 MB)
+******** PBC SCF flags ********
+kpt = [0. 0. 0.]
+Exchange divergence treatment (exxdiv) = None
+DF object = <pyscf.pbc.df.fft.FFTDF object at 0x7f7c09c2efd0>
+XC functionals = PBE0
+small_rho_cutoff = 1e-07
+Set gradient conv threshold to 0.0001
+nelec by numeric integration = 127.99993342778308
+    CPU time for vxc    103.62 sec, wall time      4.37 sec
