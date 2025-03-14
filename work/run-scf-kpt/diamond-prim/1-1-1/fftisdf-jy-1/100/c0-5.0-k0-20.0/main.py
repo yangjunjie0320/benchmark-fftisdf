@@ -81,6 +81,7 @@ def main(config):
 
     from pyscf.pbc.scf import KRKS, KUKS
     scf_obj = KRKS(cell, kpts=kpts)
+    scf_obj.xc = "PBE0"
     scf_obj.with_df = df_obj
     scf_obj.exxdiv = exxdiv
     scf_obj.verbose = 5

@@ -1,0 +1,162 @@
+SLURMD_NODENAME = hpc-34-06
+Start time = Thu Mar 13 04:21:48 PM PDT 2025
+OMP_NUM_THREADS = 1
+MKL_NUM_THREADS = 1
+PYSCF_MAX_MEMORY = 81920
+TMPDIR = /central/scratch/yangjunjie//run-scf-kpt-diamond-prim-1-1-1-fftisdf-jy-1-100-c0-15.0-k0-20.0/47995719/
+PYSCF_TMPDIR = /central/scratch/yangjunjie//run-scf-kpt-diamond-prim-1-1-1-fftisdf-jy-1-100-c0-15.0-k0-20.0/47995719/
+
+/home/junjiey/anaconda3/envs/fftisdf/bin/python
+2.8.0
+1.13.1
+2.0.2
+fft_engine = NUMPY+BLAS
+name = diamond-prim
+ke_cutoff =  1.00e+02
+exxdiv = None
+df = fftisdf-jy
+chk_path = None
+mesh = 1,1,1
+c0 =  1.50e+01
+k0 =  2.00e+01
+
+Discarded 6 diffused primitive functions, 0 contracted functions
+ke_cutoff = 100.0
+g0 = [[ 0.          0.          0.        ]
+ [ 0.          0.          0.43254576]
+ [ 0.          0.          0.86509151]
+ ...
+ [-0.49946088 -0.35317212 -1.73018302]
+ [-0.49946088 -0.35317212 -1.29763727]
+ [-0.49946088 -0.35317212 -0.86509151]], m0 = [11 11 11]
+Pivoted Cholesky rank = 359, estimated error = 0.00e+00
+Parent grid size = 1331, selected grid size = 390
+    CPU time for interpolating functions      0.08 sec, wall time      0.08 sec
+
+
+******** <class 'fft_isdf.InterpolativeSeparableDensityFitting'> ********
+mesh = [23 23 23] (12167 PWs)
+len(kpts) = 1
+
+WARN: ke_cutoff/mesh (100 / [23 23 23]) is not enough for FFTDF to get integral accuracy 1e-08.
+Coulomb integral error is ~ 4.1 Eh.
+Recommended ke_cutoff/mesh are 598.398 / [55 55 55].
+
+kmesh = [1 1 1]
+kpts = 
+[[0. 0. 0.]]
+nip = 390, nao = 26, cisdf =  15.00
+    CPU time for get interpolating vectors      0.01 sec
+blksize = 12167, ngrid = 12167
+Use in-core for eta_kpt, memory used for eta_kpt = 7.59e-02 GB
+    CPU time for aoR_loop: [      0,   12167]      0.21 sec, wall time      0.21 sec
+eta_kpt.shape = (1, 12167, 390)
+Memory used for eta_kpt = 7.59e-02 GB
+
+Calculating Coulomb kernel with outcore method: q = 1 / 1
+blksize = 390, nip = 390, max_memory = 8.18e+01 GB
+memory used for each block = 7.59e-02 GB
+    CPU time for solving Coulomb kernel      1.27 sec, wall time      1.27 sec
+Finished solving Coulomb kernel for q =   1 /   1, rank = 249 / 390
+Saving FFTISDF results to /central/scratch/yangjunjie/run-scf-kpt-diamond-prim-1-1-1-fftisdf-jy-1-100-c0-15.0-k0-20.0/47995719/tmpcsh9mojv
+    CPU time for building ISDF      1.72 sec, wall time      1.73 sec
+Big error detected in the electron number of initial guess density matrix (Ne/cell = 8.1841)!
+  This can cause huge error in Fock matrix and lead to instability in SCF for low-dimensional systems.
+  DM is normalized wrt the number of electrons 8.0
+
+
+******** <class 'pyscf.pbc.dft.krks.KRKS'> ********
+method = KRKS
+initial guess = minao
+damping factor = 0
+level_shift factor = 0
+DIIS = <class 'pyscf.scf.diis.CDIIS'>
+diis_start_cycle = 1
+diis_space = 8
+diis_damp = 0
+SCF conv_tol = 1e-08
+SCF conv_tol_grad = None
+SCF max_cycles = 50
+direct_scf = True
+direct_scf_tol = 1e-13
+chkfile to save SCF result = /central/scratch/yangjunjie/run-scf-kpt-diamond-prim-1-1-1-fftisdf-jy-1-100-c0-15.0-k0-20.0/47995719/tmpf8edezdm
+max_memory 81920 MB (current use 105 MB)
+
+
+******** PBC SCF flags ********
+N kpts = 1
+kpts = [[0. 0. 0.]]
+Exchange divergence treatment (exxdiv) = None
+DF object = <fft_isdf.InterpolativeSeparableDensityFitting object at 0x7f607eae4d00>
+XC functionals = PBE0
+small_rho_cutoff = 1e-07
+Set gradient conv threshold to 0.0001
+nelec by numeric integration = 7.9999999985071355
+    CPU time for vxc      0.33 sec, wall time      0.33 sec
+    CPU time for vj and vk      0.41 sec, wall time      0.42 sec
+E1 = 4.275385517292916  Ecoul = 1.4123800464003589  Exc = -3.136073088282709
+init E= -10.2571806225755
+    CPU time for initialize scf      1.01 sec, wall time      1.01 sec
+HOMO = 0.632216396342  LUMO = 0.820226986656
+     k-point                  mo_energy
+   0 ( 0.000  0.000  0.000)   [-0.15424967  0.63221265  0.63221637  0.6322164 ] [0.82022699 0.82023188 0.82023199 1.14874651 1.73469372 1.73469383
+ 2.40313433 2.40314658 2.40314668 2.49524613 2.49525452 2.49525468
+ 3.56247094 3.5624712  3.76089968 3.76090016 3.76090036 4.63717389
+ 4.63719621 4.63719665 8.82531032 9.15415429]
+nelec by numeric integration = 7.999999999223865
+    CPU time for vxc      0.32 sec, wall time      0.33 sec
+    CPU time for vj and vk      0.41 sec, wall time      0.41 sec
+E1 = 4.728586995698826  Ecoul = 1.745523606934996  Exc = -3.2559259079753673
+cycle= 1 E= -9.59068840332763  delta_E= 0.666  |g|= 0.0365  |ddm|= 3.17
+    CPU time for cycle= 1      0.74 sec, wall time      0.74 sec
+HOMO = 0.679936244754  LUMO = 0.850567082086
+     k-point                  mo_energy
+   0 ( 0.000  0.000  0.000)   [-0.13845748  0.67988666  0.67988671  0.67993624] [0.85056708 0.8505672  0.85060867 1.20230006 1.75937765 1.75937776
+ 2.43747845 2.43747856 2.43750664 2.52464209 2.52464233 2.52483444
+ 3.59582751 3.59582781 3.78689742 3.78689755 3.78715408 4.67381018
+ 4.67383899 4.67383921 8.83507367 9.16257344]
+nelec by numeric integration = 7.999999999223413
+    CPU time for vxc      0.32 sec, wall time      0.32 sec
+    CPU time for vj and vk      0.41 sec, wall time      0.41 sec
+E1 = 4.737487233622456  Ecoul = 1.7338508866053661  Exc = -3.2533949498548425
+cycle= 2 E= -9.5909299276131  delta_E= -0.000242  |g|= 0.00486  |ddm|= 0.0273
+    CPU time for cycle= 2      0.74 sec, wall time      0.74 sec
+HOMO = 0.678609816496  LUMO = 0.849632620972
+     k-point                  mo_energy
+   0 ( 0.000  0.000  0.000)   [-0.13932897  0.67855576  0.67855581  0.67860982] [0.84963262 0.84963274 0.8496736  1.20076412 1.75874482 1.75874493
+ 2.43643423 2.43643433 2.43646109 2.52289475 2.52289498 2.52309208
+ 3.5947224  3.59472269 3.78526039 3.78526052 3.78551899 4.67247411
+ 4.67250164 4.67250186 8.83040317 9.15800552]
+nelec by numeric integration = 7.999999999223504
+    CPU time for vxc      0.32 sec, wall time      0.32 sec
+    CPU time for vj and vk      0.40 sec, wall time      0.40 sec
+E1 = 4.736385887365808  Ecoul = 1.735315292161891  Exc = -3.2537616431739353
+cycle= 3 E= -9.59093356163232  delta_E= -3.63e-06  |g|= 1.03e-05  |ddm|= 0.0033
+    CPU time for cycle= 3      0.72 sec, wall time      0.73 sec
+HOMO = 0.678621259992  LUMO = 0.849647294197
+     k-point                  mo_energy
+   0 ( 0.000  0.000  0.000)   [-0.13931815  0.67856722  0.67856727  0.67862126] [0.84964729 0.84964741 0.84968847 1.20078267 1.75875294 1.75875304
+ 2.43645252 2.43645263 2.43647942 2.52289833 2.52289856 2.52309627
+ 3.59473545 3.59473574 3.78526782 3.78526795 3.78552654 4.67248636
+ 4.67251375 4.67251397 8.83040357 9.15800677]
+nelec by numeric integration = 7.999999999223508
+    CPU time for vxc      0.21 sec, wall time      0.21 sec
+    CPU time for vj and vk      0.27 sec, wall time      0.27 sec
+E1 = 4.736384226982584  Ecoul = 1.7353177602108427  Exc = -3.253762450826377
+cycle= 4 E= -9.59093356161903  delta_E= 1.33e-11  |g|= 1.03e-05  |ddm|= 1.63e-05
+    CPU time for cycle= 4      0.48 sec, wall time      0.48 sec
+HOMO = 0.678621262354  LUMO = 0.849647280972
+     k-point                  mo_energy
+   0 ( 0.000  0.000  0.000)   [-0.13931817  0.67856719  0.67856725  0.67862126] [0.84964728 0.8496474  0.84968845 1.20078265 1.75875293 1.75875304
+ 2.43645251 2.43645261 2.4364794  2.52289831 2.52289855 2.52309627
+ 3.59473543 3.59473573 3.78526781 3.78526794 3.78552654 4.67248635
+ 4.67251373 4.67251395 8.83040355 9.15800675]
+nelec by numeric integration = 7.999999999223502
+    CPU time for vxc      0.21 sec, wall time      0.21 sec
+    CPU time for vj and vk      0.27 sec, wall time      0.27 sec
+E1 = 4.736384223322876  Ecoul = 1.7353177656159116  Exc = -3.2537624521454562
+Extra cycle  E= -9.59093356119275  delta_E= 4.26e-10  |g|= 4.2e-05  |ddm|= 5.89e-05
+    CPU time for scf_cycle      4.18 sec, wall time      4.19 sec
+    CPU time for SCF      4.27 sec, wall time      4.30 sec
+converged SCF energy = -9.59093356119275
+Successfully saved all results to /central/scratch/yangjunjie//run-scf-kpt-diamond-prim-1-1-1-fftisdf-jy-1-100-c0-15.0-k0-20.0/47995719/scf.h5

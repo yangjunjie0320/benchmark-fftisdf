@@ -1,0 +1,2451 @@
+SLURMD_NODENAME = hpc-21-26
+Start time = Thu Mar 13 04:28:52 PM PDT 2025
+OMP_NUM_THREADS = 1
+MKL_NUM_THREADS = 1
+PYSCF_MAX_MEMORY = 81920
+TMPDIR = /central/scratch/yangjunjie//run-scf-kpt-diamond-prim-4-4-4-fftisdf-jy-1-100-c0-5.0-k0-100.0/47996016/
+PYSCF_TMPDIR = /central/scratch/yangjunjie//run-scf-kpt-diamond-prim-4-4-4-fftisdf-jy-1-100-c0-5.0-k0-100.0/47996016/
+
+/home/junjiey/anaconda3/envs/fftisdf/bin/python
+2.8.0
+1.13.1
+2.0.2
+fft_engine = NUMPY+BLAS
+name = diamond-prim
+ke_cutoff =  1.00e+02
+exxdiv = None
+df = fftisdf-jy
+chk_path = None
+mesh = 4,4,4
+c0 =  5.00e+00
+k0 =  1.00e+02
+
+Discarded 6 diffused primitive functions, 0 contracted functions
+ke_cutoff = 100.0
+g0 = [[ 0.          0.          0.        ]
+ [ 0.          0.          0.20686971]
+ [ 0.          0.          0.41373942]
+ ...
+ [-0.2388726  -0.16890841 -0.82747884]
+ [-0.2388726  -0.16890841 -0.62060913]
+ [-0.2388726  -0.16890841 -0.41373942]], m0 = [23 23 23]
+Pivoted Cholesky rank = 375, estimated error = 5.49e-02
+Parent grid size = 12167, selected grid size = 130
+    CPU time for interpolating functions      3.83 sec, wall time      3.84 sec
+
+
+******** <class 'fft_isdf.InterpolativeSeparableDensityFitting'> ********
+mesh = [23 23 23] (12167 PWs)
+len(kpts) = 64
+
+WARN: ke_cutoff/mesh (100 / [23 23 23]) is not enough for FFTDF to get integral accuracy 1e-08.
+Coulomb integral error is ~ 4.1 Eh.
+Recommended ke_cutoff/mesh are 598.398 / [55 55 55].
+
+kmesh = [4 4 4]
+kpts = 
+[[ 0.00000000e+00  0.00000000e+00  0.00000000e+00]
+ [-1.90605072e-01 -1.34778159e-01  3.30137712e-01]
+ [-3.81210144e-01 -2.69556319e-01  6.60275424e-01]
+ [-5.71815216e-01 -4.04334478e-01  9.90413137e-01]
+ [ 0.00000000e+00  4.04334478e-01  0.00000000e+00]
+ [-1.90605072e-01  2.69556319e-01  3.30137712e-01]
+ [-3.81210144e-01  1.34778159e-01  6.60275424e-01]
+ [-5.71815216e-01 -2.77555756e-17  9.90413137e-01]
+ [ 0.00000000e+00  8.08668956e-01  0.00000000e+00]
+ [-1.90605072e-01  6.73890797e-01  3.30137712e-01]
+ [-3.81210144e-01  5.39112637e-01  6.60275424e-01]
+ [-5.71815216e-01  4.04334478e-01  9.90413137e-01]
+ [ 0.00000000e+00  1.21300343e+00  0.00000000e+00]
+ [-1.90605072e-01  1.07822527e+00  3.30137712e-01]
+ [-3.81210144e-01  9.43447115e-01  6.60275424e-01]
+ [-5.71815216e-01  8.08668956e-01  9.90413137e-01]
+ [ 3.81210144e-01 -1.34778159e-01  0.00000000e+00]
+ [ 1.90605072e-01 -2.69556319e-01  3.30137712e-01]
+ [ 5.55111512e-17 -4.04334478e-01  6.60275424e-01]
+ [-1.90605072e-01 -5.39112637e-01  9.90413137e-01]
+ [ 3.81210144e-01  2.69556319e-01  0.00000000e+00]
+ [ 1.90605072e-01  1.34778159e-01  3.30137712e-01]
+ [ 5.55111512e-17  0.00000000e+00  6.60275424e-01]
+ [-1.90605072e-01 -1.34778159e-01  9.90413137e-01]
+ [ 3.81210144e-01  6.73890797e-01  0.00000000e+00]
+ [ 1.90605072e-01  5.39112637e-01  3.30137712e-01]
+ [ 5.55111512e-17  4.04334478e-01  6.60275424e-01]
+ [-1.90605072e-01  2.69556319e-01  9.90413137e-01]
+ [ 3.81210144e-01  1.07822527e+00  0.00000000e+00]
+ [ 1.90605072e-01  9.43447115e-01  3.30137712e-01]
+ [ 5.55111512e-17  8.08668956e-01  6.60275424e-01]
+ [-1.90605072e-01  6.73890797e-01  9.90413137e-01]
+ [ 7.62420288e-01 -2.69556319e-01  0.00000000e+00]
+ [ 5.71815216e-01 -4.04334478e-01  3.30137712e-01]
+ [ 3.81210144e-01 -5.39112637e-01  6.60275424e-01]
+ [ 1.90605072e-01 -6.73890797e-01  9.90413137e-01]
+ [ 7.62420288e-01  1.34778159e-01  0.00000000e+00]
+ [ 5.71815216e-01  2.77555756e-17  3.30137712e-01]
+ [ 3.81210144e-01 -1.34778159e-01  6.60275424e-01]
+ [ 1.90605072e-01 -2.69556319e-01  9.90413137e-01]
+ [ 7.62420288e-01  5.39112637e-01  0.00000000e+00]
+ [ 5.71815216e-01  4.04334478e-01  3.30137712e-01]
+ [ 3.81210144e-01  2.69556319e-01  6.60275424e-01]
+ [ 1.90605072e-01  1.34778159e-01  9.90413137e-01]
+ [ 7.62420288e-01  9.43447115e-01  0.00000000e+00]
+ [ 5.71815216e-01  8.08668956e-01  3.30137712e-01]
+ [ 3.81210144e-01  6.73890797e-01  6.60275424e-01]
+ [ 1.90605072e-01  5.39112637e-01  9.90413137e-01]
+ [ 1.14363043e+00 -4.04334478e-01  0.00000000e+00]
+ [ 9.53025361e-01 -5.39112637e-01  3.30137712e-01]
+ [ 7.62420288e-01 -6.73890797e-01  6.60275424e-01]
+ [ 5.71815216e-01 -8.08668956e-01  9.90413137e-01]
+ [ 1.14363043e+00  5.55111512e-17  0.00000000e+00]
+ [ 9.53025361e-01 -1.34778159e-01  3.30137712e-01]
+ [ 7.62420288e-01 -2.69556319e-01  6.60275424e-01]
+ [ 5.71815216e-01 -4.04334478e-01  9.90413137e-01]
+ [ 1.14363043e+00  4.04334478e-01  0.00000000e+00]
+ [ 9.53025361e-01  2.69556319e-01  3.30137712e-01]
+ [ 7.62420288e-01  1.34778159e-01  6.60275424e-01]
+ [ 5.71815216e-01  2.77555756e-17  9.90413137e-01]
+ [ 1.14363043e+00  8.08668956e-01  0.00000000e+00]
+ [ 9.53025361e-01  6.73890797e-01  3.30137712e-01]
+ [ 7.62420288e-01  5.39112637e-01  6.60275424e-01]
+ [ 5.71815216e-01  4.04334478e-01  9.90413137e-01]]
+nip = 130, nao = 26, cisdf =   5.00
+    CPU time for get interpolating vectors      0.01 sec
+blksize = 12167, ngrid = 12167
+Use in-core for eta_kpt, memory used for eta_kpt = 1.62e+00 GB
+    CPU time for aoR_loop: [      0,   12167]      5.75 sec, wall time      5.77 sec
+eta_kpt.shape = (64, 12167, 130)
+Memory used for eta_kpt = 1.62e+00 GB
+
+Calculating Coulomb kernel with outcore method: q = 1 / 64
+blksize = 130, nip = 130, max_memory = 8.18e+01 GB
+memory used for each block = 2.53e-02 GB
+    CPU time for solving Coulomb kernel      0.29 sec, wall time      0.29 sec
+Finished solving Coulomb kernel for q =   1 /  64, rank = 130 / 130
+
+Calculating Coulomb kernel with outcore method: q = 2 / 64
+blksize = 130, nip = 130, max_memory = 8.18e+01 GB
+memory used for each block = 2.53e-02 GB
+    CPU time for solving Coulomb kernel      0.28 sec, wall time      0.28 sec
+Finished solving Coulomb kernel for q =   2 /  64, rank = 130 / 130
+
+Calculating Coulomb kernel with outcore method: q = 3 / 64
+blksize = 130, nip = 130, max_memory = 8.18e+01 GB
+memory used for each block = 2.53e-02 GB
+    CPU time for solving Coulomb kernel      0.27 sec, wall time      0.27 sec
+Finished solving Coulomb kernel for q =   3 /  64, rank = 130 / 130
+
+Calculating Coulomb kernel with outcore method: q = 4 / 64
+blksize = 130, nip = 130, max_memory = 8.18e+01 GB
+memory used for each block = 2.53e-02 GB
+    CPU time for solving Coulomb kernel      0.27 sec, wall time      0.27 sec
+Finished solving Coulomb kernel for q =   4 /  64, rank = 130 / 130
+
+Calculating Coulomb kernel with outcore method: q = 5 / 64
+blksize = 130, nip = 130, max_memory = 8.18e+01 GB
+memory used for each block = 2.53e-02 GB
+    CPU time for solving Coulomb kernel      0.27 sec, wall time      0.27 sec
+Finished solving Coulomb kernel for q =   5 /  64, rank = 130 / 130
+
+Calculating Coulomb kernel with outcore method: q = 6 / 64
+blksize = 130, nip = 130, max_memory = 8.18e+01 GB
+memory used for each block = 2.53e-02 GB
+    CPU time for solving Coulomb kernel      0.27 sec, wall time      0.27 sec
+Finished solving Coulomb kernel for q =   6 /  64, rank = 130 / 130
+
+Calculating Coulomb kernel with outcore method: q = 7 / 64
+blksize = 130, nip = 130, max_memory = 8.18e+01 GB
+memory used for each block = 2.53e-02 GB
+    CPU time for solving Coulomb kernel      0.27 sec, wall time      0.27 sec
+Finished solving Coulomb kernel for q =   7 /  64, rank = 130 / 130
+
+Calculating Coulomb kernel with outcore method: q = 8 / 64
+blksize = 130, nip = 130, max_memory = 8.18e+01 GB
+memory used for each block = 2.53e-02 GB
+    CPU time for solving Coulomb kernel      0.28 sec, wall time      0.28 sec
+Finished solving Coulomb kernel for q =   8 /  64, rank = 130 / 130
+
+Calculating Coulomb kernel with outcore method: q = 9 / 64
+blksize = 130, nip = 130, max_memory = 8.18e+01 GB
+memory used for each block = 2.53e-02 GB
+    CPU time for solving Coulomb kernel      0.27 sec, wall time      0.27 sec
+Finished solving Coulomb kernel for q =   9 /  64, rank = 130 / 130
+
+Calculating Coulomb kernel with outcore method: q = 10 / 64
+blksize = 130, nip = 130, max_memory = 8.18e+01 GB
+memory used for each block = 2.53e-02 GB
+    CPU time for solving Coulomb kernel      0.27 sec, wall time      0.27 sec
+Finished solving Coulomb kernel for q =  10 /  64, rank = 130 / 130
+
+Calculating Coulomb kernel with outcore method: q = 11 / 64
+blksize = 130, nip = 130, max_memory = 8.18e+01 GB
+memory used for each block = 2.53e-02 GB
+    CPU time for solving Coulomb kernel      0.27 sec, wall time      0.27 sec
+Finished solving Coulomb kernel for q =  11 /  64, rank = 130 / 130
+
+Calculating Coulomb kernel with outcore method: q = 12 / 64
+blksize = 130, nip = 130, max_memory = 8.18e+01 GB
+memory used for each block = 2.53e-02 GB
+    CPU time for solving Coulomb kernel      0.27 sec, wall time      0.27 sec
+Finished solving Coulomb kernel for q =  12 /  64, rank = 130 / 130
+
+Calculating Coulomb kernel with outcore method: q = 13 / 64
+blksize = 130, nip = 130, max_memory = 8.18e+01 GB
+memory used for each block = 2.53e-02 GB
+    CPU time for solving Coulomb kernel      0.27 sec, wall time      0.27 sec
+Finished solving Coulomb kernel for q =  13 /  64, rank = 130 / 130
+
+Calculating Coulomb kernel with outcore method: q = 14 / 64
+blksize = 130, nip = 130, max_memory = 8.18e+01 GB
+memory used for each block = 2.53e-02 GB
+    CPU time for solving Coulomb kernel      0.27 sec, wall time      0.27 sec
+Finished solving Coulomb kernel for q =  14 /  64, rank = 130 / 130
+
+Calculating Coulomb kernel with outcore method: q = 15 / 64
+blksize = 130, nip = 130, max_memory = 8.18e+01 GB
+memory used for each block = 2.53e-02 GB
+    CPU time for solving Coulomb kernel      0.27 sec, wall time      0.27 sec
+Finished solving Coulomb kernel for q =  15 /  64, rank = 130 / 130
+
+Calculating Coulomb kernel with outcore method: q = 16 / 64
+blksize = 130, nip = 130, max_memory = 8.18e+01 GB
+memory used for each block = 2.53e-02 GB
+    CPU time for solving Coulomb kernel      0.27 sec, wall time      0.27 sec
+Finished solving Coulomb kernel for q =  16 /  64, rank = 130 / 130
+
+Calculating Coulomb kernel with outcore method: q = 17 / 64
+blksize = 130, nip = 130, max_memory = 8.18e+01 GB
+memory used for each block = 2.53e-02 GB
+    CPU time for solving Coulomb kernel      0.28 sec, wall time      0.28 sec
+Finished solving Coulomb kernel for q =  17 /  64, rank = 130 / 130
+
+Calculating Coulomb kernel with outcore method: q = 18 / 64
+blksize = 130, nip = 130, max_memory = 8.18e+01 GB
+memory used for each block = 2.53e-02 GB
+    CPU time for solving Coulomb kernel      0.27 sec, wall time      0.27 sec
+Finished solving Coulomb kernel for q =  18 /  64, rank = 130 / 130
+
+Calculating Coulomb kernel with outcore method: q = 19 / 64
+blksize = 130, nip = 130, max_memory = 8.18e+01 GB
+memory used for each block = 2.53e-02 GB
+    CPU time for solving Coulomb kernel      0.27 sec, wall time      0.27 sec
+Finished solving Coulomb kernel for q =  19 /  64, rank = 130 / 130
+
+Calculating Coulomb kernel with outcore method: q = 20 / 64
+blksize = 130, nip = 130, max_memory = 8.18e+01 GB
+memory used for each block = 2.53e-02 GB
+    CPU time for solving Coulomb kernel      0.27 sec, wall time      0.27 sec
+Finished solving Coulomb kernel for q =  20 /  64, rank = 130 / 130
+
+Calculating Coulomb kernel with outcore method: q = 21 / 64
+blksize = 130, nip = 130, max_memory = 8.18e+01 GB
+memory used for each block = 2.53e-02 GB
+    CPU time for solving Coulomb kernel      0.27 sec, wall time      0.27 sec
+Finished solving Coulomb kernel for q =  21 /  64, rank = 130 / 130
+
+Calculating Coulomb kernel with outcore method: q = 22 / 64
+blksize = 130, nip = 130, max_memory = 8.18e+01 GB
+memory used for each block = 2.53e-02 GB
+    CPU time for solving Coulomb kernel      0.28 sec, wall time      0.28 sec
+Finished solving Coulomb kernel for q =  22 /  64, rank = 130 / 130
+
+Calculating Coulomb kernel with outcore method: q = 23 / 64
+blksize = 130, nip = 130, max_memory = 8.18e+01 GB
+memory used for each block = 2.53e-02 GB
+    CPU time for solving Coulomb kernel      0.27 sec, wall time      0.27 sec
+Finished solving Coulomb kernel for q =  23 /  64, rank = 130 / 130
+
+Calculating Coulomb kernel with outcore method: q = 24 / 64
+blksize = 130, nip = 130, max_memory = 8.18e+01 GB
+memory used for each block = 2.53e-02 GB
+    CPU time for solving Coulomb kernel      0.27 sec, wall time      0.27 sec
+Finished solving Coulomb kernel for q =  24 /  64, rank = 130 / 130
+
+Calculating Coulomb kernel with outcore method: q = 25 / 64
+blksize = 130, nip = 130, max_memory = 8.18e+01 GB
+memory used for each block = 2.53e-02 GB
+    CPU time for solving Coulomb kernel      0.27 sec, wall time      0.27 sec
+Finished solving Coulomb kernel for q =  25 /  64, rank = 130 / 130
+
+Calculating Coulomb kernel with outcore method: q = 26 / 64
+blksize = 130, nip = 130, max_memory = 8.18e+01 GB
+memory used for each block = 2.53e-02 GB
+    CPU time for solving Coulomb kernel      0.27 sec, wall time      0.27 sec
+Finished solving Coulomb kernel for q =  26 /  64, rank = 130 / 130
+
+Calculating Coulomb kernel with outcore method: q = 27 / 64
+blksize = 130, nip = 130, max_memory = 8.18e+01 GB
+memory used for each block = 2.53e-02 GB
+    CPU time for solving Coulomb kernel      0.27 sec, wall time      0.27 sec
+Finished solving Coulomb kernel for q =  27 /  64, rank = 130 / 130
+
+Calculating Coulomb kernel with outcore method: q = 28 / 64
+blksize = 130, nip = 130, max_memory = 8.18e+01 GB
+memory used for each block = 2.53e-02 GB
+    CPU time for solving Coulomb kernel      0.27 sec, wall time      0.27 sec
+Finished solving Coulomb kernel for q =  28 /  64, rank = 130 / 130
+
+Calculating Coulomb kernel with outcore method: q = 29 / 64
+blksize = 130, nip = 130, max_memory = 8.18e+01 GB
+memory used for each block = 2.53e-02 GB
+    CPU time for solving Coulomb kernel      0.28 sec, wall time      0.28 sec
+Finished solving Coulomb kernel for q =  29 /  64, rank = 130 / 130
+
+Calculating Coulomb kernel with outcore method: q = 30 / 64
+blksize = 130, nip = 130, max_memory = 8.18e+01 GB
+memory used for each block = 2.53e-02 GB
+    CPU time for solving Coulomb kernel      0.27 sec, wall time      0.27 sec
+Finished solving Coulomb kernel for q =  30 /  64, rank = 130 / 130
+
+Calculating Coulomb kernel with outcore method: q = 31 / 64
+blksize = 130, nip = 130, max_memory = 8.18e+01 GB
+memory used for each block = 2.53e-02 GB
+    CPU time for solving Coulomb kernel      0.27 sec, wall time      0.27 sec
+Finished solving Coulomb kernel for q =  31 /  64, rank = 130 / 130
+
+Calculating Coulomb kernel with outcore method: q = 32 / 64
+blksize = 130, nip = 130, max_memory = 8.18e+01 GB
+memory used for each block = 2.53e-02 GB
+    CPU time for solving Coulomb kernel      0.27 sec, wall time      0.27 sec
+Finished solving Coulomb kernel for q =  32 /  64, rank = 130 / 130
+
+Calculating Coulomb kernel with outcore method: q = 33 / 64
+blksize = 130, nip = 130, max_memory = 8.18e+01 GB
+memory used for each block = 2.53e-02 GB
+    CPU time for solving Coulomb kernel      0.27 sec, wall time      0.27 sec
+Finished solving Coulomb kernel for q =  33 /  64, rank = 130 / 130
+
+Calculating Coulomb kernel with outcore method: q = 34 / 64
+blksize = 130, nip = 130, max_memory = 8.18e+01 GB
+memory used for each block = 2.53e-02 GB
+    CPU time for solving Coulomb kernel      0.27 sec, wall time      0.27 sec
+Finished solving Coulomb kernel for q =  34 /  64, rank = 130 / 130
+
+Calculating Coulomb kernel with outcore method: q = 35 / 64
+blksize = 130, nip = 130, max_memory = 8.18e+01 GB
+memory used for each block = 2.53e-02 GB
+    CPU time for solving Coulomb kernel      0.27 sec, wall time      0.27 sec
+Finished solving Coulomb kernel for q =  35 /  64, rank = 130 / 130
+
+Calculating Coulomb kernel with outcore method: q = 36 / 64
+blksize = 130, nip = 130, max_memory = 8.18e+01 GB
+memory used for each block = 2.53e-02 GB
+    CPU time for solving Coulomb kernel      0.27 sec, wall time      0.27 sec
+Finished solving Coulomb kernel for q =  36 /  64, rank = 130 / 130
+
+Calculating Coulomb kernel with outcore method: q = 37 / 64
+blksize = 130, nip = 130, max_memory = 8.18e+01 GB
+memory used for each block = 2.53e-02 GB
+    CPU time for solving Coulomb kernel      0.27 sec, wall time      0.27 sec
+Finished solving Coulomb kernel for q =  37 /  64, rank = 130 / 130
+
+Calculating Coulomb kernel with outcore method: q = 38 / 64
+blksize = 130, nip = 130, max_memory = 8.18e+01 GB
+memory used for each block = 2.53e-02 GB
+    CPU time for solving Coulomb kernel      0.27 sec, wall time      0.27 sec
+Finished solving Coulomb kernel for q =  38 /  64, rank = 130 / 130
+
+Calculating Coulomb kernel with outcore method: q = 39 / 64
+blksize = 130, nip = 130, max_memory = 8.18e+01 GB
+memory used for each block = 2.53e-02 GB
+    CPU time for solving Coulomb kernel      0.27 sec, wall time      0.27 sec
+Finished solving Coulomb kernel for q =  39 /  64, rank = 130 / 130
+
+Calculating Coulomb kernel with outcore method: q = 40 / 64
+blksize = 130, nip = 130, max_memory = 8.18e+01 GB
+memory used for each block = 2.53e-02 GB
+    CPU time for solving Coulomb kernel      0.27 sec, wall time      0.27 sec
+Finished solving Coulomb kernel for q =  40 /  64, rank = 130 / 130
+
+Calculating Coulomb kernel with outcore method: q = 41 / 64
+blksize = 130, nip = 130, max_memory = 8.18e+01 GB
+memory used for each block = 2.53e-02 GB
+    CPU time for solving Coulomb kernel      0.27 sec, wall time      0.27 sec
+Finished solving Coulomb kernel for q =  41 /  64, rank = 130 / 130
+
+Calculating Coulomb kernel with outcore method: q = 42 / 64
+blksize = 130, nip = 130, max_memory = 8.18e+01 GB
+memory used for each block = 2.53e-02 GB
+    CPU time for solving Coulomb kernel      0.27 sec, wall time      0.27 sec
+Finished solving Coulomb kernel for q =  42 /  64, rank = 130 / 130
+
+Calculating Coulomb kernel with outcore method: q = 43 / 64
+blksize = 130, nip = 130, max_memory = 8.18e+01 GB
+memory used for each block = 2.53e-02 GB
+    CPU time for solving Coulomb kernel      0.27 sec, wall time      0.27 sec
+Finished solving Coulomb kernel for q =  43 /  64, rank = 130 / 130
+
+Calculating Coulomb kernel with outcore method: q = 44 / 64
+blksize = 130, nip = 130, max_memory = 8.18e+01 GB
+memory used for each block = 2.53e-02 GB
+    CPU time for solving Coulomb kernel      0.28 sec, wall time      0.28 sec
+Finished solving Coulomb kernel for q =  44 /  64, rank = 130 / 130
+
+Calculating Coulomb kernel with outcore method: q = 45 / 64
+blksize = 130, nip = 130, max_memory = 8.18e+01 GB
+memory used for each block = 2.53e-02 GB
+    CPU time for solving Coulomb kernel      0.27 sec, wall time      0.27 sec
+Finished solving Coulomb kernel for q =  45 /  64, rank = 130 / 130
+
+Calculating Coulomb kernel with outcore method: q = 46 / 64
+blksize = 130, nip = 130, max_memory = 8.18e+01 GB
+memory used for each block = 2.53e-02 GB
+    CPU time for solving Coulomb kernel      0.27 sec, wall time      0.27 sec
+Finished solving Coulomb kernel for q =  46 /  64, rank = 130 / 130
+
+Calculating Coulomb kernel with outcore method: q = 47 / 64
+blksize = 130, nip = 130, max_memory = 8.18e+01 GB
+memory used for each block = 2.53e-02 GB
+    CPU time for solving Coulomb kernel      0.27 sec, wall time      0.27 sec
+Finished solving Coulomb kernel for q =  47 /  64, rank = 130 / 130
+
+Calculating Coulomb kernel with outcore method: q = 48 / 64
+blksize = 130, nip = 130, max_memory = 8.18e+01 GB
+memory used for each block = 2.53e-02 GB
+    CPU time for solving Coulomb kernel      0.27 sec, wall time      0.27 sec
+Finished solving Coulomb kernel for q =  48 /  64, rank = 130 / 130
+
+Calculating Coulomb kernel with outcore method: q = 49 / 64
+blksize = 130, nip = 130, max_memory = 8.18e+01 GB
+memory used for each block = 2.53e-02 GB
+    CPU time for solving Coulomb kernel      0.27 sec, wall time      0.27 sec
+Finished solving Coulomb kernel for q =  49 /  64, rank = 130 / 130
+
+Calculating Coulomb kernel with outcore method: q = 50 / 64
+blksize = 130, nip = 130, max_memory = 8.18e+01 GB
+memory used for each block = 2.53e-02 GB
+    CPU time for solving Coulomb kernel      0.28 sec, wall time      0.28 sec
+Finished solving Coulomb kernel for q =  50 /  64, rank = 130 / 130
+
+Calculating Coulomb kernel with outcore method: q = 51 / 64
+blksize = 130, nip = 130, max_memory = 8.18e+01 GB
+memory used for each block = 2.53e-02 GB
+    CPU time for solving Coulomb kernel      0.27 sec, wall time      0.27 sec
+Finished solving Coulomb kernel for q =  51 /  64, rank = 130 / 130
+
+Calculating Coulomb kernel with outcore method: q = 52 / 64
+blksize = 130, nip = 130, max_memory = 8.18e+01 GB
+memory used for each block = 2.53e-02 GB
+    CPU time for solving Coulomb kernel      0.27 sec, wall time      0.27 sec
+Finished solving Coulomb kernel for q =  52 /  64, rank = 130 / 130
+
+Calculating Coulomb kernel with outcore method: q = 53 / 64
+blksize = 130, nip = 130, max_memory = 8.18e+01 GB
+memory used for each block = 2.53e-02 GB
+    CPU time for solving Coulomb kernel      0.27 sec, wall time      0.27 sec
+Finished solving Coulomb kernel for q =  53 /  64, rank = 130 / 130
+
+Calculating Coulomb kernel with outcore method: q = 54 / 64
+blksize = 130, nip = 130, max_memory = 8.18e+01 GB
+memory used for each block = 2.53e-02 GB
+    CPU time for solving Coulomb kernel      0.27 sec, wall time      0.27 sec
+Finished solving Coulomb kernel for q =  54 /  64, rank = 130 / 130
+
+Calculating Coulomb kernel with outcore method: q = 55 / 64
+blksize = 130, nip = 130, max_memory = 8.18e+01 GB
+memory used for each block = 2.53e-02 GB
+    CPU time for solving Coulomb kernel      0.27 sec, wall time      0.27 sec
+Finished solving Coulomb kernel for q =  55 /  64, rank = 130 / 130
+
+Calculating Coulomb kernel with outcore method: q = 56 / 64
+blksize = 130, nip = 130, max_memory = 8.18e+01 GB
+memory used for each block = 2.53e-02 GB
+    CPU time for solving Coulomb kernel      0.27 sec, wall time      0.27 sec
+Finished solving Coulomb kernel for q =  56 /  64, rank = 130 / 130
+
+Calculating Coulomb kernel with outcore method: q = 57 / 64
+blksize = 130, nip = 130, max_memory = 8.18e+01 GB
+memory used for each block = 2.53e-02 GB
+    CPU time for solving Coulomb kernel      0.27 sec, wall time      0.27 sec
+Finished solving Coulomb kernel for q =  57 /  64, rank = 130 / 130
+
+Calculating Coulomb kernel with outcore method: q = 58 / 64
+blksize = 130, nip = 130, max_memory = 8.18e+01 GB
+memory used for each block = 2.53e-02 GB
+    CPU time for solving Coulomb kernel      0.27 sec, wall time      0.27 sec
+Finished solving Coulomb kernel for q =  58 /  64, rank = 130 / 130
+
+Calculating Coulomb kernel with outcore method: q = 59 / 64
+blksize = 130, nip = 130, max_memory = 8.18e+01 GB
+memory used for each block = 2.53e-02 GB
+    CPU time for solving Coulomb kernel      0.27 sec, wall time      0.27 sec
+Finished solving Coulomb kernel for q =  59 /  64, rank = 130 / 130
+
+Calculating Coulomb kernel with outcore method: q = 60 / 64
+blksize = 130, nip = 130, max_memory = 8.18e+01 GB
+memory used for each block = 2.53e-02 GB
+    CPU time for solving Coulomb kernel      0.27 sec, wall time      0.27 sec
+Finished solving Coulomb kernel for q =  60 /  64, rank = 130 / 130
+
+Calculating Coulomb kernel with outcore method: q = 61 / 64
+blksize = 130, nip = 130, max_memory = 8.18e+01 GB
+memory used for each block = 2.53e-02 GB
+    CPU time for solving Coulomb kernel      0.27 sec, wall time      0.27 sec
+Finished solving Coulomb kernel for q =  61 /  64, rank = 130 / 130
+
+Calculating Coulomb kernel with outcore method: q = 62 / 64
+blksize = 130, nip = 130, max_memory = 8.18e+01 GB
+memory used for each block = 2.53e-02 GB
+    CPU time for solving Coulomb kernel      0.27 sec, wall time      0.27 sec
+Finished solving Coulomb kernel for q =  62 /  64, rank = 130 / 130
+
+Calculating Coulomb kernel with outcore method: q = 63 / 64
+blksize = 130, nip = 130, max_memory = 8.18e+01 GB
+memory used for each block = 2.53e-02 GB
+    CPU time for solving Coulomb kernel      0.28 sec, wall time      0.28 sec
+Finished solving Coulomb kernel for q =  63 /  64, rank = 130 / 130
+
+Calculating Coulomb kernel with outcore method: q = 64 / 64
+blksize = 130, nip = 130, max_memory = 8.18e+01 GB
+memory used for each block = 2.53e-02 GB
+    CPU time for solving Coulomb kernel      0.28 sec, wall time      0.28 sec
+Finished solving Coulomb kernel for q =  64 /  64, rank = 130 / 130
+Saving FFTISDF results to /central/scratch/yangjunjie/run-scf-kpt-diamond-prim-4-4-4-fftisdf-jy-1-100-c0-5.0-k0-100.0/47996016/tmpy4zsra__
+    CPU time for building ISDF     23.97 sec, wall time     24.19 sec
+
+
+******** <class 'pyscf.pbc.dft.krks.KRKS'> ********
+method = KRKS
+initial guess = minao
+damping factor = 0
+level_shift factor = 0
+DIIS = <class 'pyscf.scf.diis.CDIIS'>
+diis_start_cycle = 1
+diis_space = 8
+diis_damp = 0
+SCF conv_tol = 1e-08
+SCF conv_tol_grad = None
+SCF max_cycles = 50
+direct_scf = True
+direct_scf_tol = 1e-13
+chkfile to save SCF result = /central/scratch/yangjunjie/run-scf-kpt-diamond-prim-4-4-4-fftisdf-jy-1-100-c0-5.0-k0-100.0/47996016/tmp6wx2jm2w
+max_memory 81920 MB (current use 123 MB)
+
+
+******** PBC SCF flags ********
+N kpts = 64
+kpts = [[ 0.00000000e+00  0.00000000e+00  0.00000000e+00]
+ [-1.90605072e-01 -1.34778159e-01  3.30137712e-01]
+ [-3.81210144e-01 -2.69556319e-01  6.60275424e-01]
+ [-5.71815216e-01 -4.04334478e-01  9.90413137e-01]
+ [ 0.00000000e+00  4.04334478e-01  0.00000000e+00]
+ [-1.90605072e-01  2.69556319e-01  3.30137712e-01]
+ [-3.81210144e-01  1.34778159e-01  6.60275424e-01]
+ [-5.71815216e-01 -2.77555756e-17  9.90413137e-01]
+ [ 0.00000000e+00  8.08668956e-01  0.00000000e+00]
+ [-1.90605072e-01  6.73890797e-01  3.30137712e-01]
+ [-3.81210144e-01  5.39112637e-01  6.60275424e-01]
+ [-5.71815216e-01  4.04334478e-01  9.90413137e-01]
+ [ 0.00000000e+00  1.21300343e+00  0.00000000e+00]
+ [-1.90605072e-01  1.07822527e+00  3.30137712e-01]
+ [-3.81210144e-01  9.43447115e-01  6.60275424e-01]
+ [-5.71815216e-01  8.08668956e-01  9.90413137e-01]
+ [ 3.81210144e-01 -1.34778159e-01  0.00000000e+00]
+ [ 1.90605072e-01 -2.69556319e-01  3.30137712e-01]
+ [ 5.55111512e-17 -4.04334478e-01  6.60275424e-01]
+ [-1.90605072e-01 -5.39112637e-01  9.90413137e-01]
+ [ 3.81210144e-01  2.69556319e-01  0.00000000e+00]
+ [ 1.90605072e-01  1.34778159e-01  3.30137712e-01]
+ [ 5.55111512e-17  0.00000000e+00  6.60275424e-01]
+ [-1.90605072e-01 -1.34778159e-01  9.90413137e-01]
+ [ 3.81210144e-01  6.73890797e-01  0.00000000e+00]
+ [ 1.90605072e-01  5.39112637e-01  3.30137712e-01]
+ [ 5.55111512e-17  4.04334478e-01  6.60275424e-01]
+ [-1.90605072e-01  2.69556319e-01  9.90413137e-01]
+ [ 3.81210144e-01  1.07822527e+00  0.00000000e+00]
+ [ 1.90605072e-01  9.43447115e-01  3.30137712e-01]
+ [ 5.55111512e-17  8.08668956e-01  6.60275424e-01]
+ [-1.90605072e-01  6.73890797e-01  9.90413137e-01]
+ [ 7.62420288e-01 -2.69556319e-01  0.00000000e+00]
+ [ 5.71815216e-01 -4.04334478e-01  3.30137712e-01]
+ [ 3.81210144e-01 -5.39112637e-01  6.60275424e-01]
+ [ 1.90605072e-01 -6.73890797e-01  9.90413137e-01]
+ [ 7.62420288e-01  1.34778159e-01  0.00000000e+00]
+ [ 5.71815216e-01  2.77555756e-17  3.30137712e-01]
+ [ 3.81210144e-01 -1.34778159e-01  6.60275424e-01]
+ [ 1.90605072e-01 -2.69556319e-01  9.90413137e-01]
+ [ 7.62420288e-01  5.39112637e-01  0.00000000e+00]
+ [ 5.71815216e-01  4.04334478e-01  3.30137712e-01]
+ [ 3.81210144e-01  2.69556319e-01  6.60275424e-01]
+ [ 1.90605072e-01  1.34778159e-01  9.90413137e-01]
+ [ 7.62420288e-01  9.43447115e-01  0.00000000e+00]
+ [ 5.71815216e-01  8.08668956e-01  3.30137712e-01]
+ [ 3.81210144e-01  6.73890797e-01  6.60275424e-01]
+ [ 1.90605072e-01  5.39112637e-01  9.90413137e-01]
+ [ 1.14363043e+00 -4.04334478e-01  0.00000000e+00]
+ [ 9.53025361e-01 -5.39112637e-01  3.30137712e-01]
+ [ 7.62420288e-01 -6.73890797e-01  6.60275424e-01]
+ [ 5.71815216e-01 -8.08668956e-01  9.90413137e-01]
+ [ 1.14363043e+00  5.55111512e-17  0.00000000e+00]
+ [ 9.53025361e-01 -1.34778159e-01  3.30137712e-01]
+ [ 7.62420288e-01 -2.69556319e-01  6.60275424e-01]
+ [ 5.71815216e-01 -4.04334478e-01  9.90413137e-01]
+ [ 1.14363043e+00  4.04334478e-01  0.00000000e+00]
+ [ 9.53025361e-01  2.69556319e-01  3.30137712e-01]
+ [ 7.62420288e-01  1.34778159e-01  6.60275424e-01]
+ [ 5.71815216e-01  2.77555756e-17  9.90413137e-01]
+ [ 1.14363043e+00  8.08668956e-01  0.00000000e+00]
+ [ 9.53025361e-01  6.73890797e-01  3.30137712e-01]
+ [ 7.62420288e-01  5.39112637e-01  6.60275424e-01]
+ [ 5.71815216e-01  4.04334478e-01  9.90413137e-01]]
+Exchange divergence treatment (exxdiv) = None
+DF object = <fft_isdf.InterpolativeSeparableDensityFitting object at 0x7fde12d7fd00>
+XC functionals = PBE0
+small_rho_cutoff = 1e-07
+Set gradient conv threshold to 0.0001
+nelec by numeric integration = 7.9999999999999725
+    CPU time for vxc      3.61 sec, wall time      3.62 sec
+    CPU time for vj and vk      2.49 sec, wall time      2.50 sec
+E1 = (4.75455804682885+1.8826303270868303e-18j)  Ecoul = (1.4901513393345167+1.1596072678086607e-20j)  Exc = -3.5270768961161543
+init E= -10.0912406079389
+    CPU time for initialize scf      8.45 sec, wall time      8.47 sec
+HOMO = 0.597398636001  LUMO = 0.757259154221
+     k-point                  mo_energy
+   0 ( 0.000  0.000  0.000)   [-0.31847961  0.59590838  0.59708997  0.59739864] [0.79475519 0.79555937 0.79570828 1.12707787 1.73227205 1.73264523
+ 2.40865654 2.4089009  2.40930153 2.50079101 2.50099948 2.50165892
+ 3.56972916 3.57020707 3.76585877 3.7671098  3.76848889 4.64503595
+ 4.64538478 4.64595392 8.84287355 9.1719828 ]
+   1 ( 0.000  0.000  0.250)   [-0.25457368  0.31373715  0.51974315  0.52020841] [0.88981779 0.89061666 0.90645936 1.21250307 1.71771464 1.71833733
+ 1.93114843 2.35024515 2.35066056 2.4828801  2.62477797 2.62515927
+ 3.37213317 3.37260313 3.38522905 3.64245373 3.64294745 3.6477147
+ 4.61986276 4.62062669 9.02760903 9.19393679]
+   2 ( 0.000  0.000  0.500)   [-0.09176508  0.03566281  0.47560591  0.4758421 ] [0.9254926  0.92637491 0.93458303 1.33154306 1.72206047 1.90421622
+ 1.90457699 2.04464821 2.04529126 2.65972388 2.90414041 2.95505578
+ 2.95547527 2.98958063 2.99009129 3.28742958 3.62795252 3.62826776
+ 4.52676545 4.52751446 9.18429482 9.22744368]
+   3 ( 0.000  0.000  0.750)   [-0.25457368  0.31373715  0.51974315  0.52020841] [0.88981779 0.89061666 0.90645936 1.21250307 1.71771464 1.71833733
+ 1.93114843 2.35024515 2.35066056 2.4828801  2.62477797 2.62515927
+ 3.37213317 3.37260313 3.38522905 3.64245373 3.64294745 3.6477147
+ 4.61986276 4.62062669 9.02760903 9.19393678]
+   4 ( 0.000  0.250  0.000)   [-0.2546951   0.31354114  0.51913469  0.5203758 ] [0.88986781 0.89042898 0.90705916 1.21251105 1.71790344 1.71804759
+ 1.93100026 2.34996652 2.35080633 2.48307303 2.62478048 2.62523076
+ 3.37227983 3.37306288 3.38514446 3.64187438 3.64293344 3.64818127
+ 4.61989131 4.62047114 9.02741987 9.19399085]
+   5 ( 0.000  0.250  0.250)   [-0.23221037  0.39482309  0.41994237  0.42066713] [0.75725915 1.04924961 1.04969173 1.09401899 1.61628166 1.87915037
+ 1.89803798 2.26470626 2.26480697 2.55409423 2.55448882 2.80098898
+ 3.07304595 3.29105244 3.37937271 3.44539412 3.44611261 3.84940968
+ 4.74997802 4.75099314 9.02779411 9.2009647 ]
+   6 ( 0.000  0.250  0.500)   [-0.07719548  0.13457492  0.30937885  0.38918938] [0.84598708 1.08382789 1.10179878 1.16053108 1.59086666 1.76438061
+ 1.91344313 2.15094208 2.30332855 2.57247737 2.77289415 2.84004293
+ 2.90999533 2.96630244 3.04123821 3.19430266 3.33947125 3.60160516
+ 4.36500071 4.62769209 9.17842772 9.2103437 ]
+   7 ( 0.000  0.250  0.750)   [-0.14106274  0.21948338  0.27580439  0.46734698] [0.90953922 0.97743617 1.0977631  1.1868629  1.64127972 1.66178764
+ 1.84848677 2.3613595  2.37709291 2.43850927 2.67940929 2.70242473
+ 2.88147073 3.21831061 3.22943224 3.24988114 3.48899276 3.52387739
+ 4.3284271  4.54346002 9.14808184 9.21368592]
+   8 ( 0.000  0.500  0.000)   [-0.09103974  0.03462536  0.47482424  0.47620901] [0.92546877 0.92595064 0.93506263 1.33167159 1.72210196 1.90371286
+ 1.90407653 2.04505648 2.04562286 2.65901423 2.90444732 2.95480849
+ 2.95587292 2.989805   2.99044377 3.28778892 3.62735424 3.62826633
+ 4.52708752 4.52722721 9.18441595 9.22719187]
+   9 ( 0.000  0.500  0.250)   [-0.07678593  0.13383829  0.30941044  0.38917439] [0.84592327 1.08432896 1.10156217 1.16037447 1.59085147 1.7641657
+ 1.91298957 2.15120829 2.30368085 2.57237089 2.77296461 2.84042588
+ 2.91003808 2.96639855 3.0410164  3.19440539 3.33935857 3.60138879
+ 4.36468245 4.62777473 9.17816635 9.21049939]
+  10 ( 0.000  0.500  0.500)   [0.03892525 0.03951292 0.33002879 0.3308173 ] [0.81949761 0.82021909 1.26481731 1.26569031 1.72955069 1.72968512
+ 2.03188962 2.03214916 2.33339765 2.33381475 2.81720251 2.81765464
+ 2.98781447 2.9883803  3.03463159 3.03526185 3.436573   3.43704463
+ 4.75001618 4.75090958 9.18294055 9.18414591]
+  11 ( 0.000  0.500  0.750)   [-0.07678593  0.13383829  0.30941044  0.38917439] [0.84592327 1.08432895 1.10156217 1.16037447 1.59085147 1.7641657
+ 1.91298957 2.15120829 2.30368085 2.57237089 2.77296461 2.84042588
+ 2.91003808 2.96639855 3.0410164  3.19440539 3.33935857 3.60138879
+ 4.36468245 4.62777473 9.17816635 9.21049939]
+  12 ( 0.000  0.750  0.000)   [-0.2546951   0.31354114  0.51913469  0.5203758 ] [0.88986781 0.89042898 0.90705916 1.21251105 1.71790344 1.71804759
+ 1.93100026 2.34996652 2.35080633 2.48307303 2.62478048 2.62523076
+ 3.37227983 3.37306288 3.38514446 3.64187438 3.64293344 3.64818127
+ 4.61989131 4.62047114 9.02741986 9.19399084]
+  13 ( 0.000  0.750  0.250)   [-0.14106274  0.21948338  0.27580439  0.46734698] [0.90953922 0.97743617 1.0977631  1.1868629  1.64127972 1.66178764
+ 1.84848677 2.3613595  2.37709291 2.43850927 2.67940929 2.70242473
+ 2.88147073 3.21831061 3.22943224 3.24988114 3.48899276 3.52387739
+ 4.3284271  4.54346002 9.14808184 9.21368592]
+  14 ( 0.000  0.750  0.500)   [-0.07719548  0.13457492  0.30937885  0.38918938] [0.84598708 1.08382789 1.10179878 1.16053108 1.59086666 1.76438061
+ 1.91344313 2.15094208 2.30332855 2.57247737 2.77289415 2.84004293
+ 2.90999533 2.96630244 3.04123821 3.19430266 3.33947125 3.60160516
+ 4.36500071 4.62769209 9.17842772 9.2103437 ]
+  15 ( 0.000  0.750  0.750)   [-0.23221037  0.39482309  0.41994237  0.42066713] [0.75725915 1.04924961 1.04969173 1.09401899 1.61628166 1.87915037
+ 1.89803798 2.26470626 2.26480697 2.55409423 2.55448882 2.80098898
+ 3.07304595 3.29105244 3.37937271 3.44539412 3.44611261 3.84940968
+ 4.74997802 4.75099314 9.0277941  9.20096468]
+  16 ( 0.250  0.000  0.000)   [-0.25467131  0.31338596  0.52028177  0.52061911] [0.88967248 0.89032818 0.90641653 1.21240282 1.71798618 1.71828884
+ 1.93098114 2.35032444 2.35075514 2.48287512 2.62486024 2.6251948
+ 3.3719703  3.37261217 3.38502083 3.6420383  3.64361211 3.64794638
+ 4.61974597 4.62054037 9.02748778 9.19396246]
+  17 ( 0.250  0.000  0.250)   [-0.23210635  0.39498551  0.41954852  0.42050932] [0.75770041 1.04903749 1.04995219 1.09410917 1.6159913  1.87897995
+ 1.89797002 2.26457276 2.26484267 2.55414107 2.55465732 2.80112521
+ 3.07309548 3.29079575 3.37875517 3.44526204 3.44692328 3.84994214
+ 4.75047495 4.75166301 9.02785727 9.20099252]
+  18 ( 0.250  0.000  0.500)   [-0.07690765  0.13386562  0.30972405  0.38935294] [0.84576784 1.08390668 1.10210575 1.16047389 1.59075796 1.76406632
+ 1.91341768 2.15090133 2.30319154 2.57272006 2.77319948 2.84032305
+ 2.90971775 2.96638287 3.04137081 3.19434589 3.3395895  3.60186687
+ 4.36501042 4.6285582  9.17842372 9.21042235]
+  19 ( 0.250  0.000  0.750)   [-0.14140455  0.21952883  0.2765458   0.46757561] [0.90930157 0.97751517 1.09749533 1.18663238 1.6413686  1.66207425
+ 1.84888169 2.36157788 2.37738309 2.43789873 2.6792262  2.70224705
+ 2.8810686  3.21870403 3.22955477 3.2496169  3.4890779  3.52417726
+ 4.32840285 4.5437598  9.14814325 9.21363545]
+  20 ( 0.250  0.250  0.000)   [-0.23225966  0.39441035  0.41980347  0.42019634] [0.75794964 1.04961528 1.05013032 1.09355118 1.61625566 1.87928603
+ 1.89748176 2.26455382 2.26515059 2.55419844 2.55458036 2.80095799
+ 3.07340945 3.29066884 3.37781116 3.44579458 3.44689951 3.84972744
+ 4.75097978 4.75160509 9.02779504 9.20094722]
+  21 ( 0.250  0.250  0.250)   [-0.2546648   0.31386604  0.51958084  0.5199623 ] [0.88932764 0.89065028 0.90695344 1.21271897 1.71786084 1.71847411
+ 1.93138616 2.35027391 2.35056594 2.48276973 2.62457754 2.62511336
+ 3.37158759 3.37267954 3.38597495 3.64202376 3.64288395 3.64823929
+ 4.61950771 4.62012617 9.02752208 9.19397479]
+  22 ( 0.250  0.250  0.500)   [-0.14136845  0.21981009  0.27612114  0.46718443] [0.90970613 0.97724904 1.09708784 1.18738954 1.64171229 1.66233732
+ 1.84844046 2.36117283 2.37707848 2.43822735 2.67901557 2.70228865
+ 2.88082611 3.21943803 3.22947853 3.25009738 3.48905581 3.52344184
+ 4.32834357 4.54325276 9.14811139 9.21367518]
+  23 ( 0.250  0.250  0.750)   [-0.07711279  0.13386854  0.30959287  0.38896967] [0.84630539 1.08354816 1.1018557  1.1610476  1.59081357 1.76389589
+ 1.91348951 2.15121152 2.30343301 2.57271526 2.77293245 2.84005201
+ 2.90963912 2.96638641 3.04161946 3.1939388  3.33959811 3.60196685
+ 4.36540386 4.62798103 9.17840884 9.21036125]
+  24 ( 0.250  0.500  0.000)   [-0.07675676  0.13338647  0.30926995  0.3891219 ] [0.84621231 1.08365719 1.10198918 1.16128994 1.59047425 1.76372341
+ 1.91334593 2.15161286 2.30314926 2.57261681 2.77339212 2.84039728
+ 2.90973868 2.96616846 3.04145306 3.19408739 3.33965295 3.60164776
+ 4.36497609 4.62834133 9.17830919 9.2104023 ]
+  25 ( 0.250  0.500  0.250)   [-0.14119863  0.21982562  0.27581433  0.46673705] [0.91030365 0.97702646 1.09728967 1.18729464 1.64131738 1.66223158
+ 1.84840824 2.36168524 2.37720261 2.43828429 2.67929708 2.70186095
+ 2.88145144 3.21915172 3.22908615 3.25005658 3.48869526 3.52370888
+ 4.32818988 4.54300952 9.14793559 9.2137768 ]
+  26 ( 0.250  0.500  0.500)   [-0.0771214   0.134039    0.30956533  0.3895672 ] [0.84535894 1.08406908 1.1016799  1.16076465 1.59111296 1.76417286
+ 1.91338648 2.15132931 2.30337576 2.57257297 2.77277294 2.83994765
+ 2.90999063 2.96651178 3.04099701 3.19478074 3.33919762 3.60157279
+ 4.36494384 4.6271977  9.17831392 9.21042035]
+  27 ( 0.250  0.500  0.750)   [0.06759205 0.06916678 0.2516108  0.25250876] [1.060415   1.06090007 1.07982965 1.08057579 1.59642523 1.59658074
+ 2.06455901 2.06495651 2.49892369 2.49945988 2.79119775 2.79157297
+ 2.89263571 2.89284731 3.11806879 3.11878967 3.27656866 3.27740399
+ 4.35861961 4.35896337 9.2040867  9.20527879]
+  28 ( 0.250  0.750  0.000)   [-0.14132547  0.21976809  0.27562825  0.4675636 ] [0.90975086 0.97772331 1.09671765 1.18759821 1.64127878 1.66191967
+ 1.84829703 2.36165256 2.37769792 2.43780904 2.67894662 2.7023552
+ 2.88094559 3.21915774 3.2299408  3.25005095 3.48929286 3.52299459
+ 4.32865295 4.54351269 9.14786391 9.21379671]
+  29 ( 0.250  0.750  0.250)   [-0.07670481  0.13384751  0.3096863   0.38863399] [0.84617717 1.08428928 1.10137168 1.16085264 1.59051912 1.76407831
+ 1.91318786 2.15111652 2.3035627  2.57256282 2.77313679 2.83971316
+ 2.91005725 2.96637483 3.04169219 3.19433703 3.3391532  3.6020742
+ 4.36517054 4.62767192 9.17831227 9.21046184]
+  30 ( 0.250  0.750  0.500)   [0.06782775 0.06931487 0.25184361 0.25245994] [1.05959771 1.0601334  1.08038805 1.08110215 1.5963056  1.59682994
+ 2.06459488 2.0650803  2.49861396 2.49910887 2.7910202  2.79157863
+ 2.89252182 2.89301175 3.11819023 3.11873201 3.2767285  3.27753474
+ 4.35846826 4.35884776 9.20415914 9.20532242]
+  31 ( 0.250  0.750  0.750)   [-0.07725861  0.13392067  0.30990083  0.38984981] [0.84571806 1.08392625 1.1013457  1.16069648 1.59073939 1.76425028
+ 1.91335797 2.15144493 2.30363979 2.57253274 2.77248055 2.8401069
+ 2.9098191  2.96623272 3.04133242 3.19477537 3.33921184 3.60180375
+ 4.36531678 4.62711463 9.17830639 9.21040491]
+  32 ( 0.500  0.000  0.000)   [-0.09216467  0.0356838   0.47632892  0.47645538] [0.92527692 0.92576121 0.93449176 1.33157543 1.7219578  1.90415963
+ 1.90422139 2.04526861 2.04556692 2.65955641 2.90388225 2.95528759
+ 2.9555402  2.98921244 2.99009311 3.28764898 3.62749474 3.62882766
+ 4.52663619 4.52733821 9.18435984 9.22726066]
+  33 ( 0.500  0.000  0.250)   [-0.07716448  0.13396269  0.30989376  0.3896082 ] [0.84564231 1.08435932 1.10181956 1.16017389 1.59089301 1.76403016
+ 1.91314536 2.15147322 2.30339489 2.57249925 2.77258752 2.84028967
+ 2.90978498 2.96614336 3.04143129 3.19449947 3.3398746  3.60187524
+ 4.3649457  4.62835418 9.17826698 9.21049718]
+  34 ( 0.500  0.000  0.500)   [0.0384272  0.04040338 0.32965684 0.33049699] [0.81950889 0.82059782 1.26484586 1.26593727 1.72908059 1.72984748
+ 2.0318378  2.03205513 2.33346417 2.33369584 2.8169708  2.81763581
+ 2.98743301 2.98817797 3.03524006 3.0355923  3.43678127 3.43767579
+ 4.75094087 4.75218238 9.18307601 9.18417608]
+  35 ( 0.500  0.000  0.750)   [-0.07716448  0.13396269  0.30989376  0.3896082 ] [0.84564231 1.08435932 1.10181956 1.16017389 1.59089301 1.76403016
+ 1.91314536 2.15147322 2.30339489 2.57249925 2.77258752 2.84028967
+ 2.90978498 2.96614336 3.04143129 3.19449947 3.3398746  3.60187524
+ 4.3649457  4.62835418 9.17826697 9.21049717]
+  36 ( 0.500  0.250  0.000)   [-0.0774663   0.13430184  0.3094269   0.38927873] [0.84606041 1.08374084 1.10205551 1.16086471 1.59073029 1.76399555
+ 1.9133514  2.15169095 2.30314979 2.57262509 2.77294205 2.84033305
+ 2.90947313 2.96616332 3.04139775 3.1938779  3.34003531 3.60190148
+ 4.36545755 4.62827629 9.1783887  9.21034473]
+  37 ( 0.500  0.250  0.250)   [-0.14142389  0.21955216  0.27637955  0.46751688] [0.90932008 0.97743741 1.09738595 1.18695338 1.64149938 1.66233884
+ 1.84871631 2.3613173  2.37737434 2.4382791  2.67915036 2.70203038
+ 2.88129052 3.21859909 3.22901161 3.25017582 3.48865409 3.52455275
+ 4.32843021 4.54307854 9.1480312  9.21371632]
+  38 ( 0.500  0.250  0.500)   [-0.07712596  0.13453987  0.3093368   0.38887827] [0.8465133  1.08373433 1.10107699 1.16113094 1.59093343 1.76426164
+ 1.91344139 2.15140934 2.30312242 2.57280052 2.77235572 2.8397142
+ 2.90988015 2.96661263 3.04141241 3.19448186 3.33945857 3.60189737
+ 4.36524219 4.62740513 9.17843079 9.21040851]
+  39 ( 0.500  0.250  0.750)   [0.06742839 0.06952541 0.25156029 0.2523471 ] [1.0603483  1.06091214 1.08000211 1.08082433 1.59610788 1.59664841
+ 2.06426875 2.06482178 2.49902953 2.49930215 2.79094359 2.79144528
+ 2.89274383 2.89324237 3.11842611 3.11870094 3.27694805 3.27763373
+ 4.35866215 4.35890531 9.20416212 9.20528743]
+  40 ( 0.500  0.500  0.000)   [0.03806628 0.0401029  0.32958244 0.33012519] [0.82000296 0.8201715  1.26557079 1.26623978 1.72893982 1.72927552
+ 2.03169102 2.03251665 2.33349928 2.33426256 2.81736386 2.81771102
+ 2.98715419 2.98797968 3.03514053 3.03544779 3.4367404  3.4372456
+ 4.75137025 4.75214586 9.18298833 9.1840822 ]
+  41 ( 0.500  0.500  0.250)   [-0.0772212   0.13411498  0.30931779  0.38893779] [0.84582483 1.08417712 1.10187942 1.16105725 1.59090991 1.763768
+ 1.91351687 2.15112732 2.30356707 2.57276662 2.77313751 2.84011265
+ 2.90954599 2.96670752 3.041124   3.19418237 3.33949075 3.60181709
+ 4.36507525 4.62791245 9.17825888 9.21044815]
+  42 ( 0.500  0.500  0.500)   [-0.09195439  0.03575816  0.47551257  0.47561635] [0.9248631  0.92643957 0.93494058 1.33198767 1.72218953 1.90402933
+ 1.90445106 2.04508901 2.04575184 2.65958675 2.9044649  2.95478031
+ 2.95531682 2.98894617 2.99011761 3.28819612 3.627479   3.62821662
+ 4.52637952 4.52709079 9.18436198 9.22731788]
+  43 ( 0.500  0.500  0.750)   [-0.0772212   0.13411498  0.30931779  0.38893779] [0.84582483 1.08417712 1.10187942 1.16105725 1.59090991 1.763768
+ 1.91351687 2.15112732 2.30356707 2.57276662 2.77313751 2.84011265
+ 2.90954599 2.96670753 3.041124   3.19418237 3.33949075 3.60181709
+ 4.36507525 4.62791245 9.17825888 9.21044814]
+  44 ( 0.500  0.750  0.000)   [-0.0774663   0.13430184  0.3094269   0.38927873] [0.84606041 1.08374084 1.10205551 1.16086471 1.59073029 1.76399555
+ 1.9133514  2.15169095 2.30314979 2.57262509 2.77294205 2.84033305
+ 2.90947313 2.96616332 3.04139776 3.1938779  3.34003531 3.60190148
+ 4.36545755 4.62827629 9.1783887  9.21034472]
+  45 ( 0.500  0.750  0.250)   [0.06742839 0.06952541 0.25156029 0.2523471 ] [1.0603483  1.06091214 1.08000211 1.08082433 1.59610788 1.59664841
+ 2.06426875 2.06482178 2.49902953 2.49930215 2.79094359 2.79144528
+ 2.89274383 2.89324237 3.11842611 3.11870094 3.27694805 3.27763373
+ 4.35866215 4.35890531 9.20416212 9.20528743]
+  46 ( 0.500  0.750  0.500)   [-0.07712596  0.13453987  0.3093368   0.38887827] [0.8465133  1.08373433 1.10107699 1.16113094 1.59093343 1.76426164
+ 1.91344139 2.15140934 2.30312242 2.57280052 2.77235572 2.8397142
+ 2.90988015 2.96661263 3.04141241 3.19448186 3.33945857 3.60189737
+ 4.36524219 4.62740513 9.17843079 9.2104085 ]
+  47 ( 0.500  0.750  0.750)   [-0.14142389  0.21955216  0.27637955  0.46751688] [0.90932008 0.97743741 1.09738595 1.18695338 1.64149938 1.66233884
+ 1.84871631 2.3613173  2.37737434 2.4382791  2.67915036 2.70203038
+ 2.88129053 3.21859909 3.22901161 3.25017582 3.48865409 3.52455275
+ 4.32843021 4.54307854 9.14803119 9.21371631]
+  48 ( 0.750 -0.000  0.000)   [-0.25467131  0.31338597  0.52028177  0.52061911] [0.88967248 0.89032818 0.90641653 1.21240282 1.71798618 1.71828884
+ 1.93098114 2.35032444 2.35075514 2.48287512 2.62486024 2.6251948
+ 3.3719703  3.37261217 3.38502083 3.6420383  3.64361211 3.64794638
+ 4.61974597 4.62054037 9.02748777 9.19396246]
+  49 ( 0.750  0.000  0.250)   [-0.14140455  0.21952883  0.2765458   0.46757561] [0.90930157 0.97751517 1.09749533 1.18663238 1.6413686  1.66207425
+ 1.84888169 2.36157788 2.37738309 2.43789873 2.6792262  2.70224705
+ 2.8810686  3.21870403 3.22955477 3.2496169  3.4890779  3.52417726
+ 4.32840285 4.5437598  9.14814325 9.21363545]
+  50 ( 0.750 -0.000  0.500)   [-0.07690765  0.13386562  0.30972405  0.38935294] [0.84576784 1.08390668 1.10210575 1.16047389 1.59075796 1.76406632
+ 1.91341768 2.15090133 2.30319154 2.57272006 2.77319948 2.84032305
+ 2.90971775 2.96638287 3.04137081 3.19434589 3.3395895  3.60186687
+ 4.36501042 4.6285582  9.17842372 9.21042234]
+  51 ( 0.750  0.000  0.750)   [-0.23210635  0.39498551  0.41954852  0.42050932] [0.75770041 1.04903749 1.04995219 1.09410917 1.6159913  1.87897995
+ 1.89797002 2.26457276 2.26484267 2.55414107 2.55465732 2.80112521
+ 3.07309548 3.29079575 3.37875517 3.44526204 3.44692328 3.84994214
+ 4.75047495 4.75166301 9.02785726 9.2009925 ]
+  52 ( 0.750  0.250  0.000)   [-0.14132547  0.21976809  0.27562825  0.4675636 ] [0.90975086 0.97772331 1.09671765 1.18759821 1.64127878 1.66191967
+ 1.84829703 2.36165256 2.37769792 2.43780904 2.67894662 2.7023552
+ 2.88094559 3.21915774 3.2299408  3.25005095 3.48929286 3.52299459
+ 4.32865295 4.54351269 9.14786391 9.21379671]
+  53 ( 0.750  0.250  0.250)   [-0.07725861  0.13392067  0.30990083  0.38984981] [0.84571806 1.08392625 1.1013457  1.16069648 1.59073939 1.76425028
+ 1.91335797 2.15144493 2.30363979 2.57253274 2.77248055 2.8401069
+ 2.90981911 2.96623272 3.04133241 3.19477537 3.33921184 3.60180375
+ 4.36531678 4.62711463 9.1783064  9.21040492]
+  54 ( 0.750  0.250  0.500)   [0.06782775 0.06931487 0.25184361 0.25245994] [1.05959771 1.0601334  1.08038805 1.08110215 1.5963056  1.59682994
+ 2.06459488 2.0650803  2.49861396 2.49910887 2.7910202  2.79157863
+ 2.89252182 2.89301175 3.11819023 3.11873201 3.2767285  3.27753474
+ 4.35846826 4.35884776 9.20415914 9.20532242]
+  55 ( 0.750  0.250  0.750)   [-0.07670481  0.13384751  0.3096863   0.38863399] [0.84617717 1.08428928 1.10137168 1.16085263 1.59051912 1.76407831
+ 1.91318786 2.15111652 2.3035627  2.57256282 2.77313679 2.83971316
+ 2.91005725 2.96637483 3.04169219 3.19433703 3.3391532  3.60207421
+ 4.36517054 4.62767192 9.17831226 9.21046184]
+  56 ( 0.750  0.500  0.000)   [-0.07675676  0.13338647  0.30926995  0.3891219 ] [0.84621231 1.08365719 1.10198918 1.16128994 1.59047425 1.76372341
+ 1.91334593 2.15161286 2.30314926 2.57261681 2.77339212 2.84039728
+ 2.90973867 2.96616846 3.04145306 3.19408739 3.33965295 3.60164776
+ 4.36497609 4.62834133 9.17830918 9.21040229]
+  57 ( 0.750  0.500  0.250)   [0.06759205 0.06916678 0.2516108  0.25250876] [1.060415   1.06090007 1.07982965 1.08057579 1.59642523 1.59658074
+ 2.06455901 2.06495651 2.49892369 2.49945988 2.79119775 2.79157297
+ 2.89263571 2.89284731 3.11806879 3.11878967 3.27656866 3.27740399
+ 4.35861961 4.35896337 9.2040867  9.20527879]
+  58 ( 0.750  0.500  0.500)   [-0.0771214   0.134039    0.30956533  0.3895672 ] [0.84535894 1.08406908 1.1016799  1.16076465 1.59111296 1.76417286
+ 1.91338648 2.15132931 2.30337576 2.57257297 2.77277294 2.83994765
+ 2.90999063 2.96651178 3.04099701 3.19478074 3.33919762 3.60157279
+ 4.36494384 4.6271977  9.17831391 9.21042034]
+  59 ( 0.750  0.500  0.750)   [-0.14119863  0.21982563  0.27581433  0.46673705] [0.91030365 0.97702646 1.09728967 1.18729464 1.64131738 1.66223158
+ 1.84840824 2.36168524 2.37720261 2.43828428 2.67929708 2.70186095
+ 2.88145144 3.21915172 3.22908615 3.25005658 3.48869526 3.52370888
+ 4.32818988 4.54300952 9.14793558 9.21377679]
+  60 ( 0.750  0.750  0.000)   [-0.23225966  0.39441035  0.41980347  0.42019634] [0.75794964 1.04961528 1.05013032 1.09355118 1.61625566 1.87928603
+ 1.89748176 2.26455382 2.26515059 2.55419844 2.55458036 2.80095799
+ 3.07340945 3.29066884 3.37781117 3.44579458 3.44689951 3.84972744
+ 4.75097978 4.75160509 9.02779503 9.20094721]
+  61 ( 0.750  0.750  0.250)   [-0.07711279  0.13386854  0.30959287  0.38896967] [0.84630539 1.08354816 1.1018557  1.1610476  1.59081357 1.76389589
+ 1.91348951 2.15121152 2.30343301 2.57271526 2.77293245 2.84005201
+ 2.90963912 2.96638641 3.04161946 3.1939388  3.33959811 3.60196685
+ 4.36540386 4.62798103 9.17840884 9.21036124]
+  62 ( 0.750  0.750  0.500)   [-0.14136845  0.21981009  0.27612114  0.46718443] [0.90970613 0.97724904 1.09708784 1.18738954 1.64171229 1.66233732
+ 1.84844046 2.36117283 2.37707848 2.43822735 2.67901557 2.70228865
+ 2.88082611 3.21943803 3.22947853 3.25009738 3.48905581 3.52344184
+ 4.32834357 4.54325276 9.14811137 9.21367516]
+  63 ( 0.750  0.750  0.750)   [-0.2546648   0.31386604  0.51958084  0.5199623 ] [0.88932764 0.89065028 0.90695345 1.21271897 1.71786084 1.71847411
+ 1.93138616 2.35027391 2.35056594 2.48276973 2.62457754 2.62511336
+ 3.37158759 3.37267954 3.38597495 3.64202376 3.64288395 3.64823929
+ 4.61950771 4.62012617 9.02752206 9.19397477]
+nelec by numeric integration = 8.000000000004803
+    CPU time for vxc      3.31 sec, wall time      3.32 sec
+    CPU time for vj and vk      2.47 sec, wall time      2.47 sec
+E1 = (4.055091996588542+1.8295911660692887e-19j)  Ecoul = (0.9917857593024567+1.8295911660692887e-19j)  Exc = -3.3960886561526333
+cycle= 1 E= -11.1580839982477  delta_E= -1.07  |g|= 1.39  |ddm|= 21.4
+    CPU time for cycle= 1      5.84 sec, wall time      5.85 sec
+HOMO = 0.50477905414  LUMO = 0.720427434979
+     k-point                  mo_energy
+   0 ( 0.000  0.000  0.000)   [-0.33042688  0.50306487  0.50445351  0.50477905] [0.74465766 0.74551572 0.74604501 1.08657001 1.68626902 1.6869632
+ 2.35239439 2.35311543 2.35326747 2.42160068 2.42230809 2.42300825
+ 3.51580372 3.51629906 3.69292942 3.69344637 3.69462961 4.58029068
+ 4.58067888 4.58090259 8.62522737 8.95795737]
+   1 ( 0.000  0.000  0.250)   [-0.27365405  0.24383258  0.43178628  0.43255336] [0.83695033 0.83794784 0.86242057 1.15607365 1.67095283 1.6718435
+ 1.85550662 2.28353654 2.28434936 2.43241667 2.55889305 2.55930452
+ 3.30880334 3.30968625 3.31513214 3.5791322  3.57952227 3.58229874
+ 4.5551662  4.55581739 8.81371289 8.98027981]
+   2 ( 0.000  0.000  0.500)   [-0.12493277 -0.01818539  0.38719193  0.38779955] [0.87726027 0.87836389 0.89983365 1.26245027 1.6477267  1.84059823
+ 1.84086983 1.99954428 2.00020275 2.61407349 2.83885471 2.87579962
+ 2.87659652 2.92905256 2.92993595 3.2219707  3.5703117  3.5705344
+ 4.46378969 4.46418596 8.97076185 9.01563605]
+   3 ( 0.000  0.000  0.750)   [-0.27365405  0.24383258  0.43178628  0.43255336] [0.83695033 0.83794784 0.86242057 1.15607365 1.67095283 1.6718435
+ 1.85550662 2.28353654 2.28434936 2.43241667 2.55889305 2.55930452
+ 3.30880334 3.30968625 3.31513214 3.5791322  3.57952227 3.58229874
+ 4.5551662  4.55581739 8.81371288 8.98027981]
+   4 ( 0.000  0.250  0.000)   [-0.27367899  0.24378048  0.43094018  0.43241147] [0.83738012 0.83787896 0.86262276 1.15616176 1.67105452 1.67147888
+ 1.85541019 2.28372376 2.28420703 2.43258    2.55881357 2.55907992
+ 3.30902102 3.30949983 3.31604912 3.57850529 3.57909435 3.58306956
+ 4.55551177 4.55580101 8.81367254 8.98033116]
+   5 ( 0.000  0.250  0.250)   [-0.25388174  0.31889495  0.3383589   0.33955338] [0.72042743 0.98838382 0.98855119 1.05088289 1.56236199 1.82003449
+ 1.8341591  2.20224179 2.20276752 2.48740426 2.48784569 2.74121027
+ 3.02295587 3.23621091 3.31368149 3.37460832 3.37499387 3.78668135
+ 4.68301647 4.68342355 8.81369854 8.9873849 ]
+   6 ( 0.000  0.250  0.500)   [-0.11417562  0.07574465  0.23769465  0.30688091] [0.81098121 1.03492663 1.0444321  1.10488381 1.52316104 1.68948981
+ 1.85736711 2.10248855 2.23724424 2.51594828 2.71695686 2.76603769
+ 2.85300869 2.90682716 2.96974079 3.13558233 3.27884491 3.54370639
+ 4.30402631 4.56288199 8.96555815 8.99732511]
+   7 ( 0.000  0.250  0.750)   [-0.17180357  0.15402198  0.20700842  0.38069082] [0.87045743 0.92542982 1.03898415 1.13344752 1.57523432 1.6148453
+ 1.77647043 2.30334133 2.30648815 2.38287245 2.63041468 2.64509019
+ 2.80749408 3.15028841 3.15613417 3.18953962 3.43303344 3.46695735
+ 4.26771841 4.48070353 8.9354144  9.00040091]
+   8 ( 0.000  0.500  0.000)   [-0.12404463 -0.01929432  0.386096    0.38784278] [0.87753809 0.87827026 0.89990372 1.26257572 1.64748296 1.83990643
+ 1.84041946 1.99990438 2.00052588 2.6140352  2.83932089 2.87547061
+ 2.87626132 2.92943417 2.93003394 3.22312795 3.56973644 3.57016905
+ 4.46420458 4.46450797 8.97079598 9.01571617]
+   9 ( 0.000  0.500  0.250)   [-0.11368333  0.07501214  0.23748936  0.30675389] [0.81113144 1.0350406  1.04439333 1.10481298 1.52317834 1.68917445
+ 1.85706018 2.10268356 2.23741228 2.51609984 2.71704313 2.76611574
+ 2.85284115 2.90734037 2.96934262 3.13587055 3.27870661 3.54355839
+ 4.30373626 4.56306852 8.96552606 8.99736923]
+  10 ( 0.000  0.500  0.500)   [-0.00947015 -0.00909572  0.25018882  0.25150072] [0.78870443 0.78939704 1.19845312 1.19876427 1.65071531 1.65194929
+ 1.97965639 1.97996778 2.28775308 2.28832898 2.73959857 2.73987721
+ 2.9305836  2.93107103 2.97496735 2.97584468 3.37942819 3.37981235
+ 4.68308143 4.68421446 8.96880826 8.9718572 ]
+  11 ( 0.000  0.500  0.750)   [-0.11368333  0.07501214  0.23748936  0.30675389] [0.81113144 1.0350406  1.04439333 1.10481298 1.52317834 1.68917445
+ 1.85706018 2.10268356 2.23741228 2.51609984 2.71704313 2.76611574
+ 2.85284115 2.90734037 2.96934262 3.13587055 3.27870661 3.54355839
+ 4.30373626 4.56306852 8.96552605 8.99736922]
+  12 ( 0.000  0.750  0.000)   [-0.27367899  0.24378048  0.43094018  0.43241147] [0.83738012 0.83787896 0.86262276 1.15616175 1.67105452 1.67147888
+ 1.85541019 2.28372376 2.28420703 2.43258    2.55881357 2.55907992
+ 3.30902102 3.30949983 3.31604913 3.57850529 3.57909435 3.58306956
+ 4.55551177 4.55580101 8.81367253 8.98033115]
+  13 ( 0.000  0.750  0.250)   [-0.17180357  0.15402198  0.20700842  0.38069082] [0.87045743 0.92542982 1.03898415 1.13344752 1.57523432 1.6148453
+ 1.77647043 2.30334133 2.30648815 2.38287245 2.63041468 2.64509019
+ 2.80749408 3.15028841 3.15613417 3.18953962 3.43303344 3.46695735
+ 4.26771841 4.48070353 8.9354144  9.00040091]
+  14 ( 0.000  0.750  0.500)   [-0.11417562  0.07574465  0.23769465  0.30688091] [0.81098121 1.03492663 1.0444321  1.10488381 1.52316104 1.68948981
+ 1.85736711 2.10248855 2.23724424 2.51594828 2.71695686 2.76603769
+ 2.85300869 2.90682716 2.9697408  3.13558233 3.27884491 3.54370639
+ 4.30402631 4.56288199 8.96555814 8.9973251 ]
+  15 ( 0.000  0.750  0.750)   [-0.25388174  0.31889495  0.3383589   0.33955338] [0.72042744 0.98838382 0.98855119 1.05088289 1.56236199 1.82003448
+ 1.8341591  2.20224179 2.20276752 2.48740426 2.48784569 2.74121027
+ 3.02295587 3.23621091 3.31368149 3.37460832 3.37499387 3.78668135
+ 4.68301647 4.68342355 8.81369853 8.98738489]
+  16 ( 0.250  0.000  0.000)   [-0.27373968  0.24343928  0.43246463  0.43306822] [0.83696518 0.83756131 0.86228401 1.15590996 1.67105821 1.67187966
+ 1.8551868  2.28397456 2.28412773 2.43246921 2.55889657 2.55947304
+ 3.30880752 3.30933924 3.31534888 3.57897846 3.57998223 3.58263057
+ 4.55533943 4.55579534 8.8136536  8.98029954]
+  17 ( 0.250  0.000  0.250)   [-0.25374866  0.31930945  0.33781606  0.33919889] [0.72080242 0.98820539 0.98889111 1.05090722 1.56213755 1.81992758
+ 1.83381712 2.20203255 2.20284191 2.48747738 2.4879199  2.74144257
+ 3.02329579 3.23588542 3.31325618 3.37442989 3.37569154 3.78699201
+ 4.68352923 4.68401707 8.81372792 8.98738847]
+  18 ( 0.250  0.000  0.500)   [-0.1137458   0.07467201  0.23833886  0.30707646] [0.81037649 1.03463542 1.04479086 1.10506403 1.52332972 1.68897037
+ 1.85771342 2.10236489 2.2365707  2.51619666 2.71765525 2.76610957
+ 2.85278046 2.90696463 2.97015532 3.13521493 3.27926569 3.54386342
+ 4.30420226 4.56362475 8.96562564 8.99730937]
+  19 ( 0.250  0.000  0.750)   [-0.17236376  0.15408626  0.20837118  0.38097996] [0.86992251 0.92551216 1.03859498 1.1335428  1.57517984 1.61532043
+ 1.77630241 2.30385458 2.30694344 2.38202064 2.6304573  2.6447752
+ 2.80715067 3.15080568 3.15649037 3.18925931 3.43356925 3.46694026
+ 4.26792575 4.48072201 8.93534262 9.00044325]
+  20 ( 0.250  0.250  0.000)   [-0.25381914  0.31866508  0.33813282  0.33846206] [0.72135189 0.9885049  0.98903051 1.05045939 1.5624643  1.81991016
+ 1.8340978  2.20201262 2.20271625 2.48714615 2.48772578 2.74153755
+ 3.02347198 3.23562272 3.31351133 3.37448948 3.37529683 3.78678174
+ 4.68370034 4.6840295  8.81372134 8.98739946]
+  21 ( 0.250  0.250  0.250)   [-0.27375794  0.24390975  0.43155369  0.43225965] [0.83658322 0.83834972 0.86280514 1.15613307 1.67096712 1.67209616
+ 1.85566342 2.28360359 2.28443371 2.43211008 2.55885973 2.55918328
+ 3.30839656 3.30945173 3.31607292 3.57879994 3.57932551 3.58274391
+ 4.55525374 4.55574691 8.81362882 8.9803087 ]
+  22 ( 0.250  0.250  0.500)   [-0.17236071  0.1545065   0.20778736  0.38036368] [0.87075035 0.92517353 1.03833195 1.13399492 1.57559598 1.61558432
+ 1.77630522 2.30371954 2.30626726 2.38196481 2.63015175 2.64490463
+ 2.80750565 3.15071579 3.15596201 3.18971131 3.43331547 3.46681125
+ 4.26726864 4.48063595 8.93529181 9.00044289]
+  23 ( 0.250  0.250  0.750)   [-0.11388833  0.07462658  0.2381729   0.30650133] [0.8111439  1.03436569 1.04451081 1.10538317 1.52332823 1.68911687
+ 1.85757597 2.10278611 2.2365242  2.51637969 2.71713728 2.76574562
+ 2.85251382 2.90684471 2.97056032 3.13519814 3.27903565 3.54400873
+ 4.3039213  4.56362665 8.96565294 8.99731263]
+  24 ( 0.250  0.500  0.000)   [-0.11344091  0.07424468  0.23757182  0.3063482 ] [0.8115097  1.03415986 1.04478732 1.10556674 1.52313014 1.68900884
+ 1.85709275 2.10314779 2.23648578 2.51650718 2.71744929 2.76569119
+ 2.85288608 2.90673336 2.97038819 3.13577939 3.27879276 3.54370609
+ 4.30361738 4.56376522 8.96569488 8.99729967]
+  25 ( 0.250  0.500  0.250)   [-0.1720646   0.15469964  0.20699508  0.37974829] [0.87120958 0.92539435 1.03856697 1.1337071  1.57517103 1.6154271
+ 1.77625476 2.30372468 2.30674089 2.38241247 2.63036919 2.64468178
+ 2.80753484 3.15093429 3.15557089 3.18958269 3.43302717 3.46685924
+ 4.26739752 4.48084586 8.9352785  9.00046717]
+  26 ( 0.250  0.500  0.500)   [-0.1141334   0.07500207  0.23785309  0.30754678] [0.81025726 1.03478439 1.04480321 1.10490624 1.52367211 1.68903079
+ 1.85769346 2.10270402 2.23691907 2.51596683 2.7171976  2.76587021
+ 2.85306032 2.90713908 2.96981273 3.13543338 3.27882391 3.54369681
+ 4.30405819 4.56329728 8.96553285 8.99730382]
+  27 ( 0.250  0.500  0.750)   [0.0172779  0.01852272 0.18216099 0.18335968] [1.01233814 1.01315724 1.02969069 1.03069614 1.52472318 1.52571943
+ 2.00292328 2.00381646 2.44138196 2.44245723 2.71934641 2.71974178
+ 2.83843397 2.83913228 3.05380792 3.05454831 3.22309984 3.22406506
+ 4.29746122 4.29807086 8.9903394  8.99332928]
+  28 ( 0.250  0.750  0.000)   [-0.17218964  0.15476424  0.2069435   0.38064253] [0.87070732 0.92570512 1.03811703 1.13426052 1.57497565 1.61472858
+ 1.77646849 2.30424677 2.30685511 2.38172252 2.62985877 2.64496103
+ 2.80756014 3.15117394 3.15580963 3.18979351 3.43339696 3.46681764
+ 4.2674391  4.48099121 8.93526397 9.00050536]
+  29 ( 0.250  0.750  0.250)   [-0.11348604  0.07488811  0.2380609   0.3059478 ] [0.81119457 1.03483817 1.04453262 1.10498044 1.52289093 1.68899631
+ 1.85727535 2.10278533 2.23711759 2.51614547 2.71751677 2.76539651
+ 2.85289662 2.90717459 2.9699803  3.13583735 3.27857546 3.54395419
+ 4.3038666  4.56374501 8.96565035 8.99730503]
+  30 ( 0.250  0.750  0.500)   [0.01765207 0.01860198 0.18239622 0.18328703] [1.01189042 1.01207508 1.03053499 1.03093679 1.52453823 1.52565421
+ 2.00342097 2.00406888 2.44132228 2.44177059 2.71936998 2.71999223
+ 2.83812665 2.83883537 3.05384591 3.05443127 3.22332669 3.22427433
+ 4.29764847 4.29854687 8.99033309 8.99332347]
+  31 ( 0.250  0.750  0.750)   [-0.11424717  0.07487453  0.23835445  0.30796841] [0.81047618 1.0347273  1.04427666 1.10499169 1.52313739 1.68909401
+ 1.85745879 2.10294896 2.23708152 2.51608209 2.71689014 2.76609958
+ 2.85269828 2.90718338 2.96974519 3.13567436 3.27892442 3.54403242
+ 4.30426291 4.56320629 8.96556906 8.99731608]
+  32 ( 0.500  0.000  0.000)   [-0.125481   -0.01798362  0.38798228  0.38868855] [0.87725603 0.87754187 0.89989968 1.2622973  1.64741409 1.84011272
+ 1.84076782 2.00004231 2.00033261 2.61416162 2.83888734 2.87578091
+ 2.87658044 2.92930484 2.92985062 3.22238149 3.57012252 3.57091472
+ 4.46382008 4.46444243 8.97083207 9.01553326]
+  33 ( 0.500  0.000  0.250)   [-0.11406769  0.07493023  0.23841487  0.30744026] [0.81044692 1.03513153 1.04452502 1.10471789 1.52327398 1.68883949
+ 1.85718535 2.10295527 2.23682146 2.51607755 2.7170187  2.76606425
+ 2.85271669 2.90701765 2.97012836 3.13552501 3.2796924  3.54379314
+ 4.30447092 4.56358471 8.96551635 8.99737533]
+  34 ( 0.500  0.000  0.500)   [-0.00978265 -0.00796426  0.24954038  0.25090311] [0.78855233 0.7896111  1.19863678 1.19900722 1.6504336  1.65177584
+ 1.97967894 1.97971994 2.287644   2.28867484 2.73914619 2.73990392
+ 2.92999584 2.93099065 2.97555965 2.97627937 3.37964622 3.38017183
+ 4.68470663 4.68494008 8.96888975 8.97184556]
+  35 ( 0.500  0.000  0.750)   [-0.11406769  0.07493023  0.23841487  0.30744026] [0.81044692 1.03513153 1.04452502 1.10471789 1.52327398 1.68883949
+ 1.85718535 2.10295527 2.23682146 2.51607755 2.7170187  2.76606425
+ 2.85271669 2.90701765 2.97012836 3.13552501 3.2796924  3.54379314
+ 4.30447092 4.56358471 8.96551634 8.99737532]
+  36 ( 0.500  0.250  0.000)   [-0.1144066   0.07549398  0.2380106   0.30655956] [0.81114345 1.0348773  1.04466342 1.10493342 1.52299923 1.68914532
+ 1.85716168 2.10313243 2.23683596 2.51631437 2.7172029  2.76565269
+ 2.8527503  2.90660355 2.97038101 3.13566334 3.27920791 3.54404769
+ 4.30416706 4.56382678 8.96556978 8.99737854]
+  37 ( 0.500  0.250  0.250)   [-0.17236968  0.1541758   0.20781256  0.38112292] [0.87001994 0.92568742 1.03852015 1.13348055 1.57531777 1.61572918
+ 1.7760352  2.30341638 2.30700621 2.38246443 2.63036752 2.64473611
+ 2.80728148 3.15072595 3.1560982  3.18973579 3.43300263 3.46726555
+ 4.26809125 4.48089911 8.93523095 9.00047612]
+  38 ( 0.500  0.250  0.500)   [-0.11410779  0.07574157  0.2377381   0.30631841] [0.8115919  1.03471665 1.04421875 1.10510052 1.52317798 1.6893008
+ 1.85748287 2.10282211 2.23694356 2.51626943 2.71652031 2.76572088
+ 2.8528417  2.90715808 2.97005949 3.13560176 3.27887002 3.54381875
+ 4.3037645  4.56360571 8.96553042 8.99734846]
+  39 ( 0.500  0.250  0.750)   [0.0173709  0.0187592  0.18198824 0.18322817] [1.01235394 1.01307655 1.03009533 1.03044145 1.52465493 1.52563038
+ 2.00277928 2.0035825  2.44155816 2.44178311 2.71893527 2.71946583
+ 2.83927618 2.83969334 3.05387435 3.05468977 3.22332206 3.22424955
+ 4.29694527 4.29779065 8.99038794 8.99332001]
+  40 ( 0.500  0.500  0.000)   [-0.00992447 -0.00841605  0.24937477  0.25007371] [0.78900691 0.78957951 1.19900779 1.19907162 1.65057198 1.65148824
+ 1.97935687 1.98019695 2.28794004 2.28894958 2.73926701 2.73959525
+ 2.93026094 2.93092742 2.97538187 2.9759088  3.37963069 3.38014716
+ 4.68466299 4.68496032 8.96892724 8.97185129]
+  41 ( 0.500  0.500  0.250)   [-0.11410064  0.07501219  0.23772675  0.30644267] [0.81101787 1.03490107 1.04456378 1.10533012 1.52348946 1.68892324
+ 1.85752111 2.10246628 2.23685265 2.51629662 2.71741372 2.76583269
+ 2.85254167 2.9071744  2.9700782  3.13545356 3.278969   3.54377945
+ 4.30404867 4.56350724 8.96551897 8.99735783]
+  42 ( 0.500  0.500  0.500)   [-0.12530777 -0.01798553  0.38715729  0.38733732] [0.87682303 0.87900671 0.90019839 1.26256146 1.64782605 1.84033513
+ 1.84094279 1.99983199 2.00053587 2.61391027 2.83936029 2.87583702
+ 2.87611574 2.92855547 2.92989766 3.22226535 3.56991694 3.57042962
+ 4.46395166 4.46443566 8.97076492 9.01554998]
+  43 ( 0.500  0.500  0.750)   [-0.11410064  0.07501219  0.23772675  0.30644267] [0.81101787 1.03490107 1.04456378 1.10533012 1.52348946 1.68892324
+ 1.85752111 2.10246628 2.23685265 2.51629662 2.71741372 2.76583269
+ 2.85254168 2.9071744  2.9700782  3.13545356 3.278969   3.54377945
+ 4.30404867 4.56350724 8.96551897 8.99735782]
+  44 ( 0.500  0.750  0.000)   [-0.1144066   0.07549398  0.2380106   0.30655956] [0.81114345 1.0348773  1.04466342 1.10493342 1.52299923 1.68914531
+ 1.85716168 2.10313243 2.23683596 2.51631437 2.7172029  2.76565269
+ 2.8527503  2.90660355 2.97038101 3.13566334 3.27920791 3.54404769
+ 4.30416706 4.56382678 8.96556977 8.99737854]
+  45 ( 0.500  0.750  0.250)   [0.0173709  0.0187592  0.18198824 0.18322817] [1.01235394 1.01307655 1.03009533 1.03044145 1.52465493 1.52563038
+ 2.00277928 2.0035825  2.44155816 2.44178311 2.71893527 2.71946583
+ 2.83927618 2.83969334 3.05387435 3.05468977 3.22332206 3.22424955
+ 4.29694527 4.29779065 8.99038794 8.99332001]
+  46 ( 0.500  0.750  0.500)   [-0.11410779  0.07574157  0.2377381   0.30631841] [0.8115919  1.03471665 1.04421875 1.10510052 1.52317798 1.6893008
+ 1.85748287 2.10282211 2.23694356 2.51626943 2.71652031 2.76572088
+ 2.8528417  2.90715808 2.97005949 3.13560176 3.27887002 3.54381875
+ 4.3037645  4.56360571 8.96553042 8.99734845]
+  47 ( 0.500  0.750  0.750)   [-0.17236968  0.1541758   0.20781256  0.38112292] [0.87001994 0.92568742 1.03852015 1.13348055 1.57531777 1.61572918
+ 1.7760352  2.30341638 2.30700621 2.38246443 2.63036752 2.64473611
+ 2.80728148 3.15072595 3.1560982  3.18973579 3.43300263 3.46726555
+ 4.26809125 4.48089911 8.93523094 9.0004761 ]
+  48 ( 0.750 -0.000  0.000)   [-0.27373968  0.24343928  0.43246463  0.43306822] [0.83696518 0.83756131 0.86228401 1.15590996 1.67105821 1.67187966
+ 1.8551868  2.28397456 2.28412773 2.43246921 2.55889657 2.55947304
+ 3.30880752 3.30933924 3.31534888 3.57897846 3.57998223 3.58263057
+ 4.55533943 4.55579534 8.81365359 8.98029954]
+  49 ( 0.750  0.000  0.250)   [-0.17236376  0.15408626  0.20837118  0.38097996] [0.86992251 0.92551216 1.03859498 1.1335428  1.57517984 1.61532043
+ 1.77630241 2.30385458 2.30694344 2.38202064 2.6304573  2.6447752
+ 2.80715067 3.15080568 3.15649037 3.18925931 3.43356925 3.46694026
+ 4.26792575 4.48072201 8.93534262 9.00044325]
+  50 ( 0.750 -0.000  0.500)   [-0.1137458   0.07467201  0.23833886  0.30707646] [0.81037649 1.03463542 1.04479086 1.10506403 1.52332972 1.68897037
+ 1.85771342 2.10236489 2.2365707  2.51619666 2.71765525 2.76610957
+ 2.85278046 2.90696463 2.97015532 3.13521493 3.27926569 3.54386342
+ 4.30420226 4.56362475 8.96562564 8.99730937]
+  51 ( 0.750  0.000  0.750)   [-0.25374866  0.31930945  0.33781606  0.33919889] [0.72080242 0.98820539 0.98889111 1.05090722 1.56213755 1.81992758
+ 1.83381712 2.20203255 2.20284191 2.48747738 2.4879199  2.74144257
+ 3.02329579 3.23588542 3.31325618 3.37442989 3.37569154 3.78699201
+ 4.68352923 4.68401707 8.81372791 8.98738846]
+  52 ( 0.750  0.250  0.000)   [-0.17218964  0.15476424  0.2069435   0.38064253] [0.87070732 0.92570512 1.03811703 1.13426052 1.57497565 1.61472858
+ 1.77646849 2.30424677 2.30685511 2.38172252 2.62985877 2.64496103
+ 2.80756014 3.15117394 3.15580963 3.18979351 3.43339696 3.46681764
+ 4.2674391  4.48099121 8.93526397 9.00050536]
+  53 ( 0.750  0.250  0.250)   [-0.11424717  0.07487453  0.23835445  0.30796841] [0.81047618 1.03472731 1.04427666 1.10499169 1.52313739 1.68909401
+ 1.85745879 2.10294896 2.23708152 2.51608209 2.71689014 2.76609958
+ 2.85269828 2.90718338 2.96974519 3.13567437 3.27892442 3.54403242
+ 4.30426291 4.56320629 8.96556907 8.99731608]
+  54 ( 0.750  0.250  0.500)   [0.01765207 0.01860198 0.18239622 0.18328703] [1.01189042 1.01207508 1.03053499 1.03093679 1.52453823 1.52565421
+ 2.00342097 2.00406888 2.44132228 2.44177059 2.71936998 2.71999223
+ 2.83812665 2.83883537 3.05384591 3.05443127 3.2233267  3.22427433
+ 4.29764847 4.29854687 8.99033309 8.99332347]
+  55 ( 0.750  0.250  0.750)   [-0.11348604  0.07488811  0.2380609   0.3059478 ] [0.81119457 1.03483817 1.04453262 1.10498044 1.52289093 1.68899631
+ 1.85727535 2.10278533 2.23711759 2.51614547 2.71751677 2.76539651
+ 2.85289662 2.90717459 2.9699803  3.13583735 3.27857546 3.54395419
+ 4.3038666  4.56374501 8.96565034 8.99730502]
+  56 ( 0.750  0.500  0.000)   [-0.11344091  0.07424468  0.23757182  0.3063482 ] [0.8115097  1.03415986 1.04478732 1.10556674 1.52313014 1.68900884
+ 1.85709275 2.10314779 2.23648578 2.51650718 2.71744929 2.76569119
+ 2.85288608 2.90673336 2.97038819 3.13577939 3.27879276 3.54370609
+ 4.30361738 4.56376522 8.96569488 8.99729966]
+  57 ( 0.750  0.500  0.250)   [0.0172779  0.01852272 0.18216099 0.18335968] [1.01233814 1.01315724 1.02969069 1.03069614 1.52472318 1.52571943
+ 2.00292328 2.00381646 2.44138196 2.44245723 2.71934641 2.71974178
+ 2.83843397 2.83913228 3.05380792 3.05454831 3.22309984 3.22406506
+ 4.29746122 4.29807086 8.9903394  8.99332928]
+  58 ( 0.750  0.500  0.500)   [-0.1141334   0.07500207  0.23785309  0.30754678] [0.81025726 1.03478439 1.04480321 1.10490624 1.52367211 1.68903079
+ 1.85769346 2.10270402 2.23691907 2.51596683 2.7171976  2.76587021
+ 2.85306032 2.90713908 2.96981273 3.13543338 3.27882391 3.54369681
+ 4.30405819 4.56329728 8.96553284 8.99730382]
+  59 ( 0.750  0.500  0.750)   [-0.1720646   0.15469964  0.20699508  0.37974829] [0.87120958 0.92539435 1.03856697 1.13370709 1.57517103 1.6154271
+ 1.77625476 2.30372468 2.30674089 2.38241247 2.63036919 2.64468178
+ 2.80753484 3.1509343  3.15557089 3.18958269 3.43302717 3.46685924
+ 4.26739752 4.48084586 8.93527848 9.00046715]
+  60 ( 0.750  0.750  0.000)   [-0.25381914  0.31866508  0.33813282  0.33846206] [0.72135189 0.9885049  0.98903051 1.05045939 1.5624643  1.81991016
+ 1.8340978  2.20201262 2.20271625 2.48714615 2.48772578 2.74153755
+ 3.02347198 3.23562272 3.31351133 3.37448948 3.37529683 3.78678174
+ 4.68370034 4.6840295  8.81372133 8.98739945]
+  61 ( 0.750  0.750  0.250)   [-0.11388833  0.07462658  0.2381729   0.30650133] [0.8111439  1.03436569 1.04451081 1.10538317 1.52332823 1.68911687
+ 1.85757597 2.10278611 2.2365242  2.51637969 2.71713728 2.76574562
+ 2.85251382 2.90684471 2.97056033 3.13519813 3.27903565 3.54400873
+ 4.3039213  4.56362665 8.96565293 8.99731262]
+  62 ( 0.750  0.750  0.500)   [-0.17236071  0.1545065   0.20778736  0.38036368] [0.87075035 0.92517353 1.03833195 1.13399492 1.57559598 1.61558432
+ 1.77630522 2.30371954 2.30626726 2.38196481 2.63015175 2.64490463
+ 2.80750565 3.15071579 3.15596201 3.18971131 3.43331547 3.46681125
+ 4.26726864 4.48063595 8.93529179 9.00044288]
+  63 ( 0.750  0.750  0.750)   [-0.27375794  0.24390975  0.43155369  0.43225965] [0.83658322 0.83834972 0.86280514 1.15613307 1.67096712 1.67209616
+ 1.85566342 2.28360359 2.28443371 2.43211008 2.55885973 2.55918328
+ 3.30839656 3.30945173 3.31607292 3.57879994 3.57932551 3.58274391
+ 4.55525374 4.55574691 8.8136288  8.98030868]
+nelec by numeric integration = 8.000000000003674
+    CPU time for vxc      3.25 sec, wall time      3.26 sec
+    CPU time for vj and vk      2.44 sec, wall time      2.45 sec
+E1 = (3.989550065183625-5.353248226647178e-19j)  Ecoul = (1.0818466827531874-1.1180834903756764e-19j)  Exc = -3.427884746933354
+cycle= 2 E= -11.1653610969826  delta_E= -0.00728  |g|= 0.227  |ddm|= 1.18
+    CPU time for cycle= 2      5.76 sec, wall time      5.78 sec
+HOMO = 0.514285107045  LUMO = 0.728404874044
+     k-point                  mo_energy
+   0 ( 0.000  0.000  0.000)   [-0.32240082  0.51252402  0.51399388  0.51428511] [0.75414521 0.75499754 0.75543219 1.10029645 1.692364   1.69298071
+ 2.3619429  2.36261257 2.36277489 2.43355394 2.43427973 2.43483638
+ 3.52529705 3.52579453 3.70390365 3.70437753 3.70550992 4.59140967
+ 4.59175893 4.5919665  8.65150969 8.98362692]
+   1 ( 0.000  0.000  0.250)   [-0.26602512  0.25224448  0.44095418  0.44171472] [0.84654231 0.84752809 0.87239359 1.16951971 1.67734563 1.67821882
+ 1.86649277 2.29394001 2.2947141  2.44120526 2.56946823 2.56986426
+ 3.31898035 3.31982661 3.32567815 3.58913826 3.58951804 3.59354952
+ 4.56606285 4.56667817 8.83945802 9.00589584]
+   2 ( 0.000  0.000  0.500)   [-0.11615217 -0.01165778  0.39624787  0.39682659] [0.88623277 0.8873211  0.91051077 1.27608014 1.65828447 1.85032096
+ 1.85060864 2.00627453 2.00697798 2.62133333 2.84983801 2.88813118
+ 2.88887859 2.9385106  2.93937333 3.23265501 3.57976697 3.58001483
+ 4.47428909 4.47467394 8.99642553 9.0410031 ]
+   3 ( 0.000  0.000  0.750)   [-0.26602512  0.25224448  0.44095418  0.44171472] [0.84654231 0.84752809 0.87239359 1.16951971 1.67734563 1.67821882
+ 1.86649277 2.29394001 2.2947141  2.44120526 2.56946823 2.56986426
+ 3.31898035 3.31982661 3.32567815 3.58913826 3.58951804 3.59354952
+ 4.56606285 4.56667817 8.83945801 9.00589583]
+   4 ( 0.000  0.250  0.000)   [-0.26605623  0.25216397  0.44010902  0.44161845] [0.84695325 0.84746451 0.87263262 1.16959681 1.67744895 1.6778508
+ 1.86639657 2.29408234 2.29460954 2.4413656  2.56943672 2.56963968
+ 3.31919143 3.31969243 3.32650265 3.58857104 3.5891344  3.59423114
+ 4.5663953  4.56664299 8.8394054  9.00594892]
+   5 ( 0.000  0.250  0.250)   [-0.24633533  0.3282789   0.34689355  0.34810749] [0.72840487 0.99926535 0.99944065 1.06209922 1.57060157 1.83157948
+ 1.8403858  2.21183598 2.212268   2.49795158 2.49837442 2.75150171
+ 3.03140164 3.24567812 3.32338875 3.38558738 3.38593554 3.79794911
+ 4.69401025 4.69444823 8.83946267 9.01299286]
+   6 ( 0.000  0.250  0.500)   [-0.10609957  0.08370715  0.24571028  0.31528812] [0.81862292 1.0465775  1.05523133 1.11505758 1.53297713 1.70110206
+ 1.86548199 2.10980403 2.24696199 2.52495786 2.72567083 2.77761208
+ 2.86230302 2.91620444 2.98131169 3.1452035  3.28863269 3.55378648
+ 4.31417136 4.57333134 8.99117344 9.02281373]
+   7 ( 0.000  0.250  0.750)   [-0.16400205  0.16264404  0.21453895  0.38952357] [0.8790402  0.93548264 1.0499923  1.14555055 1.58445402 1.62097768
+ 1.7877218  2.31201725 2.31727194 2.39136695 2.6386899  2.65485117
+ 2.81889856 3.16078954 3.16677795 3.20022967 3.44256632 3.47631219
+ 4.27795455 4.49109244 8.96099291 9.02594791]
+   8 ( 0.000  0.500  0.000)   [-0.11525958 -0.01279056  0.39515526  0.39691891] [0.88654057 0.8871781  0.91063119 1.27618456 1.65802667 1.84967643
+ 1.85013094 2.00662353 2.00729155 2.6212978  2.8502847  2.88784282
+ 2.88860797 2.93888381 2.93949521 3.23370807 3.57926077 3.57967985
+ 4.47464918 4.47497898 8.99646064 9.04106111]
+   9 ( 0.000  0.500  0.250)   [-0.10561297  0.08295061  0.24554839  0.31516581] [0.81876966 1.04670861 1.05518183 1.11499212 1.53297444 1.70079265
+ 1.86517522 2.10997231 2.24712138 2.52510793 2.72577758 2.77770495
+ 2.86214373 2.91670914 2.980946   3.14546221 3.28851649 3.553647
+ 4.31391615 4.57350679 8.99111383 9.02287682]
+  10 ( 0.000  0.500  0.500)   [-0.00116757 -0.00102943  0.25824165  0.25955974] [0.79615496 0.79680212 1.21145881 1.21176652 1.66356765 1.66375451
+ 1.98683136 1.98711189 2.29489554 2.29515437 2.75146736 2.75175318
+ 2.93993807 2.94018868 2.98467814 2.98553168 3.3895924  3.3900089
+ 4.69372133 4.6948277  8.995723   8.99611448]
+  11 ( 0.000  0.500  0.750)   [-0.10561297  0.08295061  0.24554839  0.31516581] [0.81876966 1.04670861 1.05518183 1.11499212 1.53297444 1.70079265
+ 1.86517522 2.10997231 2.24712138 2.52510793 2.72577758 2.77770495
+ 2.86214373 2.91670914 2.980946   3.14546221 3.28851649 3.553647
+ 4.31391615 4.57350679 8.99111382 9.02287681]
+  12 ( 0.000  0.750  0.000)   [-0.26605623  0.25216397  0.44010902  0.44161845] [0.84695325 0.84746451 0.87263262 1.16959681 1.67744895 1.6778508
+ 1.86639657 2.29408234 2.29460954 2.4413656  2.56943672 2.56963968
+ 3.31919143 3.31969243 3.32650265 3.58857104 3.5891344  3.59423114
+ 4.5663953  4.56664299 8.83940539 9.00594891]
+  13 ( 0.000  0.750  0.250)   [-0.16400205  0.16264404  0.21453895  0.38952357] [0.8790402  0.93548264 1.0499923  1.14555055 1.58445402 1.62097768
+ 1.7877218  2.31201725 2.31727194 2.39136695 2.6386899  2.65485117
+ 2.81889856 3.16078954 3.16677795 3.20022967 3.44256632 3.47631219
+ 4.27795455 4.49109244 8.96099291 9.02594791]
+  14 ( 0.000  0.750  0.500)   [-0.10609957  0.08370715  0.24571028  0.31528812] [0.81862292 1.0465775  1.05523133 1.11505758 1.53297713 1.70110206
+ 1.86548199 2.10980403 2.24696199 2.52495786 2.72567083 2.77761208
+ 2.86230302 2.91620444 2.98131169 3.1452035  3.28863269 3.55378648
+ 4.31417136 4.57333134 8.99117343 9.02281372]
+  15 ( 0.000  0.750  0.750)   [-0.24633533  0.3282789   0.34689355  0.34810749] [0.72840487 0.99926535 0.99944065 1.06209922 1.57060157 1.83157948
+ 1.8403858  2.21183598 2.212268   2.49795158 2.49837442 2.75150171
+ 3.03140164 3.24567812 3.32338875 3.38558738 3.38593554 3.79794911
+ 4.69401025 4.69444823 8.83946266 9.01299285]
+  16 ( 0.250  0.000  0.000)   [-0.26610981  0.25182673  0.44169718  0.44220798] [0.84655766 0.84715506 0.87226673 1.1693398  1.67748885 1.67821531
+ 1.86615121 2.29438617 2.29447675 2.44124166 2.56950633 2.57000943
+ 3.31899289 3.31950222 3.32585593 3.58900745 3.58995201 3.5938337
+ 4.56622566 4.56664147 8.83939525 9.00591813]
+  17 ( 0.250  0.000  0.250)   [-0.24620101  0.32869051  0.34637146  0.3477441 ] [0.72875858 0.99909088 0.99978297 1.06213071 1.57033793 1.8314672
+ 1.84009554 2.21164586 2.21236066 2.49801145 2.49846602 2.75171451
+ 3.031744   3.24533638 3.32296614 3.38540913 3.3866146  3.7982472
+ 4.69453026 4.69500535 8.83949191 9.01299753]
+  18 ( 0.250  0.000  0.500)   [-0.10566927  0.08264054  0.24634517  0.31548935] [0.81804602 1.04629297 1.05558164 1.11521114 1.53310108 1.700628
+ 1.86582664 2.10971609 2.24631706 2.52518265 2.726358   2.77769529
+ 2.86206203 2.91633905 2.98168639 3.14483653 3.28905577 3.55393104
+ 4.31433185 4.57407569 8.99122918 9.02280752]
+  19 ( 0.250  0.000  0.750)   [-0.16455643  0.16272628  0.21586806  0.38981769] [0.87851677 0.93557352 1.04961505 1.14562949 1.58435899 1.62147485
+ 1.78758099 2.31245868 2.31772879 2.39052679 2.63870687 2.6545611
+ 2.81854429 3.16126397 3.16709732 3.19997369 3.44309021 3.47630397
+ 4.27812859 4.49112133 8.96093425 9.02598319]
+  20 ( 0.250  0.250  0.000)   [-0.2462852   0.32797935  0.34674294  0.34702846] [0.72926367 0.9994227  0.99995847 1.06168747 1.57061543 1.83135183
+ 1.8403784  2.21163981 2.21232758 2.49775366 2.49826627 2.75179503
+ 3.03193046 3.24510797 3.32317225 3.38549011 3.38625211 3.79805749
+ 4.69470519 4.69499046 8.83948383 9.01300479]
+  21 ( 0.250  0.250  0.250)   [-0.26612295  0.25231201  0.44071934  0.44143987] [0.84619455 0.84788253 0.87281891 1.16958369 1.67736247 1.67842705
+ 1.86668632 2.29399831 2.294743   2.44091225 2.56943602 2.56974656
+ 3.31861631 3.3196126  3.32659274 3.5888189  3.58933033 3.59396855
+ 4.5661342  4.56659198 8.83935237 9.00592701]
+  22 ( 0.250  0.250  0.500)   [-0.1645368   0.16311452  0.21528248  0.38921658] [0.87934024 0.93522717 1.04931532 1.1461165  1.58482534 1.62175058
+ 1.78750668 2.31228035 2.31708424 2.39050733 2.63841049 2.65469545
+ 2.81886405 3.16121634 3.16662573 3.20038756 3.4428551  3.47617956
+ 4.27754909 4.49102035 8.96085947 9.02599308]
+  23 ( 0.250  0.250  0.750)   [-0.1058336   0.08260382  0.24616351  0.31492885] [0.81880975 1.04601442 1.05529314 1.11557593 1.53307551 1.70067652
+ 1.86572988 2.11012468 2.24636437 2.52535396 2.72587819 2.77733861
+ 2.86180942 2.91625274 2.98207458 3.14485187 3.28882735 3.55407149
+ 4.31408658 4.57404604 8.99126763 9.02279729]
+  24 ( 0.250  0.500  0.000)   [-0.10538798  0.08218827  0.24557156  0.31483426] [0.8191319  1.04583035 1.05561663 1.1157145  1.53288277 1.70054473
+ 1.86528914 2.11047483 2.24626183 2.52547162 2.72623292 2.77734677
+ 2.8621352  2.91615422 2.98190935 3.14536549 3.28862507 3.55378295
+ 4.3138125  4.57416924 8.99127936 9.02280416]
+  25 ( 0.250  0.500  0.250)   [-0.16425444  0.16328191  0.21455349  0.38860014] [0.87980734 0.93541575 1.04959256 1.14582042 1.58438086 1.6215744
+ 1.78747604 2.31235431 2.31748225 2.39094313 2.63863034 2.65446528
+ 2.81894856 3.16143296 3.16626141 3.20025132 3.44257153 3.47622904
+ 4.27763238 4.49122272 8.96082836 9.02603016]
+  26 ( 0.250  0.500  0.500)   [-0.10604113  0.08293934  0.24587098  0.31596849] [0.81795573 1.04642361 1.05557345 1.11509079 1.533455   1.70069319
+ 1.86575869 2.10998051 2.24665637 2.52497027 2.72593093 2.77743319
+ 2.86234609 2.91651931 2.98136088 3.14511381 3.28863389 3.55377319
+ 4.31420066 4.57370145 8.99111888 9.02280937]
+  27 ( 0.250  0.500  0.750)   [0.02602771 0.02740927 0.1890995  0.190303  ] [1.02060201 1.02142184 1.04108761 1.04218629 1.53562903 1.53591539
+ 2.01200278 2.01280989 2.45036884 2.45139099 2.73037357 2.73050872
+ 2.84680727 2.84737437 3.06502126 3.06547183 3.2323429  3.23284692
+ 4.30745465 4.30807474 9.01718847 9.01755439]
+  28 ( 0.250  0.750  0.000)   [-0.16438076  0.16335134  0.21444386  0.38955505] [0.87928279 0.93578322 1.04911439 1.1463385  1.58418099 1.62094143
+ 1.78765109 2.31276724 2.31768894 2.39026265 2.63813005 2.65475865
+ 2.81890807 3.16160122 3.1665588  3.20047456 3.44293657 3.47614934
+ 4.27771376 4.49135385 8.96083703 9.02605662]
+  29 ( 0.250  0.750  0.250)   [-0.10541535  0.08282801  0.24610381  0.31437846] [0.81887141 1.04648612 1.05527608 1.1151611  1.53270638 1.70060156
+ 1.86540447 2.11011177 2.24687671 2.52513206 2.72623642 2.77699312
+ 2.86214922 2.91655072 2.98156557 3.14544207 3.28840423 3.55402246
+ 4.3140248  4.57415304 8.99125274 9.02280185]
+  30 ( 0.250  0.750  0.500)   [0.02638301 0.02754102 0.18932333 0.19022641] [1.02005808 1.02040973 1.04194765 1.04241419 1.53550404 1.53587748
+ 2.01258182 2.01295024 2.45014465 2.4508322  2.73021761 2.73087775
+ 2.84648354 2.84711749 3.06513623 3.06528633 3.2325735  3.23302295
+ 4.30763414 4.3084689  9.01719107 9.01754662]
+  31 ( 0.250  0.750  0.750)   [-0.10616945  0.08282248  0.24637446  0.3163839 ] [0.81819179 1.04636199 1.05505927 1.11515212 1.5329087  1.70074712
+ 1.86556557 2.11020978 2.24685228 2.52507161 2.72561036 2.77764951
+ 2.86197933 2.91656108 2.98132927 3.1453091  3.28871899 3.55409602
+ 4.31440008 4.57362115 8.9911804  9.02281085]
+  32 ( 0.500  0.000  0.000)   [-0.11669087 -0.01148552  0.39709209  0.3977027 ] [0.88628364 0.88649029 0.91059121 1.27588581 1.65792472 1.84992661
+ 1.85046547 2.00674395 2.00706725 2.62141356 2.84986966 2.88819058
+ 2.88884411 2.93874049 2.93926128 3.23303313 3.57959045 3.58037511
+ 4.47430916 4.47489411 8.9964896  9.04090608]
+  33 ( 0.500  0.000  0.250)   [-0.105988    0.0828666   0.24646264  0.31584871] [0.81811623 1.04678353 1.05534336 1.11487348 1.5330244  1.70047708
+ 1.86532075 2.11025638 2.24655518 2.52506162 2.7257425  2.77765609
+ 2.86202464 2.91638461 2.98168031 3.14513094 3.28944038 3.55387198
+ 4.31459262 4.57401198 8.99111088 9.02288328]
+  34 ( 0.500  0.000  0.500)   [-0.00166369  0.0002862   0.25761788  0.25894797] [0.79598483 0.79702691 1.2116205  1.21202451 1.66330756 1.66354324
+ 1.98685778 1.98689435 2.29504555 2.29529207 2.75105339 2.75178479
+ 2.93913149 2.94026874 2.98525226 2.9859295  3.38980193 3.39037239
+ 4.69527699 4.69555815 8.99581095 8.99609637]
+  35 ( 0.500  0.000  0.750)   [-0.105988    0.0828666   0.24646264  0.31584871] [0.81811623 1.04678353 1.05534336 1.11487348 1.5330244  1.70047708
+ 1.86532075 2.11025638 2.24655518 2.52506162 2.7257425  2.77765609
+ 2.86202463 2.91638461 2.98168031 3.14513094 3.28944038 3.55387198
+ 4.31459262 4.57401198 8.99111087 9.02288327]
+  36 ( 0.500  0.250  0.000)   [-0.10634166  0.08341905  0.24600902  0.31504666] [0.81878547 1.0465071  1.0554998  1.11511725 1.53274812 1.70066272
+ 1.86536855 2.1104686  2.24657696 2.52528866 2.72595214 2.77730656
+ 2.86202896 2.9160024  2.98189166 3.14524859 3.28902382 3.55410611
+ 4.31432179 4.57422643 8.99117068 9.02287459]
+  37 ( 0.500  0.250  0.250)   [-0.16455212  0.16277989  0.2153351   0.38997019] [0.87865938 0.93570626 1.0495299  1.14560479 1.58450246 1.62183019
+ 1.78732171 2.31202161 2.31774196 2.39097745 2.63863995 2.65451518
+ 2.81871408 3.16120508 3.16671678 3.2004109  3.44254787 3.47663411
+ 4.27828967 4.49125905 8.96079427 9.02603322]
+  38 ( 0.500  0.250  0.500)   [-0.10601308  0.08366752  0.24576871  0.3147461 ] [0.81923185 1.04636719 1.05501009 1.11528384 1.53299734 1.70089149
+ 1.86561098 2.11007238 2.24669165 2.52528075 2.72530641 2.77730446
+ 2.8621161  2.91654484 2.98157883 3.14524979 3.28866787 3.55390434
+ 4.31394467 4.57400387 8.99112107 9.02285096]
+  39 ( 0.500  0.250  0.750)   [0.0260349  0.02773177 0.18897557 0.19013462] [1.02074647 1.02117899 1.04158739 1.04184179 1.53554709 1.5358365
+ 2.01195969 2.01251439 2.45047654 2.45082939 2.72978807 2.73042085
+ 2.84758917 2.84794754 3.06515773 3.06552636 3.23257768 3.23300328
+ 4.30696323 4.30781975 9.01725596 9.01752645]
+  40 ( 0.500  0.500  0.000)   [-1.88557346e-03 -1.64733844e-04  2.57510807e-01  2.58138790e-01] [0.79644502 0.79696884 1.21200876 1.21211779 1.66311629 1.66340012
+ 1.98662905 1.98742152 2.29504329 2.29587752 2.75124694 2.75149807
+ 2.9393763  2.94023358 2.98508534 2.98556809 3.38980782 3.39032425
+ 4.69528735 4.69551847 8.99583267 8.99610448]
+  41 ( 0.500  0.500  0.250)   [-0.106029    0.08295155  0.2457541   0.31487238] [0.81866751 1.04655245 1.05536309 1.11554405 1.53322539 1.70047948
+ 1.86566676 2.10978307 2.24663133 2.52529466 2.72617176 2.77743202
+ 2.86185293 2.91656026 2.9816011  3.14511671 3.28876062 3.55385737
+ 4.31420423 4.57392747 8.99109529 9.02286625]
+  42 ( 0.500  0.500  0.500)   [-0.11649027 -0.01149658  0.39620785  0.39639483] [0.88583015 0.88792268 0.91091041 1.27618925 1.65840612 1.85009069
+ 1.85059646 2.00658114 2.00718539 2.62122243 2.85030841 2.88816182
+ 2.88841228 2.93806423 2.93935354 3.23300691 3.57941531 3.57990778
+ 4.47442319 4.47487243 8.99645116 9.04086909]
+  43 ( 0.500  0.500  0.750)   [-0.106029    0.08295155  0.2457541   0.31487238] [0.81866751 1.04655245 1.05536309 1.11554405 1.53322539 1.70047948
+ 1.86566676 2.10978307 2.24663133 2.52529466 2.72617176 2.77743202
+ 2.86185293 2.91656027 2.9816011  3.14511671 3.28876062 3.55385737
+ 4.31420423 4.57392747 8.99109528 9.02286624]
+  44 ( 0.500  0.750  0.000)   [-0.10634166  0.08341905  0.24600902  0.31504666] [0.81878547 1.0465071  1.0554998  1.11511725 1.53274812 1.70066272
+ 1.86536855 2.1104686  2.24657696 2.52528866 2.72595214 2.77730656
+ 2.86202896 2.9160024  2.98189166 3.14524858 3.28902382 3.55410611
+ 4.31432179 4.57422643 8.99117067 9.02287458]
+  45 ( 0.500  0.750  0.250)   [0.0260349  0.02773177 0.18897557 0.19013462] [1.02074647 1.02117899 1.04158739 1.04184179 1.53554709 1.5358365
+ 2.01195969 2.01251439 2.45047654 2.45082939 2.72978807 2.73042085
+ 2.84758917 2.84794754 3.06515773 3.06552636 3.23257768 3.23300328
+ 4.30696323 4.30781975 9.01725596 9.01752645]
+  46 ( 0.500  0.750  0.500)   [-0.10601308  0.08366752  0.24576871  0.3147461 ] [0.81923185 1.04636719 1.05501009 1.11528384 1.53299734 1.70089149
+ 1.86561098 2.11007238 2.24669165 2.52528075 2.72530641 2.77730446
+ 2.8621161  2.91654484 2.98157883 3.14524979 3.28866787 3.55390434
+ 4.31394467 4.57400387 8.99112107 9.02285095]
+  47 ( 0.500  0.750  0.750)   [-0.16455212  0.16277989  0.2153351   0.38997019] [0.87865938 0.93570626 1.0495299  1.14560479 1.58450246 1.62183019
+ 1.78732171 2.31202161 2.31774196 2.39097745 2.63863995 2.65451518
+ 2.81871408 3.16120508 3.16671678 3.2004109  3.44254787 3.47663411
+ 4.27828967 4.49125905 8.96079426 9.0260332 ]
+  48 ( 0.750 -0.000  0.000)   [-0.26610981  0.25182674  0.44169718  0.44220798] [0.84655766 0.84715506 0.87226674 1.1693398  1.67748885 1.67821531
+ 1.86615121 2.29438617 2.29447675 2.44124166 2.56950633 2.57000943
+ 3.31899289 3.31950222 3.32585593 3.58900745 3.58995201 3.5938337
+ 4.56622566 4.56664147 8.83939524 9.00591812]
+  49 ( 0.750  0.000  0.250)   [-0.16455643  0.16272628  0.21586806  0.38981769] [0.87851677 0.93557352 1.04961505 1.14562949 1.58435899 1.62147485
+ 1.78758099 2.31245868 2.31772879 2.39052679 2.63870687 2.6545611
+ 2.81854429 3.16126397 3.16709732 3.19997369 3.44309021 3.47630397
+ 4.27812859 4.49112133 8.96093425 9.02598319]
+  50 ( 0.750 -0.000  0.500)   [-0.10566927  0.08264054  0.24634517  0.31548935] [0.81804602 1.04629297 1.05558164 1.11521114 1.53310108 1.700628
+ 1.86582664 2.10971609 2.24631706 2.52518265 2.726358   2.77769529
+ 2.86206203 2.91633905 2.98168639 3.14483653 3.28905577 3.55393104
+ 4.31433185 4.57407569 8.99122917 9.02280752]
+  51 ( 0.750  0.000  0.750)   [-0.24620101  0.32869051  0.34637146  0.3477441 ] [0.72875858 0.99909088 0.99978297 1.06213071 1.57033793 1.8314672
+ 1.84009554 2.21164586 2.21236066 2.49801145 2.49846602 2.75171451
+ 3.031744   3.24533638 3.32296615 3.38540913 3.3866146  3.7982472
+ 4.69453026 4.69500535 8.83949189 9.01299751]
+  52 ( 0.750  0.250  0.000)   [-0.16438076  0.16335134  0.21444386  0.38955505] [0.87928279 0.93578322 1.04911439 1.1463385  1.58418099 1.62094143
+ 1.78765109 2.31276724 2.31768894 2.39026265 2.63813005 2.65475865
+ 2.81890807 3.16160122 3.1665588  3.20047456 3.44293657 3.47614934
+ 4.27771376 4.49135385 8.96083703 9.02605662]
+  53 ( 0.750  0.250  0.250)   [-0.10616945  0.08282248  0.24637446  0.3163839 ] [0.81819179 1.04636199 1.05505927 1.11515212 1.5329087  1.70074712
+ 1.86556557 2.11020978 2.24685228 2.52507161 2.72561036 2.77764951
+ 2.86197933 2.91656108 2.98132927 3.1453091  3.28871899 3.55409602
+ 4.31440008 4.57362115 8.99118041 9.02281086]
+  54 ( 0.750  0.250  0.500)   [0.02638301 0.02754102 0.18932333 0.19022641] [1.02005808 1.02040973 1.04194765 1.04241419 1.53550404 1.53587748
+ 2.01258182 2.01295024 2.45014465 2.4508322  2.73021761 2.73087775
+ 2.84648354 2.84711749 3.06513623 3.06528633 3.2325735  3.23302295
+ 4.30763414 4.3084689  9.01719107 9.01754662]
+  55 ( 0.750  0.250  0.750)   [-0.10541535  0.08282801  0.24610381  0.31437846] [0.81887141 1.04648612 1.05527608 1.1151611  1.53270638 1.70060155
+ 1.86540447 2.11011177 2.24687671 2.52513206 2.72623642 2.77699312
+ 2.86214922 2.91655072 2.98156557 3.14544207 3.28840423 3.55402246
+ 4.3140248  4.57415304 8.99125273 9.02280185]
+  56 ( 0.750  0.500  0.000)   [-0.10538798  0.08218827  0.24557156  0.31483426] [0.8191319  1.04583035 1.05561663 1.1157145  1.53288277 1.70054473
+ 1.86528914 2.11047483 2.24626183 2.52547162 2.72623292 2.77734677
+ 2.8621352  2.91615422 2.98190935 3.14536549 3.28862507 3.55378295
+ 4.3138125  4.57416924 8.99127936 9.02280415]
+  57 ( 0.750  0.500  0.250)   [0.02602771 0.02740926 0.1890995  0.190303  ] [1.02060201 1.02142184 1.04108761 1.04218629 1.53562903 1.53591539
+ 2.01200278 2.01280989 2.45036884 2.45139099 2.73037357 2.73050872
+ 2.84680727 2.84737437 3.06502126 3.06547183 3.2323429  3.23284692
+ 4.30745465 4.30807474 9.01718847 9.01755439]
+  58 ( 0.750  0.500  0.500)   [-0.10604113  0.08293934  0.24587098  0.31596849] [0.81795573 1.04642361 1.05557345 1.11509079 1.533455   1.70069319
+ 1.86575869 2.10998051 2.24665637 2.52497027 2.72593093 2.77743319
+ 2.86234609 2.91651931 2.98136088 3.14511381 3.28863389 3.55377319
+ 4.31420066 4.57370145 8.99111887 9.02280936]
+  59 ( 0.750  0.500  0.750)   [-0.16425444  0.16328191  0.21455349  0.38860014] [0.87980734 0.93541575 1.04959256 1.14582042 1.58438086 1.6215744
+ 1.78747604 2.31235431 2.31748225 2.39094313 2.63863034 2.65446528
+ 2.81894856 3.16143296 3.16626141 3.20025132 3.44257153 3.47622903
+ 4.27763238 4.49122272 8.96082835 9.02603014]
+  60 ( 0.750  0.750  0.000)   [-0.2462852   0.32797935  0.34674294  0.34702846] [0.72926367 0.9994227  0.99995847 1.06168747 1.57061543 1.83135183
+ 1.8403784  2.21163981 2.21232758 2.49775366 2.49826627 2.75179503
+ 3.03193046 3.24510797 3.32317225 3.38549011 3.38625211 3.79805749
+ 4.69470519 4.69499046 8.83948382 9.01300477]
+  61 ( 0.750  0.750  0.250)   [-0.1058336   0.08260382  0.24616351  0.31492885] [0.81880975 1.04601442 1.05529314 1.11557593 1.53307551 1.70067652
+ 1.86572988 2.11012468 2.24636437 2.52535397 2.72587819 2.77733861
+ 2.86180942 2.91625274 2.98207459 3.14485186 3.28882735 3.55407149
+ 4.31408658 4.57404604 8.99126763 9.02279729]
+  62 ( 0.750  0.750  0.500)   [-0.1645368   0.16311452  0.21528248  0.38921658] [0.87934024 0.93522717 1.04931532 1.14611649 1.58482534 1.62175058
+ 1.78750668 2.31228035 2.31708424 2.39050733 2.63841049 2.65469545
+ 2.81886405 3.16121634 3.16662573 3.20038755 3.4428551  3.47617956
+ 4.27754909 4.49102035 8.96085946 9.02599306]
+  63 ( 0.750  0.750  0.750)   [-0.26612295  0.25231201  0.44071934  0.44143987] [0.84619455 0.84788253 0.87281891 1.16958368 1.67736247 1.67842705
+ 1.86668632 2.29399831 2.294743   2.44091225 2.56943602 2.56974656
+ 3.31861631 3.3196126  3.32659274 3.5888189  3.58933033 3.59396856
+ 4.5661342  4.56659198 8.83935235 9.00592699]
+nelec by numeric integration = 8.000000000003613
+    CPU time for vxc      3.23 sec, wall time      3.23 sec
+    CPU time for vj and vk      2.43 sec, wall time      2.43 sec
+E1 = (3.997820225917873-2.778268066994105e-19j)  Ecoul = (1.0690889980590397+3.8285889215894375e-19j)  Exc = -3.4235571933069795
+cycle= 3 E= -11.1655210673162  delta_E= -0.00016  |g|= 0.0191  |ddm|= 0.169
+    CPU time for cycle= 3      5.72 sec, wall time      5.74 sec
+HOMO = 0.514041068748  LUMO = 0.728439919374
+     k-point                  mo_energy
+   0 ( 0.000  0.000  0.000)   [-0.32239401  0.51226859  0.51374841  0.51404107] [0.75416441 0.75501581 0.75544893 1.10042406 1.6922805  1.69289972
+ 2.36186107 2.362532   2.36269575 2.43337096 2.43410016 2.43465181
+ 3.52521736 3.52571655 3.70374822 3.70422348 3.70535817 4.59131011
+ 4.59166085 4.59186821 8.65095879 8.98309161]
+   1 ( 0.000  0.000  0.250)   [-0.2660257   0.25215318  0.44075117  0.44151509] [0.84650315 0.84748875 0.87241777 1.16950276 1.6772648  1.67813762
+ 1.86630678 2.29380449 2.29457976 2.44114134 2.56934935 2.56974751
+ 3.31886618 3.3197145  3.32553089 3.5890204  3.58940035 3.59345385
+ 4.56595982 4.56657636 8.83890493 9.00536863]
+   2 ( 0.000  0.000  0.500)   [-0.11613302 -0.01173111  0.39605279  0.39663906] [0.88618441 0.88727231 0.91062244 1.27594039 1.65810311 1.85018457
+ 1.85047131 2.00621151 2.00691491 2.62124692 2.84974628 2.88797794
+ 2.88873093 2.93839092 2.93926008 3.23254422 3.57966667 3.57991619
+ 4.47418758 4.47457249 8.99583424 9.0405185 ]
+   3 ( 0.000  0.000  0.750)   [-0.2660257   0.25215318  0.44075117  0.44151509] [0.84650315 0.84748875 0.87241777 1.16950276 1.6772648  1.67813762
+ 1.86630678 2.29380449 2.29457976 2.44114134 2.56934935 2.56974751
+ 3.31886618 3.3197145  3.32553089 3.5890204  3.58940035 3.59345385
+ 4.56595982 4.56657636 8.83890492 9.00536862]
+   4 ( 0.000  0.250  0.000)   [-0.26605542  0.25207362  0.43989932  0.44142099] [0.84691471 0.84743061 0.87265616 1.16957957 1.67736747 1.67776857
+ 1.86620798 2.29394463 2.29447646 2.44130391 2.56931829 2.56951946
+ 3.31907561 3.31957808 3.32635995 3.5884526  3.58901776 3.59413826
+ 4.56629473 4.56654087 8.83885369 9.00542076]
+   5 ( 0.000  0.250  0.250)   [-0.24633935  0.32817188  0.34673329  0.3479462 ] [0.72843992 0.99916576 0.99934206 1.06213225 1.57050746 1.83139087
+ 1.84031285 2.21171192 2.21213936 2.49782777 2.49825235 2.75141276
+ 3.03132825 3.2456014  3.32325188 3.38544849 3.38579615 3.79786244
+ 4.6938987  4.69433715 8.83891085 9.01246506]
+   6 ( 0.000  0.250  0.500)   [-0.1061043   0.08365467  0.24558776  0.31512366] [0.81863649 1.04657807 1.05513708 1.11494909 1.53282146 1.70093375
+ 1.86537079 2.10972859 2.24681476 2.52486529 2.72557017 2.77747241
+ 2.8621999  2.91610344 2.981189   3.14510906 3.28852543 3.5536982
+ 4.31407007 4.57322106 8.9905648  9.02234665]
+   7 ( 0.000  0.250  0.750)   [-0.16400283  0.16258056  0.21442794  0.38932544] [0.87904957 0.935436   1.04990366 1.14551336 1.58429198 1.62089357
+ 1.78755871 2.31190549 2.3171223  2.39127144 2.63861783 2.65476654
+ 2.81875828 3.16065224 3.16662377 3.20015017 3.44247696 3.47621676
+ 4.27785504 4.49099129 8.96042243 9.02544151]
+   8 ( 0.000  0.500  0.000)   [-0.11523492 -0.01286621  0.39495538  0.39672998] [0.88649422 0.88713472 0.91074322 1.27604537 1.65784029 1.8495444
+ 1.8499906  2.00655781 2.00722709 2.62121763 2.8501922  2.88768402
+ 2.88845485 2.93876568 2.93938454 3.23360522 3.57916152 3.57958074
+ 4.47454935 4.47487991 8.99587812 9.04056858]
+   9 ( 0.000  0.500  0.250)   [-0.10561468  0.08289643  0.24542513  0.31499947] [0.8187855  1.04670229 1.05508973 1.11489227 1.53281463 1.70062308
+ 1.86506519 2.10989526 2.24697426 2.52501607 2.72567752 2.77756232
+ 2.86203746 2.91661432 2.98082214 3.14536915 3.28841039 3.55355887
+ 4.31381619 4.57339741 8.99051268 9.02240282]
+  10 ( 0.000  0.500  0.500)   [-0.00128481 -0.00095749  0.25808606  0.25940234] [0.79620118 0.79682389 1.21132511 1.21163622 1.66285189 1.66411014
+ 1.98673021 1.98700921 2.29466541 2.29524807 2.75131325 2.75160013
+ 2.9397382  2.94020686 2.98457317 2.98542498 3.38953935 3.38990181
+ 4.69360427 4.69471621 8.99389364 8.99686919]
+  11 ( 0.000  0.500  0.750)   [-0.10561468  0.08289643  0.24542513  0.31499947] [0.8187855  1.04670229 1.05508973 1.11489227 1.53281463 1.70062307
+ 1.86506519 2.10989526 2.24697426 2.52501607 2.72567752 2.77756232
+ 2.86203746 2.91661432 2.98082214 3.14536915 3.28841039 3.55355887
+ 4.31381619 4.57339741 8.99051268 9.02240281]
+  12 ( 0.000  0.750  0.000)   [-0.26605542  0.25207362  0.43989932  0.44142099] [0.84691471 0.84743061 0.87265616 1.16957957 1.67736747 1.67776857
+ 1.86620798 2.29394463 2.29447646 2.44130391 2.56931829 2.56951946
+ 3.31907561 3.31957808 3.32635995 3.5884526  3.58901776 3.59413826
+ 4.56629473 4.56654087 8.83885368 9.00542075]
+  13 ( 0.000  0.750  0.250)   [-0.16400283  0.16258056  0.21442794  0.38932544] [0.87904957 0.935436   1.04990366 1.14551336 1.58429198 1.62089357
+ 1.78755871 2.31190549 2.3171223  2.39127144 2.63861783 2.65476654
+ 2.81875828 3.16065224 3.16662377 3.20015017 3.44247696 3.47621676
+ 4.27785504 4.49099129 8.96042243 9.02544151]
+  14 ( 0.000  0.750  0.500)   [-0.1061043   0.08365467  0.24558776  0.31512366] [0.81863649 1.04657807 1.05513708 1.1149491  1.53282146 1.70093375
+ 1.86537079 2.10972859 2.24681476 2.52486529 2.72557017 2.77747241
+ 2.8621999  2.91610344 2.981189   3.14510906 3.28852543 3.5536982
+ 4.31407007 4.57322106 8.9905648  9.02234665]
+  15 ( 0.000  0.750  0.750)   [-0.24633935  0.32817188  0.34673329  0.3479462 ] [0.72843992 0.99916576 0.99934206 1.06213225 1.57050746 1.83139087
+ 1.84031285 2.21171192 2.21213936 2.49782777 2.49825235 2.75141276
+ 3.03132825 3.2456014  3.32325188 3.38544849 3.38579615 3.79786244
+ 4.6938987  4.69433715 8.83891084 9.01246505]
+  16 ( 0.250  0.000  0.000)   [-0.26611007  0.25173479  0.44149836  0.44200458] [0.84652149 0.84711934 0.87228882 1.16932208 1.67740648 1.67813435
+ 1.86596303 2.29425233 2.29433785 2.4411774  2.56938779 2.56989087
+ 3.31887749 3.31938788 3.32570928 3.58889139 3.58983804 3.59373838
+ 4.56612615 4.56654022 8.83884401 9.00538963]
+  17 ( 0.250  0.000  0.250)   [-0.24620435  0.32858403  0.34620649  0.34758675] [0.7287916  0.99899145 0.99968633 1.06216377 1.57024487 1.83127679
+ 1.84002139 2.21152122 2.21223319 2.49788689 2.49834446 2.75162604
+ 3.03167145 3.24526097 3.32282876 3.38526595 3.38647634 3.79816047
+ 4.6944179  4.69489241 8.83894007 9.01246911]
+  18 ( 0.250  0.000  0.500)   [-0.10567198  0.08258558  0.24622373  0.31532499] [0.81805768 1.04629093 1.0554907  1.11510556 1.53294408 1.70045629
+ 1.86571729 2.10964002 2.24617126 2.52508803 2.72625779 2.77755602
+ 2.86195811 2.91623776 2.98156533 3.14473867 3.28895062 3.55384366
+ 4.31423051 4.57396479 8.9906228  9.02233771]
+  19 ( 0.250  0.000  0.750)   [-0.16455984  0.16266362  0.21575992  0.38962   ] [0.87852369 0.93552958 1.04952433 1.14559231 1.58419858 1.62139203
+ 1.78741431 2.31234986 2.31757787 2.39042687 2.63863414 2.65447618
+ 2.81840335 3.16112642 3.16694496 3.19989276 3.44300329 3.47620888
+ 4.27803037 4.49101946 8.96036464 9.02547594]
+  20 ( 0.250  0.250  0.000)   [-0.24628865  0.32786933  0.34658078  0.34686878] [0.729295   0.99932587 0.99986648 1.06172001 1.57052155 1.83115299
+ 1.84030319 2.21151708 2.21220325 2.49763051 2.49814453 2.75170613
+ 3.03185897 3.24503396 3.32303775 3.38534959 3.38611045 3.79796921
+ 4.69459154 4.69487618 8.83893207 9.01247639]
+  21 ( 0.250  0.250  0.250)   [-0.26612375  0.25222736  0.4405128   0.44123723] [0.84615286 0.84784116 0.87283952 1.16957215 1.67728065 1.67834969
+ 1.86650683 2.29386439 2.29460526 2.44084876 2.56931704 2.56962698
+ 3.31849951 3.31949713 3.32644983 3.58870083 3.5892122  3.59387447
+ 4.56603207 4.56649158 8.83880005 9.00539979]
+  22 ( 0.250  0.250  0.500)   [-0.1645419   0.16306219  0.21517109  0.38901326] [0.87933876 0.93518183 1.04922249 1.14608227 1.58467675 1.62166702
+ 1.78734286 2.31216748 2.31693405 2.39041448 2.6383382  2.65461012
+ 2.81872136 3.16107934 3.16646948 3.20030768 3.44276718 3.47608231
+ 4.27744919 4.49091872 8.96028736 9.02548837]
+  23 ( 0.250  0.250  0.750)   [-0.10583612  0.08254435  0.24605002  0.3147593 ] [0.8188134  1.04601984 1.0552014  1.11548046 1.53291438 1.70049585
+ 1.86561822 2.11004678 2.24622253 2.52526127 2.72577844 2.77719837
+ 2.8617096  2.91615232 2.98195429 3.1447562  3.28871967 3.55398128
+ 4.31398399 4.57393693 8.99066345 9.02232518]
+  24 ( 0.250  0.500  0.000)   [-0.10538844  0.08213242  0.24544756  0.31466741] [0.819146   1.04582758 1.05553001 1.11561124 1.53272376 1.70036472
+ 1.86518084 2.11039816 2.24611658 2.52537792 2.72613204 2.7772089
+ 2.86202857 2.91605644 2.98178739 3.14527452 3.28851771 3.55369447
+ 4.31371196 4.57405894 8.99067801 9.02232984]
+  25 ( 0.250  0.500  0.250)   [-0.16425703  0.16322884  0.21444086  0.3883953 ] [0.87980639 0.93536984 1.04950834 1.14578225 1.58422696 1.62148891
+ 1.78731681 2.31224395 2.3173289  2.39084908 2.63855779 2.65437954
+ 2.81880476 3.16129681 3.16610476 3.2001743  3.44248119 3.47613471
+ 4.2775336  4.49112331 8.96025938 9.02552287]
+  26 ( 0.250  0.500  0.500)   [-0.10604815  0.08289416  0.24574683  0.31580116] [0.817962   1.04642312 1.0554781  1.11498745 1.53330577 1.70052287
+ 1.8656475  2.10990745 2.24651188 2.52487874 2.72582654 2.77729143
+ 2.86224151 2.91642153 2.98124133 3.14501499 3.2885273  3.55368489
+ 4.31409935 4.57359605 8.99051227 9.02234107]
+  27 ( 0.250  0.500  0.750)   [0.0260931  0.02733194 0.18896446 0.19015838] [1.02055468 1.02129622 1.04112194 1.04211538 1.53509912 1.53610849
+ 2.01185232 2.01270514 2.45027544 2.45128127 2.730115   2.73048918
+ 2.84668165 2.84730337 3.064783   3.0655288  3.2320247  3.23298624
+ 4.30738399 4.30793824 9.01537333 9.01829472]
+  28 ( 0.250  0.750  0.000)   [-0.16438191  0.16328889  0.21433294  0.38935756] [0.87929031 0.93574236 1.04902313 1.1463029  1.58402042 1.62085634
+ 1.78748269 2.31265358 2.3175403  2.39016244 2.63805728 2.6546748
+ 2.81876526 3.16146172 3.16640437 3.20039614 3.44284805 3.47606055
+ 4.27761624 4.49125302 8.96026978 9.02554736]
+  29 ( 0.250  0.750  0.250)   [-0.1054153   0.08276929  0.24599076  0.31420642] [0.81887821 1.04649043 1.05518435 1.11506323 1.53254607 1.70042658
+ 1.86529063 2.11003237 2.24673401 2.52504023 2.72613258 2.77685293
+ 2.86204852 2.9164506  2.98144289 3.14535023 3.28829534 3.55393446
+ 4.3139232  4.57404636 8.9906528  9.02232598]
+  30 ( 0.250  0.750  0.500)   [0.02647936 0.02743451 0.18920069 0.19006967] [1.02004088 1.02024596 1.04196011 1.04236957 1.53496244 1.53608739
+ 2.01231212 2.0129668  2.45018978 2.4505813  2.73010711 2.73070889
+ 2.84635641 2.84704593 3.06482664 3.06541518 3.23223295 3.23318493
+ 4.30752086 4.30837772 9.01537239 9.01829047]
+  31 ( 0.250  0.750  0.750)   [-0.10617205  0.0827632   0.24626133  0.31621576] [0.81819682 1.04636766 1.05496878 1.11505197 1.53275087 1.70057226
+ 1.86545056 2.11012944 2.24670987 2.5249784  2.72550587 2.77751287
+ 2.86187635 2.91646204 2.98120722 3.14521198 3.28861278 3.55400977
+ 4.31429972 4.57351695 8.99058143 9.02233458]
+  32 ( 0.500  0.000  0.000)   [-0.11666952 -0.01156152  0.39690394  0.39750778] [0.88623717 0.88644716 0.91070359 1.27574567 1.65773954 1.84979165
+ 1.85032387 2.00667909 2.00700288 2.62132846 2.84977667 2.88802476
+ 2.88868017 2.93863416 2.93915861 3.23292414 3.57949281 3.58027834
+ 4.47421096 4.47479557 8.99591017 9.04041055]
+  33 ( 0.500  0.000  0.250)   [-0.10598947  0.08280882  0.24634278  0.31568417] [0.81813079 1.04678017 1.05525286 1.11477003 1.53286552 1.70030432
+ 1.86520991 2.11017903 2.24640854 2.52496563 2.725639   2.77751861
+ 2.86191794 2.91628636 2.98156072 3.14503368 3.28933709 3.55378404
+ 4.31449346 4.57390239 8.99051184 9.02240659]
+  34 ( 0.500  0.000  0.500)   [-1.59266141e-03  1.73371672e-04  2.57455998e-01  2.58794063e-01] [0.79602409 0.79705559 1.21148752 1.21189538 1.6625788  1.66390653
+ 1.98675804 1.98679085 2.29459515 2.2956064  2.75089806 2.75163181
+ 2.93912903 2.94008779 2.98514239 2.98582599 3.38975045 3.39026697
+ 4.69516043 4.69544179 8.99397607 8.99685539]
+  35 ( 0.500  0.000  0.750)   [-0.10598947  0.08280882  0.24634278  0.31568417] [0.81813079 1.04678017 1.05525286 1.11477003 1.53286552 1.70030432
+ 1.86520991 2.11017903 2.24640854 2.52496563 2.725639   2.77751861
+ 2.86191794 2.91628636 2.98156072 3.14503368 3.28933709 3.55378404
+ 4.31449346 4.57390239 8.99051183 9.02240659]
+  36 ( 0.500  0.250  0.000)   [-0.10634488  0.08336379  0.24588744  0.31488016] [0.81879957 1.04650508 1.05541363 1.11501367 1.532587   1.7004834
+ 1.86525814 2.11039267 2.24643152 2.52519481 2.72584775 2.77717098
+ 2.86192093 2.91590373 2.98177067 3.14515641 3.28891784 3.5540181
+ 4.31422064 4.57411723 8.99057168 9.02239776]
+  37 ( 0.500  0.250  0.250)   [-0.16455584  0.16272394  0.21522401  0.38976885] [0.87865664 0.9356608  1.04944581 1.14556711 1.58434714 1.62174653
+ 1.78716007 2.31191299 2.31758828 2.39088155 2.63856699 2.65443011
+ 2.8185688  3.1610709  3.16656171 3.20033396 3.44245893 3.47653569
+ 4.27819155 4.491161   8.96022594 9.02552533]
+  38 ( 0.500  0.250  0.500)   [-0.10601929  0.0836228   0.24564615  0.31457579] [0.81923799 1.04636723 1.05491379 1.1151828  1.53284746 1.70072186
+ 1.86549789 2.10999734 2.24654595 2.5251908  2.72520189 2.77716309
+ 2.8620116  2.91644905 2.98145529 3.14515367 3.28855833 3.55381643
+ 4.31384217 4.57389669 8.99051788 9.0223785 ]
+  39 ( 0.500  0.250  0.750)   [0.02617988 0.02757558 0.18880796 0.190023  ] [1.020513   1.02124155 1.04153407 1.04185765 1.53503878 1.53600557
+ 2.01171295 2.01250476 2.45041179 2.45068878 2.72969995 2.73022875
+ 2.84747979 2.8478658  3.06484591 3.06565581 3.2322341  3.2331682
+ 4.3069149  4.30765797 9.01542297 9.01828394]
+  40 ( 0.500  0.500  0.000)   [-0.00179858 -0.00029662  0.25735093  0.25798177] [0.79646072 0.79702136 1.2118767  1.21199601 1.66262023 1.66351309
+ 1.98653139 1.98732136 2.29488858 2.2958972  2.75109318 2.75134501
+ 2.93940505 2.94002672 2.98497765 2.98546333 3.38974445 3.390228
+ 4.69517089 4.6954001  8.99400389 8.99685756]
+  41 ( 0.500  0.500  0.250)   [-0.10603469  0.08290325  0.2456314   0.31470366] [0.81867436 1.0465479  1.05526789 1.11545038 1.53307095 1.70030294
+ 1.86555648 2.10971107 2.24648519 2.5252033  2.72606923 2.77728878
+ 2.86174837 2.91646575 2.98148048 3.14502012 3.28865485 3.5537666
+ 4.31410247 4.5738179  8.99049316 9.02239285]
+  42 ( 0.500  0.500  0.500)   [-0.11647892 -0.01155701  0.39601311  0.39620222] [0.88577678 0.88787109 0.91101615 1.27605947 1.65823014 1.84995268
+ 1.85046157 2.00652366 2.00712263 2.62113952 2.85022286 2.88800908
+ 2.88825788 2.93794232 2.93923623 3.23289484 3.5793147  3.57980841
+ 4.47432254 4.4747743  8.99586231 9.04038341]
+  43 ( 0.500  0.500  0.750)   [-0.10603469  0.08290325  0.2456314   0.31470366] [0.81867436 1.0465479  1.05526789 1.11545038 1.53307096 1.70030294
+ 1.86555648 2.10971107 2.24648519 2.5252033  2.72606923 2.77728878
+ 2.86174837 2.91646575 2.98148047 3.14502012 3.28865485 3.5537666
+ 4.31410247 4.5738179  8.99049316 9.02239284]
+  44 ( 0.500  0.750  0.000)   [-0.10634488  0.08336379  0.24588744  0.31488016] [0.81879957 1.04650508 1.05541363 1.11501367 1.532587   1.7004834
+ 1.86525814 2.11039267 2.24643152 2.52519481 2.72584775 2.77717098
+ 2.86192093 2.91590373 2.98177067 3.14515641 3.28891784 3.5540181
+ 4.31422064 4.57411723 8.99057168 9.02239775]
+  45 ( 0.500  0.750  0.250)   [0.02617988 0.02757558 0.18880796 0.190023  ] [1.020513   1.02124155 1.04153407 1.04185765 1.53503878 1.53600557
+ 2.01171295 2.01250476 2.45041179 2.45068878 2.72969995 2.73022875
+ 2.84747979 2.8478658  3.06484591 3.06565581 3.2322341  3.2331682
+ 4.3069149  4.30765797 9.01542297 9.01828394]
+  46 ( 0.500  0.750  0.500)   [-0.1060193   0.0836228   0.24564615  0.31457579] [0.81923799 1.04636723 1.05491379 1.1151828  1.53284746 1.70072186
+ 1.86549789 2.10999734 2.24654595 2.5251908  2.72520189 2.77716309
+ 2.8620116  2.91644905 2.98145529 3.14515368 3.28855833 3.55381643
+ 4.31384217 4.57389669 8.99051787 9.02237849]
+  47 ( 0.500  0.750  0.750)   [-0.16455584  0.16272394  0.21522401  0.38976885] [0.87865664 0.9356608  1.04944581 1.14556711 1.58434714 1.62174653
+ 1.78716007 2.31191299 2.31758828 2.39088155 2.63856699 2.65443011
+ 2.8185688  3.16107091 3.16656171 3.20033396 3.44245893 3.47653569
+ 4.27819155 4.491161   8.96022593 9.02552531]
+  48 ( 0.750 -0.000  0.000)   [-0.26611007  0.25173479  0.44149836  0.44200458] [0.84652149 0.84711934 0.87228882 1.16932208 1.67740648 1.67813435
+ 1.86596303 2.29425233 2.29433785 2.4411774  2.56938779 2.56989087
+ 3.31887749 3.31938788 3.32570929 3.58889139 3.58983804 3.59373838
+ 4.56612615 4.56654022 8.838844   9.00538962]
+  49 ( 0.750  0.000  0.250)   [-0.16455984  0.16266362  0.21575992  0.38962   ] [0.87852369 0.93552958 1.04952433 1.14559231 1.58419858 1.62139203
+ 1.78741431 2.31234986 2.31757787 2.39042687 2.63863414 2.65447618
+ 2.81840335 3.16112642 3.16694496 3.19989276 3.44300329 3.47620888
+ 4.27803037 4.49101946 8.96036464 9.02547594]
+  50 ( 0.750 -0.000  0.500)   [-0.10567198  0.08258558  0.24622373  0.31532499] [0.81805768 1.04629092 1.0554907  1.11510556 1.53294408 1.70045629
+ 1.86571729 2.10964002 2.24617126 2.52508803 2.72625779 2.77755602
+ 2.86195811 2.91623776 2.98156533 3.14473867 3.28895062 3.55384366
+ 4.31423051 4.57396479 8.99062279 9.0223377 ]
+  51 ( 0.750  0.000  0.750)   [-0.24620435  0.32858404  0.34620649  0.34758675] [0.7287916  0.99899145 0.99968633 1.06216377 1.57024487 1.83127679
+ 1.84002139 2.21152122 2.21223319 2.49788689 2.49834446 2.75162605
+ 3.03167145 3.24526097 3.32282876 3.38526595 3.38647634 3.79816048
+ 4.6944179  4.69489241 8.83894006 9.0124691 ]
+  52 ( 0.750  0.250  0.000)   [-0.16438191  0.16328889  0.21433294  0.38935756] [0.87929031 0.93574236 1.04902313 1.1463029  1.58402042 1.62085634
+ 1.78748269 2.31265358 2.3175403  2.39016244 2.63805728 2.6546748
+ 2.81876526 3.16146172 3.16640437 3.20039614 3.44284805 3.47606055
+ 4.27761624 4.49125302 8.96026978 9.02554736]
+  53 ( 0.750  0.250  0.250)   [-0.10617205  0.0827632   0.24626133  0.31621576] [0.81819682 1.04636766 1.05496878 1.11505197 1.53275087 1.70057226
+ 1.86545056 2.11012944 2.24670987 2.5249784  2.72550587 2.77751287
+ 2.86187635 2.91646204 2.98120722 3.14521198 3.28861278 3.55400977
+ 4.31429972 4.57351695 8.99058143 9.02233458]
+  54 ( 0.750  0.250  0.500)   [0.02647936 0.02743451 0.18920069 0.19006967] [1.02004088 1.02024596 1.04196011 1.04236957 1.53496244 1.53608739
+ 2.01231212 2.0129668  2.45018978 2.4505813  2.73010711 2.73070889
+ 2.84635641 2.84704593 3.06482664 3.06541518 3.23223295 3.23318493
+ 4.30752086 4.30837772 9.01537239 9.01829047]
+  55 ( 0.750  0.250  0.750)   [-0.1054153   0.08276929  0.24599076  0.31420642] [0.81887821 1.04649043 1.05518435 1.11506323 1.53254607 1.70042658
+ 1.86529063 2.11003237 2.24673401 2.52504023 2.72613258 2.77685293
+ 2.86204851 2.9164506  2.98144289 3.14535023 3.28829534 3.55393446
+ 4.3139232  4.57404636 8.99065279 9.02232598]
+  56 ( 0.750  0.500  0.000)   [-0.10538844  0.08213242  0.24544756  0.31466741] [0.819146   1.04582758 1.05553001 1.11561124 1.53272376 1.70036472
+ 1.86518084 2.11039816 2.24611658 2.52537792 2.72613204 2.7772089
+ 2.86202857 2.91605644 2.98178739 3.14527452 3.28851771 3.55369447
+ 4.31371196 4.57405894 8.99067801 9.02232984]
+  57 ( 0.750  0.500  0.250)   [0.0260931  0.02733194 0.18896446 0.19015838] [1.02055468 1.02129622 1.04112194 1.04211538 1.53509912 1.53610849
+ 2.01185232 2.01270514 2.45027544 2.45128127 2.730115   2.73048918
+ 2.84668165 2.84730337 3.064783   3.0655288  3.2320247  3.23298624
+ 4.30738399 4.30793824 9.01537333 9.01829472]
+  58 ( 0.750  0.500  0.500)   [-0.10604815  0.08289416  0.24574683  0.31580116] [0.817962   1.04642312 1.0554781  1.11498745 1.53330577 1.70052287
+ 1.8656475  2.10990745 2.24651188 2.52487874 2.72582654 2.77729143
+ 2.86224151 2.91642153 2.98124133 3.14501499 3.2885273  3.55368489
+ 4.31409935 4.57359605 8.99051226 9.02234106]
+  59 ( 0.750  0.500  0.750)   [-0.16425703  0.16322884  0.21444086  0.3883953 ] [0.87980639 0.93536984 1.04950834 1.14578225 1.58422696 1.62148891
+ 1.78731681 2.31224395 2.3173289  2.39084908 2.63855779 2.65437954
+ 2.81880476 3.16129681 3.16610476 3.2001743  3.44248119 3.47613471
+ 4.2775336  4.49112331 8.96025936 9.02552286]
+  60 ( 0.750  0.750  0.000)   [-0.24628865  0.32786933  0.34658078  0.34686878] [0.729295   0.99932587 0.99986648 1.06172001 1.57052155 1.83115299
+ 1.84030319 2.21151708 2.21220325 2.49763051 2.49814453 2.75170614
+ 3.03185897 3.24503396 3.32303775 3.38534959 3.38611045 3.79796921
+ 4.69459154 4.69487618 8.83893206 9.01247638]
+  61 ( 0.750  0.750  0.250)   [-0.10583612  0.08254435  0.24605002  0.3147593 ] [0.8188134  1.04601984 1.0552014  1.11548046 1.53291438 1.70049585
+ 1.86561822 2.11004678 2.24622253 2.52526127 2.72577844 2.77719837
+ 2.8617096  2.91615232 2.98195429 3.1447562  3.28871967 3.55398128
+ 4.31398399 4.57393693 8.99066345 9.02232517]
+  62 ( 0.750  0.750  0.500)   [-0.1645419   0.16306219  0.21517109  0.38901326] [0.87933876 0.93518183 1.04922249 1.14608227 1.58467675 1.62166702
+ 1.78734286 2.31216748 2.31693405 2.39041448 2.6383382  2.65461012
+ 2.81872136 3.16107934 3.16646948 3.20030768 3.44276718 3.47608231
+ 4.27744919 4.49091872 8.96028734 9.02548835]
+  63 ( 0.750  0.750  0.750)   [-0.26612375  0.25222736  0.4405128   0.44123723] [0.84615286 0.84784116 0.87283952 1.16957215 1.67728065 1.67834969
+ 1.86650683 2.29386439 2.29460526 2.44084876 2.56931704 2.56962698
+ 3.31849951 3.31949713 3.32644983 3.58870083 3.5892122  3.59387447
+ 4.56603207 4.56649158 8.83880003 9.00539977]
+nelec by numeric integration = 8.000000000003606
+    CPU time for vxc      3.21 sec, wall time      3.22 sec
+    CPU time for vj and vk      2.44 sec, wall time      2.44 sec
+E1 = (3.9977194167867527+1.0909784360635388e-18j)  Ecoul = (1.0692446516544334-3.7947076036992655e-19j)  Exc = -3.4236118784571046
+cycle= 4 E= -11.165520908002  delta_E= 1.59e-07  |g|= 0.0205  |ddm|= 0.0331
+    CPU time for cycle= 4      5.72 sec, wall time      5.73 sec
+HOMO = 0.514017374655  LUMO = 0.728440884536
+     k-point                  mo_energy
+   0 ( 0.000  0.000  0.000)   [-0.32239594  0.51224473  0.51372508  0.51401737] [0.75416586 0.75501491 0.75544785 1.10042945 1.69227151 1.69289106
+ 2.3618513  2.36252199 2.36268579 2.43335137 2.43408087 2.43463291
+ 3.52520701 3.52570615 3.70373234 3.70420788 3.70534231 4.5912979
+ 4.59164868 4.59185618 8.65091226 8.98303615]
+   1 ( 0.000  0.000  0.250)   [-0.26602809  0.25214323  0.44073158  0.44149576] [0.84649862 0.84748324 0.87241657 1.16949696 1.67725597 1.67812892
+ 1.86628781 2.29378903 2.29456513 2.44113334 2.56933577 2.56973381
+ 3.31885293 3.31970114 3.32551568 3.58900782 3.58938776 3.59344208
+ 4.5659475  4.56656423 8.83886368 9.00530851]
+   2 ( 0.000  0.000  0.500)   [-0.11613407 -0.01173921  0.3960342   0.39662084] [0.88617852 0.88726612 0.91062778 1.2759252  1.65808434 1.85016928
+ 1.85045715 2.0062042  2.00690767 2.62123784 2.84973444 2.88795974
+ 2.88871212 2.93838023 2.93924721 3.23253196 3.57965539 3.57990516
+ 4.47417559 4.47456057 8.99582064 9.04043117]
+   3 ( 0.000  0.000  0.750)   [-0.26602809  0.25214323  0.44073158  0.44149576] [0.84649862 0.84748324 0.87241657 1.16949696 1.67725597 1.67812892
+ 1.86628781 2.29378903 2.29456513 2.44113334 2.56933577 2.56973381
+ 3.31885293 3.31970114 3.32551568 3.58900782 3.58938776 3.59344208
+ 4.5659475  4.56656423 8.83886367 9.00530851]
+   4 ( 0.000  0.250  0.000)   [-0.26605771  0.25206383  0.43988     0.44140165] [0.84690908 0.84742503 0.87265515 1.16957385 1.67735834 1.67776001
+ 1.86618892 2.29392942 2.294462   2.44129581 2.56930508 2.56950598
+ 3.31906274 3.31956462 3.326345   3.58843997 3.58900461 3.59412643
+ 4.56628228 4.56652887 8.83881201 9.00536117]
+   5 ( 0.000  0.250  0.250)   [-0.24634199  0.32816011  0.3467175   0.34793065] [0.72844088 0.99915477 0.99933111 1.06213121 1.57049724 1.83137084
+ 1.84030473 2.21169815 2.21212581 2.49781395 2.4982388  2.75140186
+ 3.03131884 3.24559217 3.32323664 3.3854337  3.38578115 3.79785097
+ 4.69388557 4.69432425 8.83886905 9.01240557]
+   6 ( 0.000  0.250  0.500)   [-0.1061071   0.08364777  0.24557548  0.31510762] [0.81863502 1.04657404 1.0551266  1.11493837 1.53280631 1.70091479
+ 1.86535839 2.10971995 2.24679999 2.5248546  2.72555847 2.77745676
+ 2.86218769 2.91609233 2.98117454 3.14509787 3.28851345 3.55368732
+ 4.31405809 4.57320829 8.99056532 9.02224521]
+   7 ( 0.000  0.250  0.750)   [-0.16400532  0.16257328  0.21441631  0.38930657] [0.87904738 0.93542942 1.04989366 1.14550612 1.58427594 1.62088465
+ 1.78754182 2.31189443 2.31710559 2.39125976 2.63860895 2.65475639
+ 2.81874204 3.16063774 3.16660779 3.20013977 3.44246607 3.47620615
+ 4.27784316 4.49097921 8.9603957  9.02536727]
+   8 ( 0.000  0.500  0.000)   [-0.11523619 -0.01287348  0.39493708  0.39671141] [0.88648784 0.88712782 0.91074857 1.27603026 1.6578209  1.84952939
+ 1.84997639 2.0065506  2.00721979 2.62120904 2.85018151 2.88766959
+ 2.88843697 2.938754   2.93936909 3.23359226 3.57915023 3.57956923
+ 4.47453741 4.4748678  8.99585989 9.04048605]
+   9 ( 0.000  0.500  0.250)   [-0.1056175   0.08289     0.24541279  0.31498331] [0.8187843  1.04669892 1.05507872 1.11487987 1.53279984 1.70060413
+ 1.86505326 2.10988657 2.24695912 2.52500573 2.72566559 2.77754723
+ 2.86202597 2.91660236 2.98080861 3.14535786 3.28839816 3.55354769
+ 4.31380424 4.5733846  8.99050952 9.02230515]
+  10 ( 0.000  0.500  0.500)   [-0.00123648 -0.00101471  0.2580709   0.25938742] [0.79619358 0.79683242 1.21131095 1.21162078 1.6631288  1.66379536
+ 1.98671949 1.98699853 2.29484611 2.29505092 2.75129685 2.75158342
+ 2.93978533 2.94013804 2.98456151 2.98541297 3.38951658 3.38990329
+ 4.69359051 4.69470351 8.99453295 8.99612905]
+  11 ( 0.000  0.500  0.750)   [-0.1056175   0.08289     0.24541279  0.31498331] [0.8187843  1.04669892 1.05507872 1.11487988 1.53279984 1.70060413
+ 1.86505326 2.10988657 2.24695912 2.52500573 2.72566559 2.77754723
+ 2.86202597 2.91660236 2.98080862 3.14535786 3.28839816 3.55354769
+ 4.31380424 4.5733846  8.99050952 9.02230514]
+  12 ( 0.000  0.750  0.000)   [-0.26605771  0.25206383  0.43988     0.44140165] [0.84690908 0.84742503 0.87265515 1.16957385 1.67735834 1.67776001
+ 1.86618892 2.29392942 2.294462   2.44129581 2.56930508 2.56950598
+ 3.31906274 3.31956462 3.326345   3.58843997 3.58900461 3.59412643
+ 4.56628228 4.56652887 8.838812   9.00536116]
+  13 ( 0.000  0.750  0.250)   [-0.16400532  0.16257328  0.21441631  0.38930657] [0.87904738 0.93542942 1.04989366 1.14550612 1.58427594 1.62088465
+ 1.78754182 2.31189443 2.31710559 2.39125976 2.63860895 2.65475639
+ 2.81874204 3.16063774 3.16660779 3.20013977 3.44246607 3.47620615
+ 4.27784316 4.49097921 8.9603957  9.02536727]
+  14 ( 0.000  0.750  0.500)   [-0.1061071   0.08364777  0.24557548  0.31510762] [0.81863502 1.04657404 1.0551266  1.11493837 1.53280631 1.70091479
+ 1.86535839 2.10971995 2.24679999 2.5248546  2.72555847 2.77745676
+ 2.86218769 2.91609233 2.98117454 3.14509787 3.28851345 3.55368732
+ 4.31405809 4.57320829 8.99056531 9.0222452 ]
+  15 ( 0.000  0.750  0.750)   [-0.24634199  0.32816011  0.3467175   0.34793065] [0.72844089 0.99915477 0.99933111 1.06213121 1.57049724 1.83137084
+ 1.84030473 2.21169815 2.21212581 2.49781395 2.4982388  2.75140186
+ 3.03131884 3.24559217 3.32323664 3.3854337  3.38578115 3.79785097
+ 4.69388557 4.69432425 8.83886904 9.01240556]
+  16 ( 0.250  0.000  0.000)   [-0.26611256  0.25172545  0.44147958  0.44198514] [0.84651546 0.84711269 0.87228759 1.16931644 1.67739752 1.67812582
+ 1.86594309 2.2942379  2.29432374 2.44116936 2.56937514 2.56987792
+ 3.31886434 3.31937479 3.32569447 3.58887806 3.58982459 3.59372657
+ 4.56611374 4.56652781 8.8388021  9.00533031]
+  17 ( 0.250  0.000  0.250)   [-0.24620697  0.32857257  0.34619077  0.34757108] [0.7287922  0.99898064 0.99967517 1.06216241 1.57023496 1.83125668
+ 1.84001311 2.21150761 2.21221936 2.49787311 2.4983311  2.75161551
+ 3.03166206 3.24525098 3.32281421 3.38525119 3.38646131 3.79814932
+ 4.69440498 4.69487946 8.83889808 9.01240976]
+  18 ( 0.250  0.000  0.500)   [-0.10567469  0.08257817  0.24621243  0.31530883] [0.8180553  1.04628738 1.0554799  1.11509479 1.53292896 1.70043717
+ 1.86570537 2.10963146 2.24615568 2.5250774  2.72624641 2.77754009
+ 2.86194647 2.9162271  2.98155078 3.14472749 3.28893864 3.55383278
+ 4.31421839 4.57395242 8.99062205 9.0222375 ]
+  19 ( 0.250  0.000  0.750)   [-0.1645629   0.1626571   0.21574866  0.38960106] [0.87852043 0.93552259 1.04951368 1.1455856  1.58418262 1.62138316
+ 1.78739708 2.31233729 2.31756229 2.39041708 2.63862586 2.65446589
+ 2.81838714 3.16111218 3.16692861 3.19988232 3.44299233 3.47619755
+ 4.27801823 4.49100746 8.9603374  9.02540222]
+  20 ( 0.250  0.250  0.000)   [-0.24629127  0.32785758  0.34656504  0.34685329] [0.72929527 0.99931584 0.99985545 1.06171847 1.57051144 1.8311324
+ 1.84029476 2.2115034  2.21219001 2.49761697 2.49813099 2.75169549
+ 3.03184951 3.24502383 3.32302399 3.38533443 3.38609544 3.79795783
+ 4.69457841 4.69486271 8.83889006 9.01241707]
+  21 ( 0.250  0.250  0.250)   [-0.26612606  0.25221697  0.44049324  0.44121773] [0.84614838 0.84783604 0.87283912 1.16956626 1.67727142 1.67834086
+ 1.86648754 2.29384924 2.29459052 2.44084054 2.56930338 2.56961363
+ 3.31848661 3.3194842  3.32643446 3.588688   3.58919888 3.59386284
+ 4.56601984 4.56647946 8.83875868 9.00533978]
+  22 ( 0.250  0.250  0.500)   [-0.16454442  0.16305347  0.21516052  0.38899429] [0.8793374  0.93517606 1.04921125 1.1460766  1.58466051 1.62165825
+ 1.7873246  2.31215654 2.31691761 2.39040191 2.63832943 2.65459977
+ 2.8187058  3.16106431 3.16645338 3.20029734 3.44275624 3.47607176
+ 4.27743742 4.49090641 8.9602613  9.02541333]
+  23 ( 0.250  0.250  0.750)   [-0.10583902  0.08253779  0.24603741  0.31474333] [0.81881276 1.04601504 1.05519107 1.11546907 1.53289883 1.70047672
+ 1.86560645 2.11003827 2.24620745 2.52525078 2.7257667  2.77718259
+ 2.86169718 2.91614167 2.98194027 3.14474474 3.28870788 3.55397051
+ 4.31397177 4.57392406 8.9906616  9.02222609]
+  24 ( 0.250  0.500  0.000)   [-0.10539117  0.0821255   0.2454359   0.31465114] [0.81914319 1.04582336 1.05551972 1.11560142 1.53270744 1.70034569
+ 1.86516863 2.11038964 2.24610133 2.52536783 2.72612138 2.77719251
+ 2.86201744 2.91604557 2.98177329 3.14526324 3.28850559 3.55368322
+ 4.31369957 4.57404628 8.99067487 9.02223209]
+  25 ( 0.250  0.500  0.250)   [-0.16425948  0.16322039  0.21443018  0.38837639] [0.87980467 0.93536331 1.04949832 1.14577553 1.58421044 1.62147992
+ 1.78729906 2.31223243 2.31731271 2.39083771 2.63854894 2.65436926
+ 2.8187892  3.16128265 3.1660887  3.2001637  3.44247041 3.4761232
+ 4.27752192 4.49111134 8.96023194 9.02544931]
+  26 ( 0.250  0.500  0.500)   [-0.10605052  0.08288586  0.24573545  0.31578515] [0.81796054 1.04641904 1.05546791 1.1149773  1.53329046 1.70050353
+ 1.86563524 2.10989822 2.24649644 2.52486795 2.72581553 2.77727584
+ 2.86223032 2.91641111 2.98122617 3.14500319 3.28851547 3.55367363
+ 4.31408706 4.57358381 8.99051192 9.0222405 ]
+  27 ( 0.250  0.500  0.750)   [0.02605382 0.02736487 0.18894702 0.19014898] [1.02054229 1.0212894  1.04109618 1.04213088 1.53528393 1.53588908
+ 2.01186041 2.01266956 2.45028169 2.45125311 2.73016507 2.73040846
+ 2.84668418 2.8472792  3.06486534 3.06542363 3.23214044 3.23284915
+ 4.30735405 4.30794318 9.01601034 9.01755689]
+  28 ( 0.250  0.750  0.000)   [-0.16438488  0.16328264  0.21432153  0.38933884] [0.87928666 0.9357353  1.0490125  1.14629557 1.58400497 1.62084713
+ 1.78746571 2.31264064 2.31752471 2.39015291 2.63804917 2.65466479
+ 2.81874971 3.16144742 3.16638783 3.20038555 3.44283703 3.47604928
+ 4.27760375 4.49124099 8.96024156 9.0254747 ]
+  29 ( 0.250  0.750  0.250)   [-0.10541826  0.08276322  0.24597822  0.31419035] [0.8188774  1.04648601 1.05517324 1.11505089 1.53253143 1.70040761
+ 1.86527885 2.11002402 2.24671879 2.52502964 2.72612198 2.77683636
+ 2.86203662 2.91643994 2.98142924 3.14533829 3.28828341 3.55392369
+ 4.31391125 4.57403371 8.99064893 9.022229  ]
+  30 ( 0.250  0.750  0.500)   [0.02642463 0.02748306 0.18917825 0.19006521] [1.02005455 1.02021223 1.04195827 1.0423614  1.53514999 1.53586582
+ 2.01238081 2.01287153 2.4501302  2.45061817 2.73008172 2.73070387
+ 2.84636003 2.84701987 3.06493783 3.06528137 3.23235637 3.23304049
+ 4.30751494 4.30835942 9.0160099  9.01755214]
+  31 ( 0.250  0.750  0.750)   [-0.1061757   0.08275805  0.24624857  0.31619985] [0.81819547 1.04636297 1.05495758 1.11503994 1.53273565 1.70055373
+ 1.86543905 2.11012098 2.24669472 2.52496826 2.72549638 2.77749555
+ 2.86186521 2.91645104 2.98119361 3.14519947 3.28860076 3.55399835
+ 4.31428744 4.57350434 8.99057721 9.02223801]
+  32 ( 0.500  0.000  0.000)   [-0.1166728  -0.01156656  0.39688614  0.39748942] [0.88622909 0.88643978 0.91070857 1.27573006 1.65771995 1.8497775
+ 1.85030997 2.00667194 2.00699561 2.62131961 2.84976681 2.88801466
+ 2.88866829 2.93861679 2.9391404  3.23291071 3.57948101 3.58026632
+ 4.47419867 4.47478316 8.99589037 9.04032966]
+  33 ( 0.500  0.000  0.250)   [-0.10599314  0.08280366  0.24633049  0.31566812] [0.81812827 1.04677557 1.05524146 1.11475895 1.53285043 1.70028555
+ 1.86519824 2.11017077 2.24639306 2.52495568 2.72562976 2.77750125
+ 2.86190691 2.91627534 2.98154622 3.14502244 3.28932467 3.55377298
+ 4.31448125 4.57388968 8.99050747 9.02231013]
+  34 ( 0.500  0.000  0.500)   [-1.64616765e-03  2.18595458e-04  2.57440737e-01  2.58779044e-01] [0.79602321 0.79705661 1.21147263 1.21188043 1.66285666 1.66359076
+ 1.98674736 1.98678019 2.29479257 2.2953925  2.7508814  2.7516159
+ 2.93907187 2.94012346 2.98513057 2.98581386 3.38972396 3.39027289
+ 4.69514718 4.69542895 8.99461593 8.99611461]
+  35 ( 0.500  0.000  0.750)   [-0.10599314  0.08280366  0.24633049  0.31566812] [0.81812827 1.04677557 1.05524146 1.11475895 1.53285043 1.70028555
+ 1.86519824 2.11017077 2.24639306 2.52495568 2.72562976 2.77750125
+ 2.86190691 2.91627534 2.98154622 3.14502244 3.28932467 3.55377298
+ 4.31448125 4.57388968 8.99050746 9.02231012]
+  36 ( 0.500  0.250  0.000)   [-0.10634865  0.08335863  0.24587525  0.31486408] [0.81879684 1.04650151 1.05540214 1.11500195 1.53257169 1.70046416
+ 1.86524649 2.11038428 2.24641641 2.52518454 2.72583879 2.77715353
+ 2.86191063 2.91589289 2.98175648 3.14514457 3.2889054  3.55400679
+ 4.31420816 4.57410419 8.99056709 9.02230149]
+  37 ( 0.500  0.250  0.250)   [-0.16455872  0.16271724  0.2152123   0.38974995] [0.87865472 0.93565428 1.04943465 1.14555993 1.58433142 1.62173752
+ 1.78714236 2.31190125 2.31757229 2.39087085 2.63855862 2.65441999
+ 2.81855338 3.16105657 3.16654549 3.20032345 3.44244833 3.47652371
+ 4.27817926 4.49114903 8.96019821 9.0254521 ]
+  38 ( 0.500  0.250  0.500)   [-0.10602196  0.08361556  0.24563406  0.31455969] [0.81923709 1.0463638  1.05490342 1.11517097 1.53283199 1.7007028
+ 1.86548559 2.10998831 2.24653139 2.52517978 2.72519041 2.77714757
+ 2.86199996 2.9164378  2.98144153 3.14514211 3.28854624 3.55380552
+ 4.31382998 4.57388438 8.99051546 9.02227995]
+  39 ( 0.500  0.250  0.750)   [0.02609752 0.02765187 0.18880886 0.18999518] [1.02059909 1.02113616 1.04157364 1.041807   1.53521882 1.53579104
+ 2.01176864 2.01242243 2.45047501 2.45060329 2.72966205 2.73023604
+ 2.84747725 2.84784625 3.06495509 3.06552394 3.23235794 3.23302378
+ 4.30687236 4.30767558 9.01606206 9.01754396]
+  40 ( 0.500  0.500  0.000)   [-1.85968986e-03 -2.43968812e-04  2.57335577e-01  2.57966800e-01] [0.79646951 0.79701265 1.21186245 1.21198144 1.66288959 1.66320416
+ 1.98652101 1.98731099 2.29496845 2.2958007  2.75107724 2.7513284
+ 2.93933338 2.94007763 2.98496547 2.98545152 3.38972573 3.39022571
+ 4.69515752 4.69538629 8.99464311 8.99611741]
+  41 ( 0.500  0.500  0.250)   [-0.10603736  0.08289587  0.24561929  0.31468766] [0.81867362 1.04654401 1.05525776 1.11543879 1.53305555 1.70028321
+ 1.86554465 2.10970209 2.24647029 2.52519247 2.72605785 2.77727333
+ 2.86173648 2.91645419 2.9814663  3.14500959 3.28864249 3.55375564
+ 4.31409033 4.57380499 8.99049028 9.02229477]
+  42 ( 0.500  0.500  0.500)   [-0.11647932 -0.01156612  0.39599468  0.39618357] [0.88577104 0.88786577 0.91102238 1.27604432 1.65821113 1.84993761
+ 1.85044655 2.00651617 2.00711481 2.6211302  2.85021158 2.88799032
+ 2.8882409  2.93793079 2.93922404 3.23288172 3.5793038  3.57979648
+ 4.47431041 4.47476278 8.99584771 9.04029706]
+  43 ( 0.500  0.500  0.750)   [-0.10603736  0.08289587  0.24561929  0.31468766] [0.81867362 1.04654401 1.05525776 1.11543879 1.53305555 1.70028321
+ 1.86554465 2.10970209 2.24647029 2.52519247 2.72605785 2.77727333
+ 2.86173648 2.9164542  2.9814663  3.14500959 3.28864249 3.55375564
+ 4.31409033 4.57380499 8.99049027 9.02229476]
+  44 ( 0.500  0.750  0.000)   [-0.10634865  0.08335863  0.24587525  0.31486408] [0.81879684 1.04650151 1.05540214 1.11500195 1.53257169 1.70046416
+ 1.86524649 2.11038428 2.24641641 2.52518454 2.72583879 2.77715353
+ 2.86191063 2.91589289 2.98175649 3.14514457 3.2889054  3.55400679
+ 4.31420816 4.57410419 8.99056709 9.02230148]
+  45 ( 0.500  0.750  0.250)   [0.02609752 0.02765187 0.18880886 0.18999518] [1.02059909 1.02113616 1.04157364 1.041807   1.53521882 1.53579104
+ 2.01176864 2.01242243 2.45047501 2.45060329 2.72966205 2.73023604
+ 2.84747725 2.84784625 3.06495509 3.06552394 3.23235794 3.23302378
+ 4.30687236 4.30767558 9.01606206 9.01754396]
+  46 ( 0.500  0.750  0.500)   [-0.10602196  0.08361556  0.24563406  0.31455969] [0.81923709 1.0463638  1.05490342 1.11517097 1.53283199 1.7007028
+ 1.86548559 2.10998831 2.24653139 2.52517978 2.72519041 2.77714757
+ 2.86199996 2.91643781 2.98144153 3.14514211 3.28854624 3.55380552
+ 4.31382998 4.57388438 8.99051546 9.02227994]
+  47 ( 0.500  0.750  0.750)   [-0.16455872  0.16271724  0.2152123   0.38974995] [0.87865472 0.93565428 1.04943465 1.14555992 1.58433142 1.62173752
+ 1.78714236 2.31190125 2.31757229 2.39087085 2.63855862 2.65441999
+ 2.81855338 3.16105657 3.16654549 3.20032345 3.44244833 3.47652371
+ 4.27817926 4.49114903 8.9601982  9.02545209]
+  48 ( 0.750 -0.000  0.000)   [-0.26611256  0.25172545  0.44147958  0.44198514] [0.84651546 0.84711269 0.87228759 1.16931644 1.67739752 1.67812582
+ 1.86594309 2.2942379  2.29432374 2.44116936 2.56937514 2.56987792
+ 3.31886434 3.31937479 3.32569447 3.58887806 3.58982459 3.59372658
+ 4.56611374 4.56652781 8.83880209 9.0053303 ]
+  49 ( 0.750  0.000  0.250)   [-0.1645629   0.1626571   0.21574866  0.38960106] [0.87852043 0.93552259 1.04951368 1.1455856  1.58418262 1.62138316
+ 1.78739708 2.31233729 2.31756229 2.39041708 2.63862586 2.65446589
+ 2.81838714 3.16111218 3.16692861 3.19988232 3.44299233 3.47619755
+ 4.27801823 4.49100746 8.9603374  9.02540222]
+  50 ( 0.750 -0.000  0.500)   [-0.10567469  0.08257817  0.24621243  0.31530883] [0.8180553  1.04628738 1.0554799  1.11509479 1.53292896 1.70043717
+ 1.86570537 2.10963146 2.24615568 2.5250774  2.72624641 2.77754009
+ 2.86194647 2.9162271  2.98155078 3.14472749 3.28893864 3.55383278
+ 4.31421839 4.57395242 8.99062204 9.02223749]
+  51 ( 0.750  0.000  0.750)   [-0.24620697  0.32857257  0.34619077  0.34757108] [0.7287922  0.99898064 0.99967517 1.06216241 1.57023496 1.83125668
+ 1.84001311 2.21150761 2.21221936 2.49787311 2.4983311  2.75161551
+ 3.03166206 3.24525097 3.32281421 3.38525119 3.38646131 3.79814932
+ 4.69440498 4.69487946 8.83889807 9.01240975]
+  52 ( 0.750  0.250  0.000)   [-0.16438488  0.16328264  0.21432153  0.38933884] [0.87928666 0.9357353  1.0490125  1.14629557 1.58400497 1.62084713
+ 1.78746571 2.31264064 2.31752471 2.39015291 2.63804917 2.65466479
+ 2.81874971 3.16144742 3.16638783 3.20038555 3.44283703 3.47604928
+ 4.27760375 4.49124099 8.96024156 9.0254747 ]
+  53 ( 0.750  0.250  0.250)   [-0.1061757   0.08275805  0.24624857  0.31619985] [0.81819547 1.04636297 1.05495758 1.11503994 1.53273565 1.70055373
+ 1.86543905 2.11012098 2.24669472 2.52496826 2.72549638 2.77749555
+ 2.86186522 2.91645104 2.98119361 3.14519947 3.28860076 3.55399835
+ 4.31428744 4.57350434 8.99057722 9.02223802]
+  54 ( 0.750  0.250  0.500)   [0.02642463 0.02748306 0.18917825 0.19006521] [1.02005455 1.02021223 1.04195828 1.0423614  1.53514999 1.53586582
+ 2.01238081 2.01287153 2.4501302  2.45061817 2.73008172 2.73070387
+ 2.84636003 2.84701987 3.06493783 3.06528137 3.23235637 3.23304049
+ 4.30751494 4.30835942 9.0160099  9.01755214]
+  55 ( 0.750  0.250  0.750)   [-0.10541826  0.08276322  0.24597822  0.31419035] [0.8188774  1.046486   1.05517324 1.11505089 1.53253143 1.70040761
+ 1.86527885 2.11002402 2.24671879 2.52502964 2.72612198 2.77683636
+ 2.86203662 2.91643994 2.98142924 3.14533828 3.28828341 3.55392369
+ 4.31391125 4.57403371 8.99064892 9.02222899]
+  56 ( 0.750  0.500  0.000)   [-0.10539117  0.0821255   0.2454359   0.31465114] [0.81914319 1.04582336 1.05551972 1.11560142 1.53270744 1.70034569
+ 1.86516863 2.11038964 2.24610133 2.52536783 2.72612138 2.77719251
+ 2.86201744 2.91604557 2.98177329 3.14526324 3.28850559 3.55368322
+ 4.31369957 4.57404628 8.99067487 9.02223209]
+  57 ( 0.750  0.500  0.250)   [0.02605382 0.02736487 0.18894702 0.19014898] [1.02054229 1.0212894  1.04109618 1.04213088 1.53528393 1.53588908
+ 2.01186041 2.01266956 2.45028169 2.45125311 2.73016507 2.73040846
+ 2.84668418 2.8472792  3.06486534 3.06542364 3.23214044 3.23284915
+ 4.30735405 4.30794318 9.01601034 9.01755689]
+  58 ( 0.750  0.500  0.500)   [-0.10605052  0.08288587  0.24573545  0.31578515] [0.81796054 1.04641904 1.05546791 1.1149773  1.53329046 1.70050353
+ 1.86563524 2.10989822 2.24649644 2.52486795 2.72581553 2.77727584
+ 2.86223033 2.91641111 2.98122617 3.14500319 3.28851547 3.55367363
+ 4.31408706 4.57358381 8.99051191 9.0222405 ]
+  59 ( 0.750  0.500  0.750)   [-0.16425948  0.16322039  0.21443018  0.38837639] [0.87980467 0.93536331 1.04949832 1.14577553 1.58421044 1.62147992
+ 1.78729906 2.31223243 2.31731271 2.39083771 2.63854894 2.65436926
+ 2.8187892  3.16128265 3.1660887  3.2001637  3.44247041 3.4761232
+ 4.27752192 4.49111134 8.96023192 9.0254493 ]
+  60 ( 0.750  0.750  0.000)   [-0.24629127  0.32785758  0.34656504  0.34685329] [0.72929527 0.99931584 0.99985545 1.06171847 1.57051144 1.8311324
+ 1.84029476 2.2115034  2.21219001 2.49761697 2.49813099 2.75169549
+ 3.03184951 3.24502383 3.32302399 3.38533443 3.38609544 3.79795783
+ 4.69457841 4.69486271 8.83889004 9.01241705]
+  61 ( 0.750  0.750  0.250)   [-0.10583902  0.08253779  0.24603741  0.31474333] [0.81881276 1.04601504 1.05519107 1.11546907 1.53289883 1.70047672
+ 1.86560645 2.11003827 2.24620745 2.52525078 2.7257667  2.77718259
+ 2.86169718 2.91614167 2.98194027 3.14474473 3.28870788 3.55397052
+ 4.31397177 4.57392406 8.9906616  9.02222609]
+  62 ( 0.750  0.750  0.500)   [-0.16454442  0.16305347  0.21516052  0.38899429] [0.8793374  0.93517606 1.04921125 1.1460766  1.58466051 1.62165825
+ 1.7873246  2.31215654 2.31691761 2.39040191 2.63832943 2.65459977
+ 2.8187058  3.16106431 3.16645338 3.20029733 3.44275624 3.47607176
+ 4.27743742 4.49090641 8.96026129 9.02541332]
+  63 ( 0.750  0.750  0.750)   [-0.26612606  0.25221697  0.44049324  0.44121773] [0.84614838 0.84783604 0.87283912 1.16956626 1.67727142 1.67834086
+ 1.86648754 2.29384924 2.29459052 2.44084054 2.56930338 2.56961363
+ 3.31848661 3.3194842  3.32643446 3.588688   3.58919888 3.59386284
+ 4.56601984 4.56647946 8.83875867 9.00533976]
+nelec by numeric integration = 8.000000000003606
+    CPU time for vxc      3.23 sec, wall time      3.24 sec
+    CPU time for vj and vk      2.43 sec, wall time      2.43 sec
+E1 = (3.997708669217798+6.2341624917916505e-19j)  Ecoul = (1.0692614512103866-2.1345230270808369e-19j)  Exc = -3.423619479780837
+cycle= 5 E= -11.1655224573387  delta_E= -1.55e-06  |g|= 9.78e-05  |ddm|= 0.0173
+    CPU time for cycle= 5      5.72 sec, wall time      5.74 sec
+HOMO = 0.514017358174  LUMO = 0.728440652497
+     k-point                  mo_energy
+   0 ( 0.000  0.000  0.000)   [-0.32239588  0.51224496  0.51372533  0.51401736] [0.75416545 0.7550147  0.75544717 1.10042939 1.69227144 1.69289101
+ 2.36185124 2.36252158 2.3626855  2.43335147 2.43408088 2.43463277
+ 3.5252067  3.52570573 3.70373279 3.70420813 3.7053424  4.59129753
+ 4.59164836 4.59185579 8.6509142  8.98303804]
+   1 ( 0.000  0.000  0.250)   [-0.26602804  0.25214353  0.4407316   0.44149567] [0.84649816 0.84748304 0.87241622 1.16949694 1.67725585 1.67812891
+ 1.86628783 2.29378904 2.29456499 2.44113298 2.56933556 2.56973366
+ 3.3188527  3.31970092 3.3255159  3.58900775 3.58938773 3.59344175
+ 4.56594722 4.56656396 8.83886557 9.00531041]
+   2 ( 0.000  0.000  0.500)   [-0.11613423 -0.0117387   0.39603456  0.39662055] [0.88617793 0.88726594 0.91062742 1.27592515 1.65808432 1.85016892
+ 1.85045725 2.00620405 2.00690786 2.62123773 2.84973436 2.88795956
+ 2.88871208 2.93837999 2.93924691 3.23253157 3.5796552  3.57990501
+ 4.47417539 4.47456033 8.99582243 9.04043316]
+   3 ( 0.000  0.000  0.750)   [-0.26602804  0.25214353  0.4407316   0.44149567] [0.84649816 0.84748304 0.87241622 1.16949694 1.67725585 1.67812891
+ 1.86628783 2.29378904 2.29456499 2.44113298 2.56933556 2.56973366
+ 3.3188527  3.31970092 3.3255159  3.58900775 3.58938773 3.59344175
+ 4.56594722 4.56656396 8.83886557 9.0053104 ]
+   4 ( 0.000  0.250  0.000)   [-0.26605764  0.25206411  0.43988033  0.44140128] [0.84690873 0.84742469 0.87265488 1.16957379 1.67735812 1.67776006
+ 1.86618891 2.29392936 2.29446186 2.44129559 2.56930488 2.56950579
+ 3.3190625  3.31956446 3.32634524 3.58844005 3.58900441 3.59412614
+ 4.56628195 4.56652856 8.8388139  9.00536306]
+   5 ( 0.000  0.250  0.250)   [-0.24634191  0.32816041  0.34671721  0.34793093] [0.72844065 0.99915445 0.9993308  1.06213108 1.57049704 1.83137084
+ 1.84030466 2.21169797 2.21212565 2.49781379 2.49823864 2.75140161
+ 3.03131858 3.24559179 3.32323678 3.38543372 3.38578124 3.79785055
+ 4.69388539 4.6943241  8.83887092 9.01240747]
+   6 ( 0.000  0.250  0.500)   [-0.10610708  0.08364815  0.24557575  0.31510738] [0.81863428 1.04657424 1.05512635 1.1149382  1.53280629 1.70091466
+ 1.86535805 2.10971985 2.24680001 2.52485454 2.72555809 2.77745665
+ 2.86218771 2.91609219 2.98117446 3.1450975  3.28851318 3.55368704
+ 4.31405772 4.57320823 8.9905671  9.02224719]
+   7 ( 0.000  0.250  0.750)   [-0.1640053   0.1625741   0.2144161   0.38930629] [0.8790465  0.93542923 1.04989387 1.14550576 1.5842761  1.62088438
+ 1.78754205 2.31189451 2.31710542 2.39125971 2.63860866 2.65475607
+ 2.81874168 3.16063804 3.1666077  3.20013956 3.44246575 3.47620579
+ 4.27784272 4.49097904 8.96039759 9.02536917]
+   8 ( 0.000  0.500  0.000)   [-0.11523629 -0.012873    0.3949375   0.39671102] [0.88648789 0.88712703 0.91074833 1.2760302  1.65782079 1.84952902
+ 1.84997651 2.00655055 2.00721973 2.62120911 2.85018144 2.88766938
+ 2.88843692 2.93875364 2.93936899 3.23359195 3.57915011 3.57956899
+ 4.47453718 4.47486746 8.99586169 9.04048802]
+   9 ( 0.000  0.500  0.250)   [-0.10561744  0.08289031  0.24541312  0.31498304] [0.81878354 1.04669912 1.0550785  1.11487982 1.53279971 1.70060397
+ 1.86505294 2.10988643 2.24695912 2.52500569 2.72566527 2.77754711
+ 2.86202603 2.91660226 2.98080856 3.14535749 3.28839787 3.55354738
+ 4.31380386 4.57338453 8.99051131 9.02230713]
+  10 ( 0.000  0.500  0.500)   [-0.001236   -0.00101488  0.25807071  0.25938778] [0.7961941  0.79683156 1.21131063 1.21162043 1.66312781 1.66379609
+ 1.98671924 1.98699839 2.29484582 2.29505091 2.75129675 2.7515833
+ 2.93978502 2.94013791 2.98456123 2.98541313 3.38951595 3.38990316
+ 4.69359049 4.69470341 8.99453294 8.99613282]
+  11 ( 0.000  0.500  0.750)   [-0.10561744  0.08289031  0.24541312  0.31498304] [0.81878354 1.04669911 1.0550785  1.11487982 1.53279971 1.70060397
+ 1.86505294 2.10988643 2.24695912 2.52500569 2.72566527 2.77754711
+ 2.86202603 2.91660226 2.98080856 3.14535749 3.28839787 3.55354738
+ 4.31380386 4.57338453 8.99051131 9.02230712]
+  12 ( 0.000  0.750  0.000)   [-0.26605764  0.25206411  0.43988033  0.44140128] [0.84690873 0.84742469 0.87265488 1.16957379 1.67735812 1.67776006
+ 1.86618891 2.29392936 2.29446186 2.44129559 2.56930488 2.56950579
+ 3.3190625  3.31956446 3.32634524 3.58844005 3.58900441 3.59412614
+ 4.56628195 4.56652856 8.8388139  9.00536306]
+  13 ( 0.000  0.750  0.250)   [-0.1640053   0.1625741   0.2144161   0.38930629] [0.8790465  0.93542923 1.04989387 1.14550576 1.5842761  1.62088438
+ 1.78754205 2.31189451 2.31710542 2.39125971 2.63860866 2.65475607
+ 2.81874168 3.16063804 3.1666077  3.20013956 3.44246575 3.47620579
+ 4.27784272 4.49097904 8.96039759 9.02536917]
+  14 ( 0.000  0.750  0.500)   [-0.10610708  0.08364815  0.24557575  0.31510738] [0.81863428 1.04657424 1.05512635 1.1149382  1.53280629 1.70091466
+ 1.86535805 2.10971985 2.24680001 2.52485454 2.72555809 2.77745665
+ 2.86218771 2.91609219 2.98117446 3.1450975  3.28851318 3.55368704
+ 4.31405772 4.57320823 8.9905671  9.02224719]
+  15 ( 0.000  0.750  0.750)   [-0.24634191  0.32816041  0.34671721  0.34793093] [0.72844065 0.99915445 0.9993308  1.06213108 1.57049704 1.83137084
+ 1.84030466 2.21169797 2.21212565 2.49781379 2.49823864 2.75140161
+ 3.03131858 3.24559179 3.32323678 3.38543372 3.38578124 3.79785055
+ 4.69388539 4.6943241  8.83887091 9.01240746]
+  16 ( 0.250  0.000  0.000)   [-0.26611249  0.25172554  0.44147965  0.44198518] [0.84651519 0.84711243 0.87228738 1.16931625 1.67739721 1.67812587
+ 1.86594296 2.29423768 2.29432377 2.4411691  2.56937504 2.56987772
+ 3.31886427 3.31937458 3.32569465 3.58887818 3.58982439 3.59372626
+ 4.56611347 4.56652749 8.83880398 9.00533221]
+  17 ( 0.250  0.000  0.250)   [-0.24620688  0.32857287  0.34619094  0.34757092] [0.72879194 0.9989803  0.99967493 1.06216227 1.57023474 1.83125663
+ 1.84001304 2.2115075  2.21221915 2.49787291 2.49833101 2.75161525
+ 3.03166178 3.24525061 3.32281433 3.38525139 3.38646125 3.79814891
+ 4.69440477 4.69487931 8.83889995 9.01241166]
+  18 ( 0.250  0.000  0.500)   [-0.10567467  0.0825786   0.2462125   0.31530874] [0.81805475 1.04628737 1.05547962 1.11509461 1.53292893 1.70043705
+ 1.86570515 2.10963145 2.24615562 2.5250773  2.72624607 2.77753996
+ 2.86194635 2.91622699 2.98155067 3.14472716 3.28893848 3.55383249
+ 4.31421798 4.57395235 8.99062384 9.02223947]
+  19 ( 0.250  0.000  0.750)   [-0.16456286  0.1626577   0.21574849  0.38960095] [0.87851978 0.93552244 1.0495137  1.14558526 1.58418267 1.62138293
+ 1.78739716 2.3123373  2.31756219 2.39041698 2.63862554 2.65446562
+ 2.81838687 3.1611124  3.16692859 3.19988204 3.44299204 3.47619726
+ 4.27801779 4.49100729 8.96033928 9.02540412]
+  20 ( 0.250  0.250  0.000)   [-0.2462912   0.32785766  0.34656523  0.34685335] [0.72929492 0.99931563 0.99985533 1.06171827 1.57051121 1.8311321
+ 1.8402946  2.21150333 2.21218987 2.49761691 2.49813085 2.75169521
+ 3.03184915 3.24502352 3.32302404 3.38533458 3.38609554 3.79795743
+ 4.69457827 4.69486248 8.83889192 9.01241896]
+  21 ( 0.250  0.250  0.250)   [-0.26612596  0.2522165   0.44049349  0.44121808] [0.84614829 0.84783582 0.87283938 1.16956572 1.67727107 1.67834058
+ 1.86648726 2.29384904 2.29459029 2.4408403  2.56930327 2.56961358
+ 3.31848675 3.31948434 3.32643435 3.58868807 3.58919885 3.59386249
+ 4.56601949 4.56647915 8.83876049 9.00534168]
+  22 ( 0.250  0.250  0.500)   [-0.16454428  0.16305322  0.21516058  0.3889947 ] [0.87933762 0.93517578 1.04921071 1.14607654 1.58466022 1.62165811
+ 1.78732418 2.31215625 2.31691761 2.39040177 2.63832925 2.65459953
+ 2.81870582 3.16106419 3.16645363 3.20029687 3.44275604 3.47607176
+ 4.27743703 4.49090612 8.96026308 9.02541528]
+  23 ( 0.250  0.250  0.750)   [-0.10583905  0.08253844  0.24603675  0.31474372] [0.81881307 1.04601416 1.05519066 1.11546883 1.5328988  1.70047662
+ 1.8656065  2.1100385  2.24620728 2.52525054 2.72576647 2.77718229
+ 2.86169663 2.91614177 2.98194008 3.14474455 3.28870801 3.5539702
+ 4.31397137 4.57392385 8.99066345 9.02222802]
+  24 ( 0.250  0.500  0.000)   [-0.10539115  0.08212591  0.24543593  0.31465112] [0.81914268 1.04582324 1.05551959 1.11560136 1.53270731 1.70034535
+ 1.86516841 2.11038953 2.2461013  2.52536777 2.72612107 2.77719241
+ 2.86201735 2.91604554 2.98177316 3.14526296 3.28850541 3.55368294
+ 4.31369918 4.57404614 8.99067667 9.02223405]
+  25 ( 0.250  0.500  0.250)   [-0.16425932  0.16322009  0.21443032  0.38837675] [0.879805   0.93536287 1.04949801 1.14577538 1.58421    1.62147978
+ 1.78729871 2.31223217 2.31731263 2.39083757 2.63854884 2.65436896
+ 2.81878935 3.16128247 3.16608896 3.20016325 3.44247022 3.47612321
+ 4.27752151 4.491111   8.96023372 9.02545125]
+  26 ( 0.250  0.500  0.500)   [-0.10605017  0.08288524  0.24573575  0.31578549] [0.81796081 1.04641887 1.05546777 1.11497683 1.53328999 1.70050328
+ 1.86563512 2.10989768 2.24649631 2.52486766 2.72581585 2.77727581
+ 2.86223022 2.91641063 2.98122596 3.14500324 3.28851548 3.55367336
+ 4.31408677 4.57358357 8.99051363 9.0222425 ]
+  27 ( 0.250  0.500  0.750)   [0.02605459 0.02736445 0.18894729 0.19014869] [1.0205425  1.0212889  1.04109548 1.04213119 1.53528316 1.53588936
+ 2.01186016 2.01266945 2.4502814  2.45125313 2.7301648  2.73040859
+ 2.84668418 2.84727903 3.06486476 3.06542363 3.23213984 3.23284936
+ 4.30735377 4.30794282 9.01601033 9.01756064]
+  28 ( 0.250  0.750  0.000)   [-0.16438481  0.16328316  0.21432133  0.38933887] [0.87928603 0.93573516 1.04901242 1.14629532 1.58400506 1.62084684
+ 1.78746568 2.3126406  2.31752463 2.39015287 2.63804895 2.65466447
+ 2.81874937 3.16144762 3.16638793 3.20038528 3.44283667 3.47604905
+ 4.27760331 4.49124075 8.96024343 9.02547661]
+  29 ( 0.250  0.750  0.250)   [-0.10541824  0.08276385  0.24597762  0.31419064] [0.8188778  1.04648514 1.05517271 1.11505059 1.53253147 1.70040767
+ 1.86527889 2.11002419 2.24671861 2.52502945 2.72612178 2.77683601
+ 2.86203604 2.91644005 2.98142906 3.14533814 3.2882835  3.55392333
+ 4.31391086 4.57403343 8.99065078 9.02223093]
+  30 ( 0.250  0.750  0.500)   [0.02642531 0.02748279 0.18917824 0.19006515] [1.02005433 1.02021184 1.04195771 1.04236172 1.53514924 1.53586628
+ 2.0123805  2.01287167 2.45013036 2.45061766 2.73008168 2.73070365
+ 2.84635988 2.84701994 3.06493714 3.06528151 3.23235574 3.23304062
+ 4.30751465 4.30835908 9.01600989 9.01755591]
+  31 ( 0.250  0.750  0.750)   [-0.10617562  0.08275845  0.24624803  0.31620023] [0.81819603 1.04636213 1.05495707 1.11503949 1.53273558 1.70055379
+ 1.86543913 2.1101211  2.24669452 2.52496799 2.72549632 2.77749525
+ 2.86186461 2.91645104 2.98119343 3.14519937 3.28860091 3.55399799
+ 4.31428706 4.5735041  8.99057906 9.02223994]
+  32 ( 0.500  0.000  0.000)   [-0.11667273 -0.01156642  0.39688601  0.39748972] [0.88622928 0.88643907 0.91070846 1.27572973 1.65771974 1.84977707
+ 1.85031006 2.00667187 2.00699541 2.62131959 2.84976656 2.8880147
+ 2.88866809 2.93861691 2.9391401  3.23291047 3.57948094 3.58026608
+ 4.47419842 4.47478287 8.99589217 9.04033162]
+  33 ( 0.500  0.000  0.250)   [-0.10599302  0.08280375  0.24633085  0.31566799] [0.81812765 1.04677569 1.05524138 1.11475879 1.53285018 1.70028531
+ 1.86519794 2.11017056 2.24639303 2.52495556 2.72562957 2.7775012
+ 2.86190697 2.91627513 2.98154615 3.14502211 3.28932445 3.5537727
+ 4.31448086 4.5738896  8.99050925 9.0223121 ]
+  34 ( 0.500  0.000  0.500)   [-1.64560440e-03  2.18327783e-04  2.57441013e-01  2.58778995e-01] [0.79602255 0.79705692 1.21147228 1.21188016 1.66285566 1.6635914
+ 1.98674711 1.98678006 2.2947918  2.29539295 2.75088129 2.75161581
+ 2.93907169 2.94012317 2.9851307  2.98581365 3.38972367 3.39027243
+ 4.69514706 4.69542887 8.99461591 8.99611838]
+  35 ( 0.500  0.000  0.750)   [-0.10599302  0.08280375  0.24633085  0.31566799] [0.81812765 1.04677569 1.05524138 1.11475879 1.53285018 1.70028531
+ 1.86519794 2.11017056 2.24639303 2.52495556 2.72562957 2.7775012
+ 2.86190697 2.91627513 2.98154615 3.14502211 3.28932445 3.5537727
+ 4.31448086 4.5738896  8.99050925 9.02231209]
+  36 ( 0.500  0.250  0.000)   [-0.10634856  0.08335876  0.2458755   0.31486405] [0.81879628 1.04650168 1.05540203 1.11500182 1.53257141 1.70046373
+ 1.8652462  2.11038401 2.24641645 2.52518446 2.72583856 2.77715352
+ 2.86191068 2.91589271 2.98175636 3.14514431 3.28890518 3.55400655
+ 4.31420781 4.57410405 8.99056888 9.02230345]
+  37 ( 0.500  0.250  0.250)   [-0.16455854  0.16271675  0.2152125   0.38975039] [0.87865528 0.93565385 1.04943423 1.14555978 1.58433081 1.62173744
+ 1.78714188 2.31190093 2.31757227 2.39087067 2.6385585  2.65441973
+ 2.81855364 3.16105628 3.16654581 3.20032292 3.4424482  3.47652378
+ 4.27817885 4.49114871 8.96019999 9.02545404]
+  38 ( 0.500  0.250  0.500)   [-0.1060216   0.08361489  0.24563453  0.31455993] [0.81923717 1.04636386 1.05490332 1.11517058 1.53283147 1.70070247
+ 1.86548537 2.10998766 2.24653135 2.52517954 2.72519068 2.77714757
+ 2.86200001 2.91643728 2.98144134 3.14514213 3.28854616 3.55380528
+ 4.31382971 4.5738841  8.99051717 9.02228194]
+  39 ( 0.500  0.250  0.750)   [0.02609783 0.02765191 0.1888088  0.18999521] [1.02059851 1.0211365  1.04157352 1.04180673 1.53521801 1.53579132
+ 2.01176829 2.01242237 2.45047507 2.45060298 2.72966212 2.73023584
+ 2.84747702 2.84784629 3.06495435 3.06552408 3.23235745 3.23302391
+ 4.30687209 4.30767518 9.01606204 9.01754773]
+  40 ( 0.500  0.500  0.000)   [-1.85958635e-03 -2.43887939e-04  2.57335779e-01  2.57966974e-01] [0.79646969 0.79701211 1.21186225 1.21198126 1.66288845 1.66320443
+ 1.98652088 1.9873108  2.29496794 2.29580074 2.75107723 2.75132834
+ 2.93933336 2.94007723 2.98496554 2.98545147 3.38972524 3.39022548
+ 4.69515745 4.69538618 8.9946431  8.99612116]
+  41 ( 0.500  0.500  0.250)   [-0.10603702  0.08289515  0.24561977  0.31468799] [0.81867358 1.04654401 1.05525782 1.11543857 1.53305488 1.70028269
+ 1.86554444 2.10970147 2.24647023 2.52519218 2.72605812 2.77727338
+ 2.8617366  2.91645371 2.98146612 3.14500957 3.28864243 3.55375542
+ 4.31409003 4.57380476 8.99049199 9.02229676]
+  42 ( 0.500  0.500  0.500)   [-0.1164786  -0.01156709  0.39599491  0.39618394] [0.88577113 0.8878657  0.91102289 1.27604343 1.65821073 1.84993719
+ 1.85044628 2.00651563 2.00711418 2.62113012 2.8502107  2.88799039
+ 2.88824091 2.9379311  2.93922444 3.23288206 3.57930374 3.57979635
+ 4.47431004 4.47476242 8.99584955 9.04029887]
+  43 ( 0.500  0.500  0.750)   [-0.10603702  0.08289515  0.24561977  0.31468799] [0.81867358 1.04654401 1.05525782 1.11543857 1.53305488 1.70028269
+ 1.86554444 2.10970147 2.24647023 2.52519218 2.72605812 2.77727338
+ 2.8617366  2.91645372 2.98146612 3.14500957 3.28864243 3.55375542
+ 4.31409003 4.57380476 8.99049198 9.02229675]
+  44 ( 0.500  0.750  0.000)   [-0.10634856  0.08335876  0.2458755   0.31486405] [0.81879628 1.04650168 1.05540203 1.11500182 1.53257141 1.70046373
+ 1.8652462  2.11038401 2.24641645 2.52518446 2.72583856 2.77715352
+ 2.86191068 2.91589271 2.98175636 3.14514431 3.28890518 3.55400655
+ 4.31420781 4.57410405 8.99056887 9.02230345]
+  45 ( 0.500  0.750  0.250)   [0.02609783 0.02765191 0.1888088  0.18999521] [1.02059851 1.0211365  1.04157352 1.04180673 1.53521801 1.53579132
+ 2.01176829 2.01242237 2.45047507 2.45060298 2.72966212 2.73023584
+ 2.84747702 2.84784629 3.06495435 3.06552408 3.23235745 3.23302391
+ 4.30687209 4.30767518 9.01606204 9.01754773]
+  46 ( 0.500  0.750  0.500)   [-0.1060216   0.08361489  0.24563453  0.31455993] [0.81923717 1.04636386 1.05490332 1.11517058 1.53283147 1.70070247
+ 1.86548537 2.10998766 2.24653135 2.52517954 2.72519068 2.77714757
+ 2.86200001 2.91643728 2.98144134 3.14514213 3.28854616 3.55380528
+ 4.31382971 4.5738841  8.99051717 9.02228194]
+  47 ( 0.500  0.750  0.750)   [-0.16455854  0.16271675  0.2152125   0.38975039] [0.87865528 0.93565385 1.04943423 1.14555978 1.58433081 1.62173744
+ 1.78714188 2.31190093 2.31757227 2.39087067 2.6385585  2.65441973
+ 2.81855365 3.16105628 3.16654581 3.20032292 3.4424482  3.47652378
+ 4.27817885 4.49114871 8.96019998 9.02545403]
+  48 ( 0.750 -0.000  0.000)   [-0.26611249  0.25172555  0.44147965  0.44198518] [0.84651519 0.84711243 0.87228738 1.16931624 1.67739721 1.67812587
+ 1.86594296 2.29423768 2.29432377 2.4411691  2.56937504 2.56987772
+ 3.31886427 3.31937458 3.32569465 3.58887818 3.58982439 3.59372626
+ 4.56611347 4.56652749 8.83880397 9.0053322 ]
+  49 ( 0.750  0.000  0.250)   [-0.16456286  0.1626577   0.21574849  0.38960095] [0.87851978 0.93552244 1.0495137  1.14558526 1.58418267 1.62138293
+ 1.78739716 2.3123373  2.31756219 2.39041698 2.63862554 2.65446562
+ 2.81838687 3.1611124  3.16692859 3.19988204 3.44299204 3.47619726
+ 4.27801779 4.49100729 8.96033928 9.02540412]
+  50 ( 0.750 -0.000  0.500)   [-0.10567467  0.0825786   0.2462125   0.31530874] [0.81805475 1.04628737 1.05547962 1.11509461 1.53292893 1.70043705
+ 1.86570515 2.10963145 2.24615562 2.5250773  2.72624607 2.77753996
+ 2.86194635 2.91622699 2.98155067 3.14472716 3.28893848 3.55383249
+ 4.31421798 4.57395235 8.99062384 9.02223946]
+  51 ( 0.750  0.000  0.750)   [-0.24620688  0.32857287  0.34619094  0.34757092] [0.72879194 0.9989803  0.99967493 1.06216227 1.57023474 1.83125663
+ 1.84001304 2.2115075  2.21221915 2.49787291 2.49833101 2.75161525
+ 3.03166178 3.24525061 3.32281433 3.38525139 3.38646125 3.79814891
+ 4.69440477 4.69487931 8.83889994 9.01241165]
+  52 ( 0.750  0.250  0.000)   [-0.16438481  0.16328316  0.21432133  0.38933887] [0.87928603 0.93573516 1.04901242 1.14629532 1.58400506 1.62084684
+ 1.78746568 2.3126406  2.31752463 2.39015287 2.63804895 2.65466447
+ 2.81874937 3.16144762 3.16638793 3.20038528 3.44283667 3.47604905
+ 4.27760331 4.49124075 8.96024343 9.02547661]
+  53 ( 0.750  0.250  0.250)   [-0.10617562  0.08275845  0.24624803  0.31620023] [0.81819603 1.04636214 1.05495707 1.11503949 1.53273558 1.70055379
+ 1.86543913 2.1101211  2.24669452 2.52496799 2.72549632 2.77749525
+ 2.86186461 2.91645104 2.98119343 3.14519937 3.28860091 3.55399799
+ 4.31428706 4.5735041  8.99057906 9.02223995]
+  54 ( 0.750  0.250  0.500)   [0.02642531 0.02748279 0.18917824 0.19006515] [1.02005433 1.02021184 1.04195771 1.04236172 1.53514924 1.53586628
+ 2.0123805  2.01287167 2.45013036 2.45061766 2.73008168 2.73070365
+ 2.84635988 2.84701994 3.06493714 3.06528151 3.23235574 3.23304062
+ 4.30751465 4.30835908 9.01600989 9.01755591]
+  55 ( 0.750  0.250  0.750)   [-0.10541824  0.08276385  0.24597762  0.31419064] [0.8188778  1.04648514 1.05517271 1.11505059 1.53253147 1.70040767
+ 1.86527889 2.11002419 2.24671861 2.52502945 2.72612178 2.77683601
+ 2.86203604 2.91644005 2.98142906 3.14533814 3.2882835  3.55392333
+ 4.31391086 4.57403343 8.99065078 9.02223092]
+  56 ( 0.750  0.500  0.000)   [-0.10539115  0.08212591  0.24543594  0.31465112] [0.81914268 1.04582324 1.05551959 1.11560136 1.53270731 1.70034535
+ 1.86516841 2.11038953 2.24610129 2.52536777 2.72612107 2.77719241
+ 2.86201735 2.91604554 2.98177317 3.14526296 3.28850541 3.55368294
+ 4.31369918 4.57404614 8.99067667 9.02223405]
+  57 ( 0.750  0.500  0.250)   [0.02605459 0.02736445 0.18894729 0.19014869] [1.0205425  1.0212889  1.04109548 1.0421312  1.53528316 1.53588936
+ 2.01186016 2.01266945 2.4502814  2.45125313 2.7301648  2.73040859
+ 2.84668418 2.84727903 3.06486476 3.06542364 3.23213984 3.23284936
+ 4.30735377 4.30794282 9.01601033 9.01756064]
+  58 ( 0.750  0.500  0.500)   [-0.10605017  0.08288524  0.24573575  0.31578549] [0.81796081 1.04641887 1.05546777 1.11497683 1.53328999 1.70050328
+ 1.86563512 2.10989768 2.24649631 2.52486766 2.72581585 2.77727581
+ 2.86223022 2.91641063 2.98122596 3.14500324 3.28851548 3.55367336
+ 4.31408677 4.57358357 8.99051362 9.0222425 ]
+  59 ( 0.750  0.500  0.750)   [-0.16425932  0.1632201   0.21443032  0.38837675] [0.87980501 0.93536287 1.04949801 1.14577538 1.58421    1.62147978
+ 1.78729871 2.31223217 2.31731263 2.39083757 2.63854884 2.65436896
+ 2.81878935 3.16128247 3.16608896 3.20016325 3.44247022 3.47612321
+ 4.27752151 4.491111   8.96023371 9.02545124]
+  60 ( 0.750  0.750  0.000)   [-0.2462912   0.32785766  0.34656523  0.34685335] [0.72929492 0.99931563 0.99985533 1.06171827 1.57051121 1.8311321
+ 1.8402946  2.21150333 2.21218987 2.49761691 2.49813085 2.75169521
+ 3.03184915 3.24502352 3.32302404 3.38533458 3.38609554 3.79795743
+ 4.69457827 4.69486248 8.83889191 9.01241894]
+  61 ( 0.750  0.750  0.250)   [-0.10583905  0.08253844  0.24603675  0.31474372] [0.81881307 1.04601416 1.05519066 1.11546883 1.5328988  1.70047662
+ 1.8656065  2.1100385  2.24620728 2.52525054 2.72576647 2.77718229
+ 2.86169663 2.91614177 2.98194008 3.14474455 3.28870801 3.5539702
+ 4.31397137 4.57392385 8.99066345 9.02222801]
+  62 ( 0.750  0.750  0.500)   [-0.16454428  0.16305323  0.21516058  0.3889947 ] [0.87933762 0.93517578 1.04921072 1.14607654 1.58466022 1.62165811
+ 1.78732418 2.31215625 2.31691761 2.39040177 2.63832925 2.65459953
+ 2.81870582 3.16106419 3.16645363 3.20029687 3.44275604 3.47607176
+ 4.27743703 4.49090612 8.96026307 9.02541526]
+  63 ( 0.750  0.750  0.750)   [-0.26612596  0.2522165   0.44049349  0.44121808] [0.84614829 0.84783582 0.87283938 1.16956572 1.67727107 1.67834058
+ 1.86648726 2.29384904 2.29459029 2.4408403  2.56930327 2.56961358
+ 3.31848675 3.31948434 3.32643435 3.58868807 3.58919885 3.59386249
+ 4.56601949 4.56647915 8.83876047 9.00534165]
+nelec by numeric integration = 8.000000000003604
+    CPU time for vxc      3.23 sec, wall time      3.24 sec
+    CPU time for vj and vk      2.44 sec, wall time      2.45 sec
+E1 = (3.9977084812519754+3.1170812458958252e-19j)  Ecoul = (1.0692616876615606+1.2705494208814505e-18j)  Exc = -3.423619528301332
+cycle= 6 E= -11.1655224573739  delta_E= -3.51e-11  |g|= 2.03e-05  |ddm|= 9.67e-05
+    CPU time for cycle= 6      5.74 sec, wall time      5.75 sec
+HOMO = 0.514017430393  LUMO = 0.728440637608
+     k-point                  mo_energy
+   0 ( 0.000  0.000  0.000)   [-0.32239588  0.5122449   0.51372534  0.51401743] [0.75416544 0.75501463 0.75544716 1.10042939 1.69227143 1.692891
+ 2.36185118 2.36252159 2.36268551 2.43335144 2.4340809  2.43463277
+ 3.52520669 3.52570571 3.70373274 3.70420813 3.70534244 4.59129751
+ 4.59164834 4.59185577 8.65091426 8.98303809]
+   1 ( 0.000  0.000  0.250)   [-0.26602804  0.25214347  0.44073161  0.44149572] [0.84649819 0.84748299 0.87241624 1.16949689 1.67725584 1.67812886
+ 1.8662878  2.293789   2.29456499 2.44113297 2.56933557 2.56973365
+ 3.31885272 3.31970093 3.32551588 3.58900775 3.58938772 3.59344173
+ 4.5659472  4.56656395 8.83886562 9.00531046]
+   2 ( 0.000  0.000  0.500)   [-0.11613417 -0.01173882  0.39603452  0.39662063] [0.88617799 0.88726591 0.91062748 1.27592507 1.65808428 1.85016894
+ 1.85045717 2.00620403 2.00690778 2.62123772 2.84973428 2.88795958
+ 2.88871207 2.93838001 2.93924695 3.23253161 3.57965521 3.579905
+ 4.47417535 4.47456031 8.99582248 9.04043321]
+   3 ( 0.000  0.000  0.750)   [-0.26602804  0.25214347  0.44073161  0.44149572] [0.84649819 0.84748299 0.87241624 1.16949689 1.67725584 1.67812886
+ 1.8662878  2.293789   2.29456499 2.44113297 2.56933557 2.56973365
+ 3.31885272 3.31970093 3.32551588 3.58900775 3.58938772 3.59344173
+ 4.5659472  4.56656395 8.83886561 9.00531046]
+   4 ( 0.000  0.250  0.000)   [-0.26605764  0.25206405  0.43988025  0.44140141] [0.8469087  0.8474247  0.8726549  1.16957375 1.67735811 1.67776001
+ 1.86618887 2.29392931 2.29446187 2.44129558 2.56930489 2.56950578
+ 3.31906253 3.31956446 3.32634522 3.58844001 3.58900444 3.59412612
+ 4.56628193 4.56652854 8.83881395 9.00536312]
+   5 ( 0.000  0.250  0.250)   [-0.24634192  0.32816043  0.34671726  0.34793085] [0.72844064 0.99915442 0.99933077 1.06213107 1.57049702 1.83137084
+ 1.84030466 2.21169797 2.21212563 2.49781377 2.49823863 2.75140159
+ 3.03131857 3.24559177 3.32323678 3.38543372 3.38578121 3.79785053
+ 4.69388538 4.69432409 8.83887098 9.01240753]
+   6 ( 0.000  0.250  0.500)   [-0.10610706  0.08364809  0.2455757   0.31510744] [0.8186344  1.04657416 1.05512632 1.11493814 1.53280626 1.70091466
+ 1.86535807 2.10971982 2.24679998 2.52485451 2.72555813 2.77745663
+ 2.86218765 2.91609216 2.98117443 3.14509753 3.2885132  3.55368702
+ 4.31405771 4.5732082  8.99056715 9.02224725]
+   7 ( 0.000  0.250  0.750)   [-0.16400528  0.16257396  0.21441614  0.38930637] [0.87904665 0.93542918 1.0498938  1.14550576 1.58427599 1.62088439
+ 1.78754196 2.31189446 2.31710543 2.39125968 2.63860867 2.65475606
+ 2.81874175 3.16063797 3.16660775 3.20013951 3.44246576 3.47620582
+ 4.2778427  4.49097901 8.96039763 9.02536923]
+   8 ( 0.000  0.500  0.000)   [-0.11523623 -0.01287311  0.39493741  0.39671115] [0.88648782 0.88712713 0.91074837 1.27603012 1.65782075 1.84952907
+ 1.84997642 2.00655051 2.00721967 2.6212091  2.85018137 2.88766941
+ 2.88843691 2.9387537  2.93936899 3.23359199 3.57915009 3.579569
+ 4.47453715 4.47486744 8.99586174 9.04048807]
+   9 ( 0.000  0.500  0.250)   [-0.10561742  0.08289026  0.24541306  0.3149831 ] [0.81878366 1.04669901 1.05507848 1.11487976 1.53279968 1.70060397
+ 1.86505296 2.10988641 2.24695908 2.52500565 2.72566531 2.77754709
+ 2.86202597 2.91660224 2.98080854 3.14535752 3.2883979  3.55354736
+ 4.31380385 4.57338449 8.99051136 9.02230718]
+  10 ( 0.000  0.500  0.500)   [-0.0012361  -0.00101478  0.25807077  0.2593877 ] [0.79619394 0.79683169 1.2113106  1.21162041 1.66312775 1.66379614
+ 1.98671924 1.98699838 2.29484574 2.29505097 2.75129673 2.75158329
+ 2.93978498 2.94013792 2.98456126 2.98541308 3.38951598 3.3899031
+ 4.69359047 4.69470341 8.9945329  8.99613297]
+  11 ( 0.000  0.500  0.750)   [-0.10561742  0.08289026  0.24541306  0.3149831 ] [0.81878366 1.04669901 1.05507848 1.11487976 1.53279968 1.70060397
+ 1.86505296 2.10988641 2.24695908 2.52500565 2.72566531 2.77754709
+ 2.86202597 2.91660224 2.98080854 3.14535752 3.2883979  3.55354736
+ 4.31380385 4.57338449 8.99051136 9.02230718]
+  12 ( 0.000  0.750  0.000)   [-0.26605764  0.25206405  0.43988025  0.44140141] [0.8469087  0.8474247  0.8726549  1.16957375 1.67735811 1.67776001
+ 1.86618887 2.29392931 2.29446187 2.44129558 2.56930489 2.56950578
+ 3.31906253 3.31956446 3.32634523 3.58844001 3.58900444 3.59412612
+ 4.56628193 4.56652854 8.83881394 9.00536311]
+  13 ( 0.000  0.750  0.250)   [-0.16400528  0.16257396  0.21441614  0.38930637] [0.87904665 0.93542918 1.0498938  1.14550576 1.58427599 1.62088439
+ 1.78754196 2.31189446 2.31710543 2.39125968 2.63860867 2.65475606
+ 2.81874175 3.16063797 3.16660775 3.20013951 3.44246576 3.47620582
+ 4.2778427  4.49097901 8.96039763 9.02536923]
+  14 ( 0.000  0.750  0.500)   [-0.10610706  0.08364809  0.2455757   0.31510744] [0.8186344  1.04657416 1.05512632 1.11493814 1.53280626 1.70091466
+ 1.86535807 2.10971982 2.24679998 2.52485451 2.72555813 2.77745663
+ 2.86218765 2.91609216 2.98117444 3.14509753 3.2885132  3.55368702
+ 4.31405771 4.5732082  8.99056714 9.02224724]
+  15 ( 0.000  0.750  0.750)   [-0.24634192  0.32816043  0.34671726  0.34793085] [0.72844064 0.99915442 0.99933077 1.06213107 1.57049702 1.83137084
+ 1.84030466 2.21169797 2.21212563 2.49781377 2.49823863 2.75140159
+ 3.03131857 3.24559177 3.32323679 3.38543372 3.38578121 3.79785053
+ 4.69388538 4.69432409 8.83887097 9.01240751]
+  16 ( 0.250  0.000  0.000)   [-0.2661125   0.25172552  0.44147969  0.44198515] [0.84651518 0.8471124  0.87228738 1.16931622 1.67739722 1.67812583
+ 1.86594293 2.2942377  2.29432372 2.44116908 2.56937502 2.56987772
+ 3.31886425 3.3193746  3.32569463 3.58887814 3.58982443 3.59372623
+ 4.56611345 4.56652748 8.83880403 9.00533226]
+  17 ( 0.250  0.000  0.250)   [-0.24620689  0.32857287  0.34619088  0.34757097] [0.72879192 0.99898027 0.99967492 1.06216226 1.57023473 1.83125663
+ 1.84001303 2.2115075  2.21221914 2.49787289 2.49833099 2.75161523
+ 3.03166177 3.24525059 3.32281433 3.38525135 3.38646128 3.79814889
+ 4.69440476 4.6948793  8.8389     9.01241172]
+  18 ( 0.250  0.000  0.500)   [-0.10567465  0.08257852  0.24621249  0.31530879] [0.81805482 1.04628731 1.05547962 1.11509456 1.53292889 1.70043703
+ 1.86570516 2.10963141 2.24615559 2.52507727 2.72624611 2.77753996
+ 2.86194633 2.91622696 2.98155065 3.14472718 3.28893849 3.55383248
+ 4.31421797 4.57395232 8.99062389 9.02223953]
+  19 ( 0.250  0.000  0.750)   [-0.16456285  0.1626576   0.21574851  0.38960102] [0.87851988 0.9355224  1.04951364 1.14558526 1.58418259 1.62138293
+ 1.78739709 2.31233727 2.31756219 2.39041695 2.63862555 2.65446561
+ 2.81838692 3.16111235 3.16692863 3.199882   3.44299204 3.47619728
+ 4.27801778 4.49100726 8.96033932 9.02540418]
+  20 ( 0.250  0.250  0.000)   [-0.24629121  0.32785765  0.34656523  0.34685336] [0.72929489 0.99931562 0.99985533 1.06171826 1.5705112  1.83113207
+ 1.84029458 2.21150331 2.21218987 2.4976169  2.49813084 2.75169519
+ 3.03184913 3.24502351 3.32302403 3.38533458 3.38609555 3.79795741
+ 4.69457826 4.69486247 8.83889198 9.01241901]
+  21 ( 0.250  0.250  0.250)   [-0.26612597  0.25221662  0.44049344  0.44121802] [0.84614823 0.84783577 0.87283928 1.1695658  1.6772711  1.6783406
+ 1.86648732 2.29384905 2.29459028 2.44084027 2.56930323 2.56961355
+ 3.31848668 3.31948427 3.3264344  3.58868804 3.58919884 3.59386248
+ 4.56601948 4.56647914 8.83876055 9.00534173]
+  22 ( 0.250  0.250  0.500)   [-0.16454429  0.16305332  0.21516054  0.38899466] [0.8793375  0.93517578 1.04921073 1.14607653 1.58466028 1.62165808
+ 1.78732421 2.31215627 2.31691759 2.39040177 2.63832922 2.65459951
+ 2.81870576 3.16106423 3.16645361 3.20029687 3.44275601 3.47607172
+ 4.277437   4.49090611 8.96026314 9.02541533]
+  23 ( 0.250  0.250  0.750)   [-0.10583903  0.08253831  0.2460369   0.31474367] [0.81881294 1.04601431 1.0551907  1.11546885 1.53289871 1.70047654
+ 1.86560644 2.1100384  2.24620731 2.52525053 2.72576648 2.77718232
+ 2.86169673 2.9161417  2.98194008 3.14474453 3.28870796 3.5539702
+ 4.31397136 4.57392385 8.99066349 9.02222808]
+  24 ( 0.250  0.500  0.000)   [-0.10539113  0.08212584  0.24543592  0.31465117] [0.81914273 1.0458232  1.05551958 1.11560132 1.53270726 1.70034532
+ 1.86516841 2.11038949 2.24610128 2.52536774 2.7261211  2.77719241
+ 2.86201733 2.91604551 2.98177314 3.14526298 3.28850542 3.55368293
+ 4.31369916 4.57404612 8.99067672 9.02223411]
+  25 ( 0.250  0.500  0.250)   [-0.16425933  0.1632202   0.21443028  0.38837669] [0.87980488 0.93536286 1.04949805 1.14577535 1.58421005 1.62147976
+ 1.78729876 2.31223219 2.3173126  2.39083757 2.6385488  2.65436894
+ 2.8187893  3.1612825  3.16608892 3.20016325 3.4424702  3.47612316
+ 4.27752149 4.49111099 8.96023378 9.0254513 ]
+  26 ( 0.250  0.500  0.500)   [-0.10605022  0.08288541  0.2457357   0.31578541] [0.8179607  1.04641886 1.05546771 1.11497686 1.53329007 1.70050331
+ 1.8656351  2.10989775 2.24649631 2.52486768 2.72581574 2.77727577
+ 2.86223019 2.91641068 2.98122597 3.14500318 3.28851545 3.55367334
+ 4.31408674 4.57358358 8.99051369 9.02224256]
+  27 ( 0.250  0.500  0.750)   [0.02605449 0.02736456 0.18894721 0.19014874] [1.02054243 1.02128895 1.04109559 1.04213105 1.53528311 1.53588938
+ 2.01186015 2.01266944 2.45028143 2.45125307 2.73016479 2.73040858
+ 2.84668415 2.84727904 3.06486475 3.06542361 3.23213981 3.23284936
+ 4.30735375 4.3079428  9.01601029 9.01756079]
+  28 ( 0.250  0.750  0.000)   [-0.1643848   0.16328306  0.21432134  0.38933894] [0.87928611 0.93573513 1.04901235 1.14629533 1.58400499 1.62084684
+ 1.78746562 2.31264056 2.31752464 2.39015286 2.63804895 2.65466445
+ 2.81874939 3.16144759 3.16638796 3.20038524 3.44283667 3.47604907
+ 4.27760329 4.49124073 8.96024348 9.02547667]
+  29 ( 0.250  0.750  0.250)   [-0.10541821  0.08276373  0.24597778  0.31419058] [0.81887766 1.04648529 1.05517274 1.1150506  1.5325314  1.70040762
+ 1.86527882 2.1100241  2.24671863 2.52502945 2.72612179 2.77683604
+ 2.86203613 2.91643998 2.98142906 3.14533812 3.28828344 3.55392333
+ 4.31391085 4.57403343 8.99065082 9.02223099]
+  30 ( 0.250  0.750  0.500)   [0.02642524 0.02748286 0.18917823 0.19006513] [1.02005435 1.02021177 1.04195782 1.0423616  1.53514921 1.53586631
+ 2.01238049 2.01287168 2.45013034 2.45061765 2.73008165 2.73070365
+ 2.84635989 2.84701992 3.06493712 3.0652815  3.2323557  3.23304062
+ 4.30751463 4.30835906 9.01600985 9.01755606]
+  31 ( 0.250  0.750  0.750)   [-0.10617561  0.08275838  0.24624818  0.31620013] [0.81819585 1.04636228 1.0549571  1.11503952 1.53273553 1.70055374
+ 1.86543906 2.11012102 2.24669454 2.524968   2.7254963  2.77749528
+ 2.8618647  2.91645098 2.98119344 3.14519933 3.28860084 3.55399799
+ 4.31428705 4.57350411 8.9905791  9.02224001]
+  32 ( 0.500  0.000  0.000)   [-0.11667271 -0.01156646  0.39688612  0.39748963] [0.88622918 0.88643915 0.91070847 1.27572969 1.65771971 1.84977712
+ 1.85030997 2.00667185 2.00699539 2.62131959 2.84976653 2.88801469
+ 2.8886681  2.93861687 2.93914016 3.23291048 3.57948092 3.58026609
+ 4.4741984  4.47478285 8.99589222 9.04033167]
+  33 ( 0.500  0.000  0.250)   [-0.10599302  0.08280374  0.24633078  0.31566804] [0.81812773 1.0467756  1.05524134 1.11475874 1.53285017 1.70028532
+ 1.86519796 2.11017057 2.24639301 2.52495553 2.72562958 2.77750118
+ 2.86190691 2.91627512 2.98154613 3.14502212 3.28932447 3.55377268
+ 4.31448084 4.57388957 8.9905093  9.02231216]
+  34 ( 0.500  0.000  0.500)   [-1.64565720e-03  2.18375988e-04  2.57440965e-01  2.58779036e-01] [0.79602264 0.7970568  1.21147226 1.21188014 1.6628556  1.66359144
+ 1.98674712 1.98678003 2.29479175 2.29539298 2.75088128 2.7516158
+ 2.9390717  2.94012315 2.98513064 2.98581369 3.38972367 3.39027239
+ 4.69514706 4.69542886 8.99461586 8.99611853]
+  35 ( 0.500  0.000  0.750)   [-0.10599302  0.08280374  0.24633078  0.31566804] [0.81812773 1.0467756  1.05524134 1.11475874 1.53285017 1.70028532
+ 1.86519796 2.11017057 2.24639301 2.52495553 2.72562958 2.77750118
+ 2.86190691 2.91627512 2.98154613 3.14502212 3.28932447 3.55377268
+ 4.31448084 4.57388957 8.9905093  9.02231215]
+  36 ( 0.500  0.250  0.000)   [-0.10634857  0.08335875  0.24587543  0.3148641 ] [0.81879635 1.04650158 1.05540202 1.11500178 1.53257139 1.70046372
+ 1.86524621 2.11038401 2.24641642 2.52518443 2.72583857 2.77715351
+ 2.86191063 2.9158927  2.98175633 3.14514432 3.2889052  3.55400653
+ 4.31420779 4.57410403 8.99056893 9.02230351]
+  37 ( 0.500  0.250  0.250)   [-0.16455857  0.1627169   0.21521246  0.3897503 ] [0.87865511 0.93565385 1.04943429 1.14555974 1.58433089 1.62173741
+ 1.78714196 2.31190097 2.31757224 2.39087067 2.63855846 2.65441971
+ 2.81855357 3.16105634 3.16654576 3.20032294 3.44244817 3.47652372
+ 4.27817883 4.49114871 8.96020005 9.02545409]
+  38 ( 0.500  0.250  0.500)   [-0.10602166  0.08361507  0.24563444  0.31455988] [0.8192371  1.04636381 1.05490325 1.11517059 1.53283155 1.70070251
+ 1.86548536 2.10998775 2.24653134 2.52517956 2.72519057 2.77714752
+ 2.86199995 2.91643734 2.98144133 3.14514208 3.28854614 3.55380526
+ 4.31382968 4.5738841  8.99051724 9.022282  ]
+  39 ( 0.500  0.250  0.750)   [0.02609786 0.02765188 0.1888088  0.1899952 ] [1.02059854 1.02113646 1.04157348 1.04180673 1.53521797 1.53579133
+ 2.01176827 2.01242237 2.45047506 2.45060297 2.7296621  2.73023584
+ 2.84747703 2.84784626 3.06495434 3.06552407 3.23235742 3.23302392
+ 4.30687208 4.30767516 9.01606199 9.01754788]
+  40 ( 0.500  0.500  0.000)   [-1.85955234e-03 -2.43934917e-04  2.57335792e-01  2.57966968e-01] [0.79646958 0.79701219 1.21186224 1.21198126 1.66288837 1.66320444
+ 1.98652086 1.9873108  2.29496795 2.29580069 2.75107723 2.75132833
+ 2.93933336 2.94007721 2.98496554 2.98545147 3.38972526 3.39022543
+ 4.69515745 4.69538616 8.99464305 8.99612131]
+  41 ( 0.500  0.500  0.250)   [-0.10603708  0.08289534  0.24561966  0.31468795] [0.81867351 1.04654395 1.05525775 1.1154386  1.53305496 1.70028272
+ 1.86554444 2.10970156 2.24647021 2.52519219 2.72605802 2.77727333
+ 2.86173654 2.91645378 2.98146611 3.14500952 3.28864242 3.5537554
+ 4.31409    4.57380476 8.99049205 9.02229681]
+  42 ( 0.500  0.500  0.500)   [-0.11647873 -0.01156687  0.39599489  0.39618386] [0.88577102 0.88786563 0.91102275 1.27604356 1.6582108  1.84993722
+ 1.85044629 2.00651571 2.00711425 2.62113011 2.85021081 2.88799035
+ 2.88824088 2.937931   2.93922433 3.23288194 3.57930372 3.57979633
+ 4.47431004 4.47476242 8.9958496  9.04029896]
+  43 ( 0.500  0.500  0.750)   [-0.10603708  0.08289534  0.24561966  0.31468795] [0.81867351 1.04654395 1.05525775 1.1154386  1.53305496 1.70028272
+ 1.86554444 2.10970156 2.24647021 2.52519219 2.72605802 2.77727333
+ 2.86173654 2.91645378 2.98146611 3.14500952 3.28864242 3.5537554
+ 4.31409    4.57380476 8.99049205 9.0222968 ]
+  44 ( 0.500  0.750  0.000)   [-0.10634857  0.08335875  0.24587543  0.3148641 ] [0.81879635 1.04650158 1.05540202 1.11500178 1.53257139 1.70046372
+ 1.86524621 2.11038401 2.24641642 2.52518443 2.72583857 2.77715351
+ 2.86191063 2.9158927  2.98175634 3.14514432 3.2889052  3.55400653
+ 4.31420779 4.57410403 8.99056893 9.0223035 ]
+  45 ( 0.500  0.750  0.250)   [0.02609786 0.02765188 0.1888088  0.1899952 ] [1.02059854 1.02113646 1.04157348 1.04180673 1.53521797 1.53579133
+ 2.01176827 2.01242237 2.45047506 2.45060297 2.7296621  2.73023584
+ 2.84747703 2.84784626 3.06495434 3.06552407 3.23235742 3.23302392
+ 4.30687208 4.30767516 9.01606199 9.01754788]
+  46 ( 0.500  0.750  0.500)   [-0.10602166  0.08361507  0.24563444  0.31455988] [0.8192371  1.04636381 1.05490325 1.11517059 1.53283155 1.70070251
+ 1.86548536 2.10998775 2.24653134 2.52517956 2.72519057 2.77714752
+ 2.86199995 2.91643734 2.98144133 3.14514208 3.28854614 3.55380526
+ 4.31382968 4.5738841  8.99051723 9.02228199]
+  47 ( 0.500  0.750  0.750)   [-0.16455857  0.1627169   0.21521246  0.3897503 ] [0.87865511 0.93565385 1.04943429 1.14555974 1.58433089 1.62173741
+ 1.78714196 2.31190097 2.31757224 2.39087067 2.63855846 2.65441971
+ 2.81855357 3.16105634 3.16654576 3.20032294 3.44244817 3.47652372
+ 4.27817883 4.49114871 8.96020004 9.02545408]
+  48 ( 0.750 -0.000  0.000)   [-0.2661125   0.25172552  0.44147969  0.44198515] [0.84651518 0.8471124  0.87228738 1.16931622 1.67739722 1.67812583
+ 1.86594293 2.2942377  2.29432372 2.44116908 2.56937502 2.56987772
+ 3.31886425 3.3193746  3.32569463 3.58887814 3.58982443 3.59372623
+ 4.56611345 4.56652748 8.83880402 9.00533225]
+  49 ( 0.750  0.000  0.250)   [-0.16456285  0.1626576   0.21574851  0.38960102] [0.87851988 0.9355224  1.04951364 1.14558526 1.58418259 1.62138293
+ 1.78739709 2.31233727 2.31756219 2.39041695 2.63862555 2.65446561
+ 2.81838692 3.16111235 3.16692863 3.199882   3.44299204 3.47619728
+ 4.27801778 4.49100726 8.96033932 9.02540418]
+  50 ( 0.750 -0.000  0.500)   [-0.10567465  0.08257852  0.24621249  0.31530879] [0.81805482 1.04628731 1.05547962 1.11509456 1.53292889 1.70043703
+ 1.86570516 2.10963141 2.24615559 2.52507727 2.72624611 2.77753996
+ 2.86194633 2.91622696 2.98155065 3.14472718 3.28893849 3.55383248
+ 4.31421797 4.57395232 8.99062388 9.02223952]
+  51 ( 0.750  0.000  0.750)   [-0.24620689  0.32857287  0.34619088  0.34757097] [0.72879192 0.99898027 0.99967492 1.06216226 1.57023473 1.83125663
+ 1.84001303 2.2115075  2.21221914 2.49787289 2.49833099 2.75161523
+ 3.03166177 3.24525059 3.32281433 3.38525135 3.38646128 3.79814889
+ 4.69440476 4.6948793  8.83889999 9.0124117 ]
+  52 ( 0.750  0.250  0.000)   [-0.1643848   0.16328306  0.21432134  0.38933894] [0.87928611 0.93573513 1.04901235 1.14629533 1.58400499 1.62084684
+ 1.78746562 2.31264056 2.31752464 2.39015286 2.63804895 2.65466445
+ 2.81874939 3.16144759 3.16638796 3.20038524 3.44283667 3.47604907
+ 4.27760329 4.49124073 8.96024348 9.02547667]
+  53 ( 0.750  0.250  0.250)   [-0.10617561  0.08275838  0.24624818  0.31620013] [0.81819585 1.04636228 1.0549571  1.11503952 1.53273553 1.70055374
+ 1.86543906 2.11012102 2.24669454 2.524968   2.7254963  2.77749528
+ 2.8618647  2.91645098 2.98119344 3.14519933 3.28860084 3.55399799
+ 4.31428705 4.57350411 8.9905791  9.02224001]
+  54 ( 0.750  0.250  0.500)   [0.02642524 0.02748286 0.18917823 0.19006513] [1.02005435 1.02021177 1.04195782 1.0423616  1.53514921 1.53586631
+ 2.01238049 2.01287168 2.45013034 2.45061765 2.73008165 2.73070365
+ 2.84635989 2.84701992 3.06493712 3.0652815  3.2323557  3.23304062
+ 4.30751463 4.30835906 9.01600985 9.01755606]
+  55 ( 0.750  0.250  0.750)   [-0.10541821  0.08276373  0.24597778  0.31419058] [0.81887766 1.04648529 1.05517274 1.1150506  1.5325314  1.70040762
+ 1.86527882 2.1100241  2.24671863 2.52502945 2.72612179 2.77683604
+ 2.86203613 2.91643998 2.98142907 3.14533812 3.28828344 3.55392333
+ 4.31391085 4.57403343 8.99065081 9.02223099]
+  56 ( 0.750  0.500  0.000)   [-0.10539113  0.08212584  0.24543592  0.31465117] [0.81914273 1.0458232  1.05551958 1.11560132 1.53270726 1.70034532
+ 1.86516841 2.11038949 2.24610128 2.52536774 2.7261211  2.77719241
+ 2.86201733 2.91604551 2.98177314 3.14526298 3.28850542 3.55368293
+ 4.31369916 4.57404612 8.99067671 9.02223411]
+  57 ( 0.750  0.500  0.250)   [0.02605449 0.02736456 0.18894721 0.19014874] [1.02054243 1.02128895 1.04109559 1.04213105 1.53528311 1.53588938
+ 2.01186015 2.01266944 2.45028143 2.45125307 2.73016479 2.73040858
+ 2.84668415 2.84727904 3.06486475 3.06542361 3.23213981 3.23284936
+ 4.30735375 4.3079428  9.01601029 9.01756079]
+  58 ( 0.750  0.500  0.500)   [-0.10605022  0.08288541  0.2457357   0.31578541] [0.8179607  1.04641885 1.05546771 1.11497686 1.53329007 1.70050331
+ 1.8656351  2.10989775 2.24649631 2.52486768 2.72581574 2.77727577
+ 2.86223019 2.91641068 2.98122596 3.14500318 3.28851545 3.55367334
+ 4.31408674 4.57358358 8.99051368 9.02224255]
+  59 ( 0.750  0.500  0.750)   [-0.16425933  0.1632202   0.21443028  0.38837669] [0.87980488 0.93536286 1.04949805 1.14577535 1.58421005 1.62147976
+ 1.78729876 2.31223219 2.3173126  2.39083757 2.6385488  2.65436894
+ 2.8187893  3.16128251 3.16608892 3.20016325 3.4424702  3.47612316
+ 4.27752149 4.49111099 8.96023377 9.02545129]
+  60 ( 0.750  0.750  0.000)   [-0.24629121  0.32785765  0.34656523  0.34685336] [0.72929489 0.99931562 0.99985533 1.06171826 1.57051119 1.83113207
+ 1.84029458 2.21150331 2.21218987 2.4976169  2.49813084 2.75169519
+ 3.03184913 3.24502351 3.32302403 3.38533458 3.38609555 3.79795741
+ 4.69457826 4.69486247 8.83889196 9.012419  ]
+  61 ( 0.750  0.750  0.250)   [-0.10583903  0.08253831  0.2460369   0.31474367] [0.81881294 1.04601431 1.0551907  1.11546885 1.53289871 1.70047654
+ 1.86560644 2.1100384  2.24620731 2.52525053 2.72576648 2.77718232
+ 2.86169673 2.9161417  2.98194008 3.14474453 3.28870796 3.5539702
+ 4.31397136 4.57392385 8.99066348 9.02222807]
+  62 ( 0.750  0.750  0.500)   [-0.16454429  0.16305332  0.21516054  0.38899466] [0.87933751 0.93517578 1.04921073 1.14607652 1.58466028 1.62165808
+ 1.78732421 2.31215627 2.31691759 2.39040177 2.63832922 2.65459951
+ 2.81870576 3.16106423 3.16645361 3.20029687 3.44275601 3.47607172
+ 4.277437   4.49090611 8.96026313 9.02541532]
+  63 ( 0.750  0.750  0.750)   [-0.26612597  0.25221662  0.44049344  0.44121802] [0.84614823 0.84783577 0.87283928 1.1695658  1.6772711  1.6783406
+ 1.86648732 2.29384905 2.29459028 2.44084027 2.56930323 2.56961355
+ 3.31848668 3.31948427 3.3264344  3.58868804 3.58919884 3.59386248
+ 4.56601948 4.56647914 8.83876053 9.00534171]
+nelec by numeric integration = 8.000000000003604
+    CPU time for vxc      3.21 sec, wall time      3.22 sec
+    CPU time for vj and vk      2.44 sec, wall time      2.44 sec
+E1 = (3.9977084752636776+4.743384504624082e-20j)  Ecoul = (1.069261692018855-3.9641141931501256e-19j)  Exc = -3.423619526671864
+Extra cycle  E= -11.1655224573754  delta_E= -1.54e-12  |g|= 6.23e-06  |ddm|= 2.34e-05
+    CPU time for scf_cycle     48.65 sec, wall time     48.79 sec
+    CPU time for SCF     48.76 sec, wall time     48.90 sec
+converged SCF energy = -11.1655224573754
+Successfully saved all results to /central/scratch/yangjunjie//run-scf-kpt-diamond-prim-4-4-4-fftisdf-jy-1-100-c0-5.0-k0-100.0/47996016/scf.h5
