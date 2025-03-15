@@ -1,0 +1,59 @@
+SLURMD_NODENAME = hpc-53-03
+Start time = Fri Mar 14 05:17:43 PM PDT 2025
+OMP_NUM_THREADS = 32
+MKL_NUM_THREADS = 1
+PYSCF_MAX_MEMORY = 81920
+TMPDIR = /central/scratch/yangjunjie//run-scf-kpt-diamond-conv-1-1-2-fftisdf-jy-32-100-k0-20.0-c0-5.0/48022118/
+PYSCF_TMPDIR = /central/scratch/yangjunjie//run-scf-kpt-diamond-conv-1-1-2-fftisdf-jy-32-100-k0-20.0-c0-5.0/48022118/
+
+/home/junjiey/anaconda3/envs/fftisdf/bin/python
+2.8.0
+1.13.1
+2.0.2
+fft_engine = NUMPY+BLAS
+name = diamond-conv
+ke_cutoff =  1.00e+02
+exxdiv = None
+df = fftisdf-jy
+chk_path = None
+mesh = 1,1,2
+c0 =  5.00e+00
+k0 =  2.00e+01
+
+Discarded 24 diffused primitive functions, 0 contracted functions
+ke_cutoff = 100.0
+g0 = [[ 0.          0.          0.        ]
+ [ 0.          0.          0.44858887]
+ [ 0.          0.          0.89717774]
+ ...
+ [-0.44858887 -0.44858887 -1.34576661]
+ [-0.44858887 -0.44858887 -0.89717774]
+ [-0.44858887 -0.44858887 -0.44858887]], m0 = [15 15 15]
+Pivoted Cholesky rank = 3375, estimated error = 5.55e-02
+Parent grid size = 3375, selected grid size = 520
+    CPU time for interpolating functions     17.41 sec, wall time      0.61 sec
+
+
+******** <class 'fft_isdf.InterpolativeSeparableDensityFitting'> ********
+mesh = [33 33 33] (35937 PWs)
+len(kpts) = 2
+
+WARN: ke_cutoff/mesh (100 / [33 33 33]) is not enough for FFTDF to get integral accuracy 1e-08.
+Coulomb integral error is ~ 4.1 Eh.
+Recommended ke_cutoff/mesh are 598.398 / [77 77 77].
+
+kmesh = [1 1 2]
+kpts = 
+[[ 0.00000000e+00  0.00000000e+00  0.00000000e+00]
+ [-2.62240176e-17 -2.62240176e-17  4.66885213e-01]]
+nip = 520, nao = 104, cisdf =   5.00
+    CPU time for get interpolating vectors      1.18 sec
+blksize = 35937, ngrid = 35937
+Use in-core for eta_kpt, memory used for eta_kpt = 5.98e-01 GB
+    CPU time for aoR_loop: [      0,   35937]     18.15 sec, wall time      1.46 sec
+eta_kpt.shape = (2, 35937, 520)
+Memory used for eta_kpt = 5.98e-01 GB
+
+Calculating Coulomb kernel with outcore method: q = 1 / 2
+blksize = 520, nip = 520, max_memory = 8.17e+01 GB
+memory used for each block = 2.99e-01 GB

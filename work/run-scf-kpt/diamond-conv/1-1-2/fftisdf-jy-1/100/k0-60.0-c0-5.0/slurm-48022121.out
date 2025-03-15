@@ -1,0 +1,65 @@
+SLURMD_NODENAME = hpc-54-09
+Start time = Fri Mar 14 05:17:16 PM PDT 2025
+OMP_NUM_THREADS = 1
+MKL_NUM_THREADS = 1
+PYSCF_MAX_MEMORY = 81920
+TMPDIR = /central/scratch/yangjunjie//run-scf-kpt-diamond-conv-1-1-2-fftisdf-jy-1-100-k0-60.0-c0-5.0/48022121/
+PYSCF_TMPDIR = /central/scratch/yangjunjie//run-scf-kpt-diamond-conv-1-1-2-fftisdf-jy-1-100-k0-60.0-c0-5.0/48022121/
+
+/home/junjiey/anaconda3/envs/fftisdf/bin/python
+2.8.0
+1.13.1
+2.0.2
+fft_engine = NUMPY+BLAS
+name = diamond-conv
+ke_cutoff =  1.00e+02
+exxdiv = None
+df = fftisdf-jy
+chk_path = None
+mesh = 1,1,2
+c0 =  5.00e+00
+k0 =  6.00e+01
+
+Discarded 24 diffused primitive functions, 0 contracted functions
+ke_cutoff = 100.0
+g0 = [[ 0.          0.          0.        ]
+ [ 0.          0.          0.26915332]
+ [ 0.          0.          0.53830664]
+ ...
+ [-0.26915332 -0.26915332 -0.80745997]
+ [-0.26915332 -0.26915332 -0.53830664]
+ [-0.26915332 -0.26915332 -0.26915332]], m0 = [25 25 25]
+Pivoted Cholesky rank = 5113, estimated error = 6.08e-02
+Parent grid size = 15625, selected grid size = 520
+    CPU time for interpolating functions     23.90 sec, wall time     24.01 sec
+
+
+******** <class 'fft_isdf.InterpolativeSeparableDensityFitting'> ********
+mesh = [33 33 33] (35937 PWs)
+len(kpts) = 2
+
+WARN: ke_cutoff/mesh (100 / [33 33 33]) is not enough for FFTDF to get integral accuracy 1e-08.
+Coulomb integral error is ~ 4.1 Eh.
+Recommended ke_cutoff/mesh are 598.398 / [77 77 77].
+
+kmesh = [1 1 2]
+kpts = 
+[[ 0.00000000e+00  0.00000000e+00  0.00000000e+00]
+ [-2.62240176e-17 -2.62240176e-17  4.66885213e-01]]
+nip = 520, nao = 104, cisdf =   5.00
+    CPU time for get interpolating vectors      0.02 sec
+blksize = 35937, ngrid = 35937
+Use in-core for eta_kpt, memory used for eta_kpt = 5.98e-01 GB
+    CPU time for aoR_loop: [      0,   35937]      2.38 sec, wall time      2.39 sec
+eta_kpt.shape = (2, 35937, 520)
+Memory used for eta_kpt = 5.98e-01 GB
+
+Calculating Coulomb kernel with outcore method: q = 1 / 2
+blksize = 520, nip = 520, max_memory = 8.18e+01 GB
+memory used for each block = 2.99e-01 GB
+    CPU time for solving Coulomb kernel      3.03 sec, wall time      3.05 sec
+Finished solving Coulomb kernel for q =   1 /   2, rank = 520 / 520
+
+Calculating Coulomb kernel with outcore method: q = 2 / 2
+blksize = 520, nip = 520, max_memory = 8.18e+01 GB
+memory used for each block = 2.99e-01 GB

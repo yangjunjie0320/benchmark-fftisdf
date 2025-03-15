@@ -1,0 +1,58 @@
+SLURMD_NODENAME = hpc-54-09
+Start time = Fri Mar 14 05:15:03 PM PDT 2025
+OMP_NUM_THREADS = 1
+MKL_NUM_THREADS = 1
+PYSCF_MAX_MEMORY = 81920
+TMPDIR = /central/scratch/yangjunjie//run-scf-kpt-diamond-conv-1-1-1-fftisdf-jy-1-100-k0-100.0-c0-10.0/48022085/
+PYSCF_TMPDIR = /central/scratch/yangjunjie//run-scf-kpt-diamond-conv-1-1-1-fftisdf-jy-1-100-k0-100.0-c0-10.0/48022085/
+
+/home/junjiey/anaconda3/envs/fftisdf/bin/python
+2.8.0
+1.13.1
+2.0.2
+fft_engine = NUMPY+BLAS
+name = diamond-conv
+ke_cutoff =  1.00e+02
+exxdiv = None
+df = fftisdf-jy
+chk_path = None
+mesh = 1,1,1
+c0 =  1.00e+01
+k0 =  1.00e+02
+
+Discarded 24 diffused primitive functions, 0 contracted functions
+ke_cutoff = 100.0
+g0 = [[ 0.          0.          0.        ]
+ [ 0.          0.          0.20390403]
+ [ 0.          0.          0.40780806]
+ ...
+ [-0.20390403 -0.20390403 -0.6117121 ]
+ [-0.20390403 -0.20390403 -0.40780806]
+ [-0.20390403 -0.20390403 -0.20390403]], m0 = [33 33 33]
+Pivoted Cholesky rank = 5092, estimated error = 6.37e-03
+Parent grid size = 35937, selected grid size = 1040
+    CPU time for interpolating functions    146.53 sec, wall time    147.11 sec
+
+
+******** <class 'fft_isdf.InterpolativeSeparableDensityFitting'> ********
+mesh = [33 33 33] (35937 PWs)
+len(kpts) = 1
+
+WARN: ke_cutoff/mesh (100 / [33 33 33]) is not enough for FFTDF to get integral accuracy 1e-08.
+Coulomb integral error is ~ 4.1 Eh.
+Recommended ke_cutoff/mesh are 598.398 / [77 77 77].
+
+kmesh = [1 1 1]
+kpts = 
+[[0. 0. 0.]]
+nip = 1040, nao = 104, cisdf =  10.00
+    CPU time for get interpolating vectors      0.04 sec
+blksize = 35937, ngrid = 35937
+Use in-core for eta_kpt, memory used for eta_kpt = 5.98e-01 GB
+    CPU time for aoR_loop: [      0,   35937]      2.16 sec, wall time      2.16 sec
+eta_kpt.shape = (1, 35937, 1040)
+Memory used for eta_kpt = 5.98e-01 GB
+
+Calculating Coulomb kernel with outcore method: q = 1 / 1
+blksize = 1040, nip = 1040, max_memory = 8.18e+01 GB
+memory used for each block = 5.98e-01 GB
