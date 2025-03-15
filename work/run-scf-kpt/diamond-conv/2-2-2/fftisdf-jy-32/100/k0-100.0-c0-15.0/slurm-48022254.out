@@ -1,0 +1,66 @@
+SLURMD_NODENAME = hpc-35-01
+Start time = Fri Mar 14 05:24:00 PM PDT 2025
+OMP_NUM_THREADS = 32
+MKL_NUM_THREADS = 1
+PYSCF_MAX_MEMORY = 81920
+TMPDIR = /central/scratch/yangjunjie//run-scf-kpt-diamond-conv-2-2-2-fftisdf-jy-32-100-k0-100.0-c0-15.0/48022254/
+PYSCF_TMPDIR = /central/scratch/yangjunjie//run-scf-kpt-diamond-conv-2-2-2-fftisdf-jy-32-100-k0-100.0-c0-15.0/48022254/
+
+/home/junjiey/anaconda3/envs/fftisdf/bin/python
+2.8.0
+1.13.1
+2.0.2
+fft_engine = NUMPY+BLAS
+name = diamond-conv
+ke_cutoff =  1.00e+02
+exxdiv = None
+df = fftisdf-jy
+chk_path = None
+mesh = 2,2,2
+c0 =  1.50e+01
+k0 =  1.00e+02
+
+Discarded 24 diffused primitive functions, 0 contracted functions
+ke_cutoff = 100.0
+g0 = [[ 0.          0.          0.        ]
+ [ 0.          0.          0.20390403]
+ [ 0.          0.          0.40780806]
+ ...
+ [-0.20390403 -0.20390403 -0.6117121 ]
+ [-0.20390403 -0.20390403 -0.40780806]
+ [-0.20390403 -0.20390403 -0.20390403]], m0 = [33 33 33]
+Pivoted Cholesky rank = 5103, estimated error = 1.04e-03
+Parent grid size = 35937, selected grid size = 1560
+    CPU time for interpolating functions    501.74 sec, wall time     39.17 sec
+
+
+******** <class 'fft_isdf.InterpolativeSeparableDensityFitting'> ********
+mesh = [33 33 33] (35937 PWs)
+len(kpts) = 8
+
+WARN: ke_cutoff/mesh (100 / [33 33 33]) is not enough for FFTDF to get integral accuracy 1e-08.
+Coulomb integral error is ~ 4.1 Eh.
+Recommended ke_cutoff/mesh are 598.398 / [77 77 77].
+
+kmesh = [2 2 2]
+kpts = 
+[[ 0.00000000e+00  0.00000000e+00  0.00000000e+00]
+ [-2.62240176e-17 -2.62240176e-17  4.66885213e-01]
+ [ 0.00000000e+00  4.66885213e-01  0.00000000e+00]
+ [-2.62240176e-17  4.66885213e-01  4.66885213e-01]
+ [ 4.66885213e-01  2.62240176e-17  0.00000000e+00]
+ [ 4.66885213e-01  0.00000000e+00  4.66885213e-01]
+ [ 4.66885213e-01  4.66885213e-01  0.00000000e+00]
+ [ 4.66885213e-01  4.66885213e-01  4.66885213e-01]]
+nip = 1560, nao = 104, cisdf =  15.00
+    CPU time for get interpolating vectors      1.07 sec
+blksize = 35937, ngrid = 35937
+Use in-core for eta_kpt, memory used for eta_kpt = 7.18e+00 GB
+    CPU time for aoR_loop: [      0,   35937]     72.96 sec, wall time     12.97 sec
+eta_kpt.shape = (8, 35937, 1560)
+Memory used for eta_kpt = 7.18e+00 GB
+
+Calculating Coulomb kernel with outcore method: q = 1 / 8
+blksize = 1560, nip = 1560, max_memory = 8.16e+01 GB
+memory used for each block = 8.97e-01 GB
+/var/spool/slurmd/job48022254/slurm_script: line 48: 812248 Segmentation fault      (core dumped) python main.py --name=diamond-conv --ke_cutoff=100.0 --exxdiv=None --df=fftisdf-jy --chk_path=None --mesh=2,2,2 --k0=100.0 --c0=15.0
