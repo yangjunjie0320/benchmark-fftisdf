@@ -1,0 +1,216 @@
+SLURMD_NODENAME = hpc-54-10
+Start time = Mon Mar 17 04:17:47 PM PDT 2025
+OMP_NUM_THREADS = 1
+MKL_NUM_THREADS = 1
+PYSCF_MAX_MEMORY = 409600
+TMPDIR = /central/scratch/yangjunjie//run-scf-spc-diamond-prim-2-2-2-fftisdf-ks-1-100-rcut_epsilon-1e-05-ke_epsilon-0.01-isdf_thresh-0.0005/48050873/
+PYSCF_TMPDIR = /central/scratch/yangjunjie//run-scf-spc-diamond-prim-2-2-2-fftisdf-ks-1-100-rcut_epsilon-1e-05-ke_epsilon-0.01-isdf_thresh-0.0005/48050873/
+
+/home/junjiey/anaconda3/envs/fftisdf/bin/python
+2.8.0
+1.13.1
+2.0.2
+fft_engine = NUMPY+BLAS
+name = diamond-prim
+ke_cutoff =  1.00e+02
+exxdiv = None
+df = fftisdf-ks
+chk_path = ../../../gdf-32/tmp/scf.h5
+mesh = 2,2,2
+rcut_epsilon =  1.00e-05
+ke_epsilon =  1.00e-02
+isdf_thresh =  5.00e-04
+
+Discarded 6 diffused primitive functions, 0 contracted functions
+ke_cutoff = 100.0
+None
+
+******** <class 'ISDFX'> ********
+lin_dep_thresh: 1e-10
+alpha_cutoff: 2.8
+rcut_epsilon: 1e-05
+ke_epsilon: 0.01
+isdf_thresh: 0.0005
+grid_vol_cutoff: 0.05
+ke_step: 2.0
+ao_tol: 1e-12
+multigrid_on: True
+direct_j: True
+iterative_build: True
+occRI: True
+voronoi: True
+fit_sparse_grid: False
+fit_dense_grid: True
+direct_k_sparse: True
+direct_k: False
+use_kpt_symm: False
+kmesh: [1, 1, 1]
+isdf_pts_from_q0: True
+isdf_pts_from_gamma_point: False
+alpha: None
+do_real_isdf: False
+N_xi: None
+use_cell_periodic: False
+isdf_thresh_sparse: None
+ncopy: [1, 1, 1]
+j_grid_mesh: None
+k_grid_mesh: None
+num_j_grids: 100
+get_ao_from_pyscf: False
+nuc_pp_version: 0
+vppnl_ver: 0
+universal_dense_grid: None
+same_jk_grids: None
+coulomb_only: False
+max_memory   409600 MB (current use       90 MB)
+
+Exchange function: getK_occRI  
+
+cell mesh: [47 47 47]
+nbas:  192
+Grid     keMax    keMin    keGrid   expMax   expMin   nexp     lmax     PWs      mesh        
+0        51.6     51.6     115.3    5.6      5.6      1        2        103823   [47 47 47]
+1        19.5     3.2      19.5     2.1      0.3      3        2        9261     [21 21 21]
+0        77.4     57.7     115.3    5.6      5.6      1        2        103823   [47 47 47]
+1        29.2     14.6     29.2     2.1      2.1      1        2        15625    [25 25 25]
+2        10.6     4.8      10.6     0.8      0.3      2        2        3375     [15 15 15]
+
+ISDF
+
+atm      grid     Ng       NI       Nxi      sharp    on_grid  diffuse  maxexp   minexp   lmax     lmin    
+0        0        103823   2073     74       9        297      288      5.61     5.61     2        0       
+1        0        103823   2105     78       9        297      288      5.61     5.61     2        0       
+2        0        103823   2110     73       9        297      288      5.61     5.61     2        0       
+3        0        103823   2095     75       9        297      288      5.61     5.61     2        0       
+4        0        103823   2110     73       9        297      288      5.61     5.61     2        0       
+5        0        103823   2095     75       9        297      288      5.61     5.61     2        0       
+6        0        103823   2095     75       9        297      288      5.61     5.61     2        0       
+7        0        103823   2110     73       9        297      288      5.61     5.61     2        0       
+8        0        103823   2110     73       9        297      288      5.61     5.61     2        0       
+9        0        103823   2095     75       9        297      288      5.61     5.61     2        0       
+10       0        103823   2095     75       9        297      288      5.61     5.61     2        0       
+11       0        103823   2110     73       9        297      288      5.61     5.61     2        0       
+12       0        103823   2095     75       9        297      288      5.61     5.61     2        0       
+13       0        103823   2110     73       9        297      288      5.61     5.61     2        0       
+14       0        103823   2105     78       9        297      288      5.61     5.61     2        0       
+15       0        103823   2073     74       9        297      288      5.61     5.61     2        0       
+-        1        9261     9261     9261     432      432      432      2.11     0.35     2        0       
+ISDF-pts:       1.54
+ISDF-vec:       0.10
+Fit dense grids ISDF:       1.63
+Fit sparse grids ISDF:       0.00
+
+Grid     PWs      Ng_i     N_xi     N_mu    
+0        103823   33586    1192     4752    
+1        9261     9261     9261     432     
+
+nTHC: 10453
+Mem Required (MB):      94.35
+Curent RAM Use (MB) :        246 
+
+Build W
+ISDF-fft dense grids (sec):      10.67
+Curent RAM Use (MB) :        331 
+ISDF-fft:      10.67
+
+Initial guess from minao.
+Successfully loaded dm0 from ../../../gdf-32/tmp/scf.h5
+~/packages/PeriodicIntegrals/PeriodicIntegrals-junjie-benchmark/isdfx/isdfx.py +4733
+[[ 5.26855036e-01 -1.41882092e-02  7.56084978e-06 ... -7.27508003e-03
+  -9.70010837e-03 -1.40009224e-03]
+ [-1.41882092e-02  4.23422566e-04  9.74736857e-06 ...  2.16418229e-04
+   2.88557836e-04  4.16500018e-05]
+ [ 7.56084978e-06  9.74736857e-06  6.48895895e-01 ... -1.55812716e-02
+   1.46099405e-03  8.00859935e-03]
+ ...
+ [-7.27508003e-03  2.16418229e-04 -1.55812716e-02 ...  1.80201864e-03
+   5.58137812e-09  2.29128023e-04]
+ [-9.70010837e-03  2.88557836e-04  1.46099405e-03 ...  5.58137812e-09
+   1.66975589e-03 -2.23008497e-08]
+ [-1.40009224e-03  4.16500018e-05  8.00859935e-03 ...  2.29128023e-04
+  -2.23008497e-08  2.06661500e-03]]
+[[ 1.71319019e-01  2.80739589e-01 -1.62116336e-01 ... -6.89782044e-05
+   4.94184557e-01 -8.55712448e-01]
+ [-6.66392695e-03 -8.75108711e-03  5.05561330e-03 ... -5.57270448e-05
+   3.99134311e-01 -6.90974654e-01]
+ [ 1.10507086e-06  2.05462122e-02  3.41153061e-02 ... -2.45709669e-02
+   7.23699959e-02  4.13636790e-02]
+ ...
+ [-1.12724054e-07 -4.35204640e-03  7.48321802e-03 ...  3.42248269e-02
+   2.70120176e-02 -1.51646802e-02]
+ [-1.49262855e-07 -5.73838990e-03  9.97762844e-03 ... -2.27793710e-02
+   3.60160468e-02 -2.02220260e-02]
+ [-1.94183796e-08 -6.00506389e-04  1.44014593e-03 ...  4.49773607e-02
+   5.19848209e-03 -2.92784360e-03]]
+[2. 2. 2. 2. 2. 2. 2. 2. 2. 2. 2. 2. 2. 2. 2. 2. 2. 2. 2. 2. 2. 2. 2. 2.
+ 2. 2. 2. 2. 2. 2. 2. 2. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.
+ 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.
+ 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.
+ 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.
+ 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.
+ 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.
+ 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.
+ 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+~/packages/PeriodicIntegrals/PeriodicIntegrals-junjie-benchmark/isdfx/isdfx.py +4733
+[[ 5.26855036e-01 -1.41882092e-02  7.56084978e-06 ... -7.27508003e-03
+  -9.70010837e-03 -1.40009224e-03]
+ [-1.41882092e-02  4.23422566e-04  9.74736857e-06 ...  2.16418229e-04
+   2.88557836e-04  4.16500018e-05]
+ [ 7.56084978e-06  9.74736857e-06  6.48895895e-01 ... -1.55812716e-02
+   1.46099405e-03  8.00859935e-03]
+ ...
+ [-7.27508003e-03  2.16418229e-04 -1.55812716e-02 ...  1.80201864e-03
+   5.58137812e-09  2.29128023e-04]
+ [-9.70010837e-03  2.88557836e-04  1.46099405e-03 ...  5.58137812e-09
+   1.66975589e-03 -2.23008497e-08]
+ [-1.40009224e-03  4.16500018e-05  8.00859935e-03 ...  2.29128023e-04
+  -2.23008497e-08  2.06661500e-03]]
+[[ 1.71319019e-01  2.80739589e-01 -1.62116336e-01 ... -6.89782044e-05
+   4.94184557e-01 -8.55712448e-01]
+ [-6.66392695e-03 -8.75108711e-03  5.05561330e-03 ... -5.57270448e-05
+   3.99134311e-01 -6.90974654e-01]
+ [ 1.10507086e-06  2.05462122e-02  3.41153061e-02 ... -2.45709669e-02
+   7.23699959e-02  4.13636790e-02]
+ ...
+ [-1.12724054e-07 -4.35204640e-03  7.48321802e-03 ...  3.42248269e-02
+   2.70120176e-02 -1.51646802e-02]
+ [-1.49262855e-07 -5.73838990e-03  9.97762844e-03 ... -2.27793710e-02
+   3.60160468e-02 -2.02220260e-02]
+ [-1.94183796e-08 -6.00506389e-04  1.44014593e-03 ...  4.49773607e-02
+   5.19848209e-03 -2.92784360e-03]]
+[2. 2. 2. 2. 2. 2. 2. 2. 2. 2. 2. 2. 2. 2. 2. 2. 2. 2. 2. 2. 2. 2. 2. 2.
+ 2. 2. 2. 2. 2. 2. 2. 2. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.
+ 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.
+ 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.
+ 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.
+ 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.
+ 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.
+ 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.
+ 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+start SG
+end SG -->  0.3495047092437744
+
+
+******** <class 'pyscf.pbc.dft.rks.RKS'> ********
+method = RKS
+initial guess = minao
+damping factor = 0
+level_shift factor = 0
+DIIS = <class 'pyscf.scf.diis.CDIIS'>
+diis_start_cycle = 1
+diis_space = 8
+diis_damp = 0
+SCF conv_tol = 1e-08
+SCF conv_tol_grad = None
+SCF max_cycles = 50
+direct_scf = True
+direct_scf_tol = 1e-13
+chkfile to save SCF result = /central/scratch/yangjunjie/run-scf-spc-diamond-prim-2-2-2-fftisdf-ks-1-100-rcut_epsilon-1e-05-ke_epsilon-0.01-isdf_thresh-0.0005/48050873/tmph1h9nsge
+max_memory 409600 MB (current use 366 MB)
+******** PBC SCF flags ********
+kpt = [0. 0. 0.]
+Exchange divergence treatment (exxdiv) = None
+DF object = <isdfx.isdfx.ISDFX object at 0x7fdad8a5e850>
+XC functionals = PBE0
+small_rho_cutoff = 1e-07
+Set gradient conv threshold to 0.0001

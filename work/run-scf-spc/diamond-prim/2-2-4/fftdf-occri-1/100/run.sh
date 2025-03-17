@@ -2,8 +2,8 @@
 #SBATCH --exclude=hpc-21-34,hpc-34-34,hpc-52-29
 #SBATCH --job-name=run-scf-spc-diamond-prim-2-2-4-fftdf-occri-1-100-
 #SBATCH --cpus-per-task=1
-#SBATCH --mem=320GB
-#SBATCH --time=1:00:00
+#SBATCH --mem=400GB
+#SBATCH --time=20:00:00
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
 #SBATCH --reservation=changroup_standingres

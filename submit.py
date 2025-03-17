@@ -46,7 +46,7 @@ def main(time="01:00:00", mem=200, ncpu=1, workdir=None, cmd=None, scr=None,
     os.chdir(pwd)
 
 if __name__ == "__main__":
-    mem = 320
+    mem = 400
     def run(name, df, ncpu=1, ke_cutoff=100.0, chk_path=None, config=None, mesh="1,1,1", time="01:00:00"):
         cmd = [f"python main.py --name={name}"]
         cmd += [f"--ke_cutoff={ke_cutoff}"]
@@ -91,7 +91,6 @@ if __name__ == "__main__":
     # run("diamond-conv", "fftdf", ncpu=20, ke_cutoff=ke_cutoff, chk_path=path)
 
     # path = "/central/scratch/yangjunjie//run-scf-gamma/diamond-prim/gdf/47958842/scf.h5"
-    path = "../../gdf-32/tmp/scf.h5"
     ms = [
         [1, 1, 1], # 1
         [1, 1, 2], # 2
@@ -101,16 +100,28 @@ if __name__ == "__main__":
         [2, 4, 4], # 32
         [4, 4, 4], # 64
     ]
+
     for m in ms:
-        config = None
+        time = "20:00:00"
         mesh = ",".join(str(x) for x in m)
         nk = numpy.prod(m)
-
-        time = "1:00:00"
+        cell = "diamond-prim"
 
         config = {}
-        run("diamond-prim", "fftdf-occri", ncpu=1, ke_cutoff=ke_cutoff, chk_path=path, config=config, mesh=mesh, time=time)
-        run("diamond-prim", "fftdf-occri", ncpu=32, ke_cutoff=ke_cutoff, chk_path=path, config=config, mesh=mesh, time=time)
+        path = "../../gdf-32/tmp/scf.h5"
+        run(cell, "fftdf-occri", ncpu=1, ke_cutoff=ke_cutoff, chk_path=path, config=config, mesh=mesh, time=time)
+
+        rcut_epsilon = 1e-05
+        for ke_epsilon in [1e-2, 5e-2]:
+            for isdf_thresh in [5e-4, 4e-5]:
+                config = {
+                    "rcut_epsilon": rcut_epsilon,
+                    "ke_epsilon": ke_epsilon,
+                    "isdf_thresh": isdf_thresh,
+                }
+
+                path = "../../../gdf-32/tmp/scf.h5"
+                run(cell, "fftisdf-ks", ncpu=1, ke_cutoff=ke_cutoff, chk_path=path, config=config, mesh=mesh, time=time)
 
     ms = [
         [1, 1, 1], # 4
@@ -120,12 +131,23 @@ if __name__ == "__main__":
         [2, 2, 4], # 64
     ]
     for m in ms:
-        config = None
+        time = "20:00:00"
         mesh = ",".join(str(x) for x in m)
         nk = numpy.prod(m)
-
-        time = "1:00:00"
+        cell = "diamond-conv"
 
         config = {}
-        run("diamond-conv", "fftdf-occri", ncpu=1, ke_cutoff=ke_cutoff, chk_path=path, config=config, mesh=mesh, time=time)
-        run("diamond-conv", "fftdf-occri", ncpu=32, ke_cutoff=ke_cutoff, chk_path=path, config=config, mesh=mesh, time=time)
+        path = "../../gdf-32/tmp/scf.h5"
+        run(cell, "fftdf-occri", ncpu=1, ke_cutoff=ke_cutoff, chk_path=path, config=config, mesh=mesh, time=time)
+
+        rcut_epsilon = 1e-05
+        for ke_epsilon in [1e-2, 5e-2]:
+            for isdf_thresh in [5e-4, 4e-5]:
+                config = {
+                    "rcut_epsilon": rcut_epsilon,
+                    "ke_epsilon": ke_epsilon,
+                    "isdf_thresh": isdf_thresh,
+                }
+
+                path = "../../../gdf-32/tmp/scf.h5"
+                run(cell, "fftisdf-ks", ncpu=1, ke_cutoff=ke_cutoff, chk_path=path, config=config, mesh=mesh, time=time)
