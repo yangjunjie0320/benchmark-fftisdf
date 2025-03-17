@@ -1,0 +1,33 @@
+SLURMD_NODENAME = hpc-53-09
+Start time = Mon Mar 17 03:31:40 PM PDT 2025
+OMP_NUM_THREADS = 32
+MKL_NUM_THREADS = 1
+PYSCF_MAX_MEMORY = 327680
+TMPDIR = /central/scratch/yangjunjie//run-scf-spc-diamond-prim-4-4-4-fftdf-occri-32-100-/48048540/
+PYSCF_TMPDIR = /central/scratch/yangjunjie//run-scf-spc-diamond-prim-4-4-4-fftdf-occri-32-100-/48048540/
+
+/home/junjiey/anaconda3/envs/fftisdf/bin/python
+2.8.0
+1.13.1
+2.0.2
+fft_engine = NUMPY+BLAS
+name = diamond-prim
+ke_cutoff =  1.00e+02
+exxdiv = None
+df = fftdf-occri
+chk_path = ../../gdf-32/tmp/scf.h5
+mesh = 4,4,4
+
+Discarded 6 diffused primitive functions, 0 contracted functions
+ke_cutoff = 100.0
+None
+Traceback (most recent call last):
+  File "/central/home/junjiey/work/benchmark-fftisdf/work/run-scf-spc/diamond-prim/4-4-4/fftdf-occri-32/100/main.py", line 221, in <module>
+    e_tot = main(config)
+  File "/central/home/junjiey/work/benchmark-fftisdf/work/run-scf-spc/diamond-prim/4-4-4/fftdf-occri-32/100/main.py", line 118, in main
+    df_obj = DF(cell, smesh=smesh, **config)
+  File "/central/home/junjiey/work/benchmark-fftisdf/work/run-scf-spc/diamond-prim/4-4-4/fftdf-occri-32/100/main.py", line 46, in DF
+    from isdfx.isdfx import ISDFX
+  File "/home/junjiey/packages/PeriodicIntegrals/PeriodicIntegrals-junjie-benchmark/isdfx/isdfx.py", line 21, in <module>
+    assert pyscf.lib.num_threads() == 1, "Must export OMP_NUM_THREADS=1 to terminal!!!"
+AssertionError: Must export OMP_NUM_THREADS=1 to terminal!!!

@@ -46,7 +46,7 @@ def main(time="01:00:00", mem=200, ncpu=1, workdir=None, cmd=None, scr=None,
     os.chdir(pwd)
 
 if __name__ == "__main__":
-    mem = 80
+    mem = 320
     def run(name, df, ncpu=1, ke_cutoff=100.0, chk_path=None, config=None, mesh="1,1,1", time="01:00:00"):
         cmd = [f"python main.py --name={name}"]
         cmd += [f"--ke_cutoff={ke_cutoff}"]
@@ -58,7 +58,7 @@ if __name__ == "__main__":
             for k, v in config.items():
                 cmd += [f"--{k}={v}"]
 
-        script = f"run-scf-kpt"
+        script = f"run-scf-spc"
         base_dir = os.path.abspath(os.path.dirname(__file__))
         script_path = f"{base_dir}/src/script/{script}.py"
 
@@ -91,7 +91,7 @@ if __name__ == "__main__":
     # run("diamond-conv", "fftdf", ncpu=20, ke_cutoff=ke_cutoff, chk_path=path)
 
     # path = "/central/scratch/yangjunjie//run-scf-gamma/diamond-prim/gdf/47958842/scf.h5"
-    path = "../../../gdf-32/tmp/scf.h5"
+    path = "../../gdf-32/tmp/scf.h5"
     ms = [
         [1, 1, 1], # 1
         [1, 1, 2], # 2
@@ -110,6 +110,7 @@ if __name__ == "__main__":
 
         config = {}
         run("diamond-prim", "fftdf-occri", ncpu=1, ke_cutoff=ke_cutoff, chk_path=path, config=config, mesh=mesh, time=time)
+        run("diamond-prim", "fftdf-occri", ncpu=32, ke_cutoff=ke_cutoff, chk_path=path, config=config, mesh=mesh, time=time)
 
     ms = [
         [1, 1, 1], # 4
@@ -127,3 +128,4 @@ if __name__ == "__main__":
 
         config = {}
         run("diamond-conv", "fftdf-occri", ncpu=1, ke_cutoff=ke_cutoff, chk_path=path, config=config, mesh=mesh, time=time)
+        run("diamond-conv", "fftdf-occri", ncpu=32, ke_cutoff=ke_cutoff, chk_path=path, config=config, mesh=mesh, time=time)
