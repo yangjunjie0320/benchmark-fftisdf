@@ -36,6 +36,28 @@ def DF(cell, **kwargs):
         df_obj.verbose = 5
         df_obj.build()
 
+    elif df == "fftdf-occri":
+        path = [os.path.expanduser("~/packages"), "PeriodicIntegrals"]
+        path += ["PeriodicIntegrals-junjie-benchmark"]
+        sys.path.append(os.path.join(*path))
+
+        import isdfx
+        print(isdfx.__file__)
+        from isdfx.isdfx import ISDFX
+        assert len(kwargs) == 0, f"kwargs = {kwargs}"
+
+        kwargs = {
+            "multigrid_on"    : False,
+            "fit_dense_grid"  : False,
+            "fit_sparse_grid" : False,
+            "direct_j"        : True,
+            "iterative_build" : True,
+        }
+
+        scell = tools.pbc.super_cell(cell, smesh)
+        df_obj = ISDFX(scell, **kwargs)
+        df_obj.build(with_j=True, with_k=True)
+
     elif df == "fftisdf-ks":
         # path  = [os.path.expanduser("~/packages"), "PeriodicIntegrals"]
         # path += ["PeriodicIntegrals-junjie-benchmark", "isdfx"]
