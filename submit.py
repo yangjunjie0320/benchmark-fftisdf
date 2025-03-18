@@ -136,13 +136,13 @@ if __name__ == "__main__":
         nk = numpy.prod(m)
         cell = "diamond-conv"
 
-        config = {}
-        path = "../../gdf-32/tmp/scf.h5"
-        run(cell, "fftdf-occri", ncpu=1, ke_cutoff=ke_cutoff, chk_path=path, config=config, mesh=mesh, time=time)
+        # config = {}
+        # path = "../../gdf-32/tmp/scf.h5"
+        # run(cell, "fftdf-occri", ncpu=1, ke_cutoff=ke_cutoff, chk_path=path, config=config, mesh=mesh, time=time)
 
         rcut_epsilon = 1e-05
         for ke_epsilon in [1e-2, 5e-2]:
-            for isdf_thresh in [5e-4, 4e-5]:
+            for isdf_thresh in [5e-4, 5e-5]:
                 config = {
                     "rcut_epsilon": rcut_epsilon,
                     "ke_epsilon": ke_epsilon,
