@@ -127,6 +127,8 @@ def main(config):
     scf_obj._is_mem_enough = lambda : False
     scf_obj.conv_tol = 1e-8
 
+    h1e = None
+    s1e = None
     dm0 = scf_obj.get_init_guess(key="minao")
     if chk_path is not None:
         from pyscf.lib import tag_array
@@ -137,6 +139,17 @@ def main(config):
         dm0 = tag_array(dm0, mo_coeff=c0_mo, mo_occ=n0_mo)
         print("Successfully loaded dm0 from %s" % chk_path)
 
+        h1e = load(chk_path, "h1e")
+        s1e = load(chk_path, "s1e")
+        print("Successfully loaded h1e and s1e from %s" % chk_path)
+
+    if h1e is not None and s1e is not None:
+        h1e = scf_obj.get_hcore()
+        s1e = scf_obj.get_ovlp()
+
+    scf_obj.get_ovlp = lambda *args, **kwargs: s1e
+    scf_obj.get_hcore = lambda *args, **kwargs: h1e
+    
     assert exxdiv == None
     t0 = (process_clock(), perf_counter())
     vj = scf_obj.with_df.get_jk(dm0, hermi=1, exxdiv=exxdiv, with_k=False, with_j=True)[0]
@@ -159,6 +172,8 @@ def main(config):
     dump(chk_path, "ke_cutoff", cell.ke_cutoff)
     dump(chk_path, "basis", cell._basis)
     dump(chk_path, "pseudo", cell._pseudo)
+    dump(chk_path, "h1e", h1e)
+    dump(chk_path, "s1e", s1e)
 
     dump(chk_path, "dm0", dm0)
     dump(chk_path, "c0_mo", c0_mo)
