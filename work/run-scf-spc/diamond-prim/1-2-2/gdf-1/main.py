@@ -143,10 +143,12 @@ def main(config):
         s1e = load(chk_path, "s1e")
         print("Successfully loaded h1e and s1e from %s" % chk_path)
 
-    if h1e is not None and s1e is not None:
+    if h1e is None or s1e is None:
         h1e = scf_obj.get_hcore()
         s1e = scf_obj.get_ovlp()
 
+    assert s1e is not None
+    assert h1e is not None
     scf_obj.get_ovlp = lambda *args, **kwargs: s1e
     scf_obj.get_hcore = lambda *args, **kwargs: h1e
     
