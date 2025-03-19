@@ -102,7 +102,7 @@ if __name__ == "__main__":
     ]
 
     for m in ms:
-        time = "01:00:00"
+        time = "10:00:00"
         mesh = ",".join(str(x) for x in m)
         nk = numpy.prod(m)
         cell = "diamond-prim"
@@ -114,7 +114,7 @@ if __name__ == "__main__":
         # run(cell, "gdf", ncpu=64, ke_cutoff=ke_cutoff, chk_path=path, config=config, mesh=mesh, time=time)
 
         config = {}
-        path = "../../gdf-32/tmp/scf.h5"
+        path = "../../gdf-64/tmp/scf.h5"
         run(cell, "fftdf-occri", ncpu=1, ke_cutoff=ke_cutoff, chk_path=path, config=config, mesh=mesh, time=time)
 
         rcut_epsilon = 1e-05
@@ -137,7 +137,7 @@ if __name__ == "__main__":
         [2, 2, 4], # 64
     ]
     for m in ms:
-        time = "01:00:00"
+        time = "10:00:00"
         mesh = ",".join(str(x) for x in m)
         nk = numpy.prod(m)
         cell = "diamond-conv"
@@ -149,7 +149,7 @@ if __name__ == "__main__":
         # run(cell, "gdf", ncpu=64, ke_cutoff=ke_cutoff, chk_path=path, config=config, mesh=mesh, time=time)
 
         config = {}
-        path = "../../gdf-32/tmp/scf.h5"
+        path = "../../gdf-64/tmp/scf.h5"
         run(cell, "fftdf-occri", ncpu=1, ke_cutoff=ke_cutoff, chk_path=path, config=config, mesh=mesh, time=time)
 
         rcut_epsilon = 1e-05

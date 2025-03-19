@@ -45,4 +45,4 @@ export DATA_PATH=$PREFIX/data/
 export PYTHONPATH=$PREFIX/src/:$PYTHONPATH
 export PYSCF_EXT_PATH=$HOME/packages/pyscf-forge/pyscf-forge-ning-isdf4/
 cp /central/home/junjiey/work/benchmark-fftisdf/src/script/run-scf-spc.py /central/home/junjiey/work/benchmark-fftisdf/work/run-scf-spc/diamond-prim/2-4-4/fftdf-occri-1/100//main.py
-python main.py --name=diamond-prim --ke_cutoff=100.0 --exxdiv=None --df=fftdf-occri --chk_path=../../gdf-32/tmp/scf.h5 --mesh=2,4,4
+python main.py --name=diamond-prim --ke_cutoff=100.0 --exxdiv=None --df=fftdf-occri --chk_path=../../gdf-64/tmp/scf.h5 --mesh=2,4,4
