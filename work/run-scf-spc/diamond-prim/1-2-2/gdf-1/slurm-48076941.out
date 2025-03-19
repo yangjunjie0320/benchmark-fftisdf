@@ -1,0 +1,80 @@
+SLURMD_NODENAME = hpc-52-03
+Start time = Tue Mar 18 09:21:40 PM PDT 2025
+OMP_NUM_THREADS = 1
+MKL_NUM_THREADS = 1
+PYSCF_MAX_MEMORY = 409600
+TMPDIR = /central/scratch/yangjunjie//run-scf-spc-diamond-prim-1-2-2-gdf-1-/48076941/
+PYSCF_TMPDIR = /central/scratch/yangjunjie//run-scf-spc-diamond-prim-1-2-2-gdf-1-/48076941/
+
+/home/junjiey/anaconda3/envs/fftisdf/bin/python
+2.8.0
+1.13.1
+2.0.2
+fft_engine = NUMPY+BLAS
+name = diamond-prim
+ke_cutoff = None
+exxdiv = None
+df = gdf
+chk_path = None
+mesh = 1,2,2
+
+Discarded 6 diffused primitive functions, 0 contracted functions
+ke_cutoff = 100.0
+
+
+******** <class 'pyscf.pbc.df.df.GDF'> ********
+auxbasis = None
+exp_to_discard = None
+_cderi_to_save = /central/scratch/yangjunjie/run-scf-spc-diamond-prim-1-2-2-gdf-1-/48076941/tmpajzb4lz4
+len(kpts) = 1
+
+WARN: Even tempered Gaussians are generated as DF auxbasis for  C
+
+Initial guess from minao.
+Big error detected in the electron number of initial guess density matrix (Ne/cell = 32.1244)!
+  This can cause huge error in Fock matrix and lead to instability in SCF for low-dimensional systems.
+  DM is normalized wrt the number of electrons 32
+    CPU time for sr jk      0.06 sec, wall time      0.07 sec
+    CPU time for sr jk      0.21 sec, wall time      0.21 sec
+
+
+******** <class 'pyscf.pbc.dft.rks.RKS'> ********
+method = RKS
+initial guess = minao
+damping factor = 0
+level_shift factor = 0
+DIIS = <class 'pyscf.scf.diis.CDIIS'>
+diis_start_cycle = 1
+diis_space = 8
+diis_damp = 0
+SCF conv_tol = 1e-08
+SCF conv_tol_grad = None
+SCF max_cycles = 50
+direct_scf = True
+direct_scf_tol = 1e-13
+chkfile to save SCF result = /central/scratch/yangjunjie/run-scf-spc-diamond-prim-1-2-2-gdf-1-/48076941/tmpm14j8ps_
+max_memory 409600 MB (current use 195 MB)
+******** PBC SCF flags ********
+kpt = [0. 0. 0.]
+Exchange divergence treatment (exxdiv) = None
+DF object = <pyscf.pbc.df.df.GDF object at 0x7efe84d77310>
+XC functionals = PBE0
+small_rho_cutoff = 1e-07
+Overwritten attributes  get_hcore get_ovlp  of <class 'pyscf.pbc.dft.rks.RKS'>
+Traceback (most recent call last):
+  File "/central/home/junjiey/work/benchmark-fftisdf/work/run-scf-spc/diamond-prim/1-2-2/gdf-1/main.py", line 236, in <module>
+    e_tot = main(config)
+  File "/central/home/junjiey/work/benchmark-fftisdf/work/run-scf-spc/diamond-prim/1-2-2/gdf-1/main.py", line 162, in main
+    scf_obj.kernel(dm0)
+  File "<string>", line 2, in kernel
+  File "/home/junjiey/anaconda3/envs/fftisdf/lib/python3.9/site-packages/pyscf/scf/hf.py", line 2007, in scf
+    self.build(self.mol)
+  File "/home/junjiey/anaconda3/envs/fftisdf/lib/python3.9/site-packages/pyscf/pbc/dft/rks.py", line 242, in build
+    self.check_sanity()
+  File "/home/junjiey/anaconda3/envs/fftisdf/lib/python3.9/site-packages/pyscf/dft/rks.py", line 488, in check_sanity
+    out = super().check_sanity()
+  File "/home/junjiey/anaconda3/envs/fftisdf/lib/python3.9/site-packages/pyscf/pbc/scf/hf.py", line 603, in check_sanity
+    cond = np.max(lib.cond(s))
+  File "/home/junjiey/anaconda3/envs/fftisdf/lib/python3.9/site-packages/pyscf/lib/numpy_helper.py", line 1013, in cond
+    return numpy.asarray([numpy.linalg.cond(xi) for xi in x])
+TypeError: 'NoneType' object is not iterable
