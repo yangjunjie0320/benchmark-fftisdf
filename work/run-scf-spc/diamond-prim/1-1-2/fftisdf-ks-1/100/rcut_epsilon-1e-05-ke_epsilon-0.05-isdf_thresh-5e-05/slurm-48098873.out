@@ -1,0 +1,121 @@
+SLURMD_NODENAME = hpc-21-35
+Start time = Wed Mar 19 03:40:19 PM PDT 2025
+OMP_NUM_THREADS = 1
+MKL_NUM_THREADS = 1
+PYSCF_MAX_MEMORY = 409600
+TMPDIR = /central/scratch/yangjunjie//run-scf-spc-diamond-prim-1-1-2-fftisdf-ks-1-100-rcut_epsilon-1e-05-ke_epsilon-0.05-isdf_thresh-5e-05/48098873/
+PYSCF_TMPDIR = /central/scratch/yangjunjie//run-scf-spc-diamond-prim-1-1-2-fftisdf-ks-1-100-rcut_epsilon-1e-05-ke_epsilon-0.05-isdf_thresh-5e-05/48098873/
+
+/home/junjiey/anaconda3/envs/fftisdf/bin/python
+2.8.0
+1.13.1
+2.0.2
+fft_engine = NUMPY+BLAS
+name = diamond-prim
+ke_cutoff =  1.00e+02
+exxdiv = None
+df = fftisdf-ks
+chk_path = ../../../gdf-32/tmp/scf.h5
+mesh = 1,1,2
+rcut_epsilon =  1.00e-05
+ke_epsilon =  5.00e-02
+isdf_thresh =  5.00e-05
+
+Discarded 6 diffused primitive functions, 0 contracted functions
+ke_cutoff = 100.0
+None
+
+******** <class 'ISDFX'> ********
+lin_dep_thresh: 1e-10
+alpha_cutoff: 2.8
+rcut_epsilon: 1e-05
+ke_epsilon: 0.05
+isdf_thresh: 5e-05
+grid_vol_cutoff: 0.05
+ke_step: 2.0
+ao_tol: 1e-12
+multigrid_on: True
+direct_j: True
+iterative_build: True
+occRI: True
+voronoi: True
+fit_sparse_grid: False
+fit_dense_grid: True
+direct_k_sparse: True
+direct_k: False
+use_kpt_symm: False
+kmesh: [1, 1, 1]
+isdf_pts_from_q0: True
+isdf_pts_from_gamma_point: False
+alpha: None
+do_real_isdf: False
+N_xi: None
+use_cell_periodic: False
+isdf_thresh_sparse: None
+ncopy: [1, 1, 1]
+j_grid_mesh: None
+k_grid_mesh: None
+num_j_grids: 100
+get_ao_from_pyscf: False
+nuc_pp_version: 0
+vppnl_ver: 0
+universal_dense_grid: None
+same_jk_grids: None
+coulomb_only: False
+max_memory   409600 MB (current use       94 MB)
+
+Exchange function: getK_occRI  
+
+cell mesh: [23 23 47]
+nbas:  48
+Grid     keMax    keMin    keGrid   expMax   expMin   nexp     lmax     PWs      mesh        
+0        33.6     33.6     105.5    5.6      5.6      1        2        24863    [23 23 47]
+1        12.7     2.1      12.7     2.1      0.3      3        2        1377     [ 9  9 17]
+0        59.4     52.8     105.5    5.6      5.6      1        2        24863    [23 23 47]
+1        22.4     3.7      22.4     2.1      0.3      3        2        3887     [13 13 23]
+
+ISDF
+
+atm      grid     Ng       NI       Nxi      sharp    on_grid  diffuse  maxexp   minexp   lmax     lmin    
+0        0        24863    2021     111      9        108      99       5.61     5.61     2        0       
+1        0        24863    2012     110      9        108      99       5.61     5.61     2        0       
+2        0        24863    2012     110      9        108      99       5.61     5.61     2        0       
+3        0        24863    2021     111      9        108      99       5.61     5.61     2        0       
+-        1        1377     1377     1377     108      108      108      2.11     0.35     2        0       
+ISDF-pts:       0.38
+ISDF-vec:       0.04
+Fit dense grids ISDF:       0.42
+Fit sparse grids ISDF:       0.00
+
+Grid     PWs      Ng_i     N_xi     N_mu    
+0        24863    8066     442      432     
+1        1377     1377     1377     108     
+
+nTHC: 1819
+Mem Required (MB):       5.85
+Curent RAM Use (MB) :        137 
+
+Build W
+ISDF-fft dense grids (sec):       0.99
+Curent RAM Use (MB) :        112 
+ISDF-fft:       0.99
+
+Initial guess from minao.
+Big error detected in the electron number of initial guess density matrix (Ne/cell = 16.1866)!
+  This can cause huge error in Fock matrix and lead to instability in SCF for low-dimensional systems.
+  DM is normalized wrt the number of electrons 16
+Traceback (most recent call last):
+  File "/central/home/junjiey/work/benchmark-fftisdf/work/run-scf-spc/diamond-prim/1-1-2/fftisdf-ks-1/100/rcut_epsilon-1e-05-ke_epsilon-0.05-isdf_thresh-5e-05/main.py", line 238, in <module>
+    e_tot = main(config)
+  File "/central/home/junjiey/work/benchmark-fftisdf/work/run-scf-spc/diamond-prim/1-1-2/fftisdf-ks-1/100/rcut_epsilon-1e-05-ke_epsilon-0.05-isdf_thresh-5e-05/main.py", line 136, in main
+    dm0 = load(chk_path, "dm0")
+  File "/home/junjiey/anaconda3/envs/fftisdf/lib/python3.9/site-packages/pyscf/lib/chkfile.py", line 72, in load
+    with h5py.File(chkfile, 'r') as fh5:
+  File "/home/junjiey/anaconda3/envs/fftisdf/lib/python3.9/site-packages/h5py/_hl/files.py", line 564, in __init__
+    fid = make_fid(name, mode, userblock_size, fapl, fcpl, swmr=swmr)
+  File "/home/junjiey/anaconda3/envs/fftisdf/lib/python3.9/site-packages/h5py/_hl/files.py", line 238, in make_fid
+    fid = h5f.open(name, flags, fapl=fapl)
+  File "h5py/_objects.pyx", line 54, in h5py._objects.with_phil.wrapper
+  File "h5py/_objects.pyx", line 55, in h5py._objects.with_phil.wrapper
+  File "h5py/h5f.pyx", line 102, in h5py.h5f.open
+FileNotFoundError: [Errno 2] Unable to synchronously open file (unable to open file: name = '../../../gdf-32/tmp/scf.h5', errno = 2, error message = 'No such file or directory', flags = 0, o_flags = 0)

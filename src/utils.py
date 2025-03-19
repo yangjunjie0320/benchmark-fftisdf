@@ -53,7 +53,7 @@ INFO = {
         "ke_cutoff": 200.0,
     },
 
-    "nio-prim": {
+    "nio-afm": {
         "filename": os.path.join(DATA_PATH, "vasp", "nio-prim.vasp"),
         "basis": "gth-dzvp-molopt-sr", "pseudo": "gth-pbe", 
         "afm_guess": {"alph": ["0 Ni 3dx2-y2"], "beta": ["1 Ni 3dx2-y2"]},
@@ -62,27 +62,21 @@ INFO = {
 }
 
 def gen_afm_guess(cell, dm0, afm_guess=None, ovlp=None):
+    s0 = dm0.shape
     nao = cell.nao_nr()
     dm_alph = None
     dm_beta = None
-    if dm0.shape == (2, nao, nao):
-        dm_alph = dm0[0]
-        dm_beta = dm0[1]
-    else:
-        assert dm0.shape == (nao, nao)
-        dm_alph = dm0 * 0.5
-        dm_beta = dm0 * 0.5
+
+    dm0 = dm0.reshape(2, -1, nao, nao)
 
     alph_ind = cell.search_ao_label(afm_guess["alph"])
     beta_ind = cell.search_ao_label(afm_guess["beta"])
 
-    dm_alph[alph_ind, alph_ind] *= 1.0
-    dm_alph[beta_ind, beta_ind] *= 0.0
-
-    dm_beta[alph_ind, alph_ind] *= 0.0
-    dm_beta[beta_ind, beta_ind] *= 1.0
-
-    return dm_alph, dm_beta
+    dm0[0, :, alph_ind, alph_ind] *= 1.0
+    dm0[0, :, beta_ind, beta_ind] *= 0.0
+    dm0[1, :, alph_ind, alph_ind] *= 0.0
+    dm0[1, :, beta_ind, beta_ind] *= 1.0
+    return dm0.reshape(s0)
 
 def get_cell(name: str):
     info = INFO[name]

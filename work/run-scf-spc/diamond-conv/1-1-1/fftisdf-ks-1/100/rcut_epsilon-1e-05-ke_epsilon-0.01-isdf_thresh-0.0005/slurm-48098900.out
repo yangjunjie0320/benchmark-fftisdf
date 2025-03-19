@@ -1,0 +1,31 @@
+SLURMD_NODENAME = hpc-21-35
+Start time = Wed Mar 19 04:24:09 PM PDT 2025
+OMP_NUM_THREADS = 1
+MKL_NUM_THREADS = 1
+PYSCF_MAX_MEMORY = 409600
+TMPDIR = /central/scratch/yangjunjie//run-scf-spc-diamond-conv-1-1-1-fftisdf-ks-1-100-rcut_epsilon-1e-05-ke_epsilon-0.01-isdf_thresh-0.0005/48098900/
+PYSCF_TMPDIR = /central/scratch/yangjunjie//run-scf-spc-diamond-conv-1-1-1-fftisdf-ks-1-100-rcut_epsilon-1e-05-ke_epsilon-0.01-isdf_thresh-0.0005/48098900/
+
+/home/junjiey/anaconda3/envs/fftisdf/bin/python
+2.8.0
+1.13.1
+2.0.2
+fft_engine = NUMPY+BLAS
+name = diamond-conv
+ke_cutoff =  1.00e+02
+exxdiv = None
+df = fftisdf-ks
+chk_path = ../../../gdf-32/tmp/scf.h5
+mesh = 1,1,1
+rcut_epsilon =  1.00e-05
+ke_epsilon =  1.00e-02
+isdf_thresh =  5.00e-04
+
+Traceback (most recent call last):
+  File "/central/home/junjiey/work/benchmark-fftisdf/work/run-scf-spc/diamond-conv/1-1-1/fftisdf-ks-1/100/rcut_epsilon-1e-05-ke_epsilon-0.01-isdf_thresh-0.0005/main.py", line 238, in <module>
+    e_tot = main(config)
+  File "/central/home/junjiey/work/benchmark-fftisdf/work/run-scf-spc/diamond-conv/1-1-1/fftisdf-ks-1/100/rcut_epsilon-1e-05-ke_epsilon-0.01-isdf_thresh-0.0005/main.py", line 106, in main
+    from utils import get_cell, INFO
+  File "/central/home/junjiey/work/benchmark-fftisdf/src/utils.py", line 77
+    dm_alph[alph_ind, alph_ind] *= 1.0
+IndentationError: unexpected indent
