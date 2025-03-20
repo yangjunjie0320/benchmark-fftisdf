@@ -20,7 +20,7 @@ def main(time="01:00:00", mem=200, ncpu=1, workdir=None, cmd=None, scr=None,
         lines.insert(1, "#SBATCH --time=%s\n" % time)
         lines.insert(1, "#SBATCH --mem=%dGB\n" % mem)
         lines.insert(1, "#SBATCH --cpus-per-task=%d\n" % ncpu)
-        lines.insert(1, "#SBATCH --job-name=%s\n" % workdir.split("work")[-1][1:].replace("/", "-"))
+        lines.insert(1, "#SBATCH --job-name=%s\n" % workdir.split("work")[-1][1:].replace("/", "-").rstrip("-"))
         lines.insert(1, "#SBATCH --exclude=hpc-21-34,hpc-34-34,hpc-52-29\n")
 
     with open(os.path.join(workdir, "run.sh"), "w") as f:
@@ -46,19 +46,27 @@ def main(time="01:00:00", mem=200, ncpu=1, workdir=None, cmd=None, scr=None,
     os.chdir(pwd)
 
 if __name__ == "__main__":
-    mem = 400
-    def run(name, df, ncpu=1, ke_cutoff=100.0, chk_path=None, config=None, mesh="1,1,1", time="01:00:00", script=None):
-        cmd = [f"python main.py --name={name}"]
+    def run(config):
+        config = config.copy()
+        name = config.pop("name", None)
+        df = config.pop("df", None)
+        ke_cutoff = config.pop("ke_cutoff", None)
         if df == "gdf":
-            cmd += [f"--ke_cutoff=None"]
-            cmd += [f"--df={df}"]
-        else:
-            cmd += [f"--ke_cutoff={ke_cutoff}"]
-            cmd += [f"--df={df}"]
+            assert ke_cutoff is None
+
+        mesh = config.pop("mesh", None)
+        time = config.pop("time", None)
+        script = config.pop("script", None)
+        chk_path = config.pop("chk_path", None)
+        ncpu = config.pop("ncpu", 1)
+        mem = config.pop("mem", 400)
+
+        cmd = [f"python main.py --name={name}"]
+        cmd += [f"--df={df} --ke_cutoff={ke_cutoff}"]
         cmd += [f"--exxdiv=None"]
         cmd += [f"--chk_path={chk_path}"]
         cmd += [f"--mesh={mesh}"]
-        if config is not None:
+        if config:
             for k, v in config.items():
                 cmd += [f"--{k}={v}"]
         
@@ -89,11 +97,7 @@ if __name__ == "__main__":
             cmd=cmd, scr=script_path, import_pyscf_forge=True
         )
 
-    # path = "/central/scratch/yangjunjie//run-scf-gamma/diamond-conv/gdf/47958841/scf.h5"
-    # run("diamond-conv", "fftdf", ncpu=20, ke_cutoff=ke_cutoff, chk_path=path)
-
-    # path = "/central/scratch/yangjunjie//run-scf-gamma/diamond-prim/gdf/47958842/scf.h5"
-    ms = [
+    mm = [
         [1, 1, 1], # 1
         [1, 1, 2], # 2
         [1, 2, 2], # 4
@@ -103,70 +107,32 @@ if __name__ == "__main__":
         [4, 4, 4], # 64
     ]
 
-    for m in ms:
-        ke_cutoff = 200.0
-        cell = "nio-afm"
-        script = f"run-uks-kpt"
+    config = {
+        "df": "gdf",
+        "script": "run-uks-kpt",
+        "mem": 400,
+        "time": "10:00:00",
+        "chk_path": "../../../gdf-64/tmp/scf.h5"
+    }
 
-        time = "10:00:00"
-        mesh = ",".join(str(x) for x in m)
-        nk = numpy.prod(m)
+    for name in ["nio-afm", "nio-conv"]:
+        ms = mm[:4] if name == "nio-afm" else mm
+        for m in ms:
+            config["name"] = name
+            config["mesh"] = ",".join(str(x) for x in m)
+            config["ncpu"] = 64
+            run(config)
 
-        config = {}
-        path = None
-        run(cell, "gdf", ncpu=1,  ke_cutoff=ke_cutoff, chk_path=path, config=config, mesh=mesh, time=time, script=script)
-        run(cell, "gdf", ncpu=64, ke_cutoff=ke_cutoff, chk_path=path, config=config, mesh=mesh, time=time, script=script)
+            config["ncpu"] = 1
+            run(config)
 
-        # config = {}
-        # path = "../../gdf-64/tmp/scf.h5"
-        # run(cell, "fftdf-occri", ncpu=1, ke_cutoff=ke_cutoff, chk_path=path, config=config, mesh=mesh, time=time)
+            # for k0 in [20.0, 40.0, 60.0, 80.0, 100.0]:
+            #     for c0 in [5.0, 10.0, 15.0, 20.0, 25.0, 30.0]:
+            #         config["name"] = name
+            #         config["mesh"] = ",".join(str(x) for x in m)
+            #         config["k0"] = k0
+            #         config["c0"] = c0
+            #         run(config)
 
-        # rcut_epsilon = 1e-05
-        # for ke_epsilon in [1e-2, 5e-2]:
-        #     for isdf_thresh in [5e-4, 5e-5]:
-        #         ke_cutoff = 100.0
-        #         config = {
-        #             "rcut_epsilon": rcut_epsilon,
-        #             "ke_epsilon": ke_epsilon,
-        #             "isdf_thresh": isdf_thresh,
-        #         }
-
-        #         path = "../../../gdf-64/tmp/scf.h5"
-        #         run(cell, "fftisdf-ks", ncpu=1, ke_cutoff=ke_cutoff, chk_path=path, config=config, mesh=mesh, time=time, script=script)
-
-    ms = [
-        [1, 1, 1], # 4
-        [1, 1, 2], # 8
-        [1, 2, 2], # 16
-        [2, 2, 2], # 32
-        [2, 2, 4], # 64
-    ]
-    for m in ms:
-        ke_cutoff = 200.0
-        cell = "nio-conv"
-        script = f"run-uks-kpt"
-
-        time = "10:00:00"
-        mesh = ",".join(str(x) for x in m)
-        nk = numpy.prod(m)
-        
-        config = {}
-        path = None
-        run(cell, "gdf", ncpu=1,  ke_cutoff=ke_cutoff, chk_path=path, config=config, mesh=mesh, time=time, script=script)
-        run(cell, "gdf", ncpu=64, ke_cutoff=ke_cutoff, chk_path=path, config=config, mesh=mesh, time=time, script=script)
-
-        # config = {}
-        # path = "../../gdf-64/tmp/scf.h5"
-        # run(cell, "fftdf-occri", ncpu=1, ke_cutoff=ke_cutoff, chk_path=path, config=config, mesh=mesh, time=time, script=script)
-
-        # rcut_epsilon = 1e-05
-        # for ke_epsilon in [1e-2, 5e-2]:
-        #     for isdf_thresh in [5e-4, 5e-5]:
-        #         config = {
-        #             "rcut_epsilon": rcut_epsilon,
-        #             "ke_epsilon": ke_epsilon,
-        #             "isdf_thresh": isdf_thresh,
-        #         }
-
-        #         path = "../../../gdf-64/tmp/scf.h5"
-        #         run(cell, "fftisdf-ks", ncpu=1, ke_cutoff=ke_cutoff, chk_path=path, config=config, mesh=mesh, time=time, script=script)
+            #         config["ncpu"] = 64
+            #         run(config)
