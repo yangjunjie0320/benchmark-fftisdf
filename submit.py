@@ -89,7 +89,8 @@ if __name__ == "__main__":
 
         if os.path.exists(os.path.join(base_dir, work_subdir)):
             print(f"Work directory {work_subdir} already exists, deleting it")
-            shutil.rmtree(os.path.join(base_dir, work_subdir))
+            # shutil.rmtree(os.path.join(base_dir, work_subdir))
+            return
 
         main(
             time=time, mem=mem, ncpu=ncpu,
@@ -117,7 +118,7 @@ if __name__ == "__main__":
     }
 
     for name in ["nio-afm", "nio-conv"]:
-        ms = mm[:4] if name == "nio-afm" else mm
+        ms = mm[:4] if name == "nio-conv" else mm
         for m in ms:
             config["name"] = name
             config["mesh"] = ",".join(str(x) for x in m)
