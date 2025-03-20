@@ -3,7 +3,7 @@
 #SBATCH --job-name=run-scf-spc-diamond-conv-1-2-2-fftisdf-ks-1-100-rcut_epsilon-1e-05-ke_epsilon-0.01-isdf_thresh-5e-05
 #SBATCH --cpus-per-task=1
 #SBATCH --mem=400GB
-#SBATCH --time=01:00:00
+#SBATCH --time=04:00:00
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
 #SBATCH --reservation=changroup_standingres
@@ -45,4 +45,4 @@ export DATA_PATH=$PREFIX/data/
 export PYTHONPATH=$PREFIX/src/:$PYTHONPATH
 export PYSCF_EXT_PATH=$HOME/packages/pyscf-forge/pyscf-forge-ning-isdf4/
 cp /central/home/junjiey/work/benchmark-fftisdf/src/script/run-scf-spc.py /central/home/junjiey/work/benchmark-fftisdf/work/run-scf-spc/diamond-conv/1-2-2/fftisdf-ks-1/100/rcut_epsilon-1e-05-ke_epsilon-0.01-isdf_thresh-5e-05/main.py
-python main.py --name=diamond-conv --ke_cutoff=100.0 --exxdiv=None --df=fftisdf-ks --chk_path=../../../gdf-32/tmp/scf.h5 --mesh=1,2,2 --rcut_epsilon=1e-05 --ke_epsilon=0.01 --isdf_thresh=5e-05
+python main.py --name=diamond-conv --ke_cutoff=100.0 --exxdiv=None --df=fftisdf-ks --chk_path=../../../gdf-64/tmp/scf.h5 --mesh=1,2,2 --rcut_epsilon=1e-05 --ke_epsilon=0.01 --isdf_thresh=5e-05

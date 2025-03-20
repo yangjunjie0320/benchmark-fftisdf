@@ -101,33 +101,35 @@ if __name__ == "__main__":
     ]
 
     for m in ms:
-        time = "10:00:00"
+        time = "04:00:00"
         mesh = ",".join(str(x) for x in m)
         nk = numpy.prod(m)
-        cell = "nio-afm"
-        script = f"run-uks-kpt"
+        # cell = "nio-afm"
+        cell = "diamond-prim"
+        script = f"run-scf-spc"
 
-        config = {}
-        path = None
-        ke_cutoff = None
-        run(cell, "gdf", ncpu=1,  ke_cutoff=ke_cutoff, chk_path=path, config=config, mesh=mesh, time=time, script=script)
-        run(cell, "gdf", ncpu=64, ke_cutoff=ke_cutoff, chk_path=path, config=config, mesh=mesh, time=time, script=script)
+        # config = {}
+        # path = None
+        # ke_cutoff = None
+        # run(cell, "gdf", ncpu=1,  ke_cutoff=ke_cutoff, chk_path=path, config=config, mesh=mesh, time=time, script=script)
+        # run(cell, "gdf", ncpu=64, ke_cutoff=ke_cutoff, chk_path=path, config=config, mesh=mesh, time=time, script=script)
 
         # config = {}
         # path = "../../gdf-64/tmp/scf.h5"
         # run(cell, "fftdf-occri", ncpu=1, ke_cutoff=ke_cutoff, chk_path=path, config=config, mesh=mesh, time=time)
 
-        # rcut_epsilon = 1e-05
-        # for ke_epsilon in [1e-2, 5e-2]:
-        #     for isdf_thresh in [5e-4, 5e-5]:
-        #         config = {
-        #             "rcut_epsilon": rcut_epsilon,
-        #             "ke_epsilon": ke_epsilon,
-        #             "isdf_thresh": isdf_thresh,
-        #         }
+        rcut_epsilon = 1e-05
+        for ke_epsilon in [1e-2, 5e-2]:
+            for isdf_thresh in [5e-4, 5e-5]:
+                ke_cutoff = 100.0
+                config = {
+                    "rcut_epsilon": rcut_epsilon,
+                    "ke_epsilon": ke_epsilon,
+                    "isdf_thresh": isdf_thresh,
+                }
 
-        #         path = "../../../gdf-32/tmp/scf.h5"
-        #         run(cell, "fftisdf-ks", ncpu=1, ke_cutoff=ke_cutoff, chk_path=path, config=config, mesh=mesh, time=time)
+                path = "../../../gdf-64/tmp/scf.h5"
+                run(cell, "fftisdf-ks", ncpu=1, ke_cutoff=ke_cutoff, chk_path=path, config=config, mesh=mesh, time=time, script=script)
 
     ms = [
         [1, 1, 1], # 4
@@ -137,30 +139,32 @@ if __name__ == "__main__":
         [2, 2, 4], # 64
     ]
     for m in ms:
-        time = "10:00:00"
+        time = "04:00:00"
         mesh = ",".join(str(x) for x in m)
         nk = numpy.prod(m)
-        cell = "nio-conv"
-        script = f"run-uks-kpt"
-
-        config = {}
-        path = None
-        ke_cutoff = None
-        run(cell, "gdf", ncpu=1,  ke_cutoff=ke_cutoff, chk_path=path, config=config, mesh=mesh, time=time, script=script)
-        run(cell, "gdf", ncpu=64, ke_cutoff=ke_cutoff, chk_path=path, config=config, mesh=mesh, time=time, script=script)
+        # cell = "nio-conv"
+        # script = f"run-uks-kpt"
+        cell = "diamond-conv"
+        script = f"run-scf-spc"
+        
+        # config = {}
+        # path = None
+        # ke_cutoff = None
+        # run(cell, "gdf", ncpu=1,  ke_cutoff=ke_cutoff, chk_path=path, config=config, mesh=mesh, time=time, script=script)
+        # run(cell, "gdf", ncpu=64, ke_cutoff=ke_cutoff, chk_path=path, config=config, mesh=mesh, time=time, script=script)
 
         # config = {}
         # path = "../../gdf-64/tmp/scf.h5"
         # run(cell, "fftdf-occri", ncpu=1, ke_cutoff=ke_cutoff, chk_path=path, config=config, mesh=mesh, time=time, script=script)
 
-        # rcut_epsilon = 1e-05
-        # for ke_epsilon in [1e-2, 5e-2]:
-        #     for isdf_thresh in [5e-4, 5e-5]:
-        #         config = {
-        #             "rcut_epsilon": rcut_epsilon,
-        #             "ke_epsilon": ke_epsilon,
-        #             "isdf_thresh": isdf_thresh,
-        #         }
+        rcut_epsilon = 1e-05
+        for ke_epsilon in [1e-2, 5e-2]:
+            for isdf_thresh in [5e-4, 5e-5]:
+                config = {
+                    "rcut_epsilon": rcut_epsilon,
+                    "ke_epsilon": ke_epsilon,
+                    "isdf_thresh": isdf_thresh,
+                }
 
-        #         path = "../../../gdf-32/tmp/scf.h5"
-        #         run(cell, "fftisdf-ks", ncpu=1, ke_cutoff=ke_cutoff, chk_path=path, config=config, mesh=mesh, time=time)
+                path = "../../../gdf-64/tmp/scf.h5"
+                run(cell, "fftisdf-ks", ncpu=1, ke_cutoff=ke_cutoff, chk_path=path, config=config, mesh=mesh, time=time, script=script)

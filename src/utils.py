@@ -64,11 +64,8 @@ INFO = {
 def gen_afm_guess(cell, dm0, afm_guess=None, ovlp=None):
     s0 = dm0.shape
     nao = cell.nao_nr()
-    dm_alph = None
-    dm_beta = None
-
     dm0 = dm0.reshape(2, -1, nao, nao)
-
+    
     alph_ind = cell.search_ao_label(afm_guess["alph"])
     beta_ind = cell.search_ao_label(afm_guess["beta"])
 
