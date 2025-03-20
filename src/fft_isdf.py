@@ -120,6 +120,11 @@ def build(df_obj, inpx=None):
     log.debug("eta_kpt.shape = %s", eta_kpt.shape)
     log.debug("Memory used for eta_kpt = %6.2e GB", eta_kpt.nbytes / 1e9)
 
+    # each k-point would require
+    mem_required = ngrid * nip * 16 / 1e9
+    log.debug("Memory required for each k-point = %6.2e GB", mem_required)
+    log.debug("Max memory available = %6.2e GB", max_memory)
+
     coul_kpt = []
     for q in range(nkpt):
         t0 = (process_clock(), perf_counter())
@@ -127,18 +132,14 @@ def build(df_obj, inpx=None):
         metx_q = metx_kpt[q]
         assert metx_q.shape == (nip, nip)
 
-        kern_q = get_kern(
-            df_obj, eta_kpt=eta_kpt, q=q,
-            fswp=df_obj._fswap,
-            max_memory=max_memory
-        )
-
+        kern_q = get_kern(df_obj, eta_q=eta_kpt[q], kpt_q=kpts[q])
         coul_q, rank = lstsq(metx_q, kern_q, tol=df_obj.tol)
         assert coul_q.shape == (nip, nip)
-        
-        coul_kpt.append(coul_q)
-        log.timer("solving Coulomb kernel", *t0)
+
         log.info("Finished solving Coulomb kernel for q = %3d / %3d, rank = %d / %d", q + 1, nkpt, rank, nip)
+        log.timer("solving Coulomb kernel", *t0)
+
+        coul_kpt.append(coul_q)
 
     coul_kpt = numpy.asarray(coul_kpt)
     return inpv_kpt, coul_kpt
@@ -178,12 +179,12 @@ def get_lhs_and_rhs(df_obj, inpv_kpt, max_memory=2000, fswp=None):
 
     metx_kpt = spc_to_kpt(t_spc * t_spc, phase)
 
-    blksize = max(max_memory * 1e6 * 0.2 / (nkpt * nip * 16), 1)
+    blksize = max(max_memory * 1e6 * 0.5 / (nkpt * nip * 16), 1)
     blksize = min(int(blksize), ngrid)
 
     log.debug("blksize = %d, ngrid = %d", blksize, ngrid)
-    eta_kpt = None
 
+    eta_kpt = None
     if blksize == ngrid:    
         eta_kpt = numpy.zeros((nkpt, ngrid, nip), dtype=numpy.complex128)
         log.debug("Use in-core for eta_kpt, memory used for eta_kpt = %6.2e GB", eta_kpt.nbytes / 1e9)
@@ -220,7 +221,7 @@ def get_lhs_and_rhs(df_obj, inpv_kpt, max_memory=2000, fswp=None):
 
     return metx_kpt, eta_kpt
 
-def get_kern(df_obj, eta_q=None, max_memory=2000):
+def get_kern(df_obj, eta_q=None, kpt_q=None):
     log = logger.new_logger(df_obj, df_obj.verbose)
     t0 = (process_clock(), perf_counter())
     
@@ -247,9 +248,9 @@ def get_kern(df_obj, eta_q=None, max_memory=2000):
     assert eta_q.shape == (ngrid, nip)
 
     kern_q = numpy.zeros((nip, nip), dtype=numpy.complex128)
-    vg = pbctools.get_coulG(pcell, k=kpts[q], mesh=mesh)
+    vg = pbctools.get_coulG(pcell, k=kpt_q, mesh=mesh)
 
-    t = numpy.dot(coord, kpts[q])
+    t = numpy.dot(coord, kpt_q)
     f = numpy.exp(-1j * t)
     assert f.shape == (ngrid, )
 
@@ -257,8 +258,7 @@ def get_kern(df_obj, eta_q=None, max_memory=2000):
     v_q *= pcell.vol / ngrid
 
     w_q = ifft(v_q, mesh) * f.conj()
-    w_q = w_q.T
-    assert w_q.shape == (ngrid, nip)
+    assert w_q.shape == (nip, ngrid)
 
     kern_q = numpy.dot(w_q, eta_q.conj())
     assert kern_q.shape == (nip, nip)
@@ -290,10 +290,6 @@ class InterpolativeSeparableDensityFitting(FFTDF):
         log.info("len(kpts) = %d", len(self.kpts))
         log.debug1("    kpts = %s", self.kpts)
         return self
-    
-    def _is_mem_enough(self):
-        nip = self.cell.nao_nr() * self.c0
-        ngrid = numpy.prod(self.mesh)
     
     @line_profiler.profile
     def build(self, inpx=None):
@@ -459,27 +455,26 @@ if __name__ == "__main__":
 
     log = logger.new_logger(None, 5)
 
+    vv = []
     ee = []
-    kk = [10.0, 20.0, 30.0, 40.0]
-    for k0 in kk:
+    cc = [5.0, 10.0, 15.0, 20.0]
+    for c0 in cc:
         from pyscf.pbc.tools.pbc import cutoff_to_mesh
         lv = cell.lattice_vectors()
-        g0 = cell.gen_uniform_grids(cutoff_to_mesh(lv, k0))
+        g0 = cell.gen_uniform_grids(cutoff_to_mesh(lv, cell.ke_cutoff))
 
-        t0 = (process_clock(), perf_counter())
-        c0 = 10.0
         scf_obj.with_df = ISDF(cell, kpts=kpts)
         scf_obj.with_df.verbose = 5
         scf_obj.with_df.tol = 1e-10
         scf_obj.with_df.max_memory = 2000
-        df_obj = scf_obj.with_df
-        inpx = df_obj.get_inpx(g0=g0, c0=c0)
-        df_obj.build(inpx)
-        t1 = log.timer("-> ISDF build", *t0)
 
-        e_tot = scf_obj.kernel(dm_kpts)
-        ee.append(e_tot)
-        print("-> ISDF c0 = %6s, k0 = %6.2f, e_tot = %12.8f" % (c0, k0, e_tot))
+        df_obj = scf_obj.with_df
+        inpx = df_obj.get_inpx(g0=g0, c0=c0, tol=1e-10)
+        df_obj.build(inpx)
+
+        vj, vk = df_obj.get_jk(dm_kpts)
+        vv.append((vj, vk))
+        ee.append(scf_obj.energy_tot(dm_kpts))
 
     t0 = (process_clock(), perf_counter())
     scf_obj.with_df = FFTDF(cell, kpts)
@@ -487,9 +482,10 @@ if __name__ == "__main__":
     scf_obj.with_df.dump_flags()
     scf_obj.with_df.check_sanity()
 
-    e_tot = scf_obj.kernel(dm_kpts)
+    vj_ref, vk_ref = scf_obj.with_df.get_jk(dm_kpts)
+    e_ref = scf_obj.energy_tot(dm_kpts)
 
-    print("-> FFTDF e_tot = %12.8f" % e_tot)
-    for ik, k0 in enumerate(kk):
-        print("-> FFTISDF c0 = %6s, k0 = %6.2f, e_tot = %12.8f, err = % 6.2e" % (c0, k0, ee[ik], ee[ik] - e_tot))
+    print("-> FFTDF e_tot = %12.8f" % e_ref)
+    for ic, c0 in enumerate(cc):
+        print("-> FFTISDF c0 = %6s, ene_err = % 6.2e, vj_err = % 6.2e, vk_err = % 6.2e" % (c0, abs(ee[ic] - e_ref), abs(vv[ic][0] - vj_ref).max(), abs(vv[ic][1] - vk_ref).max()))
 

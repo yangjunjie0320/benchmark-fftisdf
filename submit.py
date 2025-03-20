@@ -111,8 +111,9 @@ if __name__ == "__main__":
         "df": "gdf",
         "script": "run-uks-kpt",
         "mem": 400,
-        "time": "10:00:00",
-        "chk_path": "../../../gdf-64/tmp/scf.h5"
+        "time": "20:00:00",
+        "chk_path": None 
+        # "../../../gdf-64/tmp/scf.h5"
     }
 
     for name in ["nio-afm", "nio-conv"]:
@@ -120,7 +121,7 @@ if __name__ == "__main__":
         for m in ms:
             config["name"] = name
             config["mesh"] = ",".join(str(x) for x in m)
-            config["ncpu"] = 64
+            config["ncpu"] = 32
             run(config)
 
             config["ncpu"] = 1

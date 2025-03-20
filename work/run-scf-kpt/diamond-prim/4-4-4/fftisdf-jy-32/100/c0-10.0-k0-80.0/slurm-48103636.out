@@ -1,10 +1,10 @@
-SLURMD_NODENAME = hpc-34-20
-Start time = Thu Mar 13 04:29:28 PM PDT 2025
+SLURMD_NODENAME = hpc-19-19
+Start time = Thu Mar 20 12:08:09 AM PDT 2025
 OMP_NUM_THREADS = 32
 MKL_NUM_THREADS = 1
-PYSCF_MAX_MEMORY = 81920
-TMPDIR = /central/scratch/yangjunjie//run-scf-kpt-diamond-prim-4-4-4-fftisdf-jy-32-100-c0-10.0-k0-80.0/47996027/
-PYSCF_TMPDIR = /central/scratch/yangjunjie//run-scf-kpt-diamond-prim-4-4-4-fftisdf-jy-32-100-c0-10.0-k0-80.0/47996027/
+PYSCF_MAX_MEMORY = 102400
+TMPDIR = /central/scratch/yangjunjie//run-scf-kpt-diamond-prim-4-4-4-fftisdf-jy-32-100-c0-10.0-k0-80.0/48103636/
+PYSCF_TMPDIR = /central/scratch/yangjunjie//run-scf-kpt-diamond-prim-4-4-4-fftisdf-jy-32-100-c0-10.0-k0-80.0/48103636/
 
 /home/junjiey/anaconda3/envs/fftisdf/bin/python
 2.8.0
@@ -31,7 +31,7 @@ g0 = [[ 0.          0.          0.        ]
  [-0.26162237 -0.18499492 -0.45314317]], m0 = [21 21 21]
 Pivoted Cholesky rank = 374, estimated error = 2.92e-03
 Parent grid size = 9261, selected grid size = 260
-    CPU time for interpolating functions     16.93 sec, wall time      1.70 sec
+    CPU time for interpolating functions     18.65 sec, wall time      1.80 sec
 
 
 ******** <class 'fft_isdf.InterpolativeSeparableDensityFitting'> ********
@@ -109,398 +109,142 @@ kpts =
  [ 7.62420288e-01  5.39112637e-01  6.60275424e-01]
  [ 5.71815216e-01  4.04334478e-01  9.90413137e-01]]
 nip = 260, nao = 26, cisdf =  10.00
-    CPU time for get interpolating vectors      0.49 sec
+    CPU time for get interpolating vectors      0.28 sec
 blksize = 12167, ngrid = 12167
 Use in-core for eta_kpt, memory used for eta_kpt = 3.24e+00 GB
-    CPU time for aoR_loop: [      0,   12167]     59.86 sec, wall time      6.62 sec
+    CPU time for aoR_loop: [      0,   12167]     71.01 sec, wall time      7.41 sec
 eta_kpt.shape = (64, 12167, 260)
 Memory used for eta_kpt = 3.24e+00 GB
-
-Calculating Coulomb kernel with outcore method: q = 1 / 64
-blksize = 260, nip = 260, max_memory = 8.17e+01 GB
-memory used for each block = 5.06e-02 GB
-    CPU time for solving Coulomb kernel      8.57 sec, wall time      0.31 sec
+    CPU time for solving Coulomb kernel      8.88 sec, wall time      0.32 sec
 Finished solving Coulomb kernel for q =   1 /  64, rank = 260 / 260
-
-Calculating Coulomb kernel with outcore method: q = 2 / 64
-blksize = 260, nip = 260, max_memory = 8.17e+01 GB
-memory used for each block = 5.06e-02 GB
-    CPU time for solving Coulomb kernel     11.13 sec, wall time      0.42 sec
+    CPU time for solving Coulomb kernel      7.87 sec, wall time      0.29 sec
 Finished solving Coulomb kernel for q =   2 /  64, rank = 260 / 260
-
-Calculating Coulomb kernel with outcore method: q = 3 / 64
-blksize = 260, nip = 260, max_memory = 8.17e+01 GB
-memory used for each block = 5.06e-02 GB
-    CPU time for solving Coulomb kernel      8.53 sec, wall time      0.31 sec
+    CPU time for solving Coulomb kernel      6.67 sec, wall time      0.25 sec
 Finished solving Coulomb kernel for q =   3 /  64, rank = 260 / 260
-
-Calculating Coulomb kernel with outcore method: q = 4 / 64
-blksize = 260, nip = 260, max_memory = 8.17e+01 GB
-memory used for each block = 5.06e-02 GB
-    CPU time for solving Coulomb kernel      9.66 sec, wall time      0.35 sec
+    CPU time for solving Coulomb kernel      7.08 sec, wall time      0.26 sec
 Finished solving Coulomb kernel for q =   4 /  64, rank = 260 / 260
-
-Calculating Coulomb kernel with outcore method: q = 5 / 64
-blksize = 260, nip = 260, max_memory = 8.17e+01 GB
-memory used for each block = 5.06e-02 GB
-    CPU time for solving Coulomb kernel      8.89 sec, wall time      0.33 sec
+    CPU time for solving Coulomb kernel      7.67 sec, wall time      0.28 sec
 Finished solving Coulomb kernel for q =   5 /  64, rank = 260 / 260
-
-Calculating Coulomb kernel with outcore method: q = 6 / 64
-blksize = 260, nip = 260, max_memory = 8.17e+01 GB
-memory used for each block = 5.06e-02 GB
-    CPU time for solving Coulomb kernel      9.91 sec, wall time      0.35 sec
+    CPU time for solving Coulomb kernel      7.59 sec, wall time      0.28 sec
 Finished solving Coulomb kernel for q =   6 /  64, rank = 260 / 260
-
-Calculating Coulomb kernel with outcore method: q = 7 / 64
-blksize = 260, nip = 260, max_memory = 8.17e+01 GB
-memory used for each block = 5.06e-02 GB
-    CPU time for solving Coulomb kernel     10.25 sec, wall time      0.38 sec
+    CPU time for solving Coulomb kernel      7.19 sec, wall time      0.26 sec
 Finished solving Coulomb kernel for q =   7 /  64, rank = 260 / 260
-
-Calculating Coulomb kernel with outcore method: q = 8 / 64
-blksize = 260, nip = 260, max_memory = 8.17e+01 GB
-memory used for each block = 5.06e-02 GB
-    CPU time for solving Coulomb kernel      9.86 sec, wall time      0.35 sec
+    CPU time for solving Coulomb kernel      7.31 sec, wall time      0.27 sec
 Finished solving Coulomb kernel for q =   8 /  64, rank = 260 / 260
-
-Calculating Coulomb kernel with outcore method: q = 9 / 64
-blksize = 260, nip = 260, max_memory = 8.17e+01 GB
-memory used for each block = 5.06e-02 GB
-    CPU time for solving Coulomb kernel      7.77 sec, wall time      0.28 sec
+    CPU time for solving Coulomb kernel      8.26 sec, wall time      0.30 sec
 Finished solving Coulomb kernel for q =   9 /  64, rank = 260 / 260
-
-Calculating Coulomb kernel with outcore method: q = 10 / 64
-blksize = 260, nip = 260, max_memory = 8.17e+01 GB
-memory used for each block = 5.06e-02 GB
-    CPU time for solving Coulomb kernel      7.50 sec, wall time      0.28 sec
+    CPU time for solving Coulomb kernel      7.09 sec, wall time      0.27 sec
 Finished solving Coulomb kernel for q =  10 /  64, rank = 260 / 260
-
-Calculating Coulomb kernel with outcore method: q = 11 / 64
-blksize = 260, nip = 260, max_memory = 8.17e+01 GB
-memory used for each block = 5.06e-02 GB
-    CPU time for solving Coulomb kernel      7.92 sec, wall time      0.29 sec
+    CPU time for solving Coulomb kernel      8.49 sec, wall time      0.31 sec
 Finished solving Coulomb kernel for q =  11 /  64, rank = 260 / 260
-
-Calculating Coulomb kernel with outcore method: q = 12 / 64
-blksize = 260, nip = 260, max_memory = 8.17e+01 GB
-memory used for each block = 5.06e-02 GB
-    CPU time for solving Coulomb kernel      8.77 sec, wall time      0.31 sec
+    CPU time for solving Coulomb kernel     10.92 sec, wall time      0.42 sec
 Finished solving Coulomb kernel for q =  12 /  64, rank = 260 / 260
-
-Calculating Coulomb kernel with outcore method: q = 13 / 64
-blksize = 260, nip = 260, max_memory = 8.17e+01 GB
-memory used for each block = 5.06e-02 GB
-    CPU time for solving Coulomb kernel      7.88 sec, wall time      0.29 sec
+    CPU time for solving Coulomb kernel      7.70 sec, wall time      0.29 sec
 Finished solving Coulomb kernel for q =  13 /  64, rank = 260 / 260
-
-Calculating Coulomb kernel with outcore method: q = 14 / 64
-blksize = 260, nip = 260, max_memory = 8.17e+01 GB
-memory used for each block = 5.06e-02 GB
-    CPU time for solving Coulomb kernel      7.59 sec, wall time      0.27 sec
+    CPU time for solving Coulomb kernel      7.31 sec, wall time      0.28 sec
 Finished solving Coulomb kernel for q =  14 /  64, rank = 260 / 260
-
-Calculating Coulomb kernel with outcore method: q = 15 / 64
-blksize = 260, nip = 260, max_memory = 8.17e+01 GB
-memory used for each block = 5.06e-02 GB
-    CPU time for solving Coulomb kernel      7.33 sec, wall time      0.26 sec
+    CPU time for solving Coulomb kernel      8.35 sec, wall time      0.30 sec
 Finished solving Coulomb kernel for q =  15 /  64, rank = 260 / 260
-
-Calculating Coulomb kernel with outcore method: q = 16 / 64
-blksize = 260, nip = 260, max_memory = 8.17e+01 GB
-memory used for each block = 5.06e-02 GB
-    CPU time for solving Coulomb kernel      7.36 sec, wall time      0.27 sec
+    CPU time for solving Coulomb kernel      7.78 sec, wall time      0.30 sec
 Finished solving Coulomb kernel for q =  16 /  64, rank = 260 / 260
-
-Calculating Coulomb kernel with outcore method: q = 17 / 64
-blksize = 260, nip = 260, max_memory = 8.17e+01 GB
-memory used for each block = 5.06e-02 GB
-    CPU time for solving Coulomb kernel      9.56 sec, wall time      0.38 sec
+    CPU time for solving Coulomb kernel      8.05 sec, wall time      0.31 sec
 Finished solving Coulomb kernel for q =  17 /  64, rank = 260 / 260
-
-Calculating Coulomb kernel with outcore method: q = 18 / 64
-blksize = 260, nip = 260, max_memory = 8.17e+01 GB
-memory used for each block = 5.06e-02 GB
-    CPU time for solving Coulomb kernel      9.19 sec, wall time      0.33 sec
+    CPU time for solving Coulomb kernel      7.49 sec, wall time      0.28 sec
 Finished solving Coulomb kernel for q =  18 /  64, rank = 260 / 260
-
-Calculating Coulomb kernel with outcore method: q = 19 / 64
-blksize = 260, nip = 260, max_memory = 8.17e+01 GB
-memory used for each block = 5.06e-02 GB
-    CPU time for solving Coulomb kernel      9.50 sec, wall time      0.34 sec
+    CPU time for solving Coulomb kernel      8.24 sec, wall time      0.31 sec
 Finished solving Coulomb kernel for q =  19 /  64, rank = 260 / 260
-
-Calculating Coulomb kernel with outcore method: q = 20 / 64
-blksize = 260, nip = 260, max_memory = 8.17e+01 GB
-memory used for each block = 5.06e-02 GB
-    CPU time for solving Coulomb kernel     10.68 sec, wall time      0.40 sec
+    CPU time for solving Coulomb kernel      7.30 sec, wall time      0.28 sec
 Finished solving Coulomb kernel for q =  20 /  64, rank = 260 / 260
-
-Calculating Coulomb kernel with outcore method: q = 21 / 64
-blksize = 260, nip = 260, max_memory = 8.17e+01 GB
-memory used for each block = 5.06e-02 GB
-    CPU time for solving Coulomb kernel     12.08 sec, wall time      0.43 sec
+    CPU time for solving Coulomb kernel      7.90 sec, wall time      0.30 sec
 Finished solving Coulomb kernel for q =  21 /  64, rank = 260 / 260
-
-Calculating Coulomb kernel with outcore method: q = 22 / 64
-blksize = 260, nip = 260, max_memory = 8.17e+01 GB
-memory used for each block = 5.06e-02 GB
-    CPU time for solving Coulomb kernel      6.45 sec, wall time      0.24 sec
+    CPU time for solving Coulomb kernel      9.02 sec, wall time      0.35 sec
 Finished solving Coulomb kernel for q =  22 /  64, rank = 260 / 260
-
-Calculating Coulomb kernel with outcore method: q = 23 / 64
-blksize = 260, nip = 260, max_memory = 8.17e+01 GB
-memory used for each block = 5.06e-02 GB
-    CPU time for solving Coulomb kernel      7.49 sec, wall time      0.27 sec
+    CPU time for solving Coulomb kernel      7.83 sec, wall time      0.29 sec
 Finished solving Coulomb kernel for q =  23 /  64, rank = 260 / 260
-
-Calculating Coulomb kernel with outcore method: q = 24 / 64
-blksize = 260, nip = 260, max_memory = 8.17e+01 GB
-memory used for each block = 5.06e-02 GB
-    CPU time for solving Coulomb kernel      8.42 sec, wall time      0.30 sec
+    CPU time for solving Coulomb kernel      8.28 sec, wall time      0.31 sec
 Finished solving Coulomb kernel for q =  24 /  64, rank = 260 / 260
-
-Calculating Coulomb kernel with outcore method: q = 25 / 64
-blksize = 260, nip = 260, max_memory = 8.17e+01 GB
-memory used for each block = 5.06e-02 GB
-    CPU time for solving Coulomb kernel      7.16 sec, wall time      0.26 sec
+    CPU time for solving Coulomb kernel      8.51 sec, wall time      0.32 sec
 Finished solving Coulomb kernel for q =  25 /  64, rank = 260 / 260
-
-Calculating Coulomb kernel with outcore method: q = 26 / 64
-blksize = 260, nip = 260, max_memory = 8.17e+01 GB
-memory used for each block = 5.06e-02 GB
-    CPU time for solving Coulomb kernel      8.16 sec, wall time      0.29 sec
+    CPU time for solving Coulomb kernel      7.41 sec, wall time      0.29 sec
 Finished solving Coulomb kernel for q =  26 /  64, rank = 260 / 260
-
-Calculating Coulomb kernel with outcore method: q = 27 / 64
-blksize = 260, nip = 260, max_memory = 8.17e+01 GB
-memory used for each block = 5.06e-02 GB
-    CPU time for solving Coulomb kernel     10.50 sec, wall time      0.48 sec
+    CPU time for solving Coulomb kernel      7.04 sec, wall time      0.26 sec
 Finished solving Coulomb kernel for q =  27 /  64, rank = 260 / 260
-
-Calculating Coulomb kernel with outcore method: q = 28 / 64
-blksize = 260, nip = 260, max_memory = 8.17e+01 GB
-memory used for each block = 5.06e-02 GB
-    CPU time for solving Coulomb kernel     11.40 sec, wall time      0.41 sec
+    CPU time for solving Coulomb kernel      8.46 sec, wall time      0.32 sec
 Finished solving Coulomb kernel for q =  28 /  64, rank = 260 / 260
-
-Calculating Coulomb kernel with outcore method: q = 29 / 64
-blksize = 260, nip = 260, max_memory = 8.17e+01 GB
-memory used for each block = 5.06e-02 GB
-    CPU time for solving Coulomb kernel      6.47 sec, wall time      0.24 sec
+    CPU time for solving Coulomb kernel      8.64 sec, wall time      0.32 sec
 Finished solving Coulomb kernel for q =  29 /  64, rank = 260 / 260
-
-Calculating Coulomb kernel with outcore method: q = 30 / 64
-blksize = 260, nip = 260, max_memory = 8.17e+01 GB
-memory used for each block = 5.06e-02 GB
-    CPU time for solving Coulomb kernel      7.01 sec, wall time      0.25 sec
+    CPU time for solving Coulomb kernel      7.08 sec, wall time      0.26 sec
 Finished solving Coulomb kernel for q =  30 /  64, rank = 260 / 260
-
-Calculating Coulomb kernel with outcore method: q = 31 / 64
-blksize = 260, nip = 260, max_memory = 8.17e+01 GB
-memory used for each block = 5.06e-02 GB
-    CPU time for solving Coulomb kernel      6.64 sec, wall time      0.24 sec
+    CPU time for solving Coulomb kernel      7.89 sec, wall time      0.29 sec
 Finished solving Coulomb kernel for q =  31 /  64, rank = 260 / 260
-
-Calculating Coulomb kernel with outcore method: q = 32 / 64
-blksize = 260, nip = 260, max_memory = 8.17e+01 GB
-memory used for each block = 5.06e-02 GB
-    CPU time for solving Coulomb kernel      7.91 sec, wall time      0.29 sec
+    CPU time for solving Coulomb kernel      7.48 sec, wall time      0.27 sec
 Finished solving Coulomb kernel for q =  32 /  64, rank = 260 / 260
-
-Calculating Coulomb kernel with outcore method: q = 33 / 64
-blksize = 260, nip = 260, max_memory = 8.17e+01 GB
-memory used for each block = 5.06e-02 GB
-    CPU time for solving Coulomb kernel      9.27 sec, wall time      0.40 sec
+    CPU time for solving Coulomb kernel      7.68 sec, wall time      0.28 sec
 Finished solving Coulomb kernel for q =  33 /  64, rank = 260 / 260
-
-Calculating Coulomb kernel with outcore method: q = 34 / 64
-blksize = 260, nip = 260, max_memory = 8.17e+01 GB
-memory used for each block = 5.06e-02 GB
-    CPU time for solving Coulomb kernel      9.32 sec, wall time      0.33 sec
+    CPU time for solving Coulomb kernel      6.88 sec, wall time      0.25 sec
 Finished solving Coulomb kernel for q =  34 /  64, rank = 260 / 260
-
-Calculating Coulomb kernel with outcore method: q = 35 / 64
-blksize = 260, nip = 260, max_memory = 8.17e+01 GB
-memory used for each block = 5.06e-02 GB
-    CPU time for solving Coulomb kernel     15.81 sec, wall time      0.57 sec
+    CPU time for solving Coulomb kernel      8.22 sec, wall time      0.35 sec
 Finished solving Coulomb kernel for q =  35 /  64, rank = 260 / 260
-
-Calculating Coulomb kernel with outcore method: q = 36 / 64
-blksize = 260, nip = 260, max_memory = 8.17e+01 GB
-memory used for each block = 5.06e-02 GB
-    CPU time for solving Coulomb kernel      8.73 sec, wall time      0.34 sec
+    CPU time for solving Coulomb kernel      8.66 sec, wall time      0.31 sec
 Finished solving Coulomb kernel for q =  36 /  64, rank = 260 / 260
-
-Calculating Coulomb kernel with outcore method: q = 37 / 64
-blksize = 260, nip = 260, max_memory = 8.17e+01 GB
-memory used for each block = 5.06e-02 GB
-    CPU time for solving Coulomb kernel     19.66 sec, wall time      0.70 sec
+    CPU time for solving Coulomb kernel      9.46 sec, wall time      0.36 sec
 Finished solving Coulomb kernel for q =  37 /  64, rank = 260 / 260
-
-Calculating Coulomb kernel with outcore method: q = 38 / 64
-blksize = 260, nip = 260, max_memory = 8.17e+01 GB
-memory used for each block = 5.06e-02 GB
-    CPU time for solving Coulomb kernel      8.23 sec, wall time      0.30 sec
+    CPU time for solving Coulomb kernel      8.37 sec, wall time      0.31 sec
 Finished solving Coulomb kernel for q =  38 /  64, rank = 260 / 260
-
-Calculating Coulomb kernel with outcore method: q = 39 / 64
-blksize = 260, nip = 260, max_memory = 8.17e+01 GB
-memory used for each block = 5.06e-02 GB
-    CPU time for solving Coulomb kernel      8.68 sec, wall time      0.32 sec
+    CPU time for solving Coulomb kernel      7.98 sec, wall time      0.29 sec
 Finished solving Coulomb kernel for q =  39 /  64, rank = 260 / 260
-
-Calculating Coulomb kernel with outcore method: q = 40 / 64
-blksize = 260, nip = 260, max_memory = 8.17e+01 GB
-memory used for each block = 5.06e-02 GB
-    CPU time for solving Coulomb kernel     14.04 sec, wall time      0.51 sec
+    CPU time for solving Coulomb kernel      7.65 sec, wall time      0.28 sec
 Finished solving Coulomb kernel for q =  40 /  64, rank = 260 / 260
-
-Calculating Coulomb kernel with outcore method: q = 41 / 64
-blksize = 260, nip = 260, max_memory = 8.17e+01 GB
-memory used for each block = 5.06e-02 GB
-    CPU time for solving Coulomb kernel     17.12 sec, wall time      0.59 sec
+    CPU time for solving Coulomb kernel      8.04 sec, wall time      0.30 sec
 Finished solving Coulomb kernel for q =  41 /  64, rank = 260 / 260
-
-Calculating Coulomb kernel with outcore method: q = 42 / 64
-blksize = 260, nip = 260, max_memory = 8.17e+01 GB
-memory used for each block = 5.06e-02 GB
-    CPU time for solving Coulomb kernel      7.86 sec, wall time      0.28 sec
+    CPU time for solving Coulomb kernel      7.79 sec, wall time      0.29 sec
 Finished solving Coulomb kernel for q =  42 /  64, rank = 260 / 260
-
-Calculating Coulomb kernel with outcore method: q = 43 / 64
-blksize = 260, nip = 260, max_memory = 8.17e+01 GB
-memory used for each block = 5.06e-02 GB
-    CPU time for solving Coulomb kernel      7.52 sec, wall time      0.27 sec
+    CPU time for solving Coulomb kernel      6.94 sec, wall time      0.26 sec
 Finished solving Coulomb kernel for q =  43 /  64, rank = 260 / 260
-
-Calculating Coulomb kernel with outcore method: q = 44 / 64
-blksize = 260, nip = 260, max_memory = 8.17e+01 GB
-memory used for each block = 5.06e-02 GB
-    CPU time for solving Coulomb kernel      8.74 sec, wall time      0.36 sec
+    CPU time for solving Coulomb kernel      8.23 sec, wall time      0.31 sec
 Finished solving Coulomb kernel for q =  44 /  64, rank = 260 / 260
-
-Calculating Coulomb kernel with outcore method: q = 45 / 64
-blksize = 260, nip = 260, max_memory = 8.17e+01 GB
-memory used for each block = 5.06e-02 GB
-    CPU time for solving Coulomb kernel     11.81 sec, wall time      0.45 sec
+    CPU time for solving Coulomb kernel      8.10 sec, wall time      0.30 sec
 Finished solving Coulomb kernel for q =  45 /  64, rank = 260 / 260
-
-Calculating Coulomb kernel with outcore method: q = 46 / 64
-blksize = 260, nip = 260, max_memory = 8.17e+01 GB
-memory used for each block = 5.06e-02 GB
-    CPU time for solving Coulomb kernel     10.41 sec, wall time      0.38 sec
+    CPU time for solving Coulomb kernel      9.01 sec, wall time      0.32 sec
 Finished solving Coulomb kernel for q =  46 /  64, rank = 260 / 260
-
-Calculating Coulomb kernel with outcore method: q = 47 / 64
-blksize = 260, nip = 260, max_memory = 8.17e+01 GB
-memory used for each block = 5.06e-02 GB
-    CPU time for solving Coulomb kernel     12.64 sec, wall time      0.47 sec
+    CPU time for solving Coulomb kernel      6.92 sec, wall time      0.26 sec
 Finished solving Coulomb kernel for q =  47 /  64, rank = 260 / 260
-
-Calculating Coulomb kernel with outcore method: q = 48 / 64
-blksize = 260, nip = 260, max_memory = 8.17e+01 GB
-memory used for each block = 5.06e-02 GB
-    CPU time for solving Coulomb kernel     23.88 sec, wall time      0.82 sec
+    CPU time for solving Coulomb kernel      7.50 sec, wall time      0.27 sec
 Finished solving Coulomb kernel for q =  48 /  64, rank = 260 / 260
-
-Calculating Coulomb kernel with outcore method: q = 49 / 64
-blksize = 260, nip = 260, max_memory = 8.17e+01 GB
-memory used for each block = 5.06e-02 GB
-    CPU time for solving Coulomb kernel      9.25 sec, wall time      0.33 sec
+    CPU time for solving Coulomb kernel      7.52 sec, wall time      0.28 sec
 Finished solving Coulomb kernel for q =  49 /  64, rank = 260 / 260
-
-Calculating Coulomb kernel with outcore method: q = 50 / 64
-blksize = 260, nip = 260, max_memory = 8.17e+01 GB
-memory used for each block = 5.06e-02 GB
-    CPU time for solving Coulomb kernel      8.64 sec, wall time      0.31 sec
+    CPU time for solving Coulomb kernel      7.47 sec, wall time      0.27 sec
 Finished solving Coulomb kernel for q =  50 /  64, rank = 260 / 260
-
-Calculating Coulomb kernel with outcore method: q = 51 / 64
-blksize = 260, nip = 260, max_memory = 8.17e+01 GB
-memory used for each block = 5.06e-02 GB
-    CPU time for solving Coulomb kernel     12.55 sec, wall time      0.52 sec
+    CPU time for solving Coulomb kernel      7.18 sec, wall time      0.26 sec
 Finished solving Coulomb kernel for q =  51 /  64, rank = 260 / 260
-
-Calculating Coulomb kernel with outcore method: q = 52 / 64
-blksize = 260, nip = 260, max_memory = 8.17e+01 GB
-memory used for each block = 5.06e-02 GB
-    CPU time for solving Coulomb kernel      8.78 sec, wall time      0.31 sec
+    CPU time for solving Coulomb kernel      7.55 sec, wall time      0.28 sec
 Finished solving Coulomb kernel for q =  52 /  64, rank = 260 / 260
-
-Calculating Coulomb kernel with outcore method: q = 53 / 64
-blksize = 260, nip = 260, max_memory = 8.17e+01 GB
-memory used for each block = 5.06e-02 GB
-    CPU time for solving Coulomb kernel      7.22 sec, wall time      0.26 sec
+    CPU time for solving Coulomb kernel      7.49 sec, wall time      0.27 sec
 Finished solving Coulomb kernel for q =  53 /  64, rank = 260 / 260
-
-Calculating Coulomb kernel with outcore method: q = 54 / 64
-blksize = 260, nip = 260, max_memory = 8.17e+01 GB
-memory used for each block = 5.06e-02 GB
-    CPU time for solving Coulomb kernel      7.66 sec, wall time      0.28 sec
+    CPU time for solving Coulomb kernel      6.66 sec, wall time      0.25 sec
 Finished solving Coulomb kernel for q =  54 /  64, rank = 260 / 260
-
-Calculating Coulomb kernel with outcore method: q = 55 / 64
-blksize = 260, nip = 260, max_memory = 8.17e+01 GB
-memory used for each block = 5.06e-02 GB
-    CPU time for solving Coulomb kernel      7.62 sec, wall time      0.28 sec
+    CPU time for solving Coulomb kernel      7.73 sec, wall time      0.29 sec
 Finished solving Coulomb kernel for q =  55 /  64, rank = 260 / 260
-
-Calculating Coulomb kernel with outcore method: q = 56 / 64
-blksize = 260, nip = 260, max_memory = 8.17e+01 GB
-memory used for each block = 5.06e-02 GB
-    CPU time for solving Coulomb kernel     23.40 sec, wall time      0.80 sec
+    CPU time for solving Coulomb kernel      6.97 sec, wall time      0.26 sec
 Finished solving Coulomb kernel for q =  56 /  64, rank = 260 / 260
-
-Calculating Coulomb kernel with outcore method: q = 57 / 64
-blksize = 260, nip = 260, max_memory = 8.17e+01 GB
-memory used for each block = 5.06e-02 GB
-    CPU time for solving Coulomb kernel      8.48 sec, wall time      0.30 sec
+    CPU time for solving Coulomb kernel      7.33 sec, wall time      0.27 sec
 Finished solving Coulomb kernel for q =  57 /  64, rank = 260 / 260
-
-Calculating Coulomb kernel with outcore method: q = 58 / 64
-blksize = 260, nip = 260, max_memory = 8.17e+01 GB
-memory used for each block = 5.06e-02 GB
-    CPU time for solving Coulomb kernel      8.99 sec, wall time      0.33 sec
+    CPU time for solving Coulomb kernel      6.68 sec, wall time      0.25 sec
 Finished solving Coulomb kernel for q =  58 /  64, rank = 260 / 260
-
-Calculating Coulomb kernel with outcore method: q = 59 / 64
-blksize = 260, nip = 260, max_memory = 8.17e+01 GB
-memory used for each block = 5.06e-02 GB
-    CPU time for solving Coulomb kernel      8.42 sec, wall time      0.30 sec
+    CPU time for solving Coulomb kernel      6.64 sec, wall time      0.25 sec
 Finished solving Coulomb kernel for q =  59 /  64, rank = 260 / 260
-
-Calculating Coulomb kernel with outcore method: q = 60 / 64
-blksize = 260, nip = 260, max_memory = 8.17e+01 GB
-memory used for each block = 5.06e-02 GB
-    CPU time for solving Coulomb kernel      7.32 sec, wall time      0.27 sec
+    CPU time for solving Coulomb kernel      6.76 sec, wall time      0.25 sec
 Finished solving Coulomb kernel for q =  60 /  64, rank = 260 / 260
-
-Calculating Coulomb kernel with outcore method: q = 61 / 64
-blksize = 260, nip = 260, max_memory = 8.17e+01 GB
-memory used for each block = 5.06e-02 GB
-    CPU time for solving Coulomb kernel     13.15 sec, wall time      0.49 sec
+    CPU time for solving Coulomb kernel      7.97 sec, wall time      0.29 sec
 Finished solving Coulomb kernel for q =  61 /  64, rank = 260 / 260
-
-Calculating Coulomb kernel with outcore method: q = 62 / 64
-blksize = 260, nip = 260, max_memory = 8.17e+01 GB
-memory used for each block = 5.06e-02 GB
-    CPU time for solving Coulomb kernel      8.58 sec, wall time      0.32 sec
+    CPU time for solving Coulomb kernel     17.39 sec, wall time      0.61 sec
 Finished solving Coulomb kernel for q =  62 /  64, rank = 260 / 260
-
-Calculating Coulomb kernel with outcore method: q = 63 / 64
-blksize = 260, nip = 260, max_memory = 8.17e+01 GB
-memory used for each block = 5.06e-02 GB
-    CPU time for solving Coulomb kernel     17.78 sec, wall time      0.61 sec
+    CPU time for solving Coulomb kernel      8.10 sec, wall time      0.29 sec
 Finished solving Coulomb kernel for q =  63 /  64, rank = 260 / 260
-
-Calculating Coulomb kernel with outcore method: q = 64 / 64
-blksize = 260, nip = 260, max_memory = 8.17e+01 GB
-memory used for each block = 5.06e-02 GB
-    CPU time for solving Coulomb kernel      7.42 sec, wall time      0.27 sec
+    CPU time for solving Coulomb kernel      7.60 sec, wall time      0.29 sec
 Finished solving Coulomb kernel for q =  64 /  64, rank = 260 / 260
-Saving FFTISDF results to /central/scratch/yangjunjie/run-scf-kpt-diamond-prim-4-4-4-fftisdf-jy-32-100-c0-10.0-k0-80.0/47996027/tmpmqhb53b7
-    CPU time for building ISDF    713.63 sec, wall time     30.62 sec
+Saving FFTISDF results to /central/scratch/yangjunjie/run-scf-kpt-diamond-prim-4-4-4-fftisdf-jy-32-100-c0-10.0-k0-80.0/48103636/tmpxjs477hx
+    CPU time for building ISDF    602.68 sec, wall time     27.25 sec
 
 
 ******** <class 'pyscf.pbc.dft.krks.KRKS'> ********
@@ -517,8 +261,8 @@ SCF conv_tol_grad = None
 SCF max_cycles = 50
 direct_scf = True
 direct_scf_tol = 1e-13
-chkfile to save SCF result = /central/scratch/yangjunjie/run-scf-kpt-diamond-prim-4-4-4-fftisdf-jy-32-100-c0-10.0-k0-80.0/47996027/tmpxk4pkk8c
-max_memory 81920 MB (current use 352 MB)
+chkfile to save SCF result = /central/scratch/yangjunjie/run-scf-kpt-diamond-prim-4-4-4-fftisdf-jy-32-100-c0-10.0-k0-80.0/48103636/tmpcy_k3j6i
+max_memory 102400 MB (current use 359 MB)
 
 
 ******** PBC SCF flags ********
@@ -588,16 +332,16 @@ kpts = [[ 0.00000000e+00  0.00000000e+00  0.00000000e+00]
  [ 7.62420288e-01  5.39112637e-01  6.60275424e-01]
  [ 5.71815216e-01  4.04334478e-01  9.90413137e-01]]
 Exchange divergence treatment (exxdiv) = None
-DF object = <fft_isdf.InterpolativeSeparableDensityFitting object at 0x7f5d12cc1be0>
+DF object = <fft_isdf.InterpolativeSeparableDensityFitting object at 0x7f61799e6b50>
 XC functionals = PBE0
 small_rho_cutoff = 1e-07
 Set gradient conv threshold to 0.0001
 nelec by numeric integration = 7.9999999999999725
-    CPU time for vxc     30.89 sec, wall time      0.99 sec
-    CPU time for vj and vk     41.21 sec, wall time      1.36 sec
-E1 = (4.75455804682885-2.3165428933399587e-18j)  Ecoul = (1.4901513393345167+2.9324328196829045e-20j)  Exc = -3.5594652584030397
+    CPU time for vxc     36.33 sec, wall time      1.14 sec
+    CPU time for vj and vk     35.52 sec, wall time      1.17 sec
+E1 = (4.75455804682885+1.0648420386347539e-18j)  Ecoul = (1.490151339334517+2.9324328196829045e-20j)  Exc = -3.5594652584030397
 init E= -10.1236289702258
-    CPU time for initialize scf    111.39 sec, wall time      3.79 sec
+    CPU time for initialize scf    108.82 sec, wall time      3.71 sec
 HOMO = 0.596088630459  LUMO = 0.754680357865
      k-point                  mo_energy
    0 ( 0.000  0.000  0.000)   [-0.3368271   0.59598241  0.59606665  0.59608863] [0.79608932 0.79621562 0.79626896 1.11302038 1.73379046 1.73381576
@@ -857,11 +601,11 @@ HOMO = 0.596088630459  LUMO = 0.754680357865
  3.37272103 3.37274739 3.3865149  3.64315686 3.64318897 3.64877413
  4.62145242 4.62147413 9.02995717 9.19553107]
 nelec by numeric integration = 8.000000000004555
-    CPU time for vxc     23.84 sec, wall time      0.78 sec
-    CPU time for vj and vk     45.10 sec, wall time      1.52 sec
-E1 = (4.055354096831844+9.825582188149884e-19j)  Ecoul = (0.9919526219400561+1.0299920638612292e-18j)  Exc = -3.4138522066556347
+    CPU time for vxc     17.66 sec, wall time      0.56 sec
+    CPU time for vj and vk     32.67 sec, wall time      1.05 sec
+E1 = (4.055354096831844+1.212951180468158e-18j)  Ecoul = (0.991952621940056+3.4558944247975454e-19j)  Exc = -3.4138522066556343
 cycle= 1 E= -11.1754185858698  delta_E= -1.05  |g|= 1.39  |ddm|= 21.3
-    CPU time for cycle= 1     71.16 sec, wall time      2.39 sec
+    CPU time for cycle= 1     52.35 sec, wall time      1.69 sec
 HOMO = 0.503827734825  LUMO = 0.716991786484
      k-point                  mo_energy
    0 ( 0.000  0.000  0.000)   [-0.34394511  0.50368653  0.50380837  0.50382773] [0.74561073 0.74576011 0.74581764 1.08233206 1.68951041 1.68954409
@@ -1121,11 +865,11 @@ HOMO = 0.503827734825  LUMO = 0.716991786484
  3.31040076 3.31042004 3.31666485 3.58027103 3.58030349 3.58440843
  4.55678645 4.55679714 8.81615067 8.98259707]
 nelec by numeric integration = 8.000000000003208
-    CPU time for vxc     20.70 sec, wall time      0.67 sec
-    CPU time for vj and vk     36.17 sec, wall time      1.20 sec
-E1 = (3.992620592984355+1.4907779871675686e-19j)  Ecoul = (1.0757867703470576-2.371692252312041e-20j)  Exc = -3.442169040990577
+    CPU time for vxc     16.68 sec, wall time      0.53 sec
+    CPU time for vj and vk     31.90 sec, wall time      1.09 sec
+E1 = (3.9926205929843532+5.21772295508649e-19j)  Ecoul = (1.0757867703470576-2.846030702774449e-19j)  Exc = -3.4421690409905774
 cycle= 2 E= -11.1826347756452  delta_E= -0.00722  |g|= 0.205  |ddm|= 1.14
-    CPU time for cycle= 2     62.33 sec, wall time      2.05 sec
+    CPU time for cycle= 2     54.98 sec, wall time      1.85 sec
 HOMO = 0.512688629715  LUMO = 0.724825925985
      k-point                  mo_energy
    0 ( 0.000  0.000  0.000)   [-0.33599139  0.51254891  0.51267006  0.51268863] [0.75461627 0.75475978 0.75481888 1.09591222 1.6951762  1.69520898
@@ -1385,11 +1129,11 @@ HOMO = 0.512688629715  LUMO = 0.724825925985
  3.31999319 3.32001277 3.32655064 3.589701   3.58973002 3.59497807
  4.56707066 4.56708125 8.84024194 9.00658992]
 nelec by numeric integration = 8.000000000003151
-    CPU time for vxc     26.34 sec, wall time      0.90 sec
-    CPU time for vj and vk     36.32 sec, wall time      1.19 sec
-E1 = (4.000199808023207-1.2197274440461925e-18j)  Ecoul = (1.0642701603286953-5.89534931288993e-19j)  Exc = -3.438363079720486
+    CPU time for vxc     16.85 sec, wall time      0.57 sec
+    CPU time for vj and vk     26.32 sec, wall time      0.85 sec
+E1 = (4.00019980802321+2.710505431213761e-19j)  Ecoul = (1.0642701603286953+2.710505431213761e-19j)  Exc = -3.438363079720486
 cycle= 3 E= -11.1827662093547  delta_E= -0.000131  |g|= 0.00693  |ddm|= 0.157
-    CPU time for cycle= 3     68.65 sec, wall time      2.29 sec
+    CPU time for cycle= 3     49.14 sec, wall time      1.62 sec
 HOMO = 0.512316846254  LUMO = 0.72478528017
      k-point                  mo_energy
    0 ( 0.000  0.000  0.000)   [-0.33605012  0.51217685  0.51229825  0.51231685] [0.75452657 0.75466968 0.754729   1.09601411 1.69502636 1.69505928
@@ -1649,11 +1393,11 @@ HOMO = 0.512316846254  LUMO = 0.72478528017
  3.31976395 3.31978372 3.32627942 3.58946899 3.58949784 3.5947612
  4.56684469 4.56685528 8.83933417 9.00568265]
 nelec by numeric integration = 8.00000000000314
-    CPU time for vxc     18.95 sec, wall time      0.61 sec
-    CPU time for vj and vk     34.21 sec, wall time      1.13 sec
-E1 = (4.000027986431745+9.486769009248164e-20j)  Ecoul = (1.0645265802160266-6.911788849595091e-19j)  Exc = -3.4384479282781095
+    CPU time for vxc     18.13 sec, wall time      0.59 sec
+    CPU time for vj and vk     32.67 sec, wall time      1.06 sec
+E1 = (4.0000279864317445+1.6534083130403943e-18j)  Ecoul = (1.064526580216026+2.812149384884277e-19j)  Exc = -3.438447928278109
 cycle= 4 E= -11.1827664596164  delta_E= -2.5e-07  |g|= 0.000583  |ddm|= 0.00814
-    CPU time for cycle= 4     86.58 sec, wall time      2.84 sec
+    CPU time for cycle= 4     58.75 sec, wall time      1.94 sec
 HOMO = 0.512316541081  LUMO = 0.724783712307
      k-point                  mo_energy
    0 ( 0.000  0.000  0.000)   [-0.33605067  0.51217655  0.51229795  0.51231654] [0.75452456 0.75466766 0.75472699 1.09601361 1.6950254  1.69505832
@@ -1913,11 +1657,11 @@ HOMO = 0.512316541081  LUMO = 0.724783712307
  3.31976284 3.31978261 3.32627865 3.58946803 3.58949687 3.59475974
  4.56684325 4.56685384 8.83933499 9.00568345]
 nelec by numeric integration = 8.00000000000314
-    CPU time for vxc     15.88 sec, wall time      0.51 sec
-    CPU time for vj and vk     42.39 sec, wall time      1.40 sec
-E1 = (4.00002770677732-2.710505431213761e-19j)  Ecoul = (1.0645268346846672-2.439454888092385e-19j)  Exc = -3.438447903608275
+    CPU time for vxc     15.43 sec, wall time      0.49 sec
+    CPU time for vj and vk     35.28 sec, wall time      1.15 sec
+E1 = (4.000027706777319+1.8295911660692887e-18j)  Ecoul = (1.064526834684667-3.7608262858090935e-19j)  Exc = -3.4384479036082736
 cycle= 5 E= -11.1827664601324  delta_E= -5.16e-10  |g|= 0.000448  |ddm|= 0.000872
-    CPU time for cycle= 5     65.80 sec, wall time      2.19 sec
+    CPU time for cycle= 5     58.56 sec, wall time      1.90 sec
 HOMO = 0.512316465331  LUMO = 0.724783260085
      k-point                  mo_energy
    0 ( 0.000  0.000  0.000)   [-0.33605084  0.51217648  0.51229788  0.51231647] [0.75452397 0.75466707 0.75472641 1.09601346 1.69502513 1.69505805
@@ -2177,11 +1921,11 @@ HOMO = 0.512316465331  LUMO = 0.724783260085
  3.31976253 3.3197823  3.32627843 3.58946776 3.5894966  3.59475933
  4.56684285 4.56685344 8.83933518 9.00568364]
 nelec by numeric integration = 8.00000000000314
-    CPU time for vxc     20.95 sec, wall time      0.70 sec
-    CPU time for vj and vk     42.10 sec, wall time      1.39 sec
-E1 = (4.000027632715268-1.043544591017298e-18j)  Ecoul = (1.0645268951155513+1.1519648082658485e-19j)  Exc = -3.438447890718144
+    CPU time for vxc     19.36 sec, wall time      0.63 sec
+    CPU time for vj and vk     27.02 sec, wall time      0.86 sec
+E1 = (4.000027632715269+9.215718466126788e-19j)  Ecoul = (1.0645268951155513-1.3213713977167085e-19j)  Exc = -3.438447890718144
 cycle= 6 E= -11.1827664608734  delta_E= -7.41e-10  |g|= 1.51e-06  |ddm|= 0.000379
-    CPU time for cycle= 6     69.48 sec, wall time      2.33 sec
+    CPU time for cycle= 6     53.66 sec, wall time      1.73 sec
 HOMO = 0.512316444696  LUMO = 0.724783230212
      k-point                  mo_energy
    0 ( 0.000  0.000  0.000)   [-0.33605086  0.51217646  0.51229785  0.51231644] [0.75452393 0.75466703 0.75472636 1.09601345 1.6950251  1.69505802
@@ -2441,11 +2185,11 @@ HOMO = 0.512316444696  LUMO = 0.724783230212
  3.3197625  3.31978227 3.3262784  3.58946773 3.58949657 3.5947593
  4.56684282 4.56685341 8.83933507 9.00568353]
 nelec by numeric integration = 8.00000000000314
-    CPU time for vxc     34.85 sec, wall time      1.14 sec
-    CPU time for vj and vk     40.75 sec, wall time      1.34 sec
-E1 = (4.000027621860752-1.1926223897340549e-18j)  Ecoul = (1.0645269084571978+5.149960319306146e-19j)  Exc = -3.4384478932052667
-Extra cycle  E= -11.1827664608734  delta_E= 7.11e-15  |g|= 4.72e-07  |ddm|= 1.71e-06
-    CPU time for scf_cycle    612.71 sec, wall time     20.42 sec
-    CPU time for SCF    616.77 sec, wall time     20.55 sec
+    CPU time for vxc     15.66 sec, wall time      0.49 sec
+    CPU time for vj and vk     27.43 sec, wall time      0.88 sec
+E1 = (4.000027621860754-9.486769009248164e-19j)  Ecoul = (1.064526908457198+2.371692252312041e-20j)  Exc = -3.4384478932052667
+Extra cycle  E= -11.1827664608734  delta_E= 1.07e-14  |g|= 4.72e-07  |ddm|= 1.71e-06
+    CPU time for scf_cycle    482.36 sec, wall time     16.15 sec
+    CPU time for SCF    490.94 sec, wall time     16.66 sec
 converged SCF energy = -11.1827664608734
-Successfully saved all results to /central/scratch/yangjunjie//run-scf-kpt-diamond-prim-4-4-4-fftisdf-jy-32-100-c0-10.0-k0-80.0/47996027/scf.h5
+Successfully saved all results to /central/scratch/yangjunjie//run-scf-kpt-diamond-prim-4-4-4-fftisdf-jy-32-100-c0-10.0-k0-80.0/48103636/scf.h5

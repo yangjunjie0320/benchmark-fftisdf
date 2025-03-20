@@ -2,7 +2,7 @@
 #SBATCH --exclude=hpc-21-34,hpc-34-34,hpc-52-29
 #SBATCH --job-name=run-scf-kpt-diamond-prim-4-4-4-fftisdf-jy-32-100-c0-10.0-k0-80.0
 #SBATCH --cpus-per-task=32
-#SBATCH --mem=80GB
+#SBATCH --mem=100GB
 #SBATCH --time=00:30:00
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1

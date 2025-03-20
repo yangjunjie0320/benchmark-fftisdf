@@ -1,9 +1,9 @@
 #!/bin/bash
 #SBATCH --exclude=hpc-21-34,hpc-34-34,hpc-52-29
-#SBATCH --job-name=run-uks-kpt-nio-afm-1-1-2-gdf-64
-#SBATCH --cpus-per-task=64
+#SBATCH --job-name=run-uks-kpt-nio-afm-1-1-1-gdf-32
+#SBATCH --cpus-per-task=32
 #SBATCH --mem=400GB
-#SBATCH --time=10:00:00
+#SBATCH --time=20:00:00
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
 #SBATCH --reservation=changroup_standingres
@@ -44,5 +44,5 @@ export PREFIX=/central/home/junjiey/work/benchmark-fftisdf
 export DATA_PATH=$PREFIX/data/
 export PYTHONPATH=$PREFIX/src/:$PYTHONPATH
 export PYSCF_EXT_PATH=$HOME/packages/pyscf-forge/pyscf-forge-ning-isdf4/
-cp /central/home/junjiey/work/benchmark-fftisdf/src/script/run-uks-kpt.py /central/home/junjiey/work/benchmark-fftisdf/work/run-uks-kpt/nio-afm/1-1-2/gdf-64//main.py
-python main.py --name=nio-afm --df=gdf --ke_cutoff=None --exxdiv=None --chk_path=../../../gdf-64/tmp/scf.h5 --mesh=1,1,2
+cp /central/home/junjiey/work/benchmark-fftisdf/src/script/run-uks-kpt.py /central/home/junjiey/work/benchmark-fftisdf/work/run-uks-kpt/nio-afm/1-1-1/gdf-32//main.py
+python main.py --name=nio-afm --df=gdf --ke_cutoff=None --exxdiv=None --chk_path=None --mesh=1,1,1

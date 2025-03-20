@@ -64,7 +64,7 @@ def main(config):
     ke_cutoff = config.pop("ke_cutoff")
     kmesh = config.pop("mesh")
 
-    from utils import get_cell, INFO
+    from utils import get_cell, INFO, gen_afm_guess
     cell = get_cell(name)
     cell.ke_cutoff = INFO[name]["ke_cutoff"]
     if ke_cutoff is not None:
@@ -80,7 +80,7 @@ def main(config):
     log.timer("build", *t0)
 
     from pyscf.pbc.scf import KRKS, KUKS
-    scf_obj = KRKS(cell, kpts=kpts)
+    scf_obj = KUKS(cell, kpts=kpts)
     scf_obj.xc = "PBE0"
     scf_obj.with_df = df_obj
     scf_obj.exxdiv = exxdiv
@@ -88,7 +88,10 @@ def main(config):
     scf_obj._is_mem_enough = lambda : False
     scf_obj.conv_tol = 1e-8
 
-    dm0 = scf_obj.get_init_guess(key="minao")
+    s1e = None
+    h1e = None
+    dm0 = None
+
     if chk_path is not None:
         from pyscf.lib import tag_array
         from pyscf.lib.chkfile import load
@@ -97,6 +100,24 @@ def main(config):
         n0_mo = load(chk_path, "n0_mo")
         dm0 = tag_array(dm0, mo_coeff=c0_mo, mo_occ=n0_mo)
         print("Successfully loaded dm0 from %s" % chk_path)
+
+        h1e = load(chk_path, "h1e")
+        s1e = load(chk_path, "s1e")
+        print("Successfully loaded h1e and s1e from %s" % chk_path)
+
+    if h1e is None or s1e is None:
+        h1e = scf_obj.get_hcore()
+        s1e = scf_obj.get_ovlp()
+
+    if dm0 is None:
+        dm0 = scf_obj.get_init_guess(key="minao")
+        afm_guess = INFO[name].get("afm_guess", None)
+        if afm_guess is not None:
+            dm0 = gen_afm_guess(cell, dm0, afm_guess=afm_guess, ovlp=s1e)
+
+    assert dm0 is not None
+    assert h1e is not None
+    assert s1e is not None
 
     assert exxdiv == None
     t0 = (process_clock(), perf_counter())
