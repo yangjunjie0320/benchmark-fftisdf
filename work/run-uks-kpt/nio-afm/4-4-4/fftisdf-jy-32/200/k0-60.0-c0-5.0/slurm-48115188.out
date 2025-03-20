@@ -229,3 +229,36 @@ Finished solving Coulomb kernel for q =  55 /  64, rank = 195 / 195
     CPU time for solving Coulomb kernel     21.33 sec, wall time      1.02 sec
 Finished solving Coulomb kernel for q =  56 /  64, rank = 195 / 195
     CPU time for solving Coulomb kernel     29.49 sec, wall time      1.20 sec
+Finished solving Coulomb kernel for q =  57 /  64, rank = 195 / 195
+    CPU time for solving Coulomb kernel     15.68 sec, wall time      0.71 sec
+Finished solving Coulomb kernel for q =  58 /  64, rank = 195 / 195
+    CPU time for solving Coulomb kernel     18.18 sec, wall time      0.78 sec
+Finished solving Coulomb kernel for q =  59 /  64, rank = 195 / 195
+    CPU time for solving Coulomb kernel     16.58 sec, wall time      0.73 sec
+Finished solving Coulomb kernel for q =  60 /  64, rank = 195 / 195
+    CPU time for solving Coulomb kernel     14.12 sec, wall time      0.64 sec
+Finished solving Coulomb kernel for q =  61 /  64, rank = 195 / 195
+    CPU time for solving Coulomb kernel     14.83 sec, wall time      0.69 sec
+Finished solving Coulomb kernel for q =  62 /  64, rank = 195 / 195
+    CPU time for solving Coulomb kernel     14.35 sec, wall time      0.65 sec
+Finished solving Coulomb kernel for q =  63 /  64, rank = 195 / 195
+    CPU time for solving Coulomb kernel     15.65 sec, wall time      0.69 sec
+Finished solving Coulomb kernel for q =  64 /  64, rank = 195 / 195
+    CPU time for solving Coulomb kernel     20.12 sec, wall time      0.85 sec
+Saving FFTISDF results to /central/scratch/yangjunjie/run-uks-kpt-nio-afm-4-4-4-fftisdf-jy-32-200-k0-60.0-c0-5.0/48115188/tmpbc63jky1
+    CPU time for building ISDF   1301.55 sec, wall time     73.58 sec
+Traceback (most recent call last):
+  File "/central/home/junjiey/work/benchmark-fftisdf/work/run-uks-kpt/nio-afm/4-4-4/fftisdf-jy-32/200/k0-60.0-c0-5.0/main.py", line 205, in <module>
+    e_tot = main(config)
+  File "/central/home/junjiey/work/benchmark-fftisdf/work/run-uks-kpt/nio-afm/4-4-4/fftisdf-jy-32/200/k0-60.0-c0-5.0/main.py", line 98, in main
+    dm0 = load(chk_path, "dm0")
+  File "/home/junjiey/anaconda3/envs/fftisdf/lib/python3.9/site-packages/pyscf/lib/chkfile.py", line 72, in load
+    with h5py.File(chkfile, 'r') as fh5:
+  File "/home/junjiey/anaconda3/envs/fftisdf/lib/python3.9/site-packages/h5py/_hl/files.py", line 564, in __init__
+    fid = make_fid(name, mode, userblock_size, fapl, fcpl, swmr=swmr)
+  File "/home/junjiey/anaconda3/envs/fftisdf/lib/python3.9/site-packages/h5py/_hl/files.py", line 238, in make_fid
+    fid = h5f.open(name, flags, fapl=fapl)
+  File "h5py/_objects.pyx", line 54, in h5py._objects.with_phil.wrapper
+  File "h5py/_objects.pyx", line 55, in h5py._objects.with_phil.wrapper
+  File "h5py/h5f.pyx", line 102, in h5py.h5f.open
+FileNotFoundError: [Errno 2] Unable to synchronously open file (unable to open file: name = '../../../gdf-32/tmp/scf.h5', errno = 2, error message = 'No such file or directory', flags = 0, o_flags = 0)

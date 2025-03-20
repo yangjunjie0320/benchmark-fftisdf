@@ -1,0 +1,56 @@
+SLURMD_NODENAME = hpc-34-07
+Start time = Thu Mar 20 03:18:50 PM PDT 2025
+OMP_NUM_THREADS = 1
+MKL_NUM_THREADS = 1
+PYSCF_MAX_MEMORY = 10240
+TMPDIR = /central/scratch/yangjunjie//run-uks-kpt-nio-conv-1-1-1-fftisdf-jy-1-200-k0-40.0-c0-5.0/48115235/
+PYSCF_TMPDIR = /central/scratch/yangjunjie//run-uks-kpt-nio-conv-1-1-1-fftisdf-jy-1-200-k0-40.0-c0-5.0/48115235/
+
+/home/junjiey/anaconda3/envs/fftisdf/bin/python
+2.8.0
+1.13.1
+2.0.2
+fft_engine = NUMPY+BLAS
+name = nio-conv
+ke_cutoff =  2.00e+02
+exxdiv = None
+df = fftisdf-jy
+chk_path = ../../../gdf-32/tmp/scf.h5
+mesh = 1,1,1
+c0 =  5.00e+00
+k0 =  4.00e+01
+
+Discarded 28 diffused primitive functions, 0 contracted functions
+ke_cutoff = 200.0
+g0 = [[ 0.          0.          0.        ]
+ [ 0.          0.          0.31644126]
+ [ 0.          0.          0.63288252]
+ ...
+ [-0.31644126 -0.31644126 -0.94932378]
+ [-0.31644126 -0.31644126 -0.63288252]
+ [-0.31644126 -0.31644126 -0.31644126]], m0 = [25 25 25]
+Pivoted Cholesky rank = 7973, estimated error = 6.51e-02
+Parent grid size = 15625, selected grid size = 780
+    CPU time for interpolating functions     27.18 sec, wall time     27.29 sec
+
+
+******** <class 'fft_isdf.InterpolativeSeparableDensityFitting'> ********
+mesh = [53 53 53] (148877 PWs)
+len(kpts) = 1
+
+WARN: ke_cutoff/mesh (200 / [53 53 53]) is not enough for FFTDF to get integral accuracy 1e-08.
+Coulomb integral error is ~ 29 Eh.
+Recommended ke_cutoff/mesh are 1172.14 / [123 123 123].
+
+kmesh = [1 1 1]
+kpts = 
+[[0. 0. 0.]]
+nip = 780, nao = 156, cisdf =   5.00
+    CPU time for get interpolating vectors      0.03 sec
+blksize = 148877, ngrid = 148877
+Use in-core for eta_kpt, memory used for eta_kpt = 1.86e+00 GB
+    CPU time for aoR_loop: [       0,   148877]      6.89 sec, wall time      6.92 sec
+eta_kpt.shape = (1, 148877, 780)
+Memory used for eta_kpt = 1.86e+00 GB
+Memory required for each k-point = 1.86e+00 GB
+Max memory available = 1.01e+04 GB
