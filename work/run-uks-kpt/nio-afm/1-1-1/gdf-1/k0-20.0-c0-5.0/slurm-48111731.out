@@ -1,0 +1,47 @@
+SLURMD_NODENAME = hpc-53-04
+Start time = Thu Mar 20 02:53:18 PM PDT 2025
+OMP_NUM_THREADS = 1
+MKL_NUM_THREADS = 1
+PYSCF_MAX_MEMORY = 409600
+TMPDIR = /central/scratch/yangjunjie//run-uks-kpt-nio-afm-1-1-1-gdf-1-k0-20.0-c0-5.0/48111731/
+PYSCF_TMPDIR = /central/scratch/yangjunjie//run-uks-kpt-nio-afm-1-1-1-gdf-1-k0-20.0-c0-5.0/48111731/
+
+/home/junjiey/anaconda3/envs/fftisdf/bin/python
+2.8.0
+1.13.1
+2.0.2
+fft_engine = NUMPY+BLAS
+name = nio-afm
+ke_cutoff = None
+exxdiv = None
+df = gdf
+chk_path = ../../../gdf-32/tmp/scf.h5
+mesh = 1,1,1
+
+Discarded 7 diffused primitive functions, 0 contracted functions
+ke_cutoff = 200.0
+
+
+******** <class 'pyscf.pbc.df.df.GDF'> ********
+auxbasis = None
+exp_to_discard = None
+_cderi_to_save = /central/scratch/yangjunjie/run-uks-kpt-nio-afm-1-1-1-gdf-1-k0-20.0-c0-5.0/48111731/tmprbz6l6w9
+len(kpts) = 1
+
+WARN: Even tempered Gaussians are generated as DF auxbasis for  Ni O
+
+Traceback (most recent call last):
+  File "/central/home/junjiey/work/benchmark-fftisdf/work/run-uks-kpt/nio-afm/1-1-1/gdf-1/k0-20.0-c0-5.0/main.py", line 205, in <module>
+    e_tot = main(config)
+  File "/central/home/junjiey/work/benchmark-fftisdf/work/run-uks-kpt/nio-afm/1-1-1/gdf-1/k0-20.0-c0-5.0/main.py", line 98, in main
+    dm0 = load(chk_path, "dm0")
+  File "/home/junjiey/anaconda3/envs/fftisdf/lib/python3.9/site-packages/pyscf/lib/chkfile.py", line 72, in load
+    with h5py.File(chkfile, 'r') as fh5:
+  File "/home/junjiey/anaconda3/envs/fftisdf/lib/python3.9/site-packages/h5py/_hl/files.py", line 564, in __init__
+    fid = make_fid(name, mode, userblock_size, fapl, fcpl, swmr=swmr)
+  File "/home/junjiey/anaconda3/envs/fftisdf/lib/python3.9/site-packages/h5py/_hl/files.py", line 238, in make_fid
+    fid = h5f.open(name, flags, fapl=fapl)
+  File "h5py/_objects.pyx", line 54, in h5py._objects.with_phil.wrapper
+  File "h5py/_objects.pyx", line 55, in h5py._objects.with_phil.wrapper
+  File "h5py/h5f.pyx", line 102, in h5py.h5f.open
+FileNotFoundError: [Errno 2] Unable to synchronously open file (unable to open file: name = '../../../gdf-32/tmp/scf.h5', errno = 2, error message = 'No such file or directory', flags = 0, o_flags = 0)

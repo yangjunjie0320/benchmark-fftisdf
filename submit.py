@@ -35,14 +35,12 @@ def main(time="01:00:00", mem=200, ncpu=1, workdir=None, cmd=None, scr=None,
 
         if import_periodic_integrals:
             f.write("export PYTHONPATH=/home/junjiey/packages/libdmet/libdmet2-main/:$PYTHONPATH\n")
-            # f.write("export PYTHONPATH=/home/junjiey/packages/PeriodicIntegrals/PeriodicIntegrals-junjie-benchmark/src/:$PYTHONPATH\n")
-            # f.write("export PYTHONPATH=/home/junjiey/packages/PeriodicIntegrals/PeriodicIntegrals-junjie-benchmark/:$PYTHONPATH\n")
 
         f.write("cp %s %s/main.py\n" % (scr, workdir))
         f.write(" ".join(cmd) + "\n")
 
     os.chdir(workdir)
-    os.system("sbatch -q debug run.sh")
+    os.system("sbatch run.sh")
     os.chdir(pwd)
 
 if __name__ == "__main__":
@@ -89,7 +87,8 @@ if __name__ == "__main__":
 
         if os.path.exists(os.path.join(base_dir, work_subdir)):
             print(f"Work directory {work_subdir} already exists, deleting it")
-            # shutil.rmtree(os.path.join(base_dir, work_subdir))
+            # check if the work is finished
+            x = os.cmd
             return
 
         main(
@@ -109,12 +108,10 @@ if __name__ == "__main__":
     ]
 
     config = {
-        "df": "gdf",
+        "df": "fftisdf-jy",
+        "ke_cutoff": 200.0,
         "script": "run-uks-kpt",
-        "mem": 400,
         "time": "00:30:00",
-        "chk_path": None 
-        # "../../../gdf-64/tmp/scf.h5"
     }
 
     for name in ["nio-afm", "nio-conv"]:
@@ -128,7 +125,9 @@ if __name__ == "__main__":
                     config["c0"] = c0
                     config["chk_path"] = f"../../../gdf-32/tmp/scf.h5"
                     config["ncpu"] = 1
+                    config["mem"] = 1 * 10
                     run(config)
 
                     config["ncpu"] = 32
+                    config["mem"] = 32 * 10
                     run(config)
