@@ -42,7 +42,7 @@ def main(time="01:00:00", mem=200, ncpu=1, workdir=None, cmd=None, scr=None,
         f.write(" ".join(cmd) + "\n")
 
     os.chdir(workdir)
-    os.system("sbatch run.sh")
+    os.system("sbatch -q debug run.sh")
     os.chdir(pwd)
 
 if __name__ == "__main__":
@@ -112,7 +112,7 @@ if __name__ == "__main__":
         "df": "gdf",
         "script": "run-uks-kpt",
         "mem": 400,
-        "time": "20:00:00",
+        "time": "00:30:00",
         "chk_path": None 
         # "../../../gdf-64/tmp/scf.h5"
     }
