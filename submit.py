@@ -120,21 +120,15 @@ if __name__ == "__main__":
     for name in ["nio-afm", "nio-conv"]:
         ms = mm[:4] if name == "nio-conv" else mm
         for m in ms:
-            config["name"] = name
-            config["mesh"] = ",".join(str(x) for x in m)
-            config["ncpu"] = 32
-            run(config)
+            for k0 in [20.0, 40.0, 60.0, 80.0, 100.0]:
+                for c0 in [5.0, 10.0, 15.0, 20.0, 25.0, 30.0]:
+                    config["name"] = name
+                    config["mesh"] = ",".join(str(x) for x in m)
+                    config["k0"] = k0
+                    config["c0"] = c0
+                    config["chk_path"] = f"../../../gdf-32/tmp/scf.h5"
+                    config["ncpu"] = 1
+                    run(config)
 
-            config["ncpu"] = 1
-            run(config)
-
-            # for k0 in [20.0, 40.0, 60.0, 80.0, 100.0]:
-            #     for c0 in [5.0, 10.0, 15.0, 20.0, 25.0, 30.0]:
-            #         config["name"] = name
-            #         config["mesh"] = ",".join(str(x) for x in m)
-            #         config["k0"] = k0
-            #         config["c0"] = c0
-            #         run(config)
-
-            #         config["ncpu"] = 64
-            #         run(config)
+                    config["ncpu"] = 32
+                    run(config)
