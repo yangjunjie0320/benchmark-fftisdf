@@ -10,6 +10,7 @@ from pyscf.lib.logger import process_clock, perf_counter
 from pyscf.pbc.df.fft import FFTDF
 from pyscf.pbc import tools as pbctools
 from pyscf.pbc.lib.kpts_helper import is_zero
+from pyscf.pbc.tools.pbc import fft, ifft
 
 from pyscf.pbc.tools.k2gamma import get_phase
 from pyscf.pbc.df.df_jk import _format_dms, _format_kpts_band, _format_jks
@@ -219,7 +220,7 @@ def get_lhs_and_rhs(df_obj, inpv_kpt, max_memory=2000, fswp=None):
 
     return metx_kpt, eta_kpt
 
-def get_kern(df_obj, eta_kpt=None, q=0, fswp=None, max_memory=2000):
+def get_kern(df_obj, eta_q=None, max_memory=2000):
     log = logger.new_logger(df_obj, df_obj.verbose)
     t0 = (process_clock(), perf_counter())
     
@@ -242,8 +243,8 @@ def get_kern(df_obj, eta_kpt=None, q=0, fswp=None, max_memory=2000):
     coord = grids.coords
     ngrid = coord.shape[0]
 
-    nip = eta_kpt.shape[2]
-    assert eta_kpt.shape == (nkpt, ngrid, nip)
+    nip = eta_q.shape[1]
+    assert eta_q.shape == (ngrid, nip)
 
     kern_q = numpy.zeros((nip, nip), dtype=numpy.complex128)
     vg = pbctools.get_coulG(pcell, k=kpts[q], mesh=mesh)
@@ -252,39 +253,15 @@ def get_kern(df_obj, eta_kpt=None, q=0, fswp=None, max_memory=2000):
     f = numpy.exp(-1j * t)
     assert f.shape == (ngrid, )
 
-    blksize = max(max_memory * 1e6 * 0.2 / (ngrid * 16), 1)
-    blksize = min(int(blksize), nip)
+    v_q = fft(eta_q.T * f, mesh) * vg
+    v_q *= pcell.vol / ngrid
 
-    log.debug("\nCalculating Coulomb kernel with outcore method: q = %d / %d", q + 1, nkpt)
-    log.debug("blksize = %d, nip = %d, max_memory = %6.2e GB", blksize, nip, max_memory / 1e3)
-    log.debug("memory used for each block = %6.2e GB", ngrid * 16 * blksize / 1e9)
+    w_q = ifft(v_q, mesh) * f.conj()
+    w_q = w_q.T
+    assert w_q.shape == (ngrid, nip)
 
-    i0, i1 = 0, 0
-    j0, j1 = 0, 0
-
-    for i0 in range(0, nip, blksize):
-        eta_qi = eta_kpt[q, :, i0:(i0+blksize)]
-        i1 = i0 + eta_qi.shape[1]
-        assert eta_qi.shape == (ngrid, i1 - i0)
-
-        v_qi = pbctools.fft(eta_qi.T * f, mesh) * vg
-        v_qi *= pcell.vol / ngrid
-
-        from pyscf.pbc.tools.pbc import ifft
-        w_qi = ifft(v_qi, mesh) * f.conj()
-        w_qi = w_qi.T
-        assert w_qi.shape == (ngrid, i1 - i0)
-
-        for j0 in range(0, nip, blksize):
-            eta_qj = eta_kpt[q, :, j0:(j0+blksize)]
-            j1 = j0 + eta_qj.shape[1]
-            assert eta_qj.shape == (ngrid, j1 - j0)
-
-            kern_q_ij = numpy.dot(w_qi.T, eta_qj.conj())
-            assert kern_q_ij.shape == (i1 - i0, j1 - j0)
-
-            kern_q[i0:i1, j0:j1] = kern_q_ij
-
+    kern_q = numpy.dot(w_q, eta_q.conj())
+    assert kern_q.shape == (nip, nip)
     return kern_q
 
 class InterpolativeSeparableDensityFitting(FFTDF):
@@ -313,6 +290,10 @@ class InterpolativeSeparableDensityFitting(FFTDF):
         log.info("len(kpts) = %d", len(self.kpts))
         log.debug1("    kpts = %s", self.kpts)
         return self
+    
+    def _is_mem_enough(self):
+        nip = self.cell.nao_nr() * self.c0
+        ngrid = numpy.prod(self.mesh)
     
     @line_profiler.profile
     def build(self, inpx=None):
