@@ -1,0 +1,159 @@
+SLURMD_NODENAME = hpc-34-18
+Start time = Fri Mar 21 03:01:29 PM PDT 2025
+OMP_NUM_THREADS = 1
+MKL_NUM_THREADS = 1
+PYSCF_MAX_MEMORY = 10240
+TMPDIR = /central/scratch/yangjunjie//run-uks-kpt-nio-afm-4-4-4-fftisdf-jy-1-200-k0-40.0-c0-30.0/48127187/
+PYSCF_TMPDIR = /central/scratch/yangjunjie//run-uks-kpt-nio-afm-4-4-4-fftisdf-jy-1-200-k0-40.0-c0-30.0/48127187/
+
+/home/junjiey/anaconda3/envs/fftisdf/bin/python
+2.8.0
+1.13.1
+2.0.2
+fft_engine = NUMPY+BLAS
+name = nio-afm
+ke_cutoff =  2.00e+02
+exxdiv = None
+df = fftisdf-jy
+chk_path = ../../../gdf-32/tmp/scf.h5
+mesh = 4,4,4
+c0 =  3.00e+01
+k0 =  4.00e+01
+
+Discarded 7 diffused primitive functions, 0 contracted functions
+ke_cutoff = 200.0
+g0 = [[ 0.          0.          0.        ]
+ [ 0.          0.          0.3290555 ]
+ [ 0.          0.          0.658111  ]
+ ...
+ [-0.37996068 -0.26867265 -1.316222  ]
+ [-0.37996068 -0.26867265 -0.9871665 ]
+ [-0.37996068 -0.26867265 -0.658111  ]], m0 = [17 17 17]
+Pivoted Cholesky rank = 788, estimated error = 0.00e+00
+Parent grid size = 4913, selected grid size = 1170
+    CPU time for interpolating functions      1.33 sec, wall time      1.33 sec
+
+
+******** <class 'fft_isdf.InterpolativeSeparableDensityFitting'> ********
+mesh = [37 37 37] (50653 PWs)
+len(kpts) = 64
+
+WARN: ke_cutoff/mesh (200 / [37 37 37]) is not enough for FFTDF to get integral accuracy 1e-08.
+Coulomb integral error is ~ 29 Eh.
+Recommended ke_cutoff/mesh are 1172.14 / [89 89 89].
+
+kmesh = [4 4 4]
+kpts = 
+[[ 0.00000000e+00  0.00000000e+00  0.00000000e+00]
+ [-1.62121641e-01 -1.14637399e-01  2.80803037e-01]
+ [-3.24243283e-01 -2.29274798e-01  5.61606073e-01]
+ [-4.86364924e-01 -3.43912196e-01  8.42409110e-01]
+ [ 1.34152098e-09  3.43912129e-01  0.00000000e+00]
+ [-1.62121640e-01  2.29274730e-01  2.80803037e-01]
+ [-3.24243281e-01  1.14637331e-01  5.61606073e-01]
+ [-4.86364922e-01 -6.72557783e-08  8.42409110e-01]
+ [ 2.68304197e-09  6.87824258e-01  0.00000000e+00]
+ [-1.62121639e-01  5.73186859e-01  2.80803037e-01]
+ [-3.24243280e-01  4.58549461e-01  5.61606073e-01]
+ [-4.86364921e-01  3.43912062e-01  8.42409110e-01]
+ [ 4.02456295e-09  1.03173639e+00  0.00000000e+00]
+ [-1.62121637e-01  9.17098988e-01  2.80803037e-01]
+ [-3.24243278e-01  8.02461590e-01  5.61606073e-01]
+ [-4.86364920e-01  6.87824191e-01  8.42409110e-01]
+ [ 3.24243282e-01 -1.14637331e-01  0.00000000e+00]
+ [ 1.62121641e-01 -2.29274729e-01  2.80803037e-01]
+ [-2.46173915e-10 -3.43912128e-01  5.61606073e-01]
+ [-1.62121642e-01 -4.58549527e-01  8.42409110e-01]
+ [ 3.24243284e-01  2.29274798e-01  0.00000000e+00]
+ [ 1.62121642e-01  1.14637400e-01  2.80803037e-01]
+ [ 1.09534709e-09  7.74527886e-10  5.61606073e-01]
+ [-1.62121640e-01 -1.14637398e-01  8.42409110e-01]
+ [ 3.24243285e-01  5.73186927e-01  0.00000000e+00]
+ [ 1.62121644e-01  4.58549529e-01  2.80803037e-01]
+ [ 2.43686804e-09  3.43912130e-01  5.61606073e-01]
+ [-1.62121639e-01  2.29274731e-01  8.42409110e-01]
+ [ 3.24243286e-01  9.17099056e-01  0.00000000e+00]
+ [ 1.62121645e-01  8.02461658e-01  2.80803037e-01]
+ [ 3.77838905e-09  6.87824259e-01  5.61606073e-01]
+ [-1.62121637e-01  5.73186860e-01  8.42409110e-01]
+ [ 6.48486565e-01 -2.29274661e-01  0.00000000e+00]
+ [ 4.86364923e-01 -3.43912060e-01  2.80803037e-01]
+ [ 3.24243282e-01 -4.58549459e-01  5.61606073e-01]
+ [ 1.62121641e-01 -5.73186858e-01  8.42409110e-01]
+ [ 6.48486566e-01  1.14637468e-01  0.00000000e+00]
+ [ 4.86364925e-01  6.88048341e-08  2.80803037e-01]
+ [ 3.24243283e-01 -1.14637330e-01  5.61606073e-01]
+ [ 1.62121642e-01 -2.29274729e-01  8.42409110e-01]
+ [ 6.48486567e-01  4.58549597e-01  0.00000000e+00]
+ [ 4.86364926e-01  3.43912198e-01  2.80803037e-01]
+ [ 3.24243285e-01  2.29274799e-01  5.61606073e-01]
+ [ 1.62121643e-01  1.14637400e-01  8.42409110e-01]
+ [ 6.48486569e-01  8.02461726e-01  0.00000000e+00]
+ [ 4.86364927e-01  6.87824327e-01  2.80803037e-01]
+ [ 3.24243286e-01  5.73186928e-01  5.61606073e-01]
+ [ 1.62121645e-01  4.58549529e-01  8.42409110e-01]
+ [ 9.72729847e-01 -3.43911992e-01  0.00000000e+00]
+ [ 8.10608206e-01 -4.58549391e-01  2.80803037e-01]
+ [ 6.48486564e-01 -5.73186790e-01  5.61606073e-01]
+ [ 4.86364923e-01 -6.87824188e-01  8.42409110e-01]
+ [ 9.72729848e-01  1.36835140e-07  0.00000000e+00]
+ [ 8.10608207e-01 -1.14637262e-01  2.80803037e-01]
+ [ 6.48486566e-01 -2.29274661e-01  5.61606073e-01]
+ [ 4.86364924e-01 -3.43912059e-01  8.42409110e-01]
+ [ 9.72729849e-01  3.43912266e-01  0.00000000e+00]
+ [ 8.10608208e-01  2.29274867e-01  2.80803037e-01]
+ [ 6.48486567e-01  1.14637468e-01  5.61606073e-01]
+ [ 4.86364926e-01  6.95793620e-08  8.42409110e-01]
+ [ 9.72729851e-01  6.87824395e-01  0.00000000e+00]
+ [ 8.10608210e-01  5.73186996e-01  2.80803037e-01]
+ [ 6.48486568e-01  4.58549597e-01  5.61606073e-01]
+ [ 4.86364927e-01  3.43912199e-01  8.42409110e-01]]
+nip = 1170, nao = 39, cisdf =  30.00
+    CPU time for get interpolating vectors      0.14 sec
+Out-core version is used for eta_kpt, disk space required = 6.07e+01 GB.
+memory used for each block = 2.03e+00 GB, each k-point = 9.48e-01 GB
+max_memory = 1.01e+01 GB
+    CPU time for aoR_loop: [      0,    1695]     11.83 sec, wall time     12.87 sec
+    CPU time for aoR_loop: [   1695,    3390]     12.03 sec, wall time     14.96 sec
+    CPU time for aoR_loop: [   3390,    5085]     11.85 sec, wall time     14.63 sec
+    CPU time for aoR_loop: [   5085,    6780]     11.84 sec, wall time     17.44 sec
+    CPU time for aoR_loop: [   6780,    8475]     11.81 sec, wall time     14.93 sec
+    CPU time for aoR_loop: [   8475,   10170]     11.61 sec, wall time     14.87 sec
+    CPU time for aoR_loop: [  10170,   11865]     11.82 sec, wall time     15.06 sec
+    CPU time for aoR_loop: [  11865,   13560]     11.69 sec, wall time     14.54 sec
+    CPU time for aoR_loop: [  13560,   15255]     11.56 sec, wall time     14.40 sec
+    CPU time for aoR_loop: [  15255,   16950]     11.50 sec, wall time     13.96 sec
+    CPU time for aoR_loop: [  16950,   18645]     11.52 sec, wall time     14.92 sec
+    CPU time for aoR_loop: [  18645,   20340]     11.20 sec, wall time     13.12 sec
+    CPU time for aoR_loop: [  20340,   22035]     11.25 sec, wall time     13.21 sec
+    CPU time for aoR_loop: [  22035,   23730]      9.98 sec, wall time     53.85 sec
+    CPU time for aoR_loop: [  23730,   25425]     11.06 sec, wall time     13.49 sec
+    CPU time for aoR_loop: [  25425,   27120]     10.89 sec, wall time     12.62 sec
+    CPU time for aoR_loop: [  27120,   28815]     10.98 sec, wall time     13.16 sec
+    CPU time for aoR_loop: [  28815,   30510]     10.95 sec, wall time     12.97 sec
+    CPU time for aoR_loop: [  30510,   32205]     10.91 sec, wall time     12.73 sec
+    CPU time for aoR_loop: [  32205,   33900]     10.42 sec, wall time     11.72 sec
+    CPU time for aoR_loop: [  33900,   35595]     10.42 sec, wall time     11.88 sec
+    CPU time for aoR_loop: [  35595,   37290]     10.47 sec, wall time     12.16 sec
+    CPU time for aoR_loop: [  37290,   38985]     10.46 sec, wall time     12.21 sec
+    CPU time for aoR_loop: [  38985,   40680]     10.40 sec, wall time     11.84 sec
+    CPU time for aoR_loop: [  40680,   42375]     10.05 sec, wall time     12.17 sec
+    CPU time for aoR_loop: [  42375,   44070]      9.88 sec, wall time     10.75 sec
+    CPU time for aoR_loop: [  44070,   45765]     10.12 sec, wall time     11.17 sec
+    CPU time for aoR_loop: [  45765,   47460]     10.27 sec, wall time     11.49 sec
+    CPU time for aoR_loop: [  47460,   49155]     10.24 sec, wall time     11.21 sec
+    CPU time for aoR_loop: [  49155,   50653]      8.81 sec, wall time     13.54 sec
+Finished solving Coulomb kernel for q =   1 /  64, rank = 559 / 1170
+    CPU time for solving Coulomb kernel     29.75 sec, wall time     35.05 sec
+Finished solving Coulomb kernel for q =   2 /  64, rank = 559 / 1170
+    CPU time for solving Coulomb kernel     29.15 sec, wall time     29.65 sec
+Finished solving Coulomb kernel for q =   3 /  64, rank = 559 / 1170
+    CPU time for solving Coulomb kernel     29.10 sec, wall time     30.60 sec
+Finished solving Coulomb kernel for q =   4 /  64, rank = 559 / 1170
+    CPU time for solving Coulomb kernel     29.13 sec, wall time     29.70 sec
+Finished solving Coulomb kernel for q =   5 /  64, rank = 559 / 1170
+    CPU time for solving Coulomb kernel     29.03 sec, wall time     30.07 sec
+Finished solving Coulomb kernel for q =   6 /  64, rank = 559 / 1170
+    CPU time for solving Coulomb kernel     28.80 sec, wall time     29.52 sec
+Finished solving Coulomb kernel for q =   7 /  64, rank = 559 / 1170
+    CPU time for solving Coulomb kernel     28.84 sec, wall time     29.03 sec

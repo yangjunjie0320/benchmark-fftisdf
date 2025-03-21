@@ -1,0 +1,98 @@
+SLURMD_NODENAME = hpc-21-33
+Start time = Fri Mar 21 03:01:46 PM PDT 2025
+OMP_NUM_THREADS = 1
+MKL_NUM_THREADS = 1
+PYSCF_MAX_MEMORY = 10240
+TMPDIR = /central/scratch/yangjunjie//run-uks-kpt-nio-conv-2-2-2-fftisdf-jy-1-200-k0-20.0-c0-25.0/48127393/
+PYSCF_TMPDIR = /central/scratch/yangjunjie//run-uks-kpt-nio-conv-2-2-2-fftisdf-jy-1-200-k0-20.0-c0-25.0/48127393/
+
+/home/junjiey/anaconda3/envs/fftisdf/bin/python
+2.8.0
+1.13.1
+2.0.2
+fft_engine = NUMPY+BLAS
+name = nio-conv
+ke_cutoff =  2.00e+02
+exxdiv = None
+df = fftisdf-jy
+chk_path = ../../../gdf-32/tmp/scf.h5
+mesh = 2,2,2
+c0 =  2.50e+01
+k0 =  2.00e+01
+
+Discarded 28 diffused primitive functions, 0 contracted functions
+ke_cutoff = 200.0
+g0 = [[ 0.          0.          0.        ]
+ [ 0.          0.          0.46535479]
+ [ 0.          0.          0.93070959]
+ ...
+ [-0.46535479 -0.46535479 -1.39606438]
+ [-0.46535479 -0.46535479 -0.93070959]
+ [-0.46535479 -0.46535479 -0.46535479]], m0 = [17 17 17]
+Pivoted Cholesky rank = 4913, estimated error = 9.81e-06
+Parent grid size = 4913, selected grid size = 3900
+    CPU time for interpolating functions      4.04 sec, wall time      4.07 sec
+
+
+******** <class 'fft_isdf.InterpolativeSeparableDensityFitting'> ********
+mesh = [53 53 53] (148877 PWs)
+len(kpts) = 8
+
+WARN: ke_cutoff/mesh (200 / [53 53 53]) is not enough for FFTDF to get integral accuracy 1e-08.
+Coulomb integral error is ~ 29 Eh.
+Recommended ke_cutoff/mesh are 1172.14 / [123 123 123].
+
+kmesh = [2 2 2]
+kpts = 
+[[ 0.00000000e+00  0.00000000e+00  0.00000000e+00]
+ [-2.84579601e-17 -2.84579601e-17  3.97115427e-01]
+ [ 0.00000000e+00  3.97115427e-01  0.00000000e+00]
+ [-2.84579601e-17  3.97115427e-01  3.97115427e-01]
+ [ 3.97115427e-01  2.84579601e-17  0.00000000e+00]
+ [ 3.97115427e-01  0.00000000e+00  3.97115427e-01]
+ [ 3.97115427e-01  3.97115427e-01  0.00000000e+00]
+ [ 3.97115427e-01  3.97115427e-01  3.97115427e-01]]
+nip = 3900, nao = 156, cisdf =  25.00
+    CPU time for get interpolating vectors      0.36 sec
+Out-core version is used for eta_kpt, disk space required = 7.43e+01 GB.
+memory used for each block = 2.03e+00 GB, each k-point = 9.29e+00 GB
+max_memory = 1.01e+01 GB
+    CPU time for aoR_loop: [       0,     4066]     20.70 sec, wall time     22.49 sec
+    CPU time for aoR_loop: [    4066,     8132]     11.16 sec, wall time     11.90 sec
+    CPU time for aoR_loop: [    8132,    12198]      9.64 sec, wall time     10.01 sec
+    CPU time for aoR_loop: [   12198,    16264]     10.17 sec, wall time     10.54 sec
+    CPU time for aoR_loop: [   16264,    20330]     10.94 sec, wall time     11.39 sec
+    CPU time for aoR_loop: [   20330,    24396]     11.55 sec, wall time     12.01 sec
+    CPU time for aoR_loop: [   24396,    28462]     10.69 sec, wall time     11.16 sec
+    CPU time for aoR_loop: [   28462,    32528]      8.76 sec, wall time      9.10 sec
+    CPU time for aoR_loop: [   32528,    36594]     10.31 sec, wall time     15.19 sec
+    CPU time for aoR_loop: [   36594,    40660]     10.13 sec, wall time     10.53 sec
+    CPU time for aoR_loop: [   40660,    44726]      9.96 sec, wall time     10.32 sec
+    CPU time for aoR_loop: [   44726,    48792]      9.83 sec, wall time     10.16 sec
+    CPU time for aoR_loop: [   48792,    52858]      9.64 sec, wall time     10.09 sec
+    CPU time for aoR_loop: [   52858,    56924]      9.53 sec, wall time     10.03 sec
+    CPU time for aoR_loop: [   56924,    60990]      8.74 sec, wall time      9.60 sec
+    CPU time for aoR_loop: [   60990,    65056]      8.28 sec, wall time     11.07 sec
+    CPU time for aoR_loop: [   65056,    69122]      8.03 sec, wall time     12.59 sec
+    CPU time for aoR_loop: [   69122,    73188]      7.69 sec, wall time     13.97 sec
+    CPU time for aoR_loop: [   73188,    77254]      7.70 sec, wall time     12.15 sec
+    CPU time for aoR_loop: [   77254,    81320]      8.14 sec, wall time      8.41 sec
+    CPU time for aoR_loop: [   81320,    85386]      8.08 sec, wall time      8.42 sec
+    CPU time for aoR_loop: [   85386,    89452]      8.03 sec, wall time      8.52 sec
+    CPU time for aoR_loop: [   89452,    93518]      7.77 sec, wall time      8.09 sec
+    CPU time for aoR_loop: [   93518,    97584]      7.70 sec, wall time      7.99 sec
+    CPU time for aoR_loop: [   97584,   101650]      7.67 sec, wall time      7.95 sec
+    CPU time for aoR_loop: [  101650,   105716]      7.66 sec, wall time      7.90 sec
+    CPU time for aoR_loop: [  105716,   109782]      7.63 sec, wall time      7.87 sec
+    CPU time for aoR_loop: [  109782,   113848]      7.67 sec, wall time      7.91 sec
+    CPU time for aoR_loop: [  113848,   117914]      7.70 sec, wall time      7.94 sec
+    CPU time for aoR_loop: [  117914,   121980]      7.40 sec, wall time      8.00 sec
+    CPU time for aoR_loop: [  121980,   126046]      7.32 sec, wall time      8.76 sec
+    CPU time for aoR_loop: [  126046,   130112]      7.38 sec, wall time      7.61 sec
+    CPU time for aoR_loop: [  130112,   134178]      7.29 sec, wall time      7.51 sec
+    CPU time for aoR_loop: [  134178,   138244]      7.29 sec, wall time      7.51 sec
+    CPU time for aoR_loop: [  138244,   142310]      7.29 sec, wall time      7.57 sec
+    CPU time for aoR_loop: [  142310,   146376]      7.27 sec, wall time      7.83 sec
+    CPU time for aoR_loop: [  146376,   148877]      4.55 sec, wall time      5.97 sec
+/var/spool/slurmd/job48127393/slurm_script: line 48: 3125949 Killed                  python main.py --name=nio-conv --df=fftisdf-jy --ke_cutoff=200.0 --exxdiv=None --chk_path=../../../gdf-32/tmp/scf.h5 --mesh=2,2,2 --k0=20.0 --c0=25.0
+slurmstepd: error: Detected 1 oom_kill event in StepId=48127393.batch. Some of the step tasks have been OOM Killed.

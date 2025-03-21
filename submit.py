@@ -115,37 +115,40 @@ if __name__ == "__main__":
 
     config = {
         "script": "run-uks-kpt",
-        "time": "20:00:00",
+        "time": "00:30:00",
     }
 
     for name in ["nio-afm", "nio-conv"]:
         # assert name == "nio-afm"
         ms = mm[:4] if name == "nio-conv" else mm
         for m in ms:
-            config["name"] = name
-            config["df"] = "gdf"
-            config["ke_cutoff"] = None
-            config["mesh"] = ",".join(str(x) for x in m)
-            config["chk_path"] = None
-            config["ncpu"] = 1
-            config["mem"] = 1 * 10
-            run(config)
+            # config["name"] = name
+            # config["df"] = "gdf"
+            # config["ke_cutoff"] = None
+            # config["mesh"] = ",".join(str(x) for x in m)
+            # config["chk_path"] = None
+            # config["ncpu"] = 1
+            # config["mem"] = 1 * 10
+            # run(config)
 
-            config["ncpu"] = 32
-            config["mem"] = 32 * 10
-            run(config)
+            # config["ncpu"] = 32
+            # config["mem"] = 32 * 10
+            # run(config)
 
-            # for k0 in [20.0, 40.0, 60.0, 80.0, 100.0]:
-            #     for c0 in [5.0, 10.0, 15.0, 20.0, 25.0, 30.0]:
-            #         config["name"] = name
-            #         config["mesh"] = ",".join(str(x) for x in m)
-            #         config["k0"] = k0
-            #         config["c0"] = c0
-            #         config["chk_path"] = f"../../../gdf-32/tmp/scf.h5"
-            #         config["ncpu"] = 1
-            #         config["mem"] = 1 * 10
-            #         run(config)
+            for k0 in [20.0, 40.0, 60.0, 80.0, 100.0]:
+                for c0 in [5.0, 10.0, 15.0, 20.0, 25.0, 30.0]:
+                    config["name"] = name
+                    config["mesh"] = ",".join(str(x) for x in m)
+                    config["df"] = "fftisdf-jy"
+                    config["ke_cutoff"] = 200.0
 
-            #         config["ncpu"] = 32
-            #         config["mem"] = 32 * 10
-            #         run(config)
+                    config["k0"] = k0
+                    config["c0"] = c0
+                    config["chk_path"] = f"../../../gdf-32/tmp/scf.h5"
+                    config["ncpu"] = 1
+                    config["mem"] = 1 * 10
+                    run(config)
+
+                    config["ncpu"] = 32
+                    config["mem"] = 32 * 10
+                    run(config)

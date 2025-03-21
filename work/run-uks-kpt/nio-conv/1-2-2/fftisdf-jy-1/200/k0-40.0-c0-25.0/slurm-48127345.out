@@ -1,0 +1,76 @@
+SLURMD_NODENAME = hpc-21-28
+Start time = Fri Mar 21 03:01:43 PM PDT 2025
+OMP_NUM_THREADS = 1
+MKL_NUM_THREADS = 1
+PYSCF_MAX_MEMORY = 10240
+TMPDIR = /central/scratch/yangjunjie//run-uks-kpt-nio-conv-1-2-2-fftisdf-jy-1-200-k0-40.0-c0-25.0/48127345/
+PYSCF_TMPDIR = /central/scratch/yangjunjie//run-uks-kpt-nio-conv-1-2-2-fftisdf-jy-1-200-k0-40.0-c0-25.0/48127345/
+
+/home/junjiey/anaconda3/envs/fftisdf/bin/python
+2.8.0
+1.13.1
+2.0.2
+fft_engine = NUMPY+BLAS
+name = nio-conv
+ke_cutoff =  2.00e+02
+exxdiv = None
+df = fftisdf-jy
+chk_path = ../../../gdf-32/tmp/scf.h5
+mesh = 1,2,2
+c0 =  2.50e+01
+k0 =  4.00e+01
+
+Discarded 28 diffused primitive functions, 0 contracted functions
+ke_cutoff = 200.0
+g0 = [[ 0.          0.          0.        ]
+ [ 0.          0.          0.31644126]
+ [ 0.          0.          0.63288252]
+ ...
+ [-0.31644126 -0.31644126 -0.94932378]
+ [-0.31644126 -0.31644126 -0.63288252]
+ [-0.31644126 -0.31644126 -0.31644126]], m0 = [25 25 25]
+Pivoted Cholesky rank = 7973, estimated error = 3.96e-05
+Parent grid size = 15625, selected grid size = 3900
+    CPU time for interpolating functions     39.22 sec, wall time     39.40 sec
+
+
+******** <class 'fft_isdf.InterpolativeSeparableDensityFitting'> ********
+mesh = [53 53 53] (148877 PWs)
+len(kpts) = 4
+
+WARN: ke_cutoff/mesh (200 / [53 53 53]) is not enough for FFTDF to get integral accuracy 1e-08.
+Coulomb integral error is ~ 29 Eh.
+Recommended ke_cutoff/mesh are 1172.14 / [123 123 123].
+
+kmesh = [1 2 2]
+kpts = 
+[[ 0.00000000e+00  0.00000000e+00  0.00000000e+00]
+ [-2.84579601e-17 -2.84579601e-17  3.97115427e-01]
+ [ 0.00000000e+00  3.97115427e-01  0.00000000e+00]
+ [-2.84579601e-17  3.97115427e-01  3.97115427e-01]]
+nip = 3900, nao = 156, cisdf =  25.00
+    CPU time for get interpolating vectors      0.19 sec
+Out-core version is used for eta_kpt, disk space required = 3.72e+01 GB.
+memory used for each block = 2.03e+00 GB, each k-point = 9.29e+00 GB
+max_memory = 1.01e+01 GB
+    CPU time for aoR_loop: [       0,     8128]     11.03 sec, wall time     11.21 sec
+    CPU time for aoR_loop: [    8128,    16256]     11.18 sec, wall time     11.55 sec
+    CPU time for aoR_loop: [   16256,    24384]     11.26 sec, wall time     11.59 sec
+    CPU time for aoR_loop: [   24384,    32512]     10.89 sec, wall time     16.17 sec
+    CPU time for aoR_loop: [   32512,    40640]     10.92 sec, wall time     11.47 sec
+    CPU time for aoR_loop: [   40640,    48768]     10.98 sec, wall time     11.44 sec
+    CPU time for aoR_loop: [   48768,    56896]     10.92 sec, wall time     11.34 sec
+    CPU time for aoR_loop: [   56896,    65024]     10.16 sec, wall time     14.39 sec
+    CPU time for aoR_loop: [   65024,    73152]     10.52 sec, wall time     10.78 sec
+    CPU time for aoR_loop: [   73152,    81280]     10.36 sec, wall time     10.58 sec
+    CPU time for aoR_loop: [   81280,    89408]     10.37 sec, wall time     10.59 sec
+    CPU time for aoR_loop: [   89408,    97536]      9.59 sec, wall time     13.61 sec
+    CPU time for aoR_loop: [   97536,   105664]      9.87 sec, wall time     10.10 sec
+    CPU time for aoR_loop: [  105664,   113792]      9.17 sec, wall time     16.04 sec
+    CPU time for aoR_loop: [  113792,   121920]      7.70 sec, wall time      7.90 sec
+    CPU time for aoR_loop: [  121920,   130048]      7.51 sec, wall time     12.83 sec
+    CPU time for aoR_loop: [  130048,   138176]      8.08 sec, wall time     13.27 sec
+    CPU time for aoR_loop: [  138176,   146304]      8.82 sec, wall time      9.10 sec
+    CPU time for aoR_loop: [  146304,   148877]      2.41 sec, wall time      2.58 sec
+/var/spool/slurmd/job48127345/slurm_script: line 48: 320931 Killed                  python main.py --name=nio-conv --df=fftisdf-jy --ke_cutoff=200.0 --exxdiv=None --chk_path=../../../gdf-32/tmp/scf.h5 --mesh=1,2,2 --k0=40.0 --c0=25.0
+slurmstepd: error: Detected 1 oom_kill event in StepId=48127345.batch. Some of the step tasks have been OOM Killed.

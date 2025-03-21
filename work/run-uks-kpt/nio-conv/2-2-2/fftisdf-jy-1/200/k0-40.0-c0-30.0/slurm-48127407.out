@@ -1,0 +1,103 @@
+SLURMD_NODENAME = hpc-21-22
+Start time = Fri Mar 21 03:01:48 PM PDT 2025
+OMP_NUM_THREADS = 1
+MKL_NUM_THREADS = 1
+PYSCF_MAX_MEMORY = 10240
+TMPDIR = /central/scratch/yangjunjie//run-uks-kpt-nio-conv-2-2-2-fftisdf-jy-1-200-k0-40.0-c0-30.0/48127407/
+PYSCF_TMPDIR = /central/scratch/yangjunjie//run-uks-kpt-nio-conv-2-2-2-fftisdf-jy-1-200-k0-40.0-c0-30.0/48127407/
+
+/home/junjiey/anaconda3/envs/fftisdf/bin/python
+2.8.0
+1.13.1
+2.0.2
+fft_engine = NUMPY+BLAS
+name = nio-conv
+ke_cutoff =  2.00e+02
+exxdiv = None
+df = fftisdf-jy
+chk_path = ../../../gdf-32/tmp/scf.h5
+mesh = 2,2,2
+c0 =  3.00e+01
+k0 =  4.00e+01
+
+Discarded 28 diffused primitive functions, 0 contracted functions
+ke_cutoff = 200.0
+g0 = [[ 0.          0.          0.        ]
+ [ 0.          0.          0.31644126]
+ [ 0.          0.          0.63288252]
+ ...
+ [-0.31644126 -0.31644126 -0.94932378]
+ [-0.31644126 -0.31644126 -0.63288252]
+ [-0.31644126 -0.31644126 -0.31644126]], m0 = [25 25 25]
+Pivoted Cholesky rank = 7973, estimated error = 1.04e-05
+Parent grid size = 15625, selected grid size = 4680
+    CPU time for interpolating functions     35.06 sec, wall time     35.22 sec
+
+
+******** <class 'fft_isdf.InterpolativeSeparableDensityFitting'> ********
+mesh = [53 53 53] (148877 PWs)
+len(kpts) = 8
+
+WARN: ke_cutoff/mesh (200 / [53 53 53]) is not enough for FFTDF to get integral accuracy 1e-08.
+Coulomb integral error is ~ 29 Eh.
+Recommended ke_cutoff/mesh are 1172.14 / [123 123 123].
+
+kmesh = [2 2 2]
+kpts = 
+[[ 0.00000000e+00  0.00000000e+00  0.00000000e+00]
+ [-2.84579601e-17 -2.84579601e-17  3.97115427e-01]
+ [ 0.00000000e+00  3.97115427e-01  0.00000000e+00]
+ [-2.84579601e-17  3.97115427e-01  3.97115427e-01]
+ [ 3.97115427e-01  2.84579601e-17  0.00000000e+00]
+ [ 3.97115427e-01  0.00000000e+00  3.97115427e-01]
+ [ 3.97115427e-01  3.97115427e-01  0.00000000e+00]
+ [ 3.97115427e-01  3.97115427e-01  3.97115427e-01]]
+nip = 4680, nao = 156, cisdf =  30.00
+    CPU time for get interpolating vectors      0.31 sec
+Out-core version is used for eta_kpt, disk space required = 8.92e+01 GB.
+memory used for each block = 2.03e+00 GB, each k-point = 1.11e+01 GB
+max_memory = 1.00e+01 GB
+    CPU time for aoR_loop: [       0,     3385]      8.38 sec, wall time     11.11 sec
+    CPU time for aoR_loop: [    3385,     6770]     10.14 sec, wall time     10.92 sec
+    CPU time for aoR_loop: [    6770,    10155]     10.36 sec, wall time     10.67 sec
+    CPU time for aoR_loop: [   10155,    13540]      7.82 sec, wall time      8.14 sec
+    CPU time for aoR_loop: [   13540,    16925]      7.68 sec, wall time      7.93 sec
+    CPU time for aoR_loop: [   16925,    20310]      7.73 sec, wall time      8.01 sec
+    CPU time for aoR_loop: [   20310,    23695]      7.82 sec, wall time      8.20 sec
+    CPU time for aoR_loop: [   23695,    27080]     12.81 sec, wall time     13.20 sec
+    CPU time for aoR_loop: [   27080,    30465]      8.44 sec, wall time      8.74 sec
+    CPU time for aoR_loop: [   30465,    33850]      7.71 sec, wall time      7.99 sec
+    CPU time for aoR_loop: [   33850,    37235]     15.26 sec, wall time     21.09 sec
+    CPU time for aoR_loop: [   37235,    40620]     26.43 sec, wall time     33.85 sec
+    CPU time for aoR_loop: [   40620,    44005]     10.60 sec, wall time     15.72 sec
+    CPU time for aoR_loop: [   44005,    47390]      7.39 sec, wall time     17.30 sec
+    CPU time for aoR_loop: [   47390,    50775]      7.55 sec, wall time      8.82 sec
+    CPU time for aoR_loop: [   50775,    54160]      7.72 sec, wall time      7.98 sec
+    CPU time for aoR_loop: [   54160,    57545]      7.67 sec, wall time      8.02 sec
+    CPU time for aoR_loop: [   57545,    60930]     13.04 sec, wall time     13.45 sec
+    CPU time for aoR_loop: [   60930,    64315]      9.20 sec, wall time      9.47 sec
+    CPU time for aoR_loop: [   64315,    67700]      7.77 sec, wall time      8.01 sec
+    CPU time for aoR_loop: [   67700,    71085]      7.84 sec, wall time      8.08 sec
+    CPU time for aoR_loop: [   71085,    74470]      7.77 sec, wall time      8.02 sec
+    CPU time for aoR_loop: [   74470,    77855]      7.76 sec, wall time      7.99 sec
+    CPU time for aoR_loop: [   77855,    81240]     12.54 sec, wall time     13.03 sec
+    CPU time for aoR_loop: [   81240,    84625]     24.15 sec, wall time     25.00 sec
+    CPU time for aoR_loop: [   84625,    88010]     15.42 sec, wall time     15.91 sec
+    CPU time for aoR_loop: [   88010,    91395]      9.49 sec, wall time      9.77 sec
+    CPU time for aoR_loop: [   91395,    94780]      7.88 sec, wall time      8.12 sec
+    CPU time for aoR_loop: [   94780,    98165]      7.28 sec, wall time     10.25 sec
+    CPU time for aoR_loop: [   98165,   101550]      7.49 sec, wall time      7.71 sec
+    CPU time for aoR_loop: [  101550,   104935]     26.16 sec, wall time     27.05 sec
+    CPU time for aoR_loop: [  104935,   108320]      8.61 sec, wall time      8.84 sec
+    CPU time for aoR_loop: [  108320,   111705]      7.45 sec, wall time      7.67 sec
+    CPU time for aoR_loop: [  111705,   115090]      7.26 sec, wall time      7.49 sec
+    CPU time for aoR_loop: [  115090,   118475]      7.25 sec, wall time      7.48 sec
+    CPU time for aoR_loop: [  118475,   121860]     35.24 sec, wall time     35.92 sec
+    CPU time for aoR_loop: [  121860,   125245]      8.97 sec, wall time      9.24 sec
+    CPU time for aoR_loop: [  125245,   128630]     71.63 sec, wall time     74.00 sec
+    CPU time for aoR_loop: [  128630,   132015]     11.26 sec, wall time     11.55 sec
+    CPU time for aoR_loop: [  132015,   135400]      8.09 sec, wall time      8.39 sec
+    CPU time for aoR_loop: [  135400,   138785]     24.65 sec, wall time     25.37 sec
+    CPU time for aoR_loop: [  138785,   142170]      9.29 sec, wall time      9.54 sec
+    CPU time for aoR_loop: [  142170,   145555]      7.75 sec, wall time      7.99 sec
+    CPU time for aoR_loop: [  145555,   148877]      7.15 sec, wall time      7.74 sec
