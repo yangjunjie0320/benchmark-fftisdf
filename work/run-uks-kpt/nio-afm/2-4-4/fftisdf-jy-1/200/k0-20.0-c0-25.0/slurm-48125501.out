@@ -1,0 +1,155 @@
+SLURMD_NODENAME = hpc-35-07
+Start time = Fri Mar 21 01:13:07 PM PDT 2025
+OMP_NUM_THREADS = 1
+MKL_NUM_THREADS = 1
+PYSCF_MAX_MEMORY = 10240
+TMPDIR = /central/scratch/yangjunjie//run-uks-kpt-nio-afm-2-4-4-fftisdf-jy-1-200-k0-20.0-c0-25.0/48125501/
+PYSCF_TMPDIR = /central/scratch/yangjunjie//run-uks-kpt-nio-afm-2-4-4-fftisdf-jy-1-200-k0-20.0-c0-25.0/48125501/
+
+/home/junjiey/anaconda3/envs/fftisdf/bin/python
+2.8.0
+1.13.1
+2.0.2
+fft_engine = NUMPY+BLAS
+name = nio-afm
+ke_cutoff =  2.00e+02
+exxdiv = None
+df = fftisdf-jy
+chk_path = ../../../gdf-32/tmp/scf.h5
+mesh = 2,4,4
+c0 =  2.50e+01
+k0 =  2.00e+01
+
+Discarded 7 diffused primitive functions, 0 contracted functions
+ke_cutoff = 200.0
+g0 = [[ 0.          0.          0.        ]
+ [ 0.          0.          0.43030335]
+ [ 0.          0.          0.8606067 ]
+ ...
+ [-0.49687166 -0.35134116 -1.72121339]
+ [-0.49687166 -0.35134116 -1.29091004]
+ [-0.49687166 -0.35134116 -0.86060669]], m0 = [13 13 13]
+Pivoted Cholesky rank = 787, estimated error = 0.00e+00
+Parent grid size = 2197, selected grid size = 975
+    CPU time for interpolating functions      0.24 sec, wall time      0.24 sec
+
+
+******** <class 'fft_isdf.InterpolativeSeparableDensityFitting'> ********
+mesh = [37 37 37] (50653 PWs)
+len(kpts) = 32
+
+WARN: ke_cutoff/mesh (200 / [37 37 37]) is not enough for FFTDF to get integral accuracy 1e-08.
+Coulomb integral error is ~ 29 Eh.
+Recommended ke_cutoff/mesh are 1172.14 / [89 89 89].
+
+kmesh = [2 4 4]
+kpts = 
+[[ 0.00000000e+00  0.00000000e+00  0.00000000e+00]
+ [-1.62121641e-01 -1.14637399e-01  2.80803037e-01]
+ [-3.24243283e-01 -2.29274798e-01  5.61606073e-01]
+ [-4.86364924e-01 -3.43912196e-01  8.42409110e-01]
+ [ 1.34152098e-09  3.43912129e-01  0.00000000e+00]
+ [-1.62121640e-01  2.29274730e-01  2.80803037e-01]
+ [-3.24243281e-01  1.14637331e-01  5.61606073e-01]
+ [-4.86364922e-01 -6.72557783e-08  8.42409110e-01]
+ [ 2.68304197e-09  6.87824258e-01  0.00000000e+00]
+ [-1.62121639e-01  5.73186859e-01  2.80803037e-01]
+ [-3.24243280e-01  4.58549461e-01  5.61606073e-01]
+ [-4.86364921e-01  3.43912062e-01  8.42409110e-01]
+ [ 4.02456295e-09  1.03173639e+00  0.00000000e+00]
+ [-1.62121637e-01  9.17098988e-01  2.80803037e-01]
+ [-3.24243278e-01  8.02461590e-01  5.61606073e-01]
+ [-4.86364920e-01  6.87824191e-01  8.42409110e-01]
+ [ 6.48486565e-01 -2.29274661e-01  0.00000000e+00]
+ [ 4.86364923e-01 -3.43912060e-01  2.80803037e-01]
+ [ 3.24243282e-01 -4.58549459e-01  5.61606073e-01]
+ [ 1.62121641e-01 -5.73186858e-01  8.42409110e-01]
+ [ 6.48486566e-01  1.14637468e-01  0.00000000e+00]
+ [ 4.86364925e-01  6.88048341e-08  2.80803037e-01]
+ [ 3.24243283e-01 -1.14637330e-01  5.61606073e-01]
+ [ 1.62121642e-01 -2.29274729e-01  8.42409110e-01]
+ [ 6.48486567e-01  4.58549597e-01  0.00000000e+00]
+ [ 4.86364926e-01  3.43912198e-01  2.80803037e-01]
+ [ 3.24243285e-01  2.29274799e-01  5.61606073e-01]
+ [ 1.62121643e-01  1.14637400e-01  8.42409110e-01]
+ [ 6.48486569e-01  8.02461726e-01  0.00000000e+00]
+ [ 4.86364927e-01  6.87824327e-01  2.80803037e-01]
+ [ 3.24243286e-01  5.73186928e-01  5.61606073e-01]
+ [ 1.62121645e-01  4.58549529e-01  8.42409110e-01]]
+nip = 975, nao = 39, cisdf =  25.00
+    CPU time for get interpolating vectors      0.06 sec
+Out-core version is used for eta_kpt, disk space required = 2.53e+01 GB.
+memory used for each block = 2.03e+00 GB, each k-point = 7.90e-01 GB
+max_memory = 1.01e+01 GB
+    CPU time for aoR_loop: [      0,    4068]     10.95 sec, wall time     15.53 sec
+    CPU time for aoR_loop: [   4068,    8136]     11.30 sec, wall time     14.31 sec
+    CPU time for aoR_loop: [   8136,   12204]     11.30 sec, wall time     13.53 sec
+    CPU time for aoR_loop: [  12204,   16272]     11.48 sec, wall time     14.31 sec
+    CPU time for aoR_loop: [  16272,   20340]     11.38 sec, wall time     15.54 sec
+    CPU time for aoR_loop: [  20340,   24408]     10.86 sec, wall time     13.46 sec
+    CPU time for aoR_loop: [  24408,   28476]     10.94 sec, wall time     13.34 sec
+    CPU time for aoR_loop: [  28476,   32544]     10.65 sec, wall time     13.14 sec
+    CPU time for aoR_loop: [  32544,   36612]     10.67 sec, wall time     13.14 sec
+    CPU time for aoR_loop: [  36612,   40680]     10.50 sec, wall time     12.93 sec
+    CPU time for aoR_loop: [  40680,   44748]      9.78 sec, wall time     11.20 sec
+    CPU time for aoR_loop: [  44748,   48816]     10.01 sec, wall time     11.61 sec
+    CPU time for aoR_loop: [  48816,   50653]      4.53 sec, wall time      6.85 sec
+Finished solving Coulomb kernel for q =   1 /  32, rank = 572 / 975
+    CPU time for solving Coulomb kernel     20.75 sec, wall time     24.74 sec
+Finished solving Coulomb kernel for q =   2 /  32, rank = 572 / 975
+    CPU time for solving Coulomb kernel     19.34 sec, wall time     19.69 sec
+Finished solving Coulomb kernel for q =   3 /  32, rank = 572 / 975
+    CPU time for solving Coulomb kernel     19.98 sec, wall time     20.23 sec
+Finished solving Coulomb kernel for q =   4 /  32, rank = 572 / 975
+    CPU time for solving Coulomb kernel     19.85 sec, wall time     20.08 sec
+Finished solving Coulomb kernel for q =   5 /  32, rank = 572 / 975
+    CPU time for solving Coulomb kernel     19.79 sec, wall time     20.08 sec
+Finished solving Coulomb kernel for q =   6 /  32, rank = 572 / 975
+    CPU time for solving Coulomb kernel     19.68 sec, wall time     19.86 sec
+Finished solving Coulomb kernel for q =   7 /  32, rank = 572 / 975
+    CPU time for solving Coulomb kernel     19.48 sec, wall time     19.63 sec
+Finished solving Coulomb kernel for q =   8 /  32, rank = 572 / 975
+    CPU time for solving Coulomb kernel     19.80 sec, wall time     19.99 sec
+Finished solving Coulomb kernel for q =   9 /  32, rank = 572 / 975
+    CPU time for solving Coulomb kernel     19.46 sec, wall time     19.66 sec
+Finished solving Coulomb kernel for q =  10 /  32, rank = 572 / 975
+    CPU time for solving Coulomb kernel     19.55 sec, wall time     20.41 sec
+Finished solving Coulomb kernel for q =  11 /  32, rank = 572 / 975
+    CPU time for solving Coulomb kernel     20.42 sec, wall time     23.29 sec
+Finished solving Coulomb kernel for q =  12 /  32, rank = 572 / 975
+    CPU time for solving Coulomb kernel     19.51 sec, wall time     20.21 sec
+Finished solving Coulomb kernel for q =  13 /  32, rank = 572 / 975
+    CPU time for solving Coulomb kernel     19.51 sec, wall time     19.68 sec
+Finished solving Coulomb kernel for q =  14 /  32, rank = 572 / 975
+    CPU time for solving Coulomb kernel     19.35 sec, wall time     19.57 sec
+Finished solving Coulomb kernel for q =  15 /  32, rank = 572 / 975
+    CPU time for solving Coulomb kernel     19.24 sec, wall time     19.39 sec
+Finished solving Coulomb kernel for q =  16 /  32, rank = 572 / 975
+    CPU time for solving Coulomb kernel     19.89 sec, wall time     23.59 sec
+Finished solving Coulomb kernel for q =  17 /  32, rank = 571 / 975
+    CPU time for solving Coulomb kernel     19.14 sec, wall time     19.25 sec
+Finished solving Coulomb kernel for q =  18 /  32, rank = 572 / 975
+    CPU time for solving Coulomb kernel     19.23 sec, wall time     19.40 sec
+Finished solving Coulomb kernel for q =  19 /  32, rank = 571 / 975
+    CPU time for solving Coulomb kernel     19.27 sec, wall time     19.51 sec
+Finished solving Coulomb kernel for q =  20 /  32, rank = 572 / 975
+    CPU time for solving Coulomb kernel     19.01 sec, wall time     21.14 sec
+Finished solving Coulomb kernel for q =  21 /  32, rank = 571 / 975
+    CPU time for solving Coulomb kernel     18.48 sec, wall time     18.59 sec
+Finished solving Coulomb kernel for q =  22 /  32, rank = 571 / 975
+    CPU time for solving Coulomb kernel     19.01 sec, wall time     19.27 sec
+Finished solving Coulomb kernel for q =  23 /  32, rank = 571 / 975
+    CPU time for solving Coulomb kernel     17.81 sec, wall time     17.93 sec
+Finished solving Coulomb kernel for q =  24 /  32, rank = 571 / 975
+    CPU time for solving Coulomb kernel     17.66 sec, wall time     17.71 sec
+Finished solving Coulomb kernel for q =  25 /  32, rank = 571 / 975
+    CPU time for solving Coulomb kernel     17.80 sec, wall time     17.86 sec
+Finished solving Coulomb kernel for q =  26 /  32, rank = 571 / 975
+    CPU time for solving Coulomb kernel     17.82 sec, wall time     17.91 sec
+Finished solving Coulomb kernel for q =  27 /  32, rank = 571 / 975
+    CPU time for solving Coulomb kernel     17.22 sec, wall time     17.32 sec
+Finished solving Coulomb kernel for q =  28 /  32, rank = 571 / 975
+    CPU time for solving Coulomb kernel     16.52 sec, wall time     16.57 sec
+Finished solving Coulomb kernel for q =  29 /  32, rank = 571 / 975
+    CPU time for solving Coulomb kernel     16.42 sec, wall time     16.46 sec
+slurmstepd: error: *** JOB 48125501 ON hpc-35-07 CANCELLED AT 2025-03-21T13:25:41 ***

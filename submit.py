@@ -86,10 +86,16 @@ if __name__ == "__main__":
         work_subdir = work_subdir.rstrip("-")
 
         if os.path.exists(os.path.join(base_dir, work_subdir)):
-            print(f"Work directory {work_subdir} already exists, deleting it")
-            # check if the work is finished
-            x = os.cmd
-            return
+            is_finished = False
+            log_path = os.path.join(base_dir, work_subdir, "out.log")
+            if os.path.exists(log_path):
+                with open(log_path, "r") as f:
+                    is_finished = "###" in f.read()
+            if is_finished:
+                return
+            else:
+                print(f"Work directory {work_subdir} is not finished. Deleting and running again.")
+                shutil.rmtree(os.path.join(base_dir, work_subdir))
 
         main(
             time=time, mem=mem, ncpu=ncpu,
@@ -108,26 +114,38 @@ if __name__ == "__main__":
     ]
 
     config = {
-        "df": "fftisdf-jy",
-        "ke_cutoff": 200.0,
         "script": "run-uks-kpt",
-        "time": "00:30:00",
+        "time": "20:00:00",
     }
 
     for name in ["nio-afm", "nio-conv"]:
+        # assert name == "nio-afm"
         ms = mm[:4] if name == "nio-conv" else mm
         for m in ms:
-            for k0 in [20.0, 40.0, 60.0, 80.0, 100.0]:
-                for c0 in [5.0, 10.0, 15.0, 20.0, 25.0, 30.0]:
-                    config["name"] = name
-                    config["mesh"] = ",".join(str(x) for x in m)
-                    config["k0"] = k0
-                    config["c0"] = c0
-                    config["chk_path"] = f"../../../gdf-32/tmp/scf.h5"
-                    config["ncpu"] = 1
-                    config["mem"] = 1 * 10
-                    run(config)
+            config["name"] = name
+            config["df"] = "gdf"
+            config["ke_cutoff"] = None
+            config["mesh"] = ",".join(str(x) for x in m)
+            config["chk_path"] = None
+            config["ncpu"] = 1
+            config["mem"] = 1 * 10
+            run(config)
 
-                    config["ncpu"] = 32
-                    config["mem"] = 32 * 10
-                    run(config)
+            config["ncpu"] = 32
+            config["mem"] = 32 * 10
+            run(config)
+
+            # for k0 in [20.0, 40.0, 60.0, 80.0, 100.0]:
+            #     for c0 in [5.0, 10.0, 15.0, 20.0, 25.0, 30.0]:
+            #         config["name"] = name
+            #         config["mesh"] = ",".join(str(x) for x in m)
+            #         config["k0"] = k0
+            #         config["c0"] = c0
+            #         config["chk_path"] = f"../../../gdf-32/tmp/scf.h5"
+            #         config["ncpu"] = 1
+            #         config["mem"] = 1 * 10
+            #         run(config)
+
+            #         config["ncpu"] = 32
+            #         config["mem"] = 32 * 10
+            #         run(config)

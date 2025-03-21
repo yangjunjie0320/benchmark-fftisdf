@@ -2,7 +2,7 @@
 #SBATCH --exclude=hpc-21-34,hpc-34-34,hpc-52-29
 #SBATCH --job-name=run-uks-kpt-nio-afm-4-4-4-gdf-1
 #SBATCH --cpus-per-task=1
-#SBATCH --mem=400GB
+#SBATCH --mem=10GB
 #SBATCH --time=20:00:00
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1

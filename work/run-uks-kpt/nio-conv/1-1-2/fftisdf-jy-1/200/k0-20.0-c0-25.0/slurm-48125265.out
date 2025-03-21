@@ -1,0 +1,57 @@
+SLURMD_NODENAME = hpc-35-25
+Start time = Fri Mar 21 01:11:56 PM PDT 2025
+OMP_NUM_THREADS = 1
+MKL_NUM_THREADS = 1
+PYSCF_MAX_MEMORY = 10240
+TMPDIR = /central/scratch/yangjunjie//run-uks-kpt-nio-conv-1-1-2-fftisdf-jy-1-200-k0-20.0-c0-25.0/48125265/
+PYSCF_TMPDIR = /central/scratch/yangjunjie//run-uks-kpt-nio-conv-1-1-2-fftisdf-jy-1-200-k0-20.0-c0-25.0/48125265/
+
+/home/junjiey/anaconda3/envs/fftisdf/bin/python
+2.8.0
+1.13.1
+2.0.2
+fft_engine = NUMPY+BLAS
+name = nio-conv
+ke_cutoff =  2.00e+02
+exxdiv = None
+df = fftisdf-jy
+chk_path = ../../../gdf-32/tmp/scf.h5
+mesh = 1,1,2
+c0 =  2.50e+01
+k0 =  2.00e+01
+
+Discarded 28 diffused primitive functions, 0 contracted functions
+ke_cutoff = 200.0
+g0 = [[ 0.          0.          0.        ]
+ [ 0.          0.          0.46535479]
+ [ 0.          0.          0.93070959]
+ ...
+ [-0.46535479 -0.46535479 -1.39606438]
+ [-0.46535479 -0.46535479 -0.93070959]
+ [-0.46535479 -0.46535479 -0.46535479]], m0 = [17 17 17]
+Pivoted Cholesky rank = 4913, estimated error = 9.81e-06
+Parent grid size = 4913, selected grid size = 3900
+    CPU time for interpolating functions      2.26 sec, wall time      2.27 sec
+
+
+******** <class 'fft_isdf.InterpolativeSeparableDensityFitting'> ********
+mesh = [53 53 53] (148877 PWs)
+len(kpts) = 2
+
+WARN: ke_cutoff/mesh (200 / [53 53 53]) is not enough for FFTDF to get integral accuracy 1e-08.
+Coulomb integral error is ~ 29 Eh.
+Recommended ke_cutoff/mesh are 1172.14 / [123 123 123].
+
+kmesh = [1 1 2]
+kpts = 
+[[ 0.00000000e+00  0.00000000e+00  0.00000000e+00]
+ [-2.84579601e-17 -2.84579601e-17  3.97115427e-01]]
+nip = 3900, nao = 156, cisdf =  25.00
+    CPU time for get interpolating vectors      0.20 sec
+Out-core version is used for eta_kpt, disk space required = 1.86e+01 GB.
+memory used for each block = 2.03e+00 GB, each k-point = 9.29e+00 GB
+max_memory = 1.01e+01 GB
+    CPU time for aoR_loop: [       0,    16256]     12.25 sec, wall time     14.25 sec
+    CPU time for aoR_loop: [   16256,    32512]     13.43 sec, wall time     14.22 sec
+    CPU time for aoR_loop: [   32512,    48768]     12.22 sec, wall time     12.95 sec
+slurmstepd: error: *** JOB 48125265 ON hpc-35-25 CANCELLED AT 2025-03-21T13:12:56 ***

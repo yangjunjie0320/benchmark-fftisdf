@@ -1,0 +1,25 @@
+SLURMD_NODENAME = hpc-21-36
+Start time = Fri Mar 21 01:12:05 PM PDT 2025
+OMP_NUM_THREADS = 1
+MKL_NUM_THREADS = 1
+PYSCF_MAX_MEMORY = 10240
+TMPDIR = /central/scratch/yangjunjie//run-uks-kpt-nio-conv-1-2-2-fftisdf-jy-1-200-k0-80.0-c0-30.0/48125362/
+PYSCF_TMPDIR = /central/scratch/yangjunjie//run-uks-kpt-nio-conv-1-2-2-fftisdf-jy-1-200-k0-80.0-c0-30.0/48125362/
+
+/home/junjiey/anaconda3/envs/fftisdf/bin/python
+2.8.0
+1.13.1
+2.0.2
+fft_engine = NUMPY+BLAS
+name = nio-conv
+ke_cutoff =  2.00e+02
+exxdiv = None
+df = fftisdf-jy
+chk_path = ../../../gdf-32/tmp/scf.h5
+mesh = 1,2,2
+c0 =  3.00e+01
+k0 =  8.00e+01
+
+Discarded 28 diffused primitive functions, 0 contracted functions
+/var/spool/slurmd/job48125362/slurm_script: line 48: 3960403 Killed                  python main.py --name=nio-conv --df=fftisdf-jy --ke_cutoff=200.0 --exxdiv=None --chk_path=../../../gdf-32/tmp/scf.h5 --mesh=1,2,2 --k0=80.0 --c0=30.0
+slurmstepd: error: Detected 1 oom_kill event in StepId=48125362.batch. Some of the step tasks have been OOM Killed.
