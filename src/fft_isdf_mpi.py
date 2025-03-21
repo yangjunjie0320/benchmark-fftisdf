@@ -62,7 +62,8 @@ def build(df_obj, inpx=None):
         ngrid = df_obj.grids.coords.shape[0]
         max_memory = max(2000, df_obj.max_memory - current_memory()[0])
         
-        # Generate metx_kpt and eta_kpt data
+        # Generate metx_kpt and eta_kpt data, must use 
+        # out-of-core version to pass data among processes
         from fft_isdf import get_lhs_and_rhs
         df_obj.fswap = File(tmpfile, 'w')
         metx_kpt, eta_kpt = get_lhs_and_rhs(df_obj, inpv_kpt, max_memory=max_memory)
@@ -91,10 +92,11 @@ def build(df_obj, inpx=None):
         from fft_isdf import get_kern, lstsq
         eta_q = fswap['eta_kpt'][q]
         kern_q = get_kern(df_obj, eta_q=eta_q, kpt_q=kpts[q])
-        coul_q = lstsq(metx_q, kern_q, tol=df_obj.tol)[0]
+        coul_q = lstsq(metx_q, kern_q, tol=df_obj.tol, verbose=df_obj)
         fswap['coul_kpt'][q] = coul_q
-        
-        print("Finished solving Coulomb kernel for q = %3d / %3d, rank = %d / %d" % (q + 1, nkpt, rank, size), flush=True)
+
+        log.info("Finished solving Coulomb kernel for q = %3d / %3d, rank = %d / %d", q + 1, nkpt, rank, size)
+        log.stdout.flush()
 
     coul_kpt = fswap['coul_kpt'][:]
     fswap.close()
@@ -151,7 +153,7 @@ if __name__ == "__main__":
 
     vj0 = numpy.zeros((nkpt, nao, nao))
     vk0 = numpy.zeros((nkpt, nao, nao))
-    vj0, vk0 = scf_obj.get_jk(dm_kpts=dm_kpts, with_j=True, with_k=True)
+    # vj0, vk0 = scf_obj.get_jk(dm_kpts=dm_kpts, with_j=True, with_k=True)
     vj0 = vj0.reshape(nkpt, nao, nao)
     vk0 = vk0.reshape(nkpt, nao, nao)
 

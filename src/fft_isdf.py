@@ -1,4 +1,4 @@
-import os, sys
+import os, sys, h5py
 import numpy, scipy
 import scipy.linalg
 
@@ -49,54 +49,52 @@ def kpt_to_spc(m_kpt, phase):
     m_spc = m_spc.reshape(m_kpt.shape)
     return m_spc.real
 
-def lstsq(a, b, tol=1e-10):
-    """
-    Solve the least squares problem of the form:
-        x = ainv @ b @ ainv.conj().T
-    using SVD. In which a is not full rank, and
-    ainv is the pseudo-inverse of a.
-
-    Args:
-        a: The matrix A.
-        b: The matrix B.
-        tol: The tolerance for the singular values.
-
-    Returns:
-        x: The solution to the least squares problem.
-        rank: The rank of the matrix a.
-    """
-
-    # make sure a is Hermitian
-    assert numpy.allclose(a, a.conj().T)
-
-    u, s, vh = scipy.linalg.svd(a, full_matrices=False)
-    uh = u.conj().T
-    v = vh.conj().T
-
-    r = s[None, :] * s[:, None]
-    m = abs(r) > tol
-    rank = m.sum() / m.shape[0]
-    t = (uh @ b @ u) * m / r
-    return v @ t @ vh, int(rank)
-
+# should I put this in the build method? Instead of a separate function?
 @line_profiler.profile
-def build(df_obj, inpx=None):
+def build(df_obj, inpx=None, verbose=0):
     """
     Build the FFT-ISDF object.
     
     Args:
         df_obj: The FFT-ISDF object to build.
     """
-    log = logger.new_logger(df_obj, df_obj.verbose)
+    log = logger.new_logger(df_obj, verbose)
     t0 = (process_clock(), perf_counter())
+    max_memory = max(2000, df_obj.max_memory - current_memory()[0])
+
+    if df_obj._isdf is not None:
+        log.info("Loading ISDF results from %s, skipping build", df_obj._isdf)
+        from pyscf.lib.chkfile import load
+        inpv_kpt = load(df_obj._isdf, "inpv_kpt")
+        coul_kpt = load(df_obj._isdf, "coul_kpt")
+        df_obj._inpv_kpt = inpv_kpt
+        df_obj._coul_kpt = coul_kpt
+        return inpv_kpt, coul_kpt
+
+    df_obj.dump_flags()
+    df_obj.check_sanity()
 
     cell = df_obj.cell
     kpts, kmesh = kpts_to_kmesh(df_obj, df_obj.kpts)
     nkpt = len(kpts)
+    log.info("kmesh = %s", kmesh)
+    log.info("kpts = \n%s", kpts)
+
+    if inpx is None:
+        inpx = df_obj.get_inpx(g0=None, c0=df_obj.c0)
 
     nip = inpx.shape[0]
     assert inpx.shape == (nip, 3)
+    ngrid = df_obj.grids.coords.shape[0]
     nao = cell.nao_nr()
+
+    if df_obj.blksize is None:
+        blksize = max_memory * 1e6 * 0.2 / (nkpt * nip * 16)
+        df_obj.blksize = max(1, int(blksize))
+    df_obj.blksize = min(df_obj.blksize, ngrid)
+
+    if df_obj.blksize >= ngrid:
+        df_obj._fswap = None
 
     inpv_kpt = cell.pbc_eval_gto("GTOval", inpx, kpts=kpts)
     inpv_kpt = numpy.asarray(inpv_kpt, dtype=numpy.complex128)
@@ -104,9 +102,8 @@ def build(df_obj, inpx=None):
     log.debug("nip = %d, nao = %d, cisdf = %6.2f", nip, nao, nip / nao)
     t1 = log.timer("get interpolating vectors")
     
-    ngrid = df_obj.grids.coords.shape[0]
-    max_memory = max(2000, df_obj.max_memory - current_memory()[0])
-    if df_obj._fswap is None:
+    fswap = None if df_obj._fswap is None else h5py.File(df_obj._fswap, "w")
+    if fswap is None:
         log.debug("In-core version is used for eta_kpt, memory required = %6.2e GB, max_memory = %6.2e GB", nkpt * nip * 16 * ngrid / 1e9, max_memory / 1e3)
     else:
         log.debug("Out-core version is used for eta_kpt, disk space required = %6.2e GB.", nkpt * nip * 16 * ngrid / 1e9)
@@ -115,7 +112,7 @@ def build(df_obj, inpx=None):
 
     # metx_kpt: (nkpt, nip, nip), eta_kpt: (nkpt, ngrid, nip)
     # assume metx_kpt is a numpy.array, while eta_kpt is a hdf5 dataset
-    metx_kpt, eta_kpt = get_lhs_and_rhs(df_obj, inpv_kpt, max_memory=max_memory)
+    metx_kpt, eta_kpt = get_lhs_and_rhs(df_obj, inpv_kpt, fswap=fswap)
 
     coul_kpt = []
     for q in range(nkpt):
@@ -125,19 +122,32 @@ def build(df_obj, inpx=None):
         assert metx_q.shape == (nip, nip)
 
         kern_q = get_kern(df_obj, eta_q=eta_kpt[q], kpt_q=kpts[q])
-        coul_q, rank = lstsq(metx_q, kern_q, tol=df_obj.tol)
+        coul_q = df_obj.lstsq(metx_q, kern_q, tol=df_obj.tol, verbose=verbose)
         assert coul_q.shape == (nip, nip)
 
-        log.info("Finished solving Coulomb kernel for q = %3d / %3d, rank = %d / %d", q + 1, nkpt, rank, nip)
+        log.info("Finished solving Coulomb kernel for q = %3d / %3d", q + 1, nkpt)
         log.timer("solving Coulomb kernel", *t0)
-
         coul_kpt.append(coul_q)
 
     coul_kpt = numpy.asarray(coul_kpt)
+    df_obj._coul_kpt = coul_kpt
+    df_obj._inpv_kpt = inpv_kpt
+
+    if df_obj._isdf_to_save is not None:
+        df_obj._isdf = df_obj._isdf_to_save
+
+    if df_obj._isdf is not None:
+        from pyscf.lib.chkfile import dump
+        dump(df_obj._isdf, "coul_kpt", coul_kpt)
+        dump(df_obj._isdf, "inpv_kpt", inpv_kpt)
+
+    t1 = log.timer("building ISDF", *t0)
+    if fswap is not None:
+        fswap.close()
     return inpv_kpt, coul_kpt
 
 @line_profiler.profile
-def get_lhs_and_rhs(df_obj, inpv_kpt, max_memory=2000):
+def get_lhs_and_rhs(df_obj, inpv_kpt, fswap=None):
     log = logger.new_logger(df_obj, df_obj.verbose)
 
     grids = df_obj.grids
@@ -170,8 +180,8 @@ def get_lhs_and_rhs(df_obj, inpv_kpt, max_memory=2000):
 
     metx_kpt = spc_to_kpt(t_spc * t_spc, phase)
 
-    eta_kpt = df_obj._fswap.create_dataset("eta_kpt", shape=(nkpt, ngrid, nip), dtype=numpy.complex128) \
-        if df_obj._fswap is not None else numpy.zeros((nkpt, ngrid, nip), dtype=numpy.complex128)
+    eta_kpt = fswap.create_dataset("eta_kpt", shape=(nkpt, ngrid, nip), dtype=numpy.complex128) \
+        if fswap is not None else numpy.zeros((nkpt, ngrid, nip), dtype=numpy.complex128)
 
     l = len("%s" % ngrid)
     info = f"aoR_loop: [% {l+2}d, % {l+2}d]"
@@ -252,14 +262,17 @@ class InterpolativeSeparableDensityFitting(FFTDF):
     _coul_kpt = None
     _inpv_kpt = None
 
-    c0 = 10.0
-    tol = 1e-10
     blksize = None
+    tol = 1e-10
+    c0 = 10.0
+
+    _keys = {"tol", "c0"}
 
     def __init__(self, cell, kpts=numpy.zeros((1, 3))):
         FFTDF.__init__(self, cell, kpts)
-        from pyscf.lib import H5TmpFile
-        self._fswap = H5TmpFile()
+        from tempfile import NamedTemporaryFile
+        fswap = NamedTemporaryFile(dir=lib.param.TMPDIR)
+        self._fswap = fswap.name
 
     def dump_flags(self, verbose=None):
         log = logger.new_logger(self, verbose)
@@ -269,57 +282,7 @@ class InterpolativeSeparableDensityFitting(FFTDF):
         log.info("len(kpts) = %d", len(self.kpts))
         return self
     
-    @line_profiler.profile
-    def build(self, inpx=None):
-        log = logger.new_logger(self, self.verbose)
-
-        self.dump_flags()
-        self.check_sanity()
-
-        kpts, kmesh = kpts_to_kmesh(self, self.kpts)
-        log.info("kmesh = %s", kmesh)
-        log.info("kpts = \n%s", kpts)
-
-        t0 = (process_clock(), perf_counter())
-        if self._isdf is not None:
-            pass
-
-        if inpx is None:
-            inpx = self.get_inpx(g0=None, c0=self.c0)
-
-        max_memory = max(2000, self.max_memory - current_memory()[0])
-        nip = inpx.shape[0]
-        nkpt = len(self.kpts)
-        ngrid = self.grids.coords.shape[0]
-
-        if self.blksize is None:
-            blksize = max_memory * 1e6 * 0.2 / (nkpt * nip * 16)
-            self.blksize = max(1, int(blksize))
-        self.blksize = min(self.blksize, ngrid)
-
-        if self.blksize >= ngrid:
-            self._fswap = None
-
-        inpv_kpt, coul_kpt = build(self, inpx)
-
-        self._inpv_kpt = inpv_kpt
-        self._coul_kpt = coul_kpt
-
-        if self._isdf_to_save is not None:
-            self._isdf = self._isdf_to_save
-
-        if self._isdf is None:
-            import tempfile
-            isdf = tempfile.NamedTemporaryFile(dir=lib.param.TMPDIR)
-            self._isdf = isdf.name
-        
-        log.info("Saving FFTISDF results to %s", self._isdf)
-        from pyscf.lib.chkfile import dump
-        dump(self._isdf, "coul_kpt", coul_kpt)
-        dump(self._isdf, "inpv_kpt", inpv_kpt)
-
-        t1 = log.timer("building ISDF", *t0)
-        return self
+    build = build
     
     def aoR_loop(self, grids=None, kpts=None, deriv=0, blksize=None):
         if grids is None:
@@ -415,6 +378,28 @@ class InterpolativeSeparableDensityFitting(FFTDF):
             vj = get_j_kpts(self, dm, hermi, kpts, kpts_band)
 
         return vj, vk
+    
+    def lstsq(self, a, b, tol=1e-10, verbose=0):
+        # make sure a is Hermitian
+        log = logger.new_logger(self, verbose)
+        assert numpy.allclose(a, a.conj().T)
+
+        u, s, vh = scipy.linalg.svd(a, full_matrices=False)
+        uh = u.conj().T
+        v = vh.conj().T
+
+        r = s[None, :] * s[:, None]
+        m = abs(r) > tol
+        t = (uh @ b @ u) * m / r
+        x = v @ t @ vh
+
+        if self.verbose > logger.DEBUG1:
+            err = abs(a @ x @ a.conj().T - b).max()
+            log.debug1(
+                "Solving least square problem: rank = %3d / %3d, error = %6.2e", 
+                int(m.sum() / m.shape[0]), a.shape[0], err
+                )
+        return x
 
 ISDF = FFTISDF = InterpolativeSeparableDensityFitting
 
@@ -434,8 +419,8 @@ if __name__ == "__main__":
     cell.build(dump_input=False)
     nao = cell.nao_nr()
 
-    # kmesh = [4, 4, 4]
-    kmesh = [2, 2, 2]
+    kmesh = [4, 4, 4]
+    # kmesh = [2, 2, 2]
     nkpt = nspc = numpy.prod(kmesh)
     kpts = cell.get_kpts(kmesh)
 
@@ -455,13 +440,13 @@ if __name__ == "__main__":
         g0 = cell.gen_uniform_grids(cutoff_to_mesh(lv, cell.ke_cutoff))
 
         scf_obj.with_df = ISDF(cell, kpts=kpts)
-        scf_obj.with_df.verbose = 5
+        scf_obj.with_df.verbose = 10
         scf_obj.with_df.tol = 1e-10
         scf_obj.with_df.max_memory = 2000
 
         df_obj = scf_obj.with_df
         inpx = df_obj.get_inpx(g0=g0, c0=c0, tol=1e-10)
-        df_obj.build(inpx)
+        df_obj.build(inpx=inpx, verbose=10)
 
         vj, vk = df_obj.get_jk(dm_kpts)
         vv.append((vj, vk))
