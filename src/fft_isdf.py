@@ -104,26 +104,18 @@ def build(df_obj, inpx=None):
     log.debug("nip = %d, nao = %d, cisdf = %6.2f", nip, nao, nip / nao)
     t1 = log.timer("get interpolating vectors")
     
+    ngrid = df_obj.grids.coords.shape[0]
     max_memory = max(2000, df_obj.max_memory - current_memory()[0])
+    if df_obj._fswap is None:
+        log.debug("In-core version is used for eta_kpt, memory required = %6.2e GB, max_memory = %6.2e GB", nkpt * nip * 16 * ngrid / 1e9, max_memory / 1e3)
+    else:
+        log.debug("Out-core version is used for eta_kpt, disk space required = %6.2e GB.", nkpt * nip * 16 * ngrid / 1e9)
+        log.debug("memory used for each block = %6.2e GB, each k-point = %6.2e GB", nkpt * nip * 16 * df_obj.blksize / 1e9, nip * ngrid * 16 / 1e9)
+        log.debug("max_memory = %6.2e GB", max_memory / 1e3)
 
     # metx_kpt: (nkpt, nip, nip), eta_kpt: (nkpt, ngrid, nip)
     # assume metx_kpt is a numpy.array, while eta_kpt is a hdf5 dataset
-    metx_kpt, eta_kpt = get_lhs_and_rhs(
-        df_obj, inpv_kpt,
-        max_memory=max_memory,
-        fswp=df_obj._fswap
-    )
-    ngrid = eta_kpt.shape[1]
-
-    eta_kpt = numpy.asarray(eta_kpt)
-    assert eta_kpt.shape == (nkpt, ngrid, nip)
-    log.debug("eta_kpt.shape = %s", eta_kpt.shape)
-    log.debug("Memory used for eta_kpt = %6.2e GB", eta_kpt.nbytes / 1e9)
-
-    # each k-point would require
-    mem_required = ngrid * nip * 16 / 1e9
-    log.debug("Memory required for each k-point = %6.2e GB", mem_required)
-    log.debug("Max memory available = %6.2e GB", max_memory)
+    metx_kpt, eta_kpt = get_lhs_and_rhs(df_obj, inpv_kpt, max_memory=max_memory)
 
     coul_kpt = []
     for q in range(nkpt):
@@ -145,7 +137,7 @@ def build(df_obj, inpx=None):
     return inpv_kpt, coul_kpt
 
 @line_profiler.profile
-def get_lhs_and_rhs(df_obj, inpv_kpt, max_memory=2000, fswp=None):
+def get_lhs_and_rhs(df_obj, inpv_kpt, max_memory=2000):
     log = logger.new_logger(df_obj, df_obj.verbose)
 
     grids = df_obj.grids
@@ -170,7 +162,6 @@ def get_lhs_and_rhs(df_obj, inpv_kpt, max_memory=2000, fswp=None):
     )
     assert phase.shape == (nspc, nkpt)
 
-    # [1] compute the metric tensor
     t_kpt = numpy.asarray([xk.conj() @ xk.T for xk in inpv_kpt])
     assert t_kpt.shape == (nkpt, nip, nip)
 
@@ -179,26 +170,13 @@ def get_lhs_and_rhs(df_obj, inpv_kpt, max_memory=2000, fswp=None):
 
     metx_kpt = spc_to_kpt(t_spc * t_spc, phase)
 
-    blksize = max(max_memory * 1e6 * 0.5 / (nkpt * nip * 16), 1)
-    blksize = min(int(blksize), ngrid)
-
-    log.debug("blksize = %d, ngrid = %d", blksize, ngrid)
-
-    eta_kpt = None
-    if blksize == ngrid:    
-        eta_kpt = numpy.zeros((nkpt, ngrid, nip), dtype=numpy.complex128)
-        log.debug("Use in-core for eta_kpt, memory used for eta_kpt = %6.2e GB", eta_kpt.nbytes / 1e9)
-    else:
-        eta_kpt = fswp.create_dataset("eta_kpt", shape=(nkpt, ngrid, nip), dtype=numpy.complex128)
-        log.debug("Use out-core for eta_kpt, disk space used for eta_kpt = %6.2e GB", eta_kpt.nbytes / 1e9)
-        log.debug("memory used for each block = %6.2e GB, max_memory = %6.2e GB", nkpt * nip * 16 * blksize / 1e9, max_memory / 1e3)
-
-    assert eta_kpt is not None
+    eta_kpt = df_obj._fswap.create_dataset("eta_kpt", shape=(nkpt, ngrid, nip), dtype=numpy.complex128) \
+        if df_obj._fswap is not None else numpy.zeros((nkpt, ngrid, nip), dtype=numpy.complex128)
 
     l = len("%s" % ngrid)
     info = f"aoR_loop: [% {l+2}d, % {l+2}d]"
 
-    aoR_loop = df_obj.aoR_loop(grids, kpts, 0, blksize=blksize)
+    aoR_loop = df_obj.aoR_loop(grids, kpts, 0, blksize=df_obj.blksize)
     for ig, (ao_kpt, g0, g1) in enumerate(aoR_loop):
         t0 = (process_clock(), perf_counter())
 
@@ -276,6 +254,7 @@ class InterpolativeSeparableDensityFitting(FFTDF):
 
     c0 = 10.0
     tol = 1e-10
+    blksize = None
 
     def __init__(self, cell, kpts=numpy.zeros((1, 3))):
         FFTDF.__init__(self, cell, kpts)
@@ -288,7 +267,6 @@ class InterpolativeSeparableDensityFitting(FFTDF):
         log.info("******** %s ********", self.__class__)
         log.info("mesh = %s (%d PWs)", self.mesh, numpy.prod(self.mesh))
         log.info("len(kpts) = %d", len(self.kpts))
-        log.debug1("    kpts = %s", self.kpts)
         return self
     
     @line_profiler.profile
@@ -308,6 +286,19 @@ class InterpolativeSeparableDensityFitting(FFTDF):
 
         if inpx is None:
             inpx = self.get_inpx(g0=None, c0=self.c0)
+
+        max_memory = max(2000, self.max_memory - current_memory()[0])
+        nip = inpx.shape[0]
+        nkpt = len(self.kpts)
+        ngrid = self.grids.coords.shape[0]
+
+        if self.blksize is None:
+            blksize = max_memory * 1e6 * 0.2 / (nkpt * nip * 16)
+            self.blksize = max(1, int(blksize))
+        self.blksize = min(self.blksize, ngrid)
+
+        if self.blksize >= ngrid:
+            self._fswap = None
 
         inpv_kpt, coul_kpt = build(self, inpx)
 

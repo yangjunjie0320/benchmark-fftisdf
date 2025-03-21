@@ -21,3 +21,34 @@ c0 =  2.50e+01
 k0 =  4.00e+01
 
 Discarded 28 diffused primitive functions, 0 contracted functions
+ke_cutoff = 200.0
+g0 = [[ 0.          0.          0.        ]
+ [ 0.          0.          0.31644126]
+ [ 0.          0.          0.63288252]
+ ...
+ [-0.31644126 -0.31644126 -0.94932378]
+ [-0.31644126 -0.31644126 -0.63288252]
+ [-0.31644126 -0.31644126 -0.31644126]], m0 = [25 25 25]
+Pivoted Cholesky rank = 7973, estimated error = 3.96e-05
+Parent grid size = 15625, selected grid size = 3900
+    CPU time for interpolating functions     26.75 sec, wall time     26.85 sec
+
+
+******** <class 'fft_isdf.InterpolativeSeparableDensityFitting'> ********
+mesh = [53 53 53] (148877 PWs)
+len(kpts) = 1
+
+WARN: ke_cutoff/mesh (200 / [53 53 53]) is not enough for FFTDF to get integral accuracy 1e-08.
+Coulomb integral error is ~ 29 Eh.
+Recommended ke_cutoff/mesh are 1172.14 / [123 123 123].
+
+kmesh = [1 1 1]
+kpts = 
+[[0. 0. 0.]]
+nip = 3900, nao = 156, cisdf =  25.00
+    CPU time for get interpolating vectors      0.15 sec
+blksize = 81145, ngrid = 148877
+Use out-core for eta_kpt, disk space used for eta_kpt = 9.29e+00 GB
+memory used for each block = 5.06e+00 GB, max_memory = 1.01e+01 GB
+/var/spool/slurmd/job48115243/slurm_script: line 48: 3532218 Killed                  python main.py --name=nio-conv --df=fftisdf-jy --ke_cutoff=200.0 --exxdiv=None --chk_path=../../../gdf-32/tmp/scf.h5 --mesh=1,1,1 --k0=40.0 --c0=25.0
+slurmstepd: error: Detected 1 oom_kill event in StepId=48115243.batch. Some of the step tasks have been OOM Killed.

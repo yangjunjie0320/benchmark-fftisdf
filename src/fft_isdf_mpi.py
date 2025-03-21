@@ -1,7 +1,7 @@
 import mpi4py
 from mpi4py import MPI
 
-import os, sys
+import os, sys, h5py
 import numpy, scipy
 import scipy.linalg
 
@@ -21,90 +21,89 @@ import line_profiler
 
 PYSCF_MAX_MEMORY = int(os.environ.get("PYSCF_MAX_MEMORY", 2000))
 
-import fft_isdf_new
+import fft_isdf
+from fft_isdf import kpts_to_kmesh
+from fft_isdf import spc_to_kpt, kpt_to_spc
+# from fft_isdf import get_lhs_and_rhs, get_kern
 
 comm = MPI.COMM_WORLD
 rank = comm.Get_rank()
 size = comm.Get_size()
 
-def build(df_obj, c0=None, kpts=None, kmesh=None):
+@line_profiler.profile
+def build(df_obj, inpx=None):
     """
-    Build the FFT-ISDF object.
-    
-    Args:
-        df_obj: The FFT-ISDF object to build.
+    Build the FFT-ISDF object with proper MPI support.
     """
     log = logger.new_logger(df_obj, df_obj.verbose)
     t0 = (process_clock(), perf_counter())
 
     cell = df_obj.cell
-    assert numpy.allclose(cell.get_kpts(kmesh), kpts)
+    kpts, kmesh = kpts_to_kmesh(df_obj, df_obj.kpts)
     nkpt = len(kpts)
 
-    tol = df_obj.tol
-
-    # build the interpolation vectors
-    g0 = df_obj.get_inpv(c0=c0)
-    nip = g0.shape[0]
-    assert g0.shape == (nip, 3)
+    nip = inpx.shape[0]
+    assert inpx.shape == (nip, 3)
     nao = cell.nao_nr()
 
-    inpv_kpt = cell.pbc_eval_gto("GTOval", g0, kpts=kpts)
-    inpv_kpt = numpy.asarray(inpv_kpt, dtype=numpy.complex128)
-    assert inpv_kpt.shape == (nkpt, nip, nao)
-    log.debug("nip = %d, cisdf = %6.2f", nip, nip / nao)
-    t1 = log.timer("get interpolating vectors")
-
-    coul_kpt = []
-    for q in range(nkpt):
-        if rank != q % size:
-            continue
-
-        t0 = (process_clock(), perf_counter())
-        from pyscf.lib import H5TmpFile
-        fswp = H5TmpFile()
-
-        from fft_isdf_new import get_lhs_and_rhs
-        metx_q, eta_q = get_lhs_and_rhs(
-            df_obj, inpv_kpt, kpt=kpts[q], 
-            fswp=fswp
-        )
-
-        # xi_q: solution for least-squares fitting
-        # rho = xi_q * inpv_kpt.conj().T * inpv_kpt
-        # but we would not explicitly compute
-
-        ngrid = eta_q.shape[0]
-        assert metx_q.shape == (nip, nip)
-        assert eta_q.shape == (ngrid, nip)
-
-        from fft_isdf_new import get_kern
-        kern_q = get_kern(
-            df_obj, eta_q, kpt=kpts[q], 
-            tol=tol, fswp=fswp
-        )
-
-        from fft_isdf_new import lstsq
-        res = lstsq(metx_q, kern_q, tol=tol)
-        coul_q = res[0]
-        assert coul_q.shape == (nip, nip)
-
-        coul_kpt.append((q, coul_q))
-        log.timer("solving Coulomb kernel", *t0)
-        # print("q = %d, rank = %d / %d" % (q, rank, size))
-        log.info("Finished solving Coulomb kernel for q = %3d / %3d, rank = %d / %d", q + 1, nkpt, res[1], nip)
+    from h5py import File
+    from tempfile import NamedTemporaryFile
+    _tmpfile = NamedTemporaryFile(dir=lib.param.TMPDIR)
+    tmpfile  = _tmpfile.name
+    
+    # Only root process creates and writes to the file
+    if rank == 0:
+        # Calculate data on root process
+        inpv_kpt = cell.pbc_eval_gto("GTOval", inpx, kpts=kpts)
+        inpv_kpt = numpy.asarray(inpv_kpt, dtype=numpy.complex128)
+        assert inpv_kpt.shape == (nkpt, nip, nao)
+        log.debug("nip = %d, nao = %d, cisdf = %6.2f", nip, nao, nip / nao)
+        
+        ngrid = df_obj.grids.coords.shape[0]
+        max_memory = max(2000, df_obj.max_memory - current_memory()[0])
+        
+        # Generate metx_kpt and eta_kpt data
+        from fft_isdf import get_lhs_and_rhs
+        df_obj.fswap = File(tmpfile, 'w')
+        metx_kpt, eta_kpt = get_lhs_and_rhs(df_obj, inpv_kpt, max_memory=max_memory)
+        df_obj.fswap.create_dataset('inpv_kpt', data=inpv_kpt)
+        df_obj.fswap.create_dataset('metx_kpt', data=metx_kpt)
+        df_obj.fswap.create_dataset('eta_kpt',  data=eta_kpt)
+        df_obj.fswap.create_dataset('coul_kpt', data=numpy.zeros((nkpt, nip, nip), dtype=numpy.complex128))
+        df_obj.fswap.close()
+        df_obj.fswap = None
 
     comm.barrier()
-    coul_kpt = comm.allreduce(coul_kpt)
-    coul_kpt = [x[1] for x in sorted(coul_kpt, key=lambda x: x[0])]
-    coul_kpt = numpy.asarray(coul_kpt)
-    coul_kpt = coul_kpt.reshape(nkpt, nip, nip)
+    
+    # Broadcast the file name to all processes
+    tmpfile = comm.bcast(tmpfile, root=0)
+    
+    fswap = File(tmpfile, "r+", driver="mpio", comm=comm)
+    metx_kpt = fswap['metx_kpt'][:]
+    inpv_kpt = fswap['inpv_kpt'][:]
+
+    for q in range(nkpt):
+        if q % size != rank:
+            continue
+            
+        metx_q = metx_kpt[q]
+        
+        from fft_isdf import get_kern, lstsq
+        eta_q = fswap['eta_kpt'][q]
+        kern_q = get_kern(df_obj, eta_q=eta_q, kpt_q=kpts[q])
+        coul_q = lstsq(metx_q, kern_q, tol=df_obj.tol)[0]
+        fswap['coul_kpt'][q] = coul_q
+        
+        print("Finished solving Coulomb kernel for q = %3d / %3d, rank = %d / %d" % (q + 1, nkpt, rank, size), flush=True)
+
+    coul_kpt = fswap['coul_kpt'][:]
+    fswap.close()
     comm.barrier()
     return inpv_kpt, coul_kpt
 
-fft_isdf_new.build = build
+fft_isdf.build = build
 
-class WithMPI(fft_isdf_new.FFTISDF):
+class WithMPI(fft_isdf.FFTISDF):
     pass
 
 FFTISDF = ISDF = WithMPI
@@ -122,7 +121,7 @@ if __name__ == "__main__":
     cell.unit = 'aa'
     cell.exp_to_discard = 0.1
     cell.max_memory = PYSCF_MAX_MEMORY
-    cell.ke_cutoff = 80.0
+    cell.ke_cutoff = 100.0
     cell.stdout = sys.stdout if rank == 0 else open(TMPDIR + "out-%d.log" % rank, "w")
     cell.build(dump_input=False)
 
@@ -156,36 +155,25 @@ if __name__ == "__main__":
     vj0 = vj0.reshape(nkpt, nao, nao)
     vk0 = vk0.reshape(nkpt, nao, nao)
 
+    c0 = 5.0
+    from pyscf.pbc.tools.pbc import cutoff_to_mesh
+    lv = cell.lattice_vectors()
+    g0 = cell.gen_uniform_grids(cutoff_to_mesh(lv, cell.ke_cutoff))
+
+    scf_obj.with_df = ISDF(cell, kpts=kpts)
+    scf_obj.with_df.verbose = 5
+    scf_obj.with_df.tol = 1e-10
+    scf_obj.with_df.max_memory = 2000
+
+    df_obj = scf_obj.with_df
+    inpx = df_obj.get_inpx(g0=g0, c0=c0, tol=1e-10)
+    df_obj.build(inpx)
+
+    vj1, vk1 = df_obj.get_jk(dm_kpts)
+    vj1 = vj1.reshape(nkpt, nao, nao)
+    vk1 = vk1.reshape(nkpt, nao, nao)
+
     if rank == 0:
-        t1 = log.timer("-> FFTDF JK", *t0)
-
-    for c0 in [5.0, 10.0, 15.0, 20.0]:
-        comm.barrier()
-
-        t0 = (process_clock(), perf_counter())
-        scf_obj.with_df = ISDF(cell, kpts=kpts)
-        scf_obj.with_df.c0 = c0
-        scf_obj.with_df.verbose = 5
-        scf_obj.with_df.tol = 1e-12
-        df_obj = scf_obj.with_df
-        df_obj.build()
-
-        t1 = log.timer("-> ISDF build", *t0)
-
-        t0 = (process_clock(), perf_counter())
-        vj1 = numpy.zeros((nkpt, nao, nao))
-        vk1 = numpy.zeros((nkpt, nao, nao))
-        vj1, vk1 = scf_obj.get_jk(dm_kpts=dm_kpts, with_j=True, with_k=True)
-        vj1 = vj1.reshape(nkpt, nao, nao)
-        vk1 = vk1.reshape(nkpt, nao, nao)
-
-        if rank == 0:
-            t1 = log.timer("-> ISDF JK", *t0)
-
-            err = abs(vj0 - vj1).max()
-            print("-> ISDF c0 = % 6.2f, vj err = % 6.4e" % (c0, err))
-
-            err = abs(vk0 - vk1).max()
-            print("-> ISDF c0 = % 6.2f, vk err = % 6.4e" % (c0, err))
-
-        comm.barrier()
+        err_j = abs(vj0 - vj1).max()
+        err_k = abs(vk0 - vk1).max()
+        print("err_j = %12.6e, err_k = %12.6e" % (err_j, err_k))

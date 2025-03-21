@@ -241,3 +241,24 @@ Finished solving Coulomb kernel for q =  61 /  64, rank = 595 / 975
     CPU time for solving Coulomb kernel     70.70 sec, wall time      3.67 sec
 Finished solving Coulomb kernel for q =  62 /  64, rank = 595 / 975
     CPU time for solving Coulomb kernel     70.55 sec, wall time      3.63 sec
+Finished solving Coulomb kernel for q =  63 /  64, rank = 595 / 975
+    CPU time for solving Coulomb kernel     68.34 sec, wall time      3.54 sec
+Finished solving Coulomb kernel for q =  64 /  64, rank = 595 / 975
+    CPU time for solving Coulomb kernel     73.35 sec, wall time      3.78 sec
+Saving FFTISDF results to /central/scratch/yangjunjie/run-uks-kpt-nio-afm-4-4-4-fftisdf-jy-32-200-k0-20.0-c0-25.0/48115172/tmpbbmjmbjm
+    CPU time for building ISDF   5424.20 sec, wall time    367.17 sec
+Traceback (most recent call last):
+  File "/central/home/junjiey/work/benchmark-fftisdf/work/run-uks-kpt/nio-afm/4-4-4/fftisdf-jy-32/200/k0-20.0-c0-25.0/main.py", line 205, in <module>
+    e_tot = main(config)
+  File "/central/home/junjiey/work/benchmark-fftisdf/work/run-uks-kpt/nio-afm/4-4-4/fftisdf-jy-32/200/k0-20.0-c0-25.0/main.py", line 98, in main
+    dm0 = load(chk_path, "dm0")
+  File "/home/junjiey/anaconda3/envs/fftisdf/lib/python3.9/site-packages/pyscf/lib/chkfile.py", line 72, in load
+    with h5py.File(chkfile, 'r') as fh5:
+  File "/home/junjiey/anaconda3/envs/fftisdf/lib/python3.9/site-packages/h5py/_hl/files.py", line 564, in __init__
+    fid = make_fid(name, mode, userblock_size, fapl, fcpl, swmr=swmr)
+  File "/home/junjiey/anaconda3/envs/fftisdf/lib/python3.9/site-packages/h5py/_hl/files.py", line 238, in make_fid
+    fid = h5f.open(name, flags, fapl=fapl)
+  File "h5py/_objects.pyx", line 54, in h5py._objects.with_phil.wrapper
+  File "h5py/_objects.pyx", line 55, in h5py._objects.with_phil.wrapper
+  File "h5py/h5f.pyx", line 102, in h5py.h5f.open
+FileNotFoundError: [Errno 2] Unable to synchronously open file (unable to open file: name = '../../../gdf-32/tmp/scf.h5', errno = 2, error message = 'No such file or directory', flags = 0, o_flags = 0)

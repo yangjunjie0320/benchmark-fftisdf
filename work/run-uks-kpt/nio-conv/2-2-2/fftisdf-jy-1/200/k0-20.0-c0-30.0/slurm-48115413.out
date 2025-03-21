@@ -1,0 +1,61 @@
+SLURMD_NODENAME = hpc-19-33
+Start time = Thu Mar 20 03:23:14 PM PDT 2025
+OMP_NUM_THREADS = 1
+MKL_NUM_THREADS = 1
+PYSCF_MAX_MEMORY = 10240
+TMPDIR = /central/scratch/yangjunjie//run-uks-kpt-nio-conv-2-2-2-fftisdf-jy-1-200-k0-20.0-c0-30.0/48115413/
+PYSCF_TMPDIR = /central/scratch/yangjunjie//run-uks-kpt-nio-conv-2-2-2-fftisdf-jy-1-200-k0-20.0-c0-30.0/48115413/
+
+/home/junjiey/anaconda3/envs/fftisdf/bin/python
+2.8.0
+1.13.1
+2.0.2
+fft_engine = NUMPY+BLAS
+name = nio-conv
+ke_cutoff =  2.00e+02
+exxdiv = None
+df = fftisdf-jy
+chk_path = ../../../gdf-32/tmp/scf.h5
+mesh = 2,2,2
+c0 =  3.00e+01
+k0 =  2.00e+01
+
+Discarded 28 diffused primitive functions, 0 contracted functions
+ke_cutoff = 200.0
+g0 = [[ 0.          0.          0.        ]
+ [ 0.          0.          0.46535479]
+ [ 0.          0.          0.93070959]
+ ...
+ [-0.46535479 -0.46535479 -1.39606438]
+ [-0.46535479 -0.46535479 -0.93070959]
+ [-0.46535479 -0.46535479 -0.46535479]], m0 = [17 17 17]
+Pivoted Cholesky rank = 4913, estimated error = 7.99e-07
+Parent grid size = 4913, selected grid size = 4680
+    CPU time for interpolating functions      1.95 sec, wall time      1.97 sec
+
+
+******** <class 'fft_isdf.InterpolativeSeparableDensityFitting'> ********
+mesh = [53 53 53] (148877 PWs)
+len(kpts) = 8
+
+WARN: ke_cutoff/mesh (200 / [53 53 53]) is not enough for FFTDF to get integral accuracy 1e-08.
+Coulomb integral error is ~ 29 Eh.
+Recommended ke_cutoff/mesh are 1172.14 / [123 123 123].
+
+kmesh = [2 2 2]
+kpts = 
+[[ 0.00000000e+00  0.00000000e+00  0.00000000e+00]
+ [-2.84579601e-17 -2.84579601e-17  3.97115427e-01]
+ [ 0.00000000e+00  3.97115427e-01  0.00000000e+00]
+ [-2.84579601e-17  3.97115427e-01  3.97115427e-01]
+ [ 3.97115427e-01  2.84579601e-17  0.00000000e+00]
+ [ 3.97115427e-01  0.00000000e+00  3.97115427e-01]
+ [ 3.97115427e-01  3.97115427e-01  0.00000000e+00]
+ [ 3.97115427e-01  3.97115427e-01  3.97115427e-01]]
+nip = 4680, nao = 156, cisdf =  30.00
+    CPU time for get interpolating vectors      0.25 sec
+blksize = 8394, ngrid = 148877
+Use out-core for eta_kpt, disk space used for eta_kpt = 8.92e+01 GB
+memory used for each block = 5.03e+00 GB, max_memory = 1.01e+01 GB
+/var/spool/slurmd/job48115413/slurm_script: line 48: 804136 Killed                  python main.py --name=nio-conv --df=fftisdf-jy --ke_cutoff=200.0 --exxdiv=None --chk_path=../../../gdf-32/tmp/scf.h5 --mesh=2,2,2 --k0=20.0 --c0=30.0
+slurmstepd: error: Detected 1 oom_kill event in StepId=48115413.batch. Some of the step tasks have been OOM Killed.
